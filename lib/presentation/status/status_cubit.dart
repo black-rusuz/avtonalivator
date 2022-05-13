@@ -2,10 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-part 'main_state.dart';
+part 'status_state.dart';
 
-class MainCubit extends Cubit<MainState> {
-  MainCubit() : super(MainInitial()) {
+class StatusCubit extends Cubit<StatusState> {
+  StatusCubit() : super(StatusInitialState()) {
     fetchStatus();
   }
 
@@ -13,10 +13,12 @@ class MainCubit extends Cubit<MainState> {
     bool isAvailable =
         await FlutterBluetoothSerial.instance.isAvailable ?? false;
     bool isEnabled = await FlutterBluetoothSerial.instance.isEnabled ?? false;
+
     if (!isEnabled) {
       isEnabled =
           await FlutterBluetoothSerial.instance.requestEnable() ?? false;
     }
-    emit(MainStatus(isAvailable: isAvailable, isEnabled: isEnabled));
+
+    emit(StatusSuccessState(isAvailable: isAvailable, isEnabled: isEnabled));
   }
 }

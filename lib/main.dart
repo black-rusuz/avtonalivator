@@ -1,6 +1,7 @@
-import 'package:avtonalivator/presentation/main_cubit.dart';
+import 'package:avtonalivator/presentation/connection/connection_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'presentation/status/status_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,39 +12,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: чё с темой, цветами, етс?
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Автобармен',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const Main(),
+      initialRoute: '/test',
+      onGenerateRoute: (RouteSettings settings) => routeByName(settings),
     );
   }
-}
 
-class Main extends StatelessWidget {
-  const Main({Key? key}) : super(key: key);
+  pageWrapper(Widget page) => MaterialPageRoute(builder: (_) => page);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<MainCubit>(
-      create: (_) => MainCubit(),
-      child: BlocBuilder<MainCubit, MainState>(
-        builder: (context, state) {
-          if (state is MainStatus) {
-            if (!state.isAvailable) {
-              return const Text("Bluetooth is not available");
-            }
-            if (!state.isEnabled) {
-              return const Text("Bluetooth is not enabled");
-            } else {
-              return const Text("Select device");
-            }
-          }
-          return const SizedBox();
-        },
-      ),
-    );
-    return const SizedBox();
+  MaterialPageRoute? routeByName(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return pageWrapper(const StatusPage());
+      case '/connection':
+        return pageWrapper(const SizedBox());
+      case '/home':
+        return pageWrapper(const SizedBox());
+
+      case '/test':
+        return pageWrapper(const ConnectionPage());
+      default:
+        return pageWrapper(const SizedBox());
+    }
   }
 }
