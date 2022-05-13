@@ -1,4 +1,5 @@
 import 'package:avtonalivator/presentation/connection/connection_page.dart';
+import 'package:avtonalivator/presentation/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 import 'presentation/status/status_page.dart';
@@ -30,12 +31,12 @@ class MyApp extends StatelessWidget {
       case '/':
         return pageWrapper(const StatusPage());
       case '/connection':
-        return pageWrapper(const SizedBox());
+        return pageWrapper(ConnectionPage());
       case '/home':
-        return pageWrapper(const SizedBox());
+        return pageWrapper(const HomePage());
 
       case '/test':
-        return pageWrapper(const ConnectionPage());
+        return pageWrapper(ConnectionPage());
       default:
         return pageWrapper(const SizedBox());
     }
