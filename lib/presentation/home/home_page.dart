@@ -19,6 +19,17 @@ class HomePage extends StatelessWidget {
             label: 'Настройки',
           ),
         ],
+        currentIndex: 0,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.pushNamed(context, '/');
+              break;
+            case 1:
+              Navigator.pushNamed(context, '/home');
+              break;
+          }
+        },
       ),
     );
   }
