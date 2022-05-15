@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ConnectionAppBar extends StatelessWidget {
-  const ConnectionAppBar({Key? key}) : super(key: key);
+class ConnectAppBar extends StatelessWidget {
+  const ConnectAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

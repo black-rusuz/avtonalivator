@@ -1,9 +1,8 @@
-import 'package:avtonalivator/presentation/widgets/connection/connection_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/launch/launch_bloc.dart';
-import '../widgets/connection/device_list.dart';
+import 'connect_page.dart';
 
 class LaunchPage extends StatelessWidget {
   const LaunchPage({Key? key}) : super(key: key);
@@ -11,33 +10,25 @@ class LaunchPage extends StatelessWidget {
   void requestEnable(BuildContext context) =>
       context.read<LaunchBloc>()..add(LaunchInitialEvent());
 
-  @override
-  Widget build(BuildContext context) {
-    final devs = [
-      'Yandex.Mini',
-      'JBL E40BT',
-      'Razer Barracuda X',
-      'Avtobarmen',
-      'Yandex.Mini',
-      'JBL E40BT',
-      'Razer Barracuda X',
-      'Avtobarmen',
-      'Yandex.Mini',
-      'JBL E40BT',
-      'Razer Barracuda X',
-      'Avtobarmen',
-    ];
+  void pushConnectPage(BuildContext context, LaunchState state) {
+    if (state is LaunchStatusFetchedState && state.isEnabled) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const ConnectPage(),
+        ),
+      );
+    }
+  }
 
-    return BlocBuilder<LaunchBloc, LaunchState>(
-      builder: (context, state) => Scaffold(
-        body: state is! LaunchStatusFetchedState
-            ? const Center(child: CircularProgressIndicator())
-            : !state.isAvailable
-                ? const Center(
-                    child: Text('Bluetooth is not supported by your device'))
-                : !state.isEnabled
-                    ? Center(
-                        child: Column(
+  Widget buildScreen(context, state) => Scaffold(
+        body: Center(
+          child: state is! LaunchStatusFetchedState
+              ? const CircularProgressIndicator()
+              : !state.isAvailable
+                  ? const Text('Bluetooth is not supported by your device')
+                  : !state.isEnabled
+                      ? Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const Text('Bluetooth is not enabled'),
@@ -45,14 +36,20 @@ class LaunchPage extends StatelessWidget {
                                 onPressed: () => requestEnable(context),
                                 child: const Text('Enable Bluetooth')),
                           ],
-                        ),
-                      )
-                    : CustomScrollView(
-                        slivers: [
-                          const ConnectionAppBar(),
-                          DeviceList(devices: devs),
-                        ],
-                      ),
+                        )
+                      : const CircularProgressIndicator(),
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<LaunchBloc>(
+      create: (_) => LaunchBloc()..add(LaunchInitialEvent()),
+      child: BlocListener<LaunchBloc, LaunchState>(
+        listener: pushConnectPage,
+        child: BlocBuilder<LaunchBloc, LaunchState>(
+          builder: buildScreen,
+        ),
       ),
     );
   }
