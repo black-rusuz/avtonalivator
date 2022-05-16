@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../../bloc/scan/scan_bloc.dart';
 
 class DeviceListItem extends StatelessWidget {
-  final String title;
-  final String? subtitle;
+  final BluetoothDevice device;
 
-  const DeviceListItem({Key? key, required this.title, this.subtitle})
-      : super(key: key);
+  const DeviceListItem({Key? key, required this.device}) : super(key: key);
 
-  // TODO: Коннект
-  void scan(BuildContext context) => context.read<ScanBloc>();
+  void connectToDevice(BuildContext context, String address) =>
+      context.read<ScanBloc>().add(ScanDevicePickedEvent(address: address));
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => scan(context),
+      onTap: () => connectToDevice(context, device.address),
       leading: const Icon(Icons.device_unknown),
-      title: Text(title),
-      subtitle: subtitle != null ? Text(subtitle!) : null,
+      // TODO: Массив животных
+      title: Text(device.name ?? "Неопознанный "),
+      //subtitle: Text(device.address),
       trailing: const Icon(Icons.connect_without_contact),
     );
   }

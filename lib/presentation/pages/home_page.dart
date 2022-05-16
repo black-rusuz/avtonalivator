@@ -1,13 +1,29 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final BluetoothConnection connection;
+
+  const HomePage({Key? key, required this.connection}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: красивый домашний экран
     return Scaffold(
-      body: const SizedBox(),
+      body: Center(
+        child: TextButton(
+          onPressed: () async {
+            String text = "nudes";
+            text = text.trim();
+            connection.output.add(Uint8List.fromList(utf8.encode(text + "\r")));
+            await connection.output.allSent;
+          },
+          child: Text("Send nudes"),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

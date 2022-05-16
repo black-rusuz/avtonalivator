@@ -10,10 +10,12 @@ class ScanPage extends StatelessWidget {
   const ScanPage({Key? key}) : super(key: key);
 
   void pushHomePage(BuildContext context, ScanState state) {
-    if (false) {
+    if (state is ScanDeviceConnectedState) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const HomePage()),
+        MaterialPageRoute(
+          builder: (_) => HomePage(connection: state.connection),
+        ),
       );
     }
   }

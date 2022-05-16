@@ -17,3 +17,12 @@ class ScanDevicesFetchedState extends ScanState {
   @override
   List<Object> get props => [devices];
 }
+
+class ScanDeviceConnectedState extends ScanState {
+  final BluetoothConnection connection;
+
+  const ScanDeviceConnectedState({required this.connection});
+
+  @override
+  List<Object> get props => [connection];
+}

@@ -12,7 +12,7 @@ class DeviceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildListDelegate.fixed(
-        devices.map((e) => DeviceListItem(title: e.name ?? e.address)).toList(),
+        devices.map((e) => DeviceListItem(device: e)).toList(),
       ),
     );
   }

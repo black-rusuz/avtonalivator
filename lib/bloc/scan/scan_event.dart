@@ -15,5 +15,23 @@ class ScanNewDeviceEvent extends ScanEvent {
   const ScanNewDeviceEvent({required this.device});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [device];
+}
+
+class ScanDevicePickedEvent extends ScanEvent {
+  final String address;
+
+  const ScanDevicePickedEvent({required this.address});
+
+  @override
+  List<Object> get props => [address];
+}
+
+class ScanDeviceConnectedEvent extends ScanEvent {
+  final BluetoothConnection connection;
+
+  const ScanDeviceConnectedEvent({required this.connection});
+
+  @override
+  List<Object> get props => [connection];
 }
