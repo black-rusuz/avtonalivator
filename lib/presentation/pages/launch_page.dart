@@ -1,3 +1,4 @@
+import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,10 +34,18 @@ class LaunchPage extends StatelessWidget {
                         ? Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Text('Bluetooth is not enabled'),
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 100),
+                                child: Text('Bluetooth is not enabled'),
+                              ),
                               TextButton(
-                                  onPressed: () => requestEnable(context),
-                                  child: const Text('Enable Bluetooth')),
+                                onPressed: () => requestEnable(context),
+                                child: const Text('Enable Bluetooth'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Style.yellow,
+                                  onPrimary: Style.yellowAccent,
+                                ),
+                              ),
                             ],
                           )
                         : const CircularProgressIndicator(),

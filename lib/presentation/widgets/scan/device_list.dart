@@ -11,7 +11,17 @@ class DeviceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList(
-      delegate: SliverChildListDelegate.fixed(
+      delegate: SliverChildListDelegate(
+        // TODO: убрать
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
+        devices.map((e) => DeviceListItem(device: e)).toList() +
         devices.map((e) => DeviceListItem(device: e)).toList(),
       ),
     );
