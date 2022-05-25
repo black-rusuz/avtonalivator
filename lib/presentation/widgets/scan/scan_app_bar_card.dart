@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../common/base_card.dart';
 
-class AppBarCard extends StatelessWidget {
-  const AppBarCard({Key? key}) : super(key: key);
+class ScanAppBarCard extends StatelessWidget {
+  const ScanAppBarCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

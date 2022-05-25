@@ -1,10 +1,11 @@
-import 'package:avtonalivator/presentation/pages/home_page.dart';
+import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/scan/scan_bloc.dart';
-import '../widgets/scan/device_list.dart';
 import '../widgets/scan/scan_appbar.dart';
+import '../widgets/scan/scan_device_list.dart';
+import 'home_page.dart';
 
 class ScanPage extends StatelessWidget {
   const ScanPage({Key? key}) : super(key: key);
@@ -24,15 +25,19 @@ class ScanPage extends StatelessWidget {
             );
           }
         },
-        builder: (context, state) => Scaffold(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: Style.yellow,
             body: state is ScanDevicesFetchedState
                 ? CustomScrollView(
                     slivers: [
                       const ScanAppBar(),
-                      DeviceList(devices: state.devices),
+                      ScanDeviceList(devices: state.devices),
                     ],
                   )
-                : const CircularProgressIndicator()),
+                : const CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }

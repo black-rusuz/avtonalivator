@@ -24,33 +24,35 @@ class LaunchPage extends StatelessWidget {
             );
           }
         },
-        builder: (context, state) => Scaffold(
-          body: Center(
-            child: state is! LaunchStatusFetchedState
-                ? const CircularProgressIndicator()
-                : !state.isAvailable
-                    ? const Text('Bluetooth is not supported by your device')
-                    : !state.isEnabled
-                        ? Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(bottom: 100),
-                                child: Text('Bluetooth is not enabled'),
-                              ),
-                              TextButton(
-                                onPressed: () => requestEnable(context),
-                                child: const Text('Enable Bluetooth'),
-                                style: ElevatedButton.styleFrom(
-                                  primary: Style.yellow,
-                                  onPrimary: Style.yellowAccent,
+        builder: (context, state) {
+          return Scaffold(
+            body: Center(
+              child: state is! LaunchStatusFetchedState
+                  ? const CircularProgressIndicator()
+                  : !state.isAvailable
+                      ? const Text('Bluetooth is not supported by your device')
+                      : !state.isEnabled
+                          ? Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(bottom: 100),
+                                  child: Text('Bluetooth is not enabled'),
                                 ),
-                              ),
-                            ],
-                          )
-                        : const CircularProgressIndicator(),
-          ),
-        ),
+                                TextButton(
+                                  onPressed: () => requestEnable(context),
+                                  child: const Text('Enable Bluetooth'),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Style.yellow,
+                                    onPrimary: Style.yellowAccent,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : const CircularProgressIndicator(),
+            ),
+          );
+        },
       ),
     );
   }
