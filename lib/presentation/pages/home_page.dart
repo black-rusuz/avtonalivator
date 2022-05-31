@@ -14,14 +14,18 @@ class HomePage extends StatelessWidget {
     // TODO: красивый домашний экран
     return Scaffold(
       body: Center(
-        child: TextButton(
-          onPressed: () async {
-            String text = "nudes";
-            text = text.trim();
-            connection.output.add(Uint8List.fromList(utf8.encode(text + "\r")));
-            await connection.output.allSent;
-          },
-          child: Text("Send nudes"),
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: [
+            Btn(connection, "a10"),
+            Btn(connection, "b10"),
+            Btn(connection, "c10"),
+            Btn(connection, "d10"),
+            Btn(connection, "e10"),
+            Btn(connection, "f10"),
+            Btn(connection, "y1"),
+            Btn(connection, "z1"),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -47,6 +51,27 @@ class HomePage extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+}
+
+// TODO: Temp
+class Btn extends StatelessWidget {
+  final String text;
+  final BluetoothConnection connection;
+
+  const Btn(this.connection, this.text, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () async {
+        connection.output.add(
+          Uint8List.fromList(utf8.encode(text.trim() + "\r")),
+        );
+        await connection.output.allSent;
+      },
+      child: Text(text),
     );
   }
 }

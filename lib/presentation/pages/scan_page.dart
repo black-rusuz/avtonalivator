@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/scan/scan_bloc.dart';
-import '../widgets/scan/scan_appbar.dart';
+import '../widgets/scan/scan_app_bar.dart';
 import '../widgets/scan/scan_device_list.dart';
 import 'home_page.dart';
 
