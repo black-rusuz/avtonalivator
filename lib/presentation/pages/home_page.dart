@@ -1,77 +1,64 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
+import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-class HomePage extends StatelessWidget {
-  final BluetoothConnection connection;
+import 'home_fragments/all.dart';
 
-  const HomePage({Key? key, required this.connection}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  void _setIndex(int index) => setState(() => _selectedIndex = index);
+
+  final List<Widget> _pages = [
+    const TuningFragment(),
+    const CocktailsFragment(),
+    const StatsFragment(),
+    const SettingsFragment(),
+  ];
+
+  BottomNavigationBar get _navBar => BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _selectedIndex,
+        onTap: _setIndex,
+        items: [
+          _navItem(const Icon(Icons.tune_rounded)),
+          _navItem(const Icon(Icons.local_drink_rounded)),
+          _navItem(const Icon(Icons.insert_chart_outlined_outlined)),
+          _navItem(const Icon(Icons.settings_rounded)),
+        ],
+      );
+
+  BottomNavigationBarItem _navItem(Icon icon) => BottomNavigationBarItem(
+        label: '',
+        icon: icon,
+        activeIcon: Container(
+          child: icon,
+          padding: const EdgeInsets.all(5),
+          decoration: const BoxDecoration(
+            color: Style.yellow,
+            shape: BoxShape.circle,
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
     // TODO: красивый домашний экран
     return Scaffold(
-      body: Center(
-        child: GridView.count(
-          crossAxisCount: 2,
-          children: [
-            Btn(connection, "a10"),
-            Btn(connection, "b10"),
-            Btn(connection, "c10"),
-            Btn(connection, "d10"),
-            Btn(connection, "e10"),
-            Btn(connection, "f10"),
-            Btn(connection, "y1"),
-            Btn(connection, "z1"),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_drink),
-            label: 'Напитки',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Настройки',
-          ),
-        ],
-        currentIndex: 0,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.pushNamed(context, '/');
-              break;
-            case 1:
-              Navigator.pushNamed(context, '/home');
-              break;
-          }
-        },
-      ),
-    );
-  }
-}
-
-// TODO: Temp
-class Btn extends StatelessWidget {
-  final String text;
-  final BluetoothConnection connection;
-
-  const Btn(this.connection, this.text, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () async {
-        connection.output.add(
-          Uint8List.fromList(utf8.encode(text.trim() + "\r")),
-        );
-        await connection.output.allSent;
-      },
-      child: Text(text),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: _navBar,
+      backgroundColor: Colors.white,
     );
   }
 }
