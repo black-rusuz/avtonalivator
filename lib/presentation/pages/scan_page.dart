@@ -12,7 +12,7 @@ import 'home_page.dart';
 class ScanPage extends StatelessWidget {
   const ScanPage({Key? key}) : super(key: key);
 
-  MultiBlocProvider _getHomeProvider(BluetoothConnection connection) =>
+  MultiBlocProvider getHomeProvider(BluetoothConnection connection) =>
       MultiBlocProvider(
         providers: [
           BlocProvider<HomeBloc>(
@@ -31,7 +31,7 @@ class ScanPage extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => _getHomeProvider(state.connection),
+              builder: (context) => getHomeProvider(state.connection),
             ),
           );
         }

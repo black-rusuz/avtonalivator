@@ -11,35 +11,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
 
-  void _setIndex(int index) => setState(() => _selectedIndex = index);
+  void setIndex(int index) => setState(() => selectedIndex = index);
 
-  final List<Widget> _pages = [
+  final List<Widget> pages = [
     const TuningFragment(),
     const CocktailsFragment(),
     const StatsFragment(),
     const SettingsFragment(),
   ];
 
-  BottomNavigationBar get _navBar => BottomNavigationBar(
+  BottomNavigationBar get navBar => BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.black,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        currentIndex: _selectedIndex,
-        onTap: _setIndex,
+        currentIndex: selectedIndex,
+        onTap: setIndex,
         items: [
-          _navItem(const Icon(Icons.tune_rounded)),
-          _navItem(const Icon(Icons.local_drink_rounded)),
-          _navItem(const Icon(Icons.insert_chart_outlined_outlined)),
-          _navItem(const Icon(Icons.settings_rounded)),
+          navItem(const Icon(Icons.tune_rounded)),
+          navItem(const Icon(Icons.local_drink_rounded)),
+          navItem(const Icon(Icons.insert_chart_outlined_outlined)),
+          navItem(const Icon(Icons.settings_rounded)),
         ],
       );
 
-  BottomNavigationBarItem _navItem(Icon icon) => BottomNavigationBarItem(
+  BottomNavigationBarItem navItem(Icon icon) => BottomNavigationBarItem(
         label: '',
         icon: icon,
         activeIcon: Container(
@@ -54,10 +54,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: красивый домашний экран
     return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: _navBar,
+      body: pages[selectedIndex],
+      bottomNavigationBar: navBar,
       backgroundColor: Colors.white,
     );
   }
