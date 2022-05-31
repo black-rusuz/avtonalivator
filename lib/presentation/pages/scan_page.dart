@@ -12,33 +12,30 @@ class ScanPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ScanBloc>(
-      create: (context) => ScanBloc()..add(ScanInitialEvent()),
-      child: BlocConsumer<ScanBloc, ScanState>(
-        listener: (context, state) {
-          if (state is ScanDeviceConnectedState) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(connection: state.connection),
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            backgroundColor: Style.yellow,
-            body: state is ScanDevicesFetchedState
-                ? CustomScrollView(
-                    slivers: [
-                      const ScanAppBar(),
-                      ScanDeviceList(devices: state.devices),
-                    ],
-                  )
-                : const CircularProgressIndicator(),
+    return BlocConsumer<ScanBloc, ScanState>(
+      listener: (context, state) {
+        if (state is ScanDeviceConnectedState) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(connection: state.connection),
+            ),
           );
-        },
-      ),
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Style.yellow,
+          body: state is ScanDevicesFetchedState
+              ? CustomScrollView(
+                  slivers: [
+                    const ScanAppBar(),
+                    ScanDeviceList(devices: state.devices),
+                  ],
+                )
+              : const CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

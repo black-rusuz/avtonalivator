@@ -9,10 +9,10 @@ abstract class ScanEvent {
 
 class ScanInitialEvent extends ScanEvent {}
 
-class ScanNewDeviceEvent extends ScanEvent {
+class ScanDiscoveredDeviceEvent extends ScanEvent {
   final BluetoothDevice device;
 
-  const ScanNewDeviceEvent({required this.device});
+  const ScanDiscoveredDeviceEvent({required this.device});
 
   @override
   List<Object> get props => [device];

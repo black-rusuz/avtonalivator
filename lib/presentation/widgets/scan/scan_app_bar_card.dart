@@ -28,7 +28,7 @@ class ScanAppBarCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Устройство не подключено',
+                    'Устройство не подключено',
                     style: Style.cardHeader,
                   ),
                   Text(
