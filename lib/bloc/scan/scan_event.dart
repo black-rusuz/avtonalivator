@@ -35,3 +35,5 @@ class ScanDeviceConnectedEvent extends ScanEvent {
   @override
   List<Object> get props => [connection];
 }
+
+class ScanConnectionSkippedEvent extends ScanEvent {}

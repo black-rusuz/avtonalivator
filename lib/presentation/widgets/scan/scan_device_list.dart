@@ -13,23 +13,15 @@ class ScanDeviceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height - 284,
+        ),
         decoration: const BoxDecoration(
           color: Style.yellowAccent,
           borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
         ),
         child: Column(
-          children:
-              // TODO: убрать
-              devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList() +
-                  devices.map((e) => ScanDeviceListItem(device: e)).toList(),
+          children: devices.map((e) => ScanDeviceListItem(device: e)).toList(),
         ),
       ),
     );

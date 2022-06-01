@@ -13,6 +13,7 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     on<ScanDiscoveredDeviceEvent>(_addDevice);
     on<ScanDevicePickedEvent>(_connectToDevice);
     on<ScanDeviceConnectedEvent>(_pushHome);
+    on<ScanConnectionSkippedEvent>(_skipConnection);
   }
 
   final List<BluetoothDevice> _devices = [];
@@ -62,6 +63,13 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
     Emitter<ScanState> emit,
   ) {
     emit(ScanDeviceConnectedState(connection: _connection!));
+  }
+
+  FutureOr<void> _skipConnection(
+    ScanConnectionSkippedEvent event,
+    Emitter<ScanState> emit,
+  ) {
+    emit(ScanConnectionSkippedState());
   }
 
   @override

@@ -7,8 +7,13 @@ abstract class HomeEvent {
   List<Object> get props => [];
 }
 
-class HomeInitialEvent extends HomeEvent {
+class HomeInitialEvent extends HomeEvent {}
+
+class HomeConnectedEvent extends HomeEvent {
   final BluetoothConnection connection;
 
-  const HomeInitialEvent({required this.connection});
+  const HomeConnectedEvent({required this.connection});
+
+  @override
+  List<Object> get props => [connection];
 }

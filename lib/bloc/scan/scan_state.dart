@@ -26,3 +26,5 @@ class ScanDeviceConnectedState extends ScanState {
   @override
   List<Object> get props => [connection];
 }
+
+class ScanConnectionSkippedState extends ScanState {}

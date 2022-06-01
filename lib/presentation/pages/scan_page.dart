@@ -17,7 +17,7 @@ class ScanPage extends StatelessWidget {
         providers: [
           BlocProvider<HomeBloc>(
             create: (context) =>
-                HomeBloc()..add(HomeInitialEvent(connection: connection)),
+                HomeBloc()..add(HomeConnectedEvent(connection: connection)),
           ),
         ],
         child: const HomePage(),
@@ -34,11 +34,27 @@ class ScanPage extends StatelessWidget {
               builder: (context) => getHomeProvider(state.connection),
             ),
           );
+        } else if (state is ScanConnectionSkippedState) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider<HomeBloc>(
+                create: (context) => HomeBloc()..add(HomeInitialEvent()),
+                child: const HomePage(),
+              ),
+            ),
+          );
         }
       },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Style.yellow,
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () =>
+                context.read<ScanBloc>().add(ScanConnectionSkippedEvent()),
+            label: const Text('Пока пропустить'),
+            icon: const Icon(Icons.skip_next_rounded),
+          ),
           body: state is ScanDevicesFetchedState
               ? CustomScrollView(
                   slivers: [

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/launch/launch_bloc.dart';
 import '../../bloc/scan/scan_bloc.dart';
-import 'home_page.dart';
 import 'scan_page.dart';
 
 class LaunchPage extends StatelessWidget {
@@ -23,9 +22,7 @@ class LaunchPage extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => BlocProvider<ScanBloc>(
                 create: (context) => ScanBloc()..add(ScanInitialEvent()),
-                // TODO:
-                //child: const ScanPage(),
-                child: const HomePage(),
+                child: const ScanPage(),
               ),
             ),
           );
