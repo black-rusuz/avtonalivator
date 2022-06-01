@@ -1,126 +1,47 @@
-import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 import '../../bloc/home/home_bloc.dart';
 import '../../model/pump_model.dart';
 import 'common/base_card.dart';
+import 'home/tuning_card_inner.dart';
 
 class TuningCard extends StatelessWidget {
   final PumpModel pump;
 
   const TuningCard({Key? key, required this.pump}) : super(key: key);
 
-  Color get black => const Color.fromRGBO(1, 0, 2, 1);
-
-  Color get grey => const Color.fromRGBO(196, 196, 196, 1);
-
-  TextStyle get numberStyle => TextStyle(
-        fontSize: 96,
-        color: pump.isEnabled ? black.withOpacity(0.1) : grey.withOpacity(0.2),
-      );
-
-  TextStyle get textStyle => TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: black,
-      );
-
-  TextStyle get volumeStyle => TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: pump.isEnabled ? black.withOpacity(0.7) : grey,
-      );
-
-  SliderThemeData sliderStyle(BuildContext context) =>
-      SliderTheme.of(context).copyWith(
-        trackHeight: 5,
-        activeTrackColor: pump.isEnabled ? black : Style.yellow,
-        inactiveTrackColor: pump.isEnabled
-            ? Colors.white.withOpacity(0.7)
-            : const Color.fromRGBO(237, 237, 237, 1),
-        thumbColor: pump.isEnabled ? black : Style.yellow,
-        thumbShape: const RoundSliderThumbShape(
-          enabledThumbRadius: 5,
-          elevation: 0,
-          pressedElevation: 0,
-        ),
-        overlayColor: Colors.transparent,
-        overlayShape: SliderComponentShape.noThumb,
-      );
-
-  void setVolume(BuildContext context, double value) =>
-      setPump(context, pump.copyWith(volume: value));
-
-  void setEnabled(BuildContext context, bool isEnabled) =>
-      setPump(context, pump.copyWith(isEnabled: isEnabled));
-
-  void setPump(BuildContext context, PumpModel pump) =>
-      context.read<HomeBloc>().add(HomeSetPumpEvent(pump: pump));
-
   @override
   Widget build(BuildContext context) {
-    // TODO: можно добавить соло стейт
-    // вынести вёрстку карточки и оптимизировать билд
-    return BaseCard(
-      height: 85,
-      margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-      isActive: pump.isEnabled,
-      duration: 100,
-      child: Stack(
-        children: [
-          Positioned(
-            top: -12,
-            left: 10,
-            child: Text(pump.id.toString(), style: numberStyle),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, bottom: 16),
-                  child: Row(children: [
-                    Text('Напиток', style: textStyle),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        '${pump.volume.round()}мл',
-                        style: volumeStyle,
-                      ),
-                    ),
-                    const Expanded(child: SizedBox()),
-                    FlutterSwitch(
-                      height: 25,
-                      width: 50,
-                      toggleSize: 21,
-                      borderRadius: 25,
-                      padding: 2,
-                      activeColor: black.withOpacity(0.7),
-                      inactiveColor: grey,
-                      value: pump.isEnabled,
-                      onToggle: (value) => setEnabled(context, value),
-                    ),
-                  ]),
-                ),
-                Expanded(
-                  child: SliderTheme(
-                    data: sliderStyle(context),
-                    child: Slider(
-                      min: 0,
-                      max: 250,
-                      divisions: 50,
-                      value: pump.volume,
-                      onChanged: (value) => setVolume(context, value),
-                    ),
+    return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: ((prev, next) =>
+          next is HomePumpDefinedState && next.pump.id == pump.id),
+      builder: (context, state) =>
+          state is HomePumpDefinedState && state.pump.id == pump.id
+              ? BaseCard(
+                  height: 85,
+                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                  isActive: state.pump.isEnabled,
+                  duration: 100,
+                  child: TuningCardInner(
+                    id: state.pump.id,
+                    name: state.pump.name,
+                    volume: state.pump.volume,
+                    isEnabled: state.pump.isEnabled,
+                  ),
+                )
+              : BaseCard(
+                  height: 85,
+                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                  isActive: pump.isEnabled,
+                  duration: 100,
+                  child: TuningCardInner(
+                    id: pump.id,
+                    name: pump.name,
+                    volume: pump.volume,
+                    isEnabled: pump.isEnabled,
                   ),
                 ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

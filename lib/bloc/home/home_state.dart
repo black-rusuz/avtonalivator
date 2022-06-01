@@ -20,11 +20,11 @@ class HomeAllPumpsState extends HomeState {
   List<Object> get props => [pumps];
 }
 
-// class HomePumpDefinedState extends HomeState {
-//   final PumpModel pump;
-//
-//   const HomePumpDefinedState({required this.pump});
-//
-//   @override
-//   List<Object> get props => [pump];
-// }
+class HomePumpDefinedState extends HomeState {
+  final PumpModel pump;
+
+  const HomePumpDefinedState({required this.pump});
+
+  @override
+  List<Object> get props => [pump];
+}

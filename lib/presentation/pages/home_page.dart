@@ -1,8 +1,8 @@
-import 'package:avtonalivator/bloc/home/home_bloc.dart';
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/home/home_bloc.dart';
 import 'home_fragments/all.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,14 +54,14 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  FloatingActionButton? get action => (selectedIndex == 0 &&
-          context.watch<HomeBloc>().state is HomeConnectedState)
-      ? FloatingActionButton.extended(
-          onPressed: pour,
-          icon: const Icon(Icons.local_drink_rounded),
-          label: const Text('Налить'),
-        )
-      : null;
+  FloatingActionButton? get action =>
+      selectedIndex == 0 && context.watch<HomeBloc>().isConnected
+          ? FloatingActionButton.extended(
+              onPressed: pour,
+              icon: const Icon(Icons.local_drink_rounded),
+              label: const Text('Налить'),
+            )
+          : null;
 
   void pour() => context.read<HomeBloc>().add(HomePourEvent());
 

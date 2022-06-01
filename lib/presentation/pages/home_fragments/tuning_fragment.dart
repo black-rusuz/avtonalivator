@@ -12,7 +12,7 @@ class TuningFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: ((prev, next) => next is! HomeConnectedState),
+      buildWhen: ((prev, next) => next is HomeAllPumpsState),
       builder: (context, state) {
         if (state is HomeAllPumpsState) {
           return CustomScrollView(
