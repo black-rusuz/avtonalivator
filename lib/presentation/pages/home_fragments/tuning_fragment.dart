@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/home/home_bloc.dart';
 import '../../widgets/common/base_app_bar.dart';
 import '../../widgets/common/sliver_widget_list.dart';
 import '../../widgets/tuning_card.dart';
@@ -9,20 +11,21 @@ class TuningFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
-      slivers: [
-        BaseAppBar(title: 'Регулировка'),
-        SliverWidgetList(
-          children: [
-            TuningCard(position: 1),
-            TuningCard(position: 2),
-            TuningCard(position: 3),
-            TuningCard(position: 4),
-            TuningCard(position: 5),
-            TuningCard(position: 6),
-          ],
-        )
-      ],
+    return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: ((prev, next) => next is! HomeConnectedState),
+      builder: (context, state) {
+        if (state is HomeAllPumpsState) {
+          return CustomScrollView(
+            slivers: [
+              const BaseAppBar(title: 'Регулировка'),
+              SliverWidgetList(
+                children: state.pumps.map((e) => TuningCard(pump: e)).toList(),
+              ),
+            ],
+          );
+        }
+        return const SizedBox();
+      },
     );
   }
 }

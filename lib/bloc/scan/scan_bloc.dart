@@ -76,7 +76,6 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
   Future<void> close() async {
     await FlutterBluetoothSerial.instance.cancelDiscovery();
     await _devicesSubscription?.cancel();
-    _connection?.dispose();
     return super.close();
   }
 }

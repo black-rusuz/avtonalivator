@@ -1,21 +1,16 @@
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
+import '../../bloc/home/home_bloc.dart';
+import '../../model/pump_model.dart';
 import 'common/base_card.dart';
 
-class TuningCard extends StatefulWidget {
-  final int position;
+class TuningCard extends StatelessWidget {
+  final PumpModel pump;
 
-  const TuningCard({Key? key, required this.position}) : super(key: key);
-
-  @override
-  State<TuningCard> createState() => _TuningCardState();
-}
-
-class _TuningCardState extends State<TuningCard> {
-  bool isActive = false;
-  int volume = 25;
+  const TuningCard({Key? key, required this.pump}) : super(key: key);
 
   Color get black => const Color.fromRGBO(1, 0, 2, 1);
 
@@ -23,7 +18,7 @@ class _TuningCardState extends State<TuningCard> {
 
   TextStyle get numberStyle => TextStyle(
         fontSize: 96,
-        color: isActive ? black.withOpacity(0.1) : grey.withOpacity(0.2),
+        color: pump.isEnabled ? black.withOpacity(0.1) : grey.withOpacity(0.2),
       );
 
   TextStyle get textStyle => TextStyle(
@@ -35,18 +30,19 @@ class _TuningCardState extends State<TuningCard> {
   TextStyle get volumeStyle => TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: isActive ? black.withOpacity(0.7) : grey,
+        color: pump.isEnabled ? black.withOpacity(0.7) : grey,
       );
 
-  SliderThemeData get sliderStyle => SliderTheme.of(context).copyWith(
+  SliderThemeData sliderStyle(BuildContext context) =>
+      SliderTheme.of(context).copyWith(
         trackHeight: 5,
-        activeTrackColor: isActive ? black : Style.yellow,
-        inactiveTrackColor: isActive
+        activeTrackColor: pump.isEnabled ? black : Style.yellow,
+        inactiveTrackColor: pump.isEnabled
             ? Colors.white.withOpacity(0.7)
             : const Color.fromRGBO(237, 237, 237, 1),
-        thumbColor: isActive ? black : Style.yellow,
+        thumbColor: pump.isEnabled ? black : Style.yellow,
         thumbShape: const RoundSliderThumbShape(
-          enabledThumbRadius: 2.5,
+          enabledThumbRadius: 5,
           elevation: 0,
           pressedElevation: 0,
         ),
@@ -54,23 +50,30 @@ class _TuningCardState extends State<TuningCard> {
         overlayShape: SliderComponentShape.noThumb,
       );
 
-  void setActive(value) => setState(() => isActive = value);
+  void setVolume(BuildContext context, double value) =>
+      setPump(context, pump.copyWith(volume: value));
 
-  void setVolume(value) => setState(() => volume = value.round());
+  void setEnabled(BuildContext context, bool isEnabled) =>
+      setPump(context, pump.copyWith(isEnabled: isEnabled));
+
+  void setPump(BuildContext context, PumpModel pump) =>
+      context.read<HomeBloc>().add(HomeSetPumpEvent(pump: pump));
 
   @override
   Widget build(BuildContext context) {
+    // TODO: можно добавить соло стейт
+    // вынести вёрстку карточки и оптимизировать билд
     return BaseCard(
       height: 85,
-      margin: const EdgeInsets.fromLTRB(30, 0, 30, 10),
-      isActive: isActive,
+      margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+      isActive: pump.isEnabled,
       duration: 100,
       child: Stack(
         children: [
           Positioned(
             top: -12,
             left: 10,
-            child: Text(widget.position.toString(), style: numberStyle),
+            child: Text(pump.id.toString(), style: numberStyle),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -82,7 +85,10 @@ class _TuningCardState extends State<TuningCard> {
                     Text('Напиток', style: textStyle),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: Text('$volumeмл', style: volumeStyle),
+                      child: Text(
+                        '${pump.volume.round()}мл',
+                        style: volumeStyle,
+                      ),
                     ),
                     const Expanded(child: SizedBox()),
                     FlutterSwitch(
@@ -93,20 +99,20 @@ class _TuningCardState extends State<TuningCard> {
                       padding: 2,
                       activeColor: black.withOpacity(0.7),
                       inactiveColor: grey,
-                      value: isActive,
-                      onToggle: setActive,
+                      value: pump.isEnabled,
+                      onToggle: (value) => setEnabled(context, value),
                     ),
                   ]),
                 ),
                 Expanded(
                   child: SliderTheme(
-                    data: sliderStyle,
+                    data: sliderStyle(context),
                     child: Slider(
                       min: 0,
                       max: 250,
                       divisions: 50,
-                      value: volume.toDouble(),
-                      onChanged: setVolume,
+                      value: pump.volume,
+                      onChanged: (value) => setVolume(context, value),
                     ),
                   ),
                 ),

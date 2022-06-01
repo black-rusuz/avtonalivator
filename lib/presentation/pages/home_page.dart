@@ -57,11 +57,13 @@ class _HomePageState extends State<HomePage> {
   FloatingActionButton? get action => (selectedIndex == 0 &&
           context.watch<HomeBloc>().state is HomeConnectedState)
       ? FloatingActionButton.extended(
-          onPressed: () {},
+          onPressed: pour,
           icon: const Icon(Icons.local_drink_rounded),
           label: const Text('Налить'),
         )
       : null;
+
+  void pour() => context.read<HomeBloc>().add(HomePourEvent());
 
   @override
   Widget build(BuildContext context) {

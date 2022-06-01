@@ -16,8 +16,9 @@ class ScanPage extends StatelessWidget {
       MultiBlocProvider(
         providers: [
           BlocProvider<HomeBloc>(
-            create: (context) =>
-                HomeBloc()..add(HomeConnectedEvent(connection: connection)),
+            create: (context) => HomeBloc()
+              ..add(HomeInitEvent())
+              ..add(HomeConnectEvent(connection: connection)),
           ),
         ],
         child: const HomePage(),
@@ -39,7 +40,7 @@ class ScanPage extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => BlocProvider<HomeBloc>(
-                create: (context) => HomeBloc(),
+                create: (context) => HomeBloc()..add(HomeInitEvent()),
                 child: const HomePage(),
               ),
             ),
