@@ -9,17 +9,16 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitialState()) {
-    on<HomeInitialEvent>((event, emit) => _init);
     on<HomeConnectedEvent>((event, emit) => _connect);
   }
 
-  FutureOr<void> _init(
-    HomeInitialEvent event,
-    Emitter<HomeState> emit,
-  ) async {}
+  BluetoothConnection? _connection;
 
   FutureOr<void> _connect(
     HomeConnectedEvent event,
     Emitter<HomeState> emit,
-  ) async {}
+  ) async {
+    _connection = event.connection;
+    emit(HomeConnectedState());
+  }
 }

@@ -39,7 +39,7 @@ class ScanPage extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => BlocProvider<HomeBloc>(
-                create: (context) => HomeBloc()..add(HomeInitialEvent()),
+                create: (context) => HomeBloc(),
                 child: const HomePage(),
               ),
             ),

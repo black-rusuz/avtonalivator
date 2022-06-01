@@ -1,5 +1,7 @@
+import 'package:avtonalivator/bloc/home/home_bloc.dart';
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'home_fragments/all.dart';
 
@@ -33,7 +35,7 @@ class _HomePageState extends State<HomePage> {
         onTap: setIndex,
         items: [
           navItem(const Icon(Icons.tune_rounded)),
-          navItem(const Icon(Icons.local_drink_rounded)),
+          navItem(const Icon(Icons.liquor_rounded)),
           navItem(const Icon(Icons.insert_chart_outlined_outlined)),
           navItem(const Icon(Icons.settings_rounded)),
         ],
@@ -52,12 +54,22 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
+  FloatingActionButton? get action => (selectedIndex == 0 &&
+          context.watch<HomeBloc>().state is HomeConnectedState)
+      ? FloatingActionButton.extended(
+          onPressed: () {},
+          icon: const Icon(Icons.local_drink_rounded),
+          label: const Text('Налить'),
+        )
+      : null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[selectedIndex],
       bottomNavigationBar: navBar,
       backgroundColor: Colors.white,
+      floatingActionButton: action,
     );
   }
 }

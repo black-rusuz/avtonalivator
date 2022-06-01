@@ -18,8 +18,7 @@ class ScanDeviceListItem extends StatelessWidget {
       contentPadding: const EdgeInsets.symmetric(horizontal: 30),
       onTap: () => connectToDevice(context, device.address),
       //leading: const Icon(Icons.device_unknown),
-      // TODO: Массив животных
-      title: Text(device.name ?? "Неопознанный "),
+      title: Text(device.name ?? device.address),
       //subtitle: Text(device.address),
       trailing: const Icon(Icons.bluetooth),
     );

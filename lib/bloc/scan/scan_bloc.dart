@@ -54,7 +54,7 @@ class ScanBloc extends Bloc<ScanEvent, ScanState> {
         _connection = connection;
         add(ScanDeviceConnectedEvent(connection: _connection!));
       }
-      //TODO: принт
+      //TODO: ошибка подключения
     });
   }
 

@@ -8,3 +8,5 @@ abstract class HomeState {
 }
 
 class HomeInitialState extends HomeState {}
+
+class HomeConnectedState extends HomeState {}

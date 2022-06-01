@@ -79,7 +79,7 @@ class _TuningCardState extends State<TuningCard> {
                 Padding(
                   padding: const EdgeInsets.only(left: 30, bottom: 16),
                   child: Row(children: [
-                    Text('Помпа', style: textStyle),
+                    Text('Напиток', style: textStyle),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: Text('$volumeмл', style: volumeStyle),

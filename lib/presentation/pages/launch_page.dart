@@ -34,18 +34,18 @@ class LaunchPage extends StatelessWidget {
             child: state is! LaunchStatusFetchedState
                 ? const CircularProgressIndicator()
                 : !state.isAvailable
-                    ? const Text('Bluetooth is not supported by your device')
+                    ? const Text('Bluetooth не поддерживается устройством')
                     : !state.isEnabled
                         ? Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               const Padding(
                                 padding: EdgeInsets.only(bottom: 100),
-                                child: Text('Bluetooth is not enabled'),
+                                child: Text('Вы не включили Bluetooth'),
                               ),
                               TextButton(
                                 onPressed: () => requestEnable(context),
-                                child: const Text('Enable Bluetooth'),
+                                child: const Text('Включить Bluetooth'),
                                 style: ElevatedButton.styleFrom(
                                   primary: Style.yellow,
                                   onPrimary: Style.yellowAccent,

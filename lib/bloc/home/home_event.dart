@@ -7,8 +7,6 @@ abstract class HomeEvent {
   List<Object> get props => [];
 }
 
-class HomeInitialEvent extends HomeEvent {}
-
 class HomeConnectedEvent extends HomeEvent {
   final BluetoothConnection connection;
 
