@@ -16,7 +16,7 @@ class ScanDevicesFetchedState extends ScanState {
   const ScanDevicesFetchedState({required this.devices});
 
   @override
-  List<Object> get props => [devices];
+  List<Object> get props => [UniqueKey(), devices];
 }
 
 class ScanDeviceConnectedState extends ScanState {
