@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/home/home_bloc.dart';
 import '../../widgets/common/base_app_bar.dart';
 import '../../widgets/common/sliver_widget_list.dart';
-import '../../widgets/tuning_card.dart';
+import '../../widgets/home/tuning_card.dart';
 
 class TuningFragment extends StatelessWidget {
   const TuningFragment({Key? key}) : super(key: key);

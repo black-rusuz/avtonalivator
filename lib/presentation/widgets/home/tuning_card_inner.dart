@@ -7,22 +7,13 @@ import '../../../model/pump_model.dart';
 import '../common/base_switch.dart';
 
 class TuningCardInner extends StatelessWidget {
-  final int id;
-  final String name;
-  final double volume;
-  final bool isEnabled;
+  final PumpModel pump;
 
-  const TuningCardInner({
-    Key? key,
-    required this.id,
-    required this.name,
-    required this.volume,
-    required this.isEnabled,
-  }) : super(key: key);
+  const TuningCardInner({Key? key, required this.pump}) : super(key: key);
 
   TextStyle get numberStyle => TextStyle(
         fontSize: 96,
-        color: isEnabled
+        color: pump.isEnabled
             ? Style.switchEnabled.withOpacity(0.1)
             : Style.switchDisabled.withOpacity(0.2),
       );
@@ -36,7 +27,7 @@ class TuningCardInner extends StatelessWidget {
   TextStyle get volumeStyle => TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: isEnabled
+        color: pump.isEnabled
             ? Style.switchEnabled.withOpacity(0.7)
             : Style.switchDisabled,
       );
@@ -44,11 +35,11 @@ class TuningCardInner extends StatelessWidget {
   SliderThemeData sliderStyle(BuildContext context) =>
       SliderTheme.of(context).copyWith(
         trackHeight: 5,
-        activeTrackColor: isEnabled ? Style.switchEnabled : Style.yellow,
-        inactiveTrackColor: isEnabled
+        activeTrackColor: pump.isEnabled ? Style.switchEnabled : Style.yellow,
+        inactiveTrackColor: pump.isEnabled
             ? Style.yellowAccent.withOpacity(0.7)
             : const Color.fromRGBO(237, 237, 237, 1),
-        thumbColor: isEnabled ? Style.switchEnabled : Style.yellow,
+        thumbColor: pump.isEnabled ? Style.switchEnabled : Style.yellow,
         thumbShape: const RoundSliderThumbShape(
           enabledThumbRadius: 5,
           elevation: 0,
@@ -58,15 +49,11 @@ class TuningCardInner extends StatelessWidget {
         overlayShape: SliderComponentShape.noThumb,
       );
 
-  void setVolume(BuildContext context, double value) => setPump(
-        context,
-        PumpModel(id: id, name: name, volume: value, isEnabled: isEnabled),
-      );
+  void setVolume(BuildContext context, double value) =>
+      setPump(context, pump.copyWith(volume: value));
 
-  void setEnabled(BuildContext context, bool isEnabled) => setPump(
-        context,
-        PumpModel(id: id, name: name, volume: volume, isEnabled: isEnabled),
-      );
+  void setEnabled(BuildContext context, bool isEnabled) =>
+      setPump(context, pump.copyWith(isEnabled: isEnabled));
 
   void setPump(BuildContext context, PumpModel pump) =>
       context.read<HomeBloc>().add(HomeSetPumpEvent(pump: pump));
@@ -78,7 +65,7 @@ class TuningCardInner extends StatelessWidget {
         Positioned(
           top: -12,
           left: 10,
-          child: Text(id.toString(), style: numberStyle),
+          child: Text(pump.id.toString(), style: numberStyle),
         ),
         Padding(
           padding: const EdgeInsets.all(20),
@@ -90,11 +77,11 @@ class TuningCardInner extends StatelessWidget {
                   Text('Напиток', style: textStyle),
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
-                    child: Text('${volume.round()}мл', style: volumeStyle),
+                    child: Text('${pump.volume.round()}мл', style: volumeStyle),
                   ),
                   const Expanded(child: SizedBox()),
                   BaseSwitch(
-                    value: isEnabled,
+                    value: pump.isEnabled,
                     onToggle: (value) => setEnabled(context, value),
                   ),
                 ]),
@@ -106,7 +93,7 @@ class TuningCardInner extends StatelessWidget {
                     min: 0,
                     max: 250,
                     divisions: 50,
-                    value: volume,
+                    value: pump.volume,
                     onChanged: (value) => setVolume(context, value),
                   ),
                 ),

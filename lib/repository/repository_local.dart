@@ -19,7 +19,7 @@ class RepositoryLocal extends Repository {
         volumeC: 30,
       ),
       CocktailModel(
-        id: 1,
+        id: 2,
         name: 'Джин тоник',
         imageUrl: 'https://source.unsplash.com/random/{${Random().nextInt(99)}',
         drinkA: 'Джин',
@@ -28,7 +28,7 @@ class RepositoryLocal extends Repository {
         volumeB: 150,
       ),
       CocktailModel(
-        id: 1,
+        id: 3,
         name: 'Кровавая Мэри',
         imageUrl: 'https://source.unsplash.com/random/{${Random().nextInt(99)}',
         drinkA: 'Водка',
@@ -39,7 +39,7 @@ class RepositoryLocal extends Repository {
         volumeC: 10,
       ),
       CocktailModel(
-        id: 1,
+        id: 4,
         name: 'Дайкири',
         imageUrl: 'https://source.unsplash.com/random/{${Random().nextInt(99)}',
         drinkA: 'Белый ром',
@@ -48,7 +48,7 @@ class RepositoryLocal extends Repository {
         volumeC: 30,
       ),
       CocktailModel(
-        id: 1,
+        id: 5,
         name: 'Голубая лагуна',
         imageUrl: 'https://source.unsplash.com/random/{${Random().nextInt(99)}',
         drinkA: 'Водка',
@@ -58,6 +58,41 @@ class RepositoryLocal extends Repository {
         volumeB: 20,
         volumeC: 150,
       ),
+      CocktailModel(
+        id: 6,
+        name: 'Голубая лагуна',
+        imageUrl: 'https://source.unsplash.com/random/{${Random().nextInt(99)}',
+        drinkA: 'Водка',
+        drinkB: 'Ликер',
+        drinkC: 'Спрайт',
+        drinkD: 'Водка',
+        drinkE: 'Ликер',
+        drinkF: 'Спрайт',
+        volumeA: 50,
+        volumeB: 20,
+        volumeC: 150,
+        volumeD: 50,
+        volumeE: 20,
+        volumeF: 150,
+      ),
+      CocktailModel(
+          id: 7,
+          name: 'Голубая лагуна',
+          imageUrl:
+              'https://source.unsplash.com/random/{${Random().nextInt(99)}',
+          drinkA: 'Водка',
+          drinkB: 'Ликер',
+          drinkC: 'Спрайт',
+          drinkD: 'Водка',
+          drinkE: 'Ликер',
+          drinkF: 'Спрайт',
+          volumeA: 50,
+          volumeB: 20,
+          volumeC: 150,
+          volumeD: 50,
+          volumeE: 20,
+          volumeF: 150,
+          description: 'Добавить лёд 130гр.'),
     ];
   }
 }

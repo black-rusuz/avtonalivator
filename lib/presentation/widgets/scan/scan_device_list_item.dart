@@ -15,22 +15,22 @@ class ScanDeviceListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        children: [
-          const BaseDivider(),
-          ListTile(
-            contentPadding: const EdgeInsets.symmetric(vertical: 2),
-            onTap: () => connectToDevice(context, device.address),
-            //leading: const Icon(Icons.device_unknown),
-            title: Text(device.name ?? device.address),
-            //subtitle: Text(device.address),
-            trailing: const Icon(Icons.bluetooth),
+    return Column(
+      children: [
+        const BaseDivider(),
+        ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 2,
+            horizontal: 30,
           ),
-          const BaseDivider(),
-        ],
-      ),
+          onTap: () => connectToDevice(context, device.address),
+          //leading: const Icon(Icons.device_unknown),
+          title: Text(device.name ?? device.address),
+          //subtitle: Text(device.address),
+          trailing: const Icon(Icons.bluetooth),
+        ),
+        const BaseDivider(),
+      ],
     );
   }
 }

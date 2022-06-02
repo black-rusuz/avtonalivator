@@ -50,6 +50,12 @@ class Style {
     color: greyText,
   );
 
+  static TextStyle listAdditionalText = GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: greyText,
+  );
+
   static List<BoxShadow> cardShadows = const [
     BoxShadow(
       blurRadius: 2,

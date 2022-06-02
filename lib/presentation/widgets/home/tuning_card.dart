@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/home/home_bloc.dart';
-import '../../model/pump_model.dart';
-import 'common/base_card.dart';
-import 'home/tuning_card_inner.dart';
+import '../../../bloc/home/home_bloc.dart';
+import '../../../model/pump_model.dart';
+import '../common/base_card.dart';
+import 'tuning_card_inner.dart';
 
 class TuningCard extends StatelessWidget {
   final PumpModel pump;
@@ -22,25 +22,15 @@ class TuningCard extends StatelessWidget {
                   height: 85,
                   margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                   isActive: state.pump.isEnabled,
-                  duration: 100,
-                  child: TuningCardInner(
-                    id: state.pump.id,
-                    name: state.pump.name,
-                    volume: state.pump.volume,
-                    isEnabled: state.pump.isEnabled,
-                  ),
+                  duration: 200,
+                  child: TuningCardInner(pump: state.pump),
                 )
               : BaseCard(
                   height: 85,
                   margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                   isActive: pump.isEnabled,
-                  duration: 100,
-                  child: TuningCardInner(
-                    id: pump.id,
-                    name: pump.name,
-                    volume: pump.volume,
-                    isEnabled: pump.isEnabled,
-                  ),
+                  duration: 200,
+                  child: TuningCardInner(pump: pump),
                 ),
     );
   }
