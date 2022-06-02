@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Style {
-  static const Color grey = Color(0xFF828282);
-
   static const int _yellowPrimaryValue = 0xFFFAD960;
   static const MaterialColor yellow =
       MaterialColor(_yellowPrimaryValue, <int, Color>{
@@ -28,37 +26,43 @@ class Style {
     700: Color(0xFFFFEBBC),
   });
 
-  static TextStyle get pageTitle => GoogleFonts.inter(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      );
+  static const Color greyText = Color(0xFF828282);
 
-  static TextStyle get cardHeader => GoogleFonts.inter(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-      );
+  static const Color switchEnabled = Color.fromRGBO(1, 0, 2, 1);
 
-  static TextStyle get cardText => GoogleFonts.inter(
-        fontSize: 10,
-        fontWeight: FontWeight.normal,
-        color: grey,
-      );
+  static const Color switchDisabled = Color.fromRGBO(196, 196, 196, 1);
 
-  static List<BoxShadow> get cardShadow => const [
-        BoxShadow(
-          blurRadius: 2,
-          offset: Offset(0, 0.1),
-          color: Color(0x05000000),
-        ),
-        BoxShadow(
-          blurRadius: 7,
-          offset: Offset(0, 0.5),
-          color: Color(0x0A000000),
-        ),
-        BoxShadow(
-          blurRadius: 31,
-          offset: Offset(0, 0.2),
-          color: Color(0x0D000000),
-        ),
-      ];
+  static TextStyle pageTitle = GoogleFonts.inter(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle cardHeader = GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle cardText = GoogleFonts.inter(
+    fontSize: 10,
+    fontWeight: FontWeight.normal,
+    color: greyText,
+  );
+
+  static List<BoxShadow> cardShadows = const [
+    BoxShadow(
+      blurRadius: 2,
+      offset: Offset(0, 0.1),
+      color: Color.fromRGBO(0, 0, 0, 0.02),
+    ),
+    BoxShadow(
+      blurRadius: 7,
+      offset: Offset(0, 0.5),
+      color: Color.fromRGBO(0, 0, 0, 0.04),
+    ),
+    BoxShadow(
+      blurRadius: 31,
+      offset: Offset(0, 2),
+      color: Color.fromRGBO(0, 0, 0, 0.06),
+    ),
+  ];
 }

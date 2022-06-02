@@ -1,10 +1,10 @@
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 import '../../../bloc/home/home_bloc.dart';
 import '../../../model/pump_model.dart';
+import '../common/base_switch.dart';
 
 class TuningCardInner extends StatelessWidget {
   final int id;
@@ -20,35 +20,35 @@ class TuningCardInner extends StatelessWidget {
     required this.isEnabled,
   }) : super(key: key);
 
-  Color get black => const Color.fromRGBO(1, 0, 2, 1);
-
-  Color get grey => const Color.fromRGBO(196, 196, 196, 1);
-
   TextStyle get numberStyle => TextStyle(
         fontSize: 96,
-        color: isEnabled ? black.withOpacity(0.1) : grey.withOpacity(0.2),
+        color: isEnabled
+            ? Style.switchEnabled.withOpacity(0.1)
+            : Style.switchDisabled.withOpacity(0.2),
       );
 
-  TextStyle get textStyle => TextStyle(
+  TextStyle get textStyle => const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: black,
+        color: Style.switchEnabled,
       );
 
   TextStyle get volumeStyle => TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: isEnabled ? black.withOpacity(0.7) : grey,
+        color: isEnabled
+            ? Style.switchEnabled.withOpacity(0.7)
+            : Style.switchDisabled,
       );
 
   SliderThemeData sliderStyle(BuildContext context) =>
       SliderTheme.of(context).copyWith(
         trackHeight: 5,
-        activeTrackColor: isEnabled ? black : Style.yellow,
+        activeTrackColor: isEnabled ? Style.switchEnabled : Style.yellow,
         inactiveTrackColor: isEnabled
             ? Colors.white.withOpacity(0.7)
             : const Color.fromRGBO(237, 237, 237, 1),
-        thumbColor: isEnabled ? black : Style.yellow,
+        thumbColor: isEnabled ? Style.switchEnabled : Style.yellow,
         thumbShape: const RoundSliderThumbShape(
           enabledThumbRadius: 5,
           elevation: 0,
@@ -93,14 +93,7 @@ class TuningCardInner extends StatelessWidget {
                     child: Text('${volume.round()}мл', style: volumeStyle),
                   ),
                   const Expanded(child: SizedBox()),
-                  FlutterSwitch(
-                    height: 25,
-                    width: 50,
-                    toggleSize: 21,
-                    borderRadius: 25,
-                    padding: 2,
-                    activeColor: black.withOpacity(0.7),
-                    inactiveColor: grey,
+                  BaseSwitch(
                     value: isEnabled,
                     onToggle: (value) => setEnabled(context, value),
                   ),

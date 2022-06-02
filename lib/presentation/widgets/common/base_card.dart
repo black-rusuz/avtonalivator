@@ -30,7 +30,7 @@ class BaseCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: isActive ? Style.yellow : Style.yellowAccent,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: Style.cardShadow,
+        boxShadow: Style.cardShadows,
       ),
       child: child,
     );
