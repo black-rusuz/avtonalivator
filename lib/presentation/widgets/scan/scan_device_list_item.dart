@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../../bloc/scan/scan_bloc.dart';
+import '../common/base_divider.dart';
 
 class ScanDeviceListItem extends StatelessWidget {
   final BluetoothDevice device;
@@ -14,13 +15,22 @@ class ScanDeviceListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-      onTap: () => connectToDevice(context, device.address),
-      //leading: const Icon(Icons.device_unknown),
-      title: Text(device.name ?? device.address),
-      //subtitle: Text(device.address),
-      trailing: const Icon(Icons.bluetooth),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          const BaseDivider(),
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(vertical: 2),
+            onTap: () => connectToDevice(context, device.address),
+            //leading: const Icon(Icons.device_unknown),
+            title: Text(device.name ?? device.address),
+            //subtitle: Text(device.address),
+            trailing: const Icon(Icons.bluetooth),
+          ),
+          const BaseDivider(),
+        ],
+      ),
     );
   }
 }

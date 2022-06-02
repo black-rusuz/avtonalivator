@@ -16,6 +16,7 @@ class CocktailModel extends Equatable {
   final int? volumeD;
   final int? volumeE;
   final int? volumeF;
+  final String? description;
 
   const CocktailModel({
     required this.id,
@@ -33,6 +34,7 @@ class CocktailModel extends Equatable {
     this.volumeD,
     this.volumeE,
     this.volumeF,
+    this.description,
   });
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../model/cocktail_model.dart';
+import '../common/base_divider.dart';
 
 class CocktailListItem extends StatelessWidget {
   final CocktailModel cocktail;
@@ -12,11 +13,20 @@ class CocktailListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-      title: Text(cocktail.name),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(cocktail.imageUrl ?? ''),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          const BaseDivider(),
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(vertical: 2),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(cocktail.imageUrl ?? ''),
+            ),
+            title: Text(cocktail.name),
+          ),
+          const BaseDivider(),
+        ],
       ),
     );
   }

@@ -28,6 +28,8 @@ class Style {
 
   static const Color greyText = Color(0xFF828282);
 
+  static const Color greyDivider = Color.fromRGBO(237, 237, 237, 1);
+
   static const Color switchEnabled = Color.fromRGBO(1, 0, 2, 1);
 
   static const Color switchDisabled = Color.fromRGBO(196, 196, 196, 1);
