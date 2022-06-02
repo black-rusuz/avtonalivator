@@ -26,9 +26,9 @@ class _HomePageState extends State<HomePage> {
 
   BottomNavigationBar get navBar => BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
+        backgroundColor: Style.yellowAccent,
+        selectedItemColor: Style.switchEnabled,
+        unselectedItemColor: Style.switchEnabled,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: selectedIndex,
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: pages[selectedIndex],
       bottomNavigationBar: navBar,
-      backgroundColor: Colors.white,
+      backgroundColor: Style.yellowAccent,
       floatingActionButton: action,
     );
   }

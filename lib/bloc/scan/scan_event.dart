@@ -1,9 +1,10 @@
 part of 'scan_bloc.dart';
 
 @immutable
-abstract class ScanEvent {
+abstract class ScanEvent extends Equatable {
   const ScanEvent();
 
+  @override
   List<Object> get props => [];
 }
 

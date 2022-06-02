@@ -1,9 +1,10 @@
 part of 'scan_bloc.dart';
 
 @immutable
-abstract class ScanState {
+abstract class ScanState extends Equatable {
   const ScanState();
 
+  @override
   List<Object> get props => [];
 }
 

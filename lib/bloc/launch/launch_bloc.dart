@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:meta/meta.dart';
 
 part 'launch_event.dart';
-
 part 'launch_state.dart';
 
 class LaunchBloc extends Bloc<LaunchEvent, LaunchState> {

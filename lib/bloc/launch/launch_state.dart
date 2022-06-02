@@ -1,9 +1,10 @@
 part of 'launch_bloc.dart';
 
 @immutable
-abstract class LaunchState {
+abstract class LaunchState extends Equatable {
   const LaunchState();
 
+  @override
   List<Object> get props => [];
 }
 

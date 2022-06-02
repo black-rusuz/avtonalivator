@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
+import '../../bloc/cocktails/cocktails_bloc.dart';
 import '../../bloc/home/home_bloc.dart';
 import '../../bloc/scan/scan_bloc.dart';
 import '../widgets/scan/scan_app_bar.dart';
@@ -12,17 +13,22 @@ import 'home_page.dart';
 class ScanPage extends StatelessWidget {
   const ScanPage({Key? key}) : super(key: key);
 
-  MultiBlocProvider getHomeProvider(BluetoothConnection connection) =>
-      MultiBlocProvider(
-        providers: [
-          BlocProvider<HomeBloc>(
-            create: (context) => HomeBloc()
-              ..add(HomeInitEvent())
-              ..add(HomeConnectEvent(connection: connection)),
-          ),
-        ],
-        child: const HomePage(),
-      );
+  MultiBlocProvider getHomeProvider({BluetoothConnection? connection}) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeBloc>(create: (context) {
+          if (connection == null) return HomeBloc()..add(HomeInitEvent());
+          return HomeBloc()
+            ..add(HomeInitEvent())
+            ..add(HomeConnectEvent(connection: connection));
+        }),
+        BlocProvider<CocktailsBloc>(
+          create: (context) => CocktailsBloc()..add(CocktailsInitEvent()),
+        ),
+      ],
+      child: const HomePage(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +38,16 @@ class ScanPage extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => getHomeProvider(state.connection),
+              builder: (context) => getHomeProvider(
+                connection: state.connection,
+              ),
             ),
           );
         } else if (state is ScanConnectionSkippedState) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => BlocProvider<HomeBloc>(
-                create: (context) => HomeBloc()..add(HomeInitEvent()),
-                child: const HomePage(),
-              ),
+              builder: (context) => getHomeProvider(),
             ),
           );
         }

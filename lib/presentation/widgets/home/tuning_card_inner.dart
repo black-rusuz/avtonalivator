@@ -46,7 +46,7 @@ class TuningCardInner extends StatelessWidget {
         trackHeight: 5,
         activeTrackColor: isEnabled ? Style.switchEnabled : Style.yellow,
         inactiveTrackColor: isEnabled
-            ? Colors.white.withOpacity(0.7)
+            ? Style.yellowAccent.withOpacity(0.7)
             : const Color.fromRGBO(237, 237, 237, 1),
         thumbColor: isEnabled ? Style.switchEnabled : Style.yellow,
         thumbShape: const RoundSliderThumbShape(
