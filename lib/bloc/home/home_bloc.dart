@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
@@ -52,12 +53,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   final String _pourCommand = 'z1';
 
-  FutureOr<void> _sendRefresh(PumpModel pump) async {
+  void _sendRefresh(PumpModel pump) {
     String command = [
-      pump.letter + pump.volume.round().toString(),
+      pump.letter + (pump.isEnabled ? pump.volume.round().toString() : '0'),
       _refreshCommand,
     ].join(' ');
-    await _sendCommand(command);
+    EasyDebounce.debounce(
+      _pump.name,
+      const Duration(milliseconds: 100),
+      () => _sendCommand(command),
+    );
   }
 
   FutureOr<void> _sendCommand(String command) async {
@@ -91,31 +96,37 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     switch (event.pump.id) {
       case (1):
+        if (_pumpA == event.pump) break;
         _pumpA = event.pump;
         emit(HomePumpDefinedState(pump: event.pump));
         break;
       case (2):
+        if (_pumpB == event.pump) break;
         _pumpB = event.pump;
         emit(HomePumpDefinedState(pump: event.pump));
         break;
       case (3):
+        if (_pumpC == event.pump) break;
         _pumpC = event.pump;
         emit(HomePumpDefinedState(pump: event.pump));
         break;
       case (4):
+        if (_pumpD == event.pump) break;
         _pumpD = event.pump;
         emit(HomePumpDefinedState(pump: event.pump));
         break;
       case (5):
+        if (_pumpE == event.pump) break;
         _pumpE = event.pump;
         emit(HomePumpDefinedState(pump: event.pump));
         break;
       case (6):
+        if (_pumpF == event.pump) break;
         _pumpF = event.pump;
         emit(HomePumpDefinedState(pump: event.pump));
         break;
     }
-    await _sendRefresh(event.pump);
+    _sendRefresh(event.pump);
   }
 
   FutureOr<void> _sendPour(HomePourEvent event, Emitter<HomeState> emit) async {
@@ -126,6 +137,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   Future<void> close() async {
     await _connection?.finish();
+    EasyDebounce.cancel(_pump.name);
     return super.close();
   }
 }

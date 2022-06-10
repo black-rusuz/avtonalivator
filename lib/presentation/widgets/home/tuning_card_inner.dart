@@ -45,8 +45,7 @@ class TuningCardInner extends StatelessWidget {
           elevation: 0,
           pressedElevation: 0,
         ),
-        overlayColor: Colors.transparent,
-        overlayShape: SliderComponentShape.noThumb,
+        overlayShape: SliderComponentShape.noOverlay,
       );
 
   void setVolume(BuildContext context, double value) =>
@@ -68,25 +67,29 @@ class TuningCardInner extends StatelessWidget {
           child: Text(pump.id.toString(), style: numberStyle),
         ),
         Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 5),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 30, bottom: 16),
-                child: Row(children: [
-                  Text('Напиток', style: textStyle),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text('${pump.volume.round()}мл', style: volumeStyle),
-                  ),
-                  const Expanded(child: SizedBox()),
-                  BaseSwitch(
-                    value: pump.isEnabled,
-                    onToggle: (value) => setEnabled(context, value),
-                  ),
-                ]),
+                padding: const EdgeInsets.only(left: 30),
+                child: Row(
+                  children: [
+                    Text('Напиток', style: textStyle),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child:
+                          Text('${pump.volume.round()}мл', style: volumeStyle),
+                    ),
+                    const Expanded(child: SizedBox()),
+                    BaseSwitch(
+                      value: pump.isEnabled,
+                      onToggle: (value) => setEnabled(context, value),
+                    ),
+                  ],
+                ),
               ),
-              Expanded(
+              SizedBox(
+                height: 35,
                 child: SliderTheme(
                   data: sliderStyle(context),
                   child: Slider(
