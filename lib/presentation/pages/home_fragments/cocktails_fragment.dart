@@ -5,8 +5,8 @@ import '../../../bloc/cocktails/cocktails_bloc.dart';
 import '../../widgets/cocktail/cocktail_list_item.dart';
 import '../../widgets/common/base_app_bar.dart';
 import '../../widgets/common/sliver_widget_list.dart';
-import '../../widgets/home/filter_ready_button.dart';
-import '../../widgets/home/search_text_field.dart';
+import '../../widgets/cocktail/cocktail_filter.dart';
+import '../../widgets/cocktail/cocktail_search.dart';
 
 class CocktailsFragment extends StatelessWidget {
   const CocktailsFragment({Key? key}) : super(key: key);
@@ -19,8 +19,8 @@ class CocktailsFragment extends StatelessWidget {
           slivers: [
             // TODO:
             const BaseAppBar(title: 'Коктейли'),
-            const SearchTextField(),
-            const FilterReadyButton(),
+            const CocktailSearch(),
+            const CocktailFilter(),
             state is! CocktailsFetchedState
                 ? const SliverToBoxAdapter(child: CircularProgressIndicator())
                 : state.cocktails.isEmpty

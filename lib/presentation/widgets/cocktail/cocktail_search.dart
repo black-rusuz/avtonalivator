@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SearchTextField extends StatelessWidget {
+class CocktailSearch extends StatelessWidget {
   final TextEditingController? controller;
 
-  const SearchTextField({
+  const CocktailSearch({
     Key? key,
     this.controller,
   }) : super(key: key);

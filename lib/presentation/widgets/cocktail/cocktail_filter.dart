@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../common/base_card.dart';
 import '../common/base_switch.dart';
 
-class FilterReadyButton extends StatelessWidget {
-  const FilterReadyButton({Key? key}) : super(key: key);
+class CocktailFilter extends StatelessWidget {
+  const CocktailFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
