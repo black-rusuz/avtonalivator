@@ -5,7 +5,7 @@ import 'repository.dart';
 
 class RepositoryLocal extends Repository {
   @override
-  List<CocktailModel> get cocktails {
+  Future<List<CocktailModel>> getCocktails() async {
     return [
       CocktailModel(
         id: 1,
@@ -60,7 +60,7 @@ class RepositoryLocal extends Repository {
       ),
       CocktailModel(
         id: 6,
-        name: 'Голубая лагуна',
+        name: 'Б-52',
         imageUrl: 'https://source.unsplash.com/random/{${Random().nextInt(99)}',
         drinkA: 'Водка',
         drinkB: 'Ликер',
@@ -77,7 +77,7 @@ class RepositoryLocal extends Repository {
       ),
       CocktailModel(
           id: 7,
-          name: 'Голубая лагуна',
+          name: 'Манхэттен',
           imageUrl:
               'https://source.unsplash.com/random/{${Random().nextInt(99)}',
           drinkA: 'Водка',

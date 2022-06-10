@@ -19,8 +19,11 @@ class CocktailsBloc extends Bloc<CocktailsEvent, CocktailsState> {
 
   List<CocktailModel> _cocktails = [];
 
-  FutureOr<void> _init(CocktailsInitEvent event, Emitter<CocktailsState> emit) {
-    _cocktails = _repository.cocktails;
+  FutureOr<void> _init(
+    CocktailsInitEvent event,
+    Emitter<CocktailsState> emit,
+  ) async {
+    _cocktails = await _repository.getCocktails();
     emit(CocktailsFetchedState(cocktails: _cocktails));
   }
 }
