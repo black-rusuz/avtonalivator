@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/home/home_bloc.dart';
+import '../../cubit/connect/connect_cubit.dart';
 import 'home_fragments/all.dart';
 
 class HomePage extends StatefulWidget {
@@ -58,15 +59,13 @@ class _HomePageState extends State<HomePage> {
       );
 
   FloatingActionButton? get button =>
-      selectedIndex == 0 && context.watch<HomeBloc>().isConnected
+      selectedIndex == 0 && context.watch<ConnectCubit>().isConnected
           ? FloatingActionButton.extended(
-              onPressed: pour,
+              onPressed: () => context.read<ConnectCubit>().sendPour(),
               icon: const Icon(Icons.local_drink_rounded),
               label: const Text('Налить'),
             )
           : null;
-
-  void pour() => context.read<HomeBloc>().add(HomePourEvent());
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../cubit/connect/connect_cubit.dart';
 import '../../widgets/common/base_app_bar.dart';
 
 class StatsFragment extends StatelessWidget {
@@ -11,9 +13,11 @@ class StatsFragment extends StatelessWidget {
       slivers: [
         const BaseAppBar(title: 'Статистика'),
         SliverToBoxAdapter(
-          child: Container(
-            height: 1000,
-            color: Colors.grey,
+          child: BlocBuilder<ConnectCubit, ConnectState>(
+            builder: (context, state) {
+              return Text('Connected: ' +
+                  context.watch<ConnectCubit>().isConnected.toString());
+            },
           ),
         ),
       ],

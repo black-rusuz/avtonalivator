@@ -10,15 +10,6 @@ abstract class HomeEvent extends Equatable {
 
 class HomeInitEvent extends HomeEvent {}
 
-class HomeConnectEvent extends HomeEvent {
-  final BluetoothConnection connection;
-
-  const HomeConnectEvent({required this.connection});
-
-  @override
-  List<Object> get props => [connection];
-}
-
 class HomeSetPumpEvent extends HomeEvent {
   final PumpModel pump;
 
@@ -27,5 +18,3 @@ class HomeSetPumpEvent extends HomeEvent {
   @override
   List<Object> get props => [pump];
 }
-
-class HomePourEvent extends HomeEvent {}

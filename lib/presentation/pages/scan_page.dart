@@ -6,6 +6,7 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import '../../bloc/cocktails/cocktails_bloc.dart';
 import '../../bloc/home/home_bloc.dart';
 import '../../bloc/scan/scan_bloc.dart';
+import '../../cubit/connect/connect_cubit.dart';
 import '../widgets/scan/scan_app_bar.dart';
 import '../widgets/scan/scan_device_list.dart';
 import 'home_page.dart';
@@ -16,15 +17,13 @@ class ScanPage extends StatelessWidget {
   MultiBlocProvider getHomeProvider([BluetoothConnection? connection]) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<HomeBloc>(create: (context) {
-          if (connection == null) return HomeBloc()..add(HomeInitEvent());
-          return HomeBloc()
-            ..add(HomeInitEvent())
-            ..add(HomeConnectEvent(connection: connection));
-        }),
+        BlocProvider<HomeBloc>(
+          create: (context) => HomeBloc()..add(HomeInitEvent()),
+        ),
         BlocProvider<CocktailsBloc>(
           create: (context) => CocktailsBloc()..add(CocktailsInitEvent()),
         ),
+        BlocProvider<ConnectCubit>(create: (_) => ConnectCubit(connection))
       ],
       child: const HomePage(),
     );

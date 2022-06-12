@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:meta/meta.dart';
 
 import '../../model/pump_model.dart';
@@ -17,14 +14,8 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitialState()) {
     on<HomeInitEvent>(_init);
-    on<HomeConnectEvent>(_connect);
     on<HomeSetPumpEvent>(_setPump);
-    on<HomePourEvent>(_sendPour);
   }
-
-  BluetoothConnection? _connection;
-
-  bool get isConnected => _connection != null;
 
   final PumpModel _pump = const PumpModel(
     id: 0,
@@ -49,32 +40,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         _pumpF!,
       ];
 
-  final String _refreshCommand = 'y1';
-
-  final String _pourCommand = 'z1';
-
-  void _sendRefresh(PumpModel pump) {
-    String command = [
-      pump.letter + (pump.isEnabled ? pump.volume.round().toString() : '0'),
-      _refreshCommand,
-    ].join(' ');
-    EasyDebounce.debounce(
-      _pump.name,
-      const Duration(milliseconds: 100),
-      () => _sendCommand(command),
-    );
-  }
-
-  FutureOr<void> _sendCommand(String command) async {
-    // TODO: print
-    print(command);
-    command = command.trim() + '\r';
-    List<int> encodedChars = utf8.encode(command);
-    Uint8List output = Uint8List.fromList(encodedChars);
-    _connection?.output.add(output);
-    await _connection?.output.allSent;
-  }
-
   FutureOr<void> _init(HomeInitEvent event, Emitter<HomeState> emit) {
     _pumpA = _pumpA ?? _pump.copyWith(id: 1);
     _pumpB = _pumpB ?? _pump.copyWith(id: 2);
@@ -83,10 +48,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _pumpE = _pumpE ?? _pump.copyWith(id: 5, isEnabled: false);
     _pumpF = _pumpF ?? _pump.copyWith(id: 6, isEnabled: false);
     emit(HomeAllPumpsState(pumps: _allPumps));
-  }
-
-  FutureOr<void> _connect(HomeConnectEvent event, Emitter<HomeState> emit) {
-    _connection = event.connection;
   }
 
   FutureOr<void> _setPump(
@@ -125,17 +86,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(HomePumpDefinedState(pump: event.pump));
         break;
     }
-    _sendRefresh(event.pump);
-  }
-
-  FutureOr<void> _sendPour(HomePourEvent event, Emitter<HomeState> emit) async {
-    // TODO: мб блочить кнопку
-    await _sendCommand(_pourCommand);
   }
 
   @override
   Future<void> close() async {
-    await _connection?.finish();
     EasyDebounce.cancel(_pump.name);
     return super.close();
   }

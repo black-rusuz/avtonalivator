@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/home/home_bloc.dart';
+import '../../../cubit/connect/connect_cubit.dart';
 import '../../../model/pump_model.dart';
 import '../common/base_switch.dart';
 
@@ -54,8 +55,10 @@ class TuningCardInner extends StatelessWidget {
   void setEnabled(BuildContext context, bool isEnabled) =>
       setPump(context, pump.copyWith(isEnabled: isEnabled));
 
-  void setPump(BuildContext context, PumpModel pump) =>
-      context.read<HomeBloc>().add(HomeSetPumpEvent(pump: pump));
+  void setPump(BuildContext context, PumpModel pump) {
+    context.read<HomeBloc>().add(HomeSetPumpEvent(pump: pump));
+    context.read<ConnectCubit>().sendRefresh(pump);
+  }
 
   @override
   Widget build(BuildContext context) {
