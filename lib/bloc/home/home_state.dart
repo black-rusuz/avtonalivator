@@ -10,8 +10,6 @@ abstract class HomeState extends Equatable {
 
 class HomeInitialState extends HomeState {}
 
-class HomeConnectedState extends HomeState {}
-
 class HomeAllPumpsState extends HomeState {
   final List<PumpModel> pumps;
 

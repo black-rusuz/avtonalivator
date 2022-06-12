@@ -33,20 +33,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     isEnabled: true,
   );
 
-  late PumpModel _pumpA;
-  late PumpModel _pumpB;
-  late PumpModel _pumpC;
-  late PumpModel _pumpD;
-  late PumpModel _pumpE;
-  late PumpModel _pumpF;
+  PumpModel? _pumpA;
+  PumpModel? _pumpB;
+  PumpModel? _pumpC;
+  PumpModel? _pumpD;
+  PumpModel? _pumpE;
+  PumpModel? _pumpF;
 
   List<PumpModel> get _allPumps => [
-        _pumpA,
-        _pumpB,
-        _pumpC,
-        _pumpD,
-        _pumpE,
-        _pumpF,
+        _pumpA!,
+        _pumpB!,
+        _pumpC!,
+        _pumpD!,
+        _pumpE!,
+        _pumpF!,
       ];
 
   final String _refreshCommand = 'y1';
@@ -76,18 +76,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _init(HomeInitEvent event, Emitter<HomeState> emit) {
-    _pumpA = _pump.copyWith(id: 1);
-    _pumpB = _pump.copyWith(id: 2);
-    _pumpC = _pump.copyWith(id: 3);
-    _pumpD = _pump.copyWith(id: 4);
-    _pumpE = _pump.copyWith(id: 5, isEnabled: false);
-    _pumpF = _pump.copyWith(id: 6, isEnabled: false);
+    _pumpA = _pumpA ?? _pump.copyWith(id: 1);
+    _pumpB = _pumpB ?? _pump.copyWith(id: 2);
+    _pumpC = _pumpC ?? _pump.copyWith(id: 3);
+    _pumpD = _pumpD ?? _pump.copyWith(id: 4);
+    _pumpE = _pumpE ?? _pump.copyWith(id: 5, isEnabled: false);
+    _pumpF = _pumpF ?? _pump.copyWith(id: 6, isEnabled: false);
     emit(HomeAllPumpsState(pumps: _allPumps));
   }
 
   FutureOr<void> _connect(HomeConnectEvent event, Emitter<HomeState> emit) {
     _connection = event.connection;
-    emit(HomeConnectedState());
   }
 
   FutureOr<void> _setPump(

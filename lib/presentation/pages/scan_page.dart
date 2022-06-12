@@ -13,7 +13,7 @@ import 'home_page.dart';
 class ScanPage extends StatelessWidget {
   const ScanPage({Key? key}) : super(key: key);
 
-  MultiBlocProvider getHomeProvider({BluetoothConnection? connection}) {
+  MultiBlocProvider getHomeProvider([BluetoothConnection? connection]) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeBloc>(create: (context) {
@@ -38,9 +38,7 @@ class ScanPage extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => getHomeProvider(
-                connection: state.connection,
-              ),
+              builder: (context) => getHomeProvider(state.connection),
             ),
           );
         } else if (state is ScanConnectionSkippedState) {
@@ -56,10 +54,10 @@ class ScanPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: Style.yellow,
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () =>
-                context.read<ScanBloc>().add(ScanConnectionSkippedEvent()),
             label: const Text('Пока пропустить'),
             icon: const Icon(Icons.skip_next_rounded),
+            onPressed: () =>
+                context.read<ScanBloc>().add(ScanConnectionSkippedEvent()),
           ),
           body: state is ScanDevicesFetchedState
               ? CustomScrollView(

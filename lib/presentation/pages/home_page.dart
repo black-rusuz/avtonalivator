@@ -15,7 +15,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
-  void setIndex(int index) => setState(() => selectedIndex = index);
+  void setIndex(int index) {
+    if (index == 0) context.read<HomeBloc>().add(HomeInitEvent());
+    setState(() => selectedIndex = index);
+  }
 
   final List<Widget> pages = [
     const TuningFragment(),
@@ -54,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  FloatingActionButton? get action =>
+  FloatingActionButton? get button =>
       selectedIndex == 0 && context.watch<HomeBloc>().isConnected
           ? FloatingActionButton.extended(
               onPressed: pour,
@@ -71,7 +74,7 @@ class _HomePageState extends State<HomePage> {
       body: pages[selectedIndex],
       bottomNavigationBar: navBar,
       backgroundColor: Style.yellowAccent,
-      floatingActionButton: action,
+      floatingActionButton: button,
     );
   }
 }
