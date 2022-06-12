@@ -32,6 +32,13 @@ class PumpModel extends Equatable {
     }
   }
 
+  static PumpModel get base => const PumpModel(
+        id: 0,
+        name: 'Напиток',
+        volume: 25,
+        isEnabled: true,
+      );
+
   PumpModel copyWith({
     int? id,
     String? name,

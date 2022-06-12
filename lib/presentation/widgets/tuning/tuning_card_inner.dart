@@ -2,8 +2,8 @@ import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/home/home_bloc.dart';
 import '../../../cubit/connect/connect_cubit.dart';
+import '../../../cubit/tuning/tuning_cubit.dart';
 import '../../../model/pump_model.dart';
 import '../common/base_switch.dart';
 
@@ -56,7 +56,7 @@ class TuningCardInner extends StatelessWidget {
       setPump(context, pump.copyWith(isEnabled: isEnabled));
 
   void setPump(BuildContext context, PumpModel pump) {
-    context.read<HomeBloc>().add(HomeSetPumpEvent(pump: pump));
+    context.read<TuningCubit>().setPump(pump);
     context.read<ConnectCubit>().sendRefresh(pump);
   }
 
