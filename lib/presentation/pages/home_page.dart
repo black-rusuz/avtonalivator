@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/home/home_bloc.dart';
 import '../../cubit/connect/connect_cubit.dart';
-import 'home_fragments/all.dart';
+import '../fragments/all.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
