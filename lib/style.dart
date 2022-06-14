@@ -34,6 +34,16 @@ class Style {
 
   static const Color switchDisabled = Color.fromRGBO(196, 196, 196, 1);
 
+  static TextStyle launchHeader = GoogleFonts.inter(
+    fontSize: 32,
+    fontWeight: FontWeight.w900,
+  );
+
+  static TextStyle launchSubheader = GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
   static TextStyle pageTitle = GoogleFonts.inter(
     fontSize: 20,
     fontWeight: FontWeight.bold,

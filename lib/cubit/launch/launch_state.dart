@@ -1,4 +1,4 @@
-part of 'launch_bloc.dart';
+part of 'launch_cubit.dart';
 
 @immutable
 abstract class LaunchState extends Equatable {
@@ -8,13 +8,15 @@ abstract class LaunchState extends Equatable {
   List<Object> get props => [];
 }
 
-class LaunchInitialState extends LaunchState {}
+class LaunchInitial extends LaunchState {}
 
-class LaunchStatusFetchedState extends LaunchState {
+class LaunchAnimate extends LaunchState {}
+
+class LaunchStatus extends LaunchState {
   final bool isAvailable;
   final bool isEnabled;
 
-  const LaunchStatusFetchedState({
+  const LaunchStatus({
     required this.isAvailable,
     required this.isEnabled,
   });

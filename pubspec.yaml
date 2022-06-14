@@ -24,6 +24,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  flutter_launcher_icons: ^0.9.3
 
 flutter:
   uses-material-design: true
@@ -31,3 +32,14 @@ flutter:
   assets:
     - assets/barmen.svg
     - assets/barmen_grey.svg
+
+flutter_icons:
+  image_path: "assets/icon.png"
+  android: "launcher_icon"
+  ios: false
+  adaptive_icon_background: "#FAD960"
+  adaptive_icon_foreground: "assets/icon_foreground.png"
+
+flutter_native_splash:
+  color: "#FAD960"
+  image: "assets/barmen.png"
