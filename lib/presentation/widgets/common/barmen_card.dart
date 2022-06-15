@@ -2,16 +2,16 @@ import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../common/base_card.dart';
+import 'base_card.dart';
 
-class ScanAppBarCard extends StatelessWidget {
+class BarmenCard extends StatelessWidget {
   final String? title;
   final String? subtitle;
   final EdgeInsets? margin;
   final void Function()? onTap;
   final bool isConnecting;
 
-  const ScanAppBarCard({
+  const BarmenCard({
     Key? key,
     this.title,
     this.subtitle,
@@ -40,6 +40,7 @@ class ScanAppBarCard extends StatelessWidget {
                 width: 68,
                 child: isConnecting
                     ? CircularProgressIndicator(
+                        strokeWidth: 6,
                         color: isActive
                             ? Style.switchEnabled
                             : Style.switchDisabled,

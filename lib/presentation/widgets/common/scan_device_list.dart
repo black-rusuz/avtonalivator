@@ -16,9 +16,10 @@ class ScanDeviceList extends StatelessWidget {
     this.directly = false,
   }) : super(key: key);
 
-  void connectToDevice(BuildContext context, String address) => directly
-      ? context.read<ConnectCubit>().connect(address)
-      : context.read<ScanCubit>().connect(address);
+  void connectToDevice(BuildContext context, String name, String address) =>
+      directly
+          ? context.read<ConnectCubit>().connect(name, address)
+          : context.read<ScanCubit>().connect(name, address);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class ScanDeviceList extends StatelessWidget {
       children: devices
           .map((e) => ScanDeviceListItem(
                 device: e,
-                onTap: () => connectToDevice(context, e.address),
+                onTap: () => connectToDevice(context, e.name ?? '', e.address),
               ))
           .toList(),
     );

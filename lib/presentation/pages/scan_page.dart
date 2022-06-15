@@ -7,18 +7,22 @@ import '../../cubit/cocktails/cocktails_cubit.dart';
 import '../../cubit/connect/connect_cubit.dart';
 import '../../cubit/scan/scan_cubit.dart';
 import '../../cubit/tuning/tuning_cubit.dart';
-import '../widgets/scan/scan_app_bar.dart';
-import '../widgets/scan/scan_device_list.dart';
+import '../widgets/common/scan_device_list.dart';
+import '../widgets/scan_app_bar.dart';
 import 'home_page.dart';
 
 class ScanPage extends StatelessWidget {
   const ScanPage({Key? key}) : super(key: key);
 
-  MultiBlocProvider getHomeProvider([BluetoothConnection? connection]) {
+  MultiBlocProvider getHomeProvider({
+    BluetoothConnection? connection,
+    String? name,
+    String? address,
+  }) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ConnectCubit>(
-            create: (_) => ConnectCubit(connection)..init()),
+            create: (_) => ConnectCubit(connection, name, address)..init()),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
         BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
         BlocProvider<ScanCubit>(create: (context) => ScanCubit())
@@ -35,7 +39,11 @@ class ScanPage extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => getHomeProvider(state.connection),
+              builder: (context) => getHomeProvider(
+                connection: state.connection,
+                name: state.name,
+                address: state.address,
+              ),
             ),
           );
         } else if (state is ScanSkipped) {
@@ -47,6 +55,7 @@ class ScanPage extends StatelessWidget {
           );
         }
       },
+      buildWhen: ((prev, next) => next is ScanDevices),
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Style.yellow,

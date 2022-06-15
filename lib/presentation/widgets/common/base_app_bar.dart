@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 
 class BaseAppBar extends StatelessWidget {
   final String title;
+  final List<Widget>? actions;
 
-  const BaseAppBar({Key? key, required this.title}) : super(key: key);
+  const BaseAppBar({
+    Key? key,
+    required this.title,
+    this.actions,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +18,7 @@ class BaseAppBar extends StatelessWidget {
       backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Text(title, style: Style.pageTitle),
+      actions: actions,
     );
   }
 }

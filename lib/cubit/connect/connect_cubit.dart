@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../model/pump_model.dart';
@@ -12,8 +13,14 @@ part 'connect_state.dart';
 
 class ConnectCubit extends Cubit<ConnectState> {
   BluetoothConnection? connection;
+  String? name;
+  String? address;
 
-  ConnectCubit([this.connection]) : super(ConnectInitial());
+  ConnectCubit([
+    this.connection,
+    this.name,
+    this.address,
+  ]) : super(ConnectInitial());
 
   bool get isConnected => connection != null;
 
@@ -23,7 +30,7 @@ class ConnectCubit extends Cubit<ConnectState> {
   final String _pourCommand = 'z1';
 
   void init() {
-    if (isConnected) emit(ConnectSuccess(name: 'name', address: 'address'));
+    if (isConnected) emit(ConnectSuccess(name: name!, address: address!));
   }
 
   void sendRefresh(PumpModel pump) {
@@ -44,8 +51,7 @@ class ConnectCubit extends Cubit<ConnectState> {
   }
 
   Future<void> sendCommand(String command) async {
-    // TODO: print
-    print(command);
+    if (kDebugMode) print(command);
     command = command.trim() + '\r';
     List<int> encodedChars = utf8.encode(command);
     Uint8List output = Uint8List.fromList(encodedChars);
@@ -53,13 +59,15 @@ class ConnectCubit extends Cubit<ConnectState> {
     await connection?.output.allSent;
   }
 
-  Future<void> connect(String address) async {
+  Future<void> connect(String name, String address) async {
     emit(ConnectProcessing());
     await connection?.close();
+    this.name = name;
+    this.address = address;
     BluetoothConnection.toAddress(address).then((v) {
       if (v.isConnected) {
         connection = v;
-        emit(ConnectSuccess(name: 'a', address: address));
+        emit(ConnectSuccess(name: name, address: address));
       }
       //TODO: ошибка подключения
     });
