@@ -2,11 +2,11 @@ part of 'connect_cubit.dart';
 
 abstract class ConnectState {}
 
-class ConnectionInitial extends ConnectState {}
+class ConnectInitial extends ConnectState {}
 
-class ConnectionSuccess extends ConnectState {
+class ConnectSuccess extends ConnectState {
   final String name;
   final String address;
 
-  ConnectionSuccess({required this.name, required this.address});
+  ConnectSuccess({required this.name, required this.address});
 }

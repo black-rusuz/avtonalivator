@@ -21,8 +21,7 @@ class ScanPage extends StatelessWidget {
             create: (_) => ConnectCubit(connection)..init()),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
         BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
-        if (connection == null)
-          BlocProvider<ScanCubit>(create: (context) => ScanCubit()..init())
+        BlocProvider<ScanCubit>(create: (context) => ScanCubit())
       ],
       child: const HomePage(),
     );

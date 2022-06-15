@@ -14,40 +14,43 @@ class SettingsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        const BaseAppBar(title: 'Настройки'),
-        BlocBuilder<ConnectCubit, ConnectState>(
-          builder: (context, state) {
-            if (state is ConnectionSuccess) {
-              return SliverWidgetList(
+    return BlocBuilder<ConnectCubit, ConnectState>(
+      builder: (context, state) {
+        return RefreshIndicator(
+          edgeOffset: state is ConnectSuccess ? -100 : 274,
+          onRefresh: state is ConnectSuccess
+              ? () async {}
+              : () => context.read<ScanCubit>().init(),
+          child: CustomScrollView(
+            slivers: [
+              const BaseAppBar(title: 'Настройки'),
+              SliverWidgetList(
                 children: [
                   ScanAppBarCard(
-                    title: state.name,
-                    subtitle: state.address,
+                    title: state is ConnectSuccess ? state.name : null,
+                    subtitle: state is ConnectSuccess ? state.address : null,
+                    onTap: state is ConnectSuccess
+                        ? () => context.read<ConnectCubit>().disconnect()
+                        : null,
                     margin: const EdgeInsets.fromLTRB(20, 10, 20, 50),
                   ),
-                  const PumpButton(),
+                  state is ConnectSuccess
+                      ? const PumpButton()
+                      : BlocBuilder<ScanCubit, ScanState>(
+                          builder: (context, state) {
+                            return ScanDeviceList(
+                              devices:
+                                  state is ScanDevices ? state.devices : [],
+                              directly: true,
+                            );
+                          },
+                        ),
                 ],
-              );
-            }
-            return SliverWidgetList(
-              children: [
-                const ScanAppBarCard(
-                  margin: EdgeInsets.fromLTRB(20, 10, 20, 50),
-                ),
-                BlocBuilder<ScanCubit, ScanState>(
-                  builder: (context, state) {
-                    return ScanDeviceList(
-                      devices: state is ScanDevices ? state.devices : [],
-                    );
-                  },
-                ),
-              ],
-            );
-          },
-        ),
-      ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubit/connect/connect_cubit.dart';
 import '../../style.dart';
 import 'common/base_card.dart';
 
@@ -11,6 +13,9 @@ class PumpButton extends StatelessWidget {
     return BaseCard(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       margin: const EdgeInsets.all(20),
+      onTap: () => context
+          .read<ConnectCubit>()
+          .sendCommand('a15 b15 c15 d15 e15 d15 y1 z1'),
       child: IntrinsicHeight(
         child: Row(
           mainAxisSize: MainAxisSize.min,

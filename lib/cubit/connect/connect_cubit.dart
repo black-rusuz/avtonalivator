@@ -13,7 +13,7 @@ part 'connect_state.dart';
 class ConnectCubit extends Cubit<ConnectState> {
   BluetoothConnection? connection;
 
-  ConnectCubit([this.connection]) : super(ConnectionInitial());
+  ConnectCubit([this.connection]) : super(ConnectInitial());
 
   bool get isConnected => connection != null;
 
@@ -23,7 +23,7 @@ class ConnectCubit extends Cubit<ConnectState> {
   final String _pourCommand = 'z1';
 
   void init() {
-    if (isConnected) emit(ConnectionSuccess(name: 'name', address: 'address'));
+    if (isConnected) emit(ConnectSuccess(name: 'name', address: 'address'));
   }
 
   void sendRefresh(PumpModel pump) {
@@ -53,9 +53,21 @@ class ConnectCubit extends Cubit<ConnectState> {
     await connection?.output.allSent;
   }
 
+  Future<void> connect(String address) async {
+    await connection?.close();
+    BluetoothConnection.toAddress(address).then((v) {
+      if (v.isConnected) {
+        connection = v;
+        emit(ConnectSuccess(name: 'a', address: address));
+      }
+      //TODO: ошибка подключения
+    });
+  }
+
   Future<void> disconnect() async {
     await connection?.finish();
     connection = null;
+    emit(ConnectInitial());
   }
 
   @override

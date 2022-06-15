@@ -15,9 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
-  void setIndex(int index) {
-    setState(() => selectedIndex = index);
-  }
+  void setIndex(int index) => setState(() => selectedIndex = index);
 
   final List<Widget> pages = [
     const TuningFragment(),
