@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../bloc/cocktails/cocktails_bloc.dart';
-import '../../bloc/scan/scan_bloc.dart';
 import '../../cubit/connect/connect_cubit.dart';
+import '../../cubit/scan/scan_cubit.dart';
 import '../../cubit/tuning/tuning_cubit.dart';
 import '../widgets/scan/scan_app_bar.dart';
 import '../widgets/scan/scan_device_list.dart';
@@ -29,16 +29,16 @@ class ScanPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ScanBloc, ScanState>(
+    return BlocConsumer<ScanCubit, ScanState>(
       listener: (context, state) {
-        if (state is ScanDeviceConnectedState) {
+        if (state is ScanConnection) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => getHomeProvider(state.connection),
             ),
           );
-        } else if (state is ScanConnectionSkippedState) {
+        } else if (state is ScanSkip) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -53,17 +53,20 @@ class ScanPage extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
             label: const Text('Пока пропустить'),
             icon: const Icon(Icons.skip_next_rounded),
-            onPressed: () =>
-                context.read<ScanBloc>().add(ScanConnectionSkippedEvent()),
+            onPressed: () => context.read<ScanCubit>().skip(),
           ),
-          body: state is ScanDevicesFetchedState
-              ? CustomScrollView(
-                  slivers: [
-                    const ScanAppBar(),
-                    ScanDeviceList(devices: state.devices),
-                  ],
-                )
-              : const CircularProgressIndicator(),
+          body: RefreshIndicator(
+            edgeOffset: 260 + 24,
+            onRefresh: () => context.read<ScanCubit>().init(),
+            child: CustomScrollView(
+              slivers: [
+                const ScanAppBar(),
+                ScanDeviceList(
+                  devices: state is ScanDevices ? state.devices : [],
+                ),
+              ],
+            ),
+          ),
         );
       },
     );

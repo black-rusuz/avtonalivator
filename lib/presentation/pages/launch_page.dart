@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../bloc/scan/scan_bloc.dart';
 import '../../cubit/launch/launch_cubit.dart';
+import '../../cubit/scan/scan_cubit.dart';
 import '../widgets/common/center_wrapper.dart';
 import 'scan_page.dart';
 
@@ -24,8 +24,8 @@ class LaunchPage extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => BlocProvider<ScanBloc>(
-                create: (context) => ScanBloc()..add(ScanInitialEvent()),
+              builder: (context) => BlocProvider<ScanCubit>(
+                create: (context) => ScanCubit()..init(),
                 child: const ScanPage(),
               ),
             ),
