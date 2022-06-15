@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-import '../../bloc/cocktails/cocktails_bloc.dart';
+import '../../cubit/cocktails/cocktails_cubit.dart';
 import '../../cubit/connect/connect_cubit.dart';
 import '../../cubit/scan/scan_cubit.dart';
 import '../../cubit/tuning/tuning_cubit.dart';
@@ -19,9 +19,7 @@ class ScanPage extends StatelessWidget {
       providers: [
         BlocProvider<ConnectCubit>(create: (_) => ConnectCubit(connection)),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
-        BlocProvider<CocktailsBloc>(
-          create: (context) => CocktailsBloc()..add(CocktailsInitEvent()),
-        ),
+        BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
       ],
       child: const HomePage(),
     );

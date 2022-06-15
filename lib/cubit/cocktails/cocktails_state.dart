@@ -1,4 +1,4 @@
-part of 'cocktails_bloc.dart';
+part of 'cocktails_cubit.dart';
 
 abstract class CocktailsState extends Equatable {
   const CocktailsState();
@@ -7,12 +7,12 @@ abstract class CocktailsState extends Equatable {
   List<Object> get props => [];
 }
 
-class CocktailsInitialState extends CocktailsState {}
+class CocktailsInitial extends CocktailsState {}
 
-class CocktailsFetchedState extends CocktailsState {
+class CocktailsFetched extends CocktailsState {
   final List<CocktailModel> cocktails;
 
-  const CocktailsFetchedState({required this.cocktails});
+  const CocktailsFetched({required this.cocktails});
 
   @override
   List<Object> get props => [cocktails];

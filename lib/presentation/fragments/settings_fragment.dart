@@ -7,15 +7,9 @@ class SettingsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
-        const BaseAppBar(title: 'Настройки'),
-        SliverToBoxAdapter(
-          child: Container(
-            height: 1000,
-            color: Colors.grey,
-          ),
-        ),
+        BaseAppBar(title: 'Настройки'),
       ],
     );
   }

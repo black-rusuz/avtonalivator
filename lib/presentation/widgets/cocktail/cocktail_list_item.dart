@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/cocktail_model.dart';
@@ -34,8 +35,18 @@ class CocktailListItem extends StatelessWidget {
             vertical: 2,
             horizontal: 20,
           ),
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(cocktail.imageUrl ?? ''),
+          leading: Center(
+            widthFactor: 1,
+            child: CachedNetworkImage(
+              fadeInCurve: Curves.easeInSine,
+              fadeOutCurve: Curves.easeOutSine,
+              height: 40,
+              width: 40,
+              fit: BoxFit.cover,
+              imageUrl: cocktail.imageUrl ?? '',
+              placeholder: (_, __) => const Icon(Icons.liquor_rounded),
+              imageBuilder: (_, image) => CircleAvatar(backgroundImage: image),
+            ),
           ),
           title: Text(cocktail.name),
           onTap: () => showCocktailModal(context),
