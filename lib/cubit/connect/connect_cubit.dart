@@ -5,14 +5,13 @@ import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-import 'package:meta/meta.dart';
 
 import '../../model/pump_model.dart';
 
 part 'connect_state.dart';
 
 class ConnectCubit extends Cubit<ConnectState> {
-  final BluetoothConnection? connection;
+  BluetoothConnection? connection;
 
   ConnectCubit([this.connection]) : super(ConnectionInitial());
 
@@ -22,6 +21,10 @@ class ConnectCubit extends Cubit<ConnectState> {
 
   final String _refreshCommand = 'y1';
   final String _pourCommand = 'z1';
+
+  void init() {
+    if (isConnected) emit(ConnectionSuccess(name: 'name', address: 'address'));
+  }
 
   void sendRefresh(PumpModel pump) {
     String command = [
@@ -48,6 +51,11 @@ class ConnectCubit extends Cubit<ConnectState> {
     Uint8List output = Uint8List.fromList(encodedChars);
     connection?.output.add(output);
     await connection?.output.allSent;
+  }
+
+  Future<void> disconnect() async {
+    await connection?.finish();
+    connection = null;
   }
 
   @override

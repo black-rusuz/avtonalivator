@@ -34,9 +34,8 @@ class ScanAppBar extends StatelessWidget {
         ),
       ],
       flexibleSpace: const FlexibleSpaceBar(
-        background: Padding(
-          padding: EdgeInsets.only(top: 50),
-          child: Center(child: ScanAppBarCard()),
+        background: Center(
+          child: ScanAppBarCard(margin: EdgeInsets.only(top: 50)),
         ),
       ),
     );

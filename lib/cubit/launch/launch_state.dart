@@ -1,6 +1,5 @@
 part of 'launch_cubit.dart';
 
-@immutable
 abstract class LaunchState extends Equatable {
   const LaunchState();
 

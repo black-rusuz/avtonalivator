@@ -17,9 +17,12 @@ class ScanPage extends StatelessWidget {
   MultiBlocProvider getHomeProvider([BluetoothConnection? connection]) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ConnectCubit>(create: (_) => ConnectCubit(connection)),
+        BlocProvider<ConnectCubit>(
+            create: (_) => ConnectCubit(connection)..init()),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
         BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
+        if (connection == null)
+          BlocProvider<ScanCubit>(create: (context) => ScanCubit()..init())
       ],
       child: const HomePage(),
     );
@@ -54,13 +57,25 @@ class ScanPage extends StatelessWidget {
             onPressed: () => context.read<ScanCubit>().skip(),
           ),
           body: RefreshIndicator(
-            edgeOffset: 260 + 24,
+            edgeOffset: 284,
             onRefresh: () => context.read<ScanCubit>().init(),
             child: CustomScrollView(
               slivers: [
                 const ScanAppBar(),
-                ScanDeviceList(
-                  devices: state is ScanDevices ? state.devices : [],
+                SliverToBoxAdapter(
+                  child: Container(
+                    constraints: BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.height - 284,
+                    ),
+                    decoration: const BoxDecoration(
+                      color: Style.yellowAccent,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(30)),
+                    ),
+                    child: ScanDeviceList(
+                      devices: state is ScanDevices ? state.devices : [],
+                    ),
+                  ),
                 ),
               ],
             ),
