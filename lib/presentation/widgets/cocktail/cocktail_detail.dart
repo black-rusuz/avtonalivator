@@ -19,7 +19,7 @@ class CocktailDetail extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         BaseAppBar(title: cocktail.name),
-        CocktailImage(imageUrl: cocktail.imageUrl ?? ''),
+        CocktailImage(imageUrl: cocktail.imageUrl),
         if (cocktail.drinkA != null && cocktail.volumeA != null)
           CocktailDrink(name: cocktail.drinkA!, volume: cocktail.volumeA!),
         if (cocktail.drinkB != null && cocktail.volumeB != null)

@@ -1,8 +1,9 @@
 import 'package:avtonalivator/style.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CocktailImage extends StatelessWidget {
-  final String imageUrl;
+  final String? imageUrl;
 
   const CocktailImage({Key? key, required this.imageUrl}) : super(key: key);
 
@@ -21,11 +22,15 @@ class CocktailImage extends StatelessWidget {
               backgroundColor: Style.yellowAccent,
               child: Padding(
                 padding: const EdgeInsets.all(2.5),
-                child: ClipOval(
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Image.network(imageUrl, fit: BoxFit.cover),
-                  ),
+                child: CachedNetworkImage(
+                  fadeInCurve: Curves.easeInSine,
+                  fadeOutCurve: Curves.easeOutSine,
+                  height: 160,
+                  width: 160,
+                  fit: BoxFit.cover,
+                  imageUrl: imageUrl ?? '',
+                  placeholder: (_, __) => const Icon(Icons.liquor_rounded),
+                  imageBuilder: (_, img) => CircleAvatar(foregroundImage: img),
                 ),
               ),
             ),

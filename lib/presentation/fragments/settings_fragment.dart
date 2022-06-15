@@ -28,6 +28,7 @@ class SettingsFragment extends StatelessWidget {
                 actions: [
                   StreamBuilder(
                     stream: context.read<ScanCubit>().isDiscoveringStream,
+                    initialData: false,
                     builder: (_, snapshot) => Center(
                       child: (snapshot.data as bool?) == false
                           ? null

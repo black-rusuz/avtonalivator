@@ -45,7 +45,7 @@ class CocktailListItem extends StatelessWidget {
               fit: BoxFit.cover,
               imageUrl: cocktail.imageUrl ?? '',
               placeholder: (_, __) => const Icon(Icons.liquor_rounded),
-              imageBuilder: (_, image) => CircleAvatar(backgroundImage: image),
+              imageBuilder: (_, img) => CircleAvatar(foregroundImage: img),
             ),
           ),
           title: Text(cocktail.name),
