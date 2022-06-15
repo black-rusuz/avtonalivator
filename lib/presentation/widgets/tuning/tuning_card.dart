@@ -15,9 +15,9 @@ class TuningCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TuningCubit, TuningState>(
       buildWhen: ((prev, next) =>
-          next is TuningSoloPump && next.pump.id == pump.id),
+          next is TuningPump && next.pump.id == pump.id),
       builder: (context, state) {
-        if (state is TuningSoloPump && state.pump.id == pump.id) {
+        if (state is TuningPump && state.pump.id == pump.id) {
           return BaseCard(
             height: 85,
             margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),

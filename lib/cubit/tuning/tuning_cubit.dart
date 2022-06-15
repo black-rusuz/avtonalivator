@@ -68,5 +68,5 @@ class TuningCubit extends Cubit<TuningState> {
     }
   }
 
-  void emitPump(PumpModel pump) => emit(TuningSoloPump(pump: pump));
+  void emitPump(PumpModel pump) => emit(TuningPump(pump: pump));
 }

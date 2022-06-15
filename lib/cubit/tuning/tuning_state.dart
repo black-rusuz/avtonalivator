@@ -4,8 +4,8 @@ abstract class TuningState {}
 
 class TuningInitial extends TuningState {}
 
-class TuningSoloPump extends TuningState {
+class TuningPump extends TuningState {
   final PumpModel pump;
 
-  TuningSoloPump({required this.pump});
+  TuningPump({required this.pump});
 }
