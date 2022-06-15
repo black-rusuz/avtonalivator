@@ -9,6 +9,7 @@ class ScanAppBarCard extends StatelessWidget {
   final String? subtitle;
   final EdgeInsets? margin;
   final void Function()? onTap;
+  final bool isConnecting;
 
   const ScanAppBarCard({
     Key? key,
@@ -16,6 +17,7 @@ class ScanAppBarCard extends StatelessWidget {
     this.subtitle,
     this.margin,
     this.onTap,
+    this.isConnecting = false,
   }) : super(key: key);
 
   bool get isActive => title != null && subtitle != null;
@@ -33,10 +35,20 @@ class ScanAppBarCard extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 25),
-              child: SvgPicture.asset(
-                isActive ? 'assets/barmen.svg' : 'assets/barmen_grey.svg',
+              child: SizedBox(
                 height: 68,
-                width: 69.26,
+                width: 68,
+                child: isConnecting
+                    ? CircularProgressIndicator(
+                        color: isActive
+                            ? Style.switchEnabled
+                            : Style.switchDisabled,
+                      )
+                    : SvgPicture.asset(
+                        isActive
+                            ? 'assets/barmen.svg'
+                            : 'assets/barmen_grey.svg',
+                      ),
               ),
             ),
             Expanded(

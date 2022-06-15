@@ -4,6 +4,8 @@ abstract class ConnectState {}
 
 class ConnectInitial extends ConnectState {}
 
+class ConnectProcessing extends ConnectState {}
+
 class ConnectSuccess extends ConnectState {
   final String name;
   final String address;

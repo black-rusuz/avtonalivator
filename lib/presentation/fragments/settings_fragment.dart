@@ -29,10 +29,11 @@ class SettingsFragment extends StatelessWidget {
                   ScanAppBarCard(
                     title: state is ConnectSuccess ? state.name : null,
                     subtitle: state is ConnectSuccess ? state.address : null,
+                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 50),
+                    isConnecting: state is ConnectProcessing,
                     onTap: state is ConnectSuccess
                         ? () => context.read<ConnectCubit>().disconnect()
                         : null,
-                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 50),
                   ),
                   state is ConnectSuccess
                       ? const PumpButton()

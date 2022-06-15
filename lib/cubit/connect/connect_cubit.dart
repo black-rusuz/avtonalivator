@@ -54,6 +54,7 @@ class ConnectCubit extends Cubit<ConnectState> {
   }
 
   Future<void> connect(String address) async {
+    emit(ConnectProcessing());
     await connection?.close();
     BluetoothConnection.toAddress(address).then((v) {
       if (v.isConnected) {
