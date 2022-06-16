@@ -11,37 +11,41 @@ import '../../model/pump_model.dart';
 
 part 'connect_state.dart';
 
+class ConnectArgs {
+  BluetoothConnection connection;
+  String name;
+  String address;
+
+  ConnectArgs({
+    required this.connection,
+    required this.name,
+    required this.address,
+  });
+}
+
 class ConnectCubit extends Cubit<ConnectState> {
-  BluetoothConnection? connection;
-  String? name;
-  String? address;
+  ConnectArgs? args;
 
-  ConnectCubit([
-    this.connection,
-    this.name,
-    this.address,
-  ]) : super(ConnectInitial());
+  ConnectCubit([this.args]) : super(ConnectInitial());
 
-  bool get isConnected => connection != null;
-
-  final String _debouncer = 'refresher';
-
-  final String _refreshCommand = 'y1';
-  final String _pourCommand = 'z1';
+  bool get isConnected => args != null;
+  final String debouncer = 'refresher';
+  final String refreshCommand = 'y1';
+  final String pourCommand = 'z1';
 
   void init() {
     if (isConnected) {
-      emit(ConnectConnected(name: name ?? '', address: address ?? ''));
+      emit(ConnectConnected(name: args!.name, address: args!.address));
     }
   }
 
   void sendRefresh(PumpModel pump) {
     String command = [
       pump.letter + (pump.isEnabled ? pump.volume.round().toString() : '0'),
-      _refreshCommand,
+      refreshCommand,
     ].join(' ');
     EasyDebounce.debounce(
-      _debouncer,
+      debouncer,
       const Duration(milliseconds: 100),
       () async => await sendCommand(command),
     );
@@ -49,7 +53,7 @@ class ConnectCubit extends Cubit<ConnectState> {
 
   void sendPour() async {
     // TODO: анимация налива
-    await sendCommand(_pourCommand);
+    await sendCommand(pourCommand);
   }
 
   Future<void> sendCommand(String command) async {
@@ -57,17 +61,17 @@ class ConnectCubit extends Cubit<ConnectState> {
     command = command.trim() + '\r';
     List<int> encodedChars = utf8.encode(command);
     Uint8List output = Uint8List.fromList(encodedChars);
-    connection?.output.add(output);
-    return await connection?.output.allSent;
+    args?.connection.output.add(output);
+    return await args?.connection.output.allSent;
   }
 
-  void connect(String name, String address) async {
+  void connect(String? name, String address) async {
     emit(ConnectConnecting());
-    await connection?.close();
+    await args?.connection.close();
     BluetoothConnection.toAddress(address).then((attempt) {
       if (attempt.isConnected) {
-        connection = attempt;
-        emit(ConnectConnected(name: name, address: address));
+        args?.connection = attempt;
+        emit(ConnectConnected(name: name ?? '', address: address));
       } else {
         // TODO: ошибка
         emit(ConnectInitial());
@@ -79,15 +83,15 @@ class ConnectCubit extends Cubit<ConnectState> {
   }
 
   void disconnect() async {
-    await connection?.finish();
-    connection = null;
+    await args?.connection.finish();
+    args = null;
     emit(ConnectInitial());
   }
 
   @override
   Future<void> close() async {
-    await connection?.finish();
-    EasyDebounce.cancel(_debouncer);
+    await args?.connection.finish();
+    EasyDebounce.cancel(debouncer);
     return super.close();
   }
 }

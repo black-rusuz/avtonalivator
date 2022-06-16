@@ -44,13 +44,17 @@ class ScanCubit extends Cubit<ScanState> {
     emit(ScanDevices(devices: devices));
   }
 
-  void connect(String name, String address) async {
+  void connect(String? name, String address) async {
     emit(ScanConnecting());
     await connection?.close();
     BluetoothConnection.toAddress(address).then((attempt) {
       if (attempt.isConnected) {
         connection = attempt;
-        emit(ScanConnected(connection: attempt, name: name, address: address));
+        emit(ScanConnected(
+          connection: attempt,
+          name: name ?? '',
+          address: address,
+        ));
       } else {
         // TODO: ошибка
         emit(ScanDevices(devices: devices));

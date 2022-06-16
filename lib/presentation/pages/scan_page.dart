@@ -1,7 +1,6 @@
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../cubit/cocktails/cocktails_cubit.dart';
 import '../../cubit/connect/connect_cubit.dart';
@@ -14,15 +13,10 @@ import 'home_page.dart';
 class ScanPage extends StatelessWidget {
   const ScanPage({Key? key}) : super(key: key);
 
-  MultiBlocProvider getHomeProvider({
-    BluetoothConnection? connection,
-    String? name,
-    String? address,
-  }) {
+  MultiBlocProvider getHomeProvider([ConnectArgs? args]) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ConnectCubit>(
-            create: (_) => ConnectCubit(connection, name, address)..init()),
+        BlocProvider<ConnectCubit>(create: (_) => ConnectCubit(args)..init()),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
         BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
         BlocProvider<ScanCubit>(create: (context) => ScanCubit()),
@@ -35,25 +29,15 @@ class ScanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ScanCubit, ScanState>(
       listener: (context, state) {
-        if (state is ScanConnected) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => getHomeProvider(
+        ConnectArgs? args = state is ScanConnected
+            ? ConnectArgs(
                 connection: state.connection,
                 name: state.name,
                 address: state.address,
-              ),
-            ),
-          );
-        } else if (state is ScanSkipped) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => getHomeProvider(),
-            ),
-          );
-        }
+              )
+            : null;
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => getHomeProvider(args)));
       },
       buildWhen: ((prev, next) => next is ScanDevices),
       builder: (context, state) {
