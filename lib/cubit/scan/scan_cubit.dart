@@ -10,13 +10,10 @@ part 'scan_state.dart';
 class ScanCubit extends Cubit<ScanState> {
   ScanCubit() : super(ScanInitial());
 
-  bool isDiscovering = false;
-  bool isConnecting = false;
   List<BluetoothDevice> devices = [];
   BluetoothConnection? connection;
 
   StreamSubscription<BluetoothDiscoveryResult>? devicesSubscription;
-  StreamSubscription<bool>? discoveringSubscription;
 
   Stream<bool> get isDiscoveringStream async* {
     while (!isClosed) {
@@ -28,26 +25,8 @@ class ScanCubit extends Cubit<ScanState> {
     }
   }
 
-  void emitProcessing() {
-    if (!isClosed) {
-      emit(ScanProcessing(
-        isDiscovering: isDiscovering,
-        isConnecting: isConnecting,
-      ));
-    }
-  }
-
-  Future<void> init() async {
-    discover();
+  void init() async {
     scan();
-  }
-
-  void discover() async {
-    await discoveringSubscription?.cancel();
-    discoveringSubscription = isDiscoveringStream.listen((v) {
-      isDiscovering = v;
-      emitProcessing();
-    });
   }
 
   void scan() async {
@@ -66,16 +45,20 @@ class ScanCubit extends Cubit<ScanState> {
   }
 
   void connect(String name, String address) async {
-    isConnecting = true;
-    emitProcessing();
+    emit(ScanConnecting());
     await connection?.close();
-    BluetoothConnection attempt = await BluetoothConnection.toAddress(address);
-    if (attempt.isConnected) {
-      connection = attempt;
-      isConnecting = false;
-      emit(ScanConnected(connection: attempt, name: name, address: address));
-    }
-    //TODO: ошибка подключения
+    BluetoothConnection.toAddress(address).then((attempt) {
+      if (attempt.isConnected) {
+        connection = attempt;
+        emit(ScanConnected(connection: attempt, name: name, address: address));
+      } else {
+        // TODO: ошибка
+        emit(ScanDevices(devices: devices));
+      }
+    }).onError((error, stackTrace) {
+      // TODO: ошибка
+      emit(ScanDevices(devices: devices));
+    });
   }
 
   void skip() => emit(ScanSkipped());
@@ -83,7 +66,6 @@ class ScanCubit extends Cubit<ScanState> {
   @override
   Future<void> close() async {
     await FlutterBluetoothSerial.instance.cancelDiscovery();
-    await discoveringSubscription?.cancel();
     await devicesSubscription?.cancel();
     return super.close();
   }

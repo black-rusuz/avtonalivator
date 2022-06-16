@@ -18,10 +18,10 @@ class SettingsFragment extends StatelessWidget {
     return BlocBuilder<ConnectCubit, ConnectState>(
       builder: (context, state) {
         return RefreshIndicator(
-          edgeOffset: state is ConnectSuccess
+          edgeOffset: state is ConnectConnected
               ? -150
               : MediaQuery.of(context).viewPadding.top + 244,
-          onRefresh: state is ConnectSuccess
+          onRefresh: state is ConnectConnected
               ? () async {}
               : () async => context.read<ScanCubit>().scan(),
           child: CustomScrollView(
@@ -43,18 +43,18 @@ class SettingsFragment extends StatelessWidget {
               SliverWidgetList(
                 children: [
                   BarmenCard(
-                    title: state is ConnectSuccess ? state.name : null,
-                    subtitle: state is ConnectSuccess ? state.address : null,
+                    title: state is ConnectConnected ? state.name : null,
+                    subtitle: state is ConnectConnected ? state.address : null,
                     margin: const EdgeInsets.fromLTRB(20, 10, 20, 50),
-                    isConnecting: state is ConnectProcessing,
-                    onTap: state is ConnectSuccess
+                    isConnecting: state is ConnectConnecting,
+                    onTap: state is ConnectConnected
                         ? () {
                             context.read<ConnectCubit>().disconnect();
                             context.read<ScanCubit>().scan();
                           }
                         : null,
                   ),
-                  state is ConnectSuccess
+                  state is ConnectConnected
                       ? const SettingsPumpButton()
                       : BlocBuilder<ScanCubit, ScanState>(
                           buildWhen: ((prev, next) => next is ScanDevices),

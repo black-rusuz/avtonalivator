@@ -4,11 +4,11 @@ abstract class ConnectState {}
 
 class ConnectInitial extends ConnectState {}
 
-class ConnectProcessing extends ConnectState {}
+class ConnectConnecting extends ConnectState {}
 
-class ConnectSuccess extends ConnectState {
+class ConnectConnected extends ConnectState {
   final String name;
   final String address;
 
-  ConnectSuccess({required this.name, required this.address});
+  ConnectConnected({required this.name, required this.address});
 }

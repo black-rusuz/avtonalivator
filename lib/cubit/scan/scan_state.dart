@@ -18,6 +18,8 @@ class ScanDevices extends ScanState {
   List<Object> get props => [UniqueKey(), devices];
 }
 
+class ScanConnecting extends ScanState {}
+
 class ScanConnected extends ScanState {
   final BluetoothConnection connection;
   final String name;
@@ -34,16 +36,3 @@ class ScanConnected extends ScanState {
 }
 
 class ScanSkipped extends ScanState {}
-
-class ScanProcessing extends ScanState {
-  final bool isDiscovering;
-  final bool isConnecting;
-
-  const ScanProcessing({
-    required this.isDiscovering,
-    required this.isConnecting,
-  });
-
-  @override
-  List<Object> get props => [isDiscovering, isConnecting];
-}

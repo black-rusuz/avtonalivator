@@ -30,7 +30,9 @@ class ConnectCubit extends Cubit<ConnectState> {
   final String _pourCommand = 'z1';
 
   void init() {
-    if (isConnected) emit(ConnectSuccess(name: name!, address: address!));
+    if (isConnected) {
+      emit(ConnectConnected(name: name ?? '', address: address ?? ''));
+    }
   }
 
   void sendRefresh(PumpModel pump) {
@@ -45,7 +47,7 @@ class ConnectCubit extends Cubit<ConnectState> {
     );
   }
 
-  Future<void> sendPour() async {
+  void sendPour() async {
     // TODO: анимация налива
     await sendCommand(_pourCommand);
   }
@@ -56,24 +58,27 @@ class ConnectCubit extends Cubit<ConnectState> {
     List<int> encodedChars = utf8.encode(command);
     Uint8List output = Uint8List.fromList(encodedChars);
     connection?.output.add(output);
-    await connection?.output.allSent;
+    return await connection?.output.allSent;
   }
 
-  Future<void> connect(String name, String address) async {
-    emit(ConnectProcessing());
+  void connect(String name, String address) async {
+    emit(ConnectConnecting());
     await connection?.close();
-    this.name = name;
-    this.address = address;
-    BluetoothConnection.toAddress(address).then((v) {
-      if (v.isConnected) {
-        connection = v;
-        emit(ConnectSuccess(name: name, address: address));
+    BluetoothConnection.toAddress(address).then((attempt) {
+      if (attempt.isConnected) {
+        connection = attempt;
+        emit(ConnectConnected(name: name, address: address));
+      } else {
+        // TODO: ошибка
+        emit(ConnectInitial());
       }
-      //TODO: ошибка подключения
+    }).onError((error, stackTrace) {
+      // TODO: ошибка
+      emit(ConnectInitial());
     });
   }
 
-  Future<void> disconnect() async {
+  void disconnect() async {
     await connection?.finish();
     connection = null;
     emit(ConnectInitial());

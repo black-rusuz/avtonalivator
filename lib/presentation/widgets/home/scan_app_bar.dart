@@ -11,27 +11,35 @@ class ScanAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScanCubit, ScanState>(
-      buildWhen: ((prev, next) => next is ScanProcessing),
-      builder: (context, state) {
-        return SliverAppBar(
-          centerTitle: true,
-          collapsedHeight: 60,
-          expandedHeight: 260,
-          title: Text('Подключение', style: Style.pageTitle),
-          actions: state is ScanProcessing && state.isDiscovering
-              ? [const AppBarActionsLoader()]
-              : null,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Center(
-              child: BarmenCard(
-                margin: const EdgeInsets.only(top: 50),
-                isConnecting: state is ScanProcessing && state.isConnecting,
-              ),
-            ),
+    return SliverAppBar(
+      centerTitle: true,
+      collapsedHeight: 60,
+      expandedHeight: 260,
+      title: Text('Подключение', style: Style.pageTitle),
+      actions: [
+        StreamBuilder(
+          stream: context.read<ScanCubit>().isDiscoveringStream,
+          initialData: false,
+          builder: (_, snapshot) => Center(
+            child: (snapshot.data as bool?) == true
+                ? const AppBarActionsLoader()
+                : null,
           ),
-        );
-      },
+        )
+      ],
+      flexibleSpace: FlexibleSpaceBar(
+        background: Center(
+          child: BlocBuilder<ScanCubit, ScanState>(
+            buildWhen: ((prev, next) => next is ScanConnecting),
+            builder: (context, state) {
+              return BarmenCard(
+                margin: const EdgeInsets.only(top: 50),
+                isConnecting: state is ScanConnecting,
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
