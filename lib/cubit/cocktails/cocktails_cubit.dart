@@ -18,7 +18,11 @@ class CocktailsCubit extends Cubit<CocktailsState> {
 
   StreamSubscription<List<CocktailModel>>? cocktailsSubscription;
 
-  void init() async {
+  void init() {
+    getCocktails();
+  }
+
+  void getCocktails() {
     cocktailsSubscription = repository.getCocktails().asStream().listen((v) {
       cocktails = v;
       emit(CocktailsFetched(cocktails: cocktails));

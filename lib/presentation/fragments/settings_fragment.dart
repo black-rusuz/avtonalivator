@@ -17,6 +17,7 @@ class SettingsFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ConnectCubit, ConnectState>(
       builder: (context, state) {
+        if (state is ConnectInitial) context.read<ScanCubit>().scan();
         return RefreshIndicator(
           edgeOffset: state is ConnectConnected
               ? -150

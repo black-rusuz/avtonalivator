@@ -12,9 +12,9 @@ import '../../model/pump_model.dart';
 part 'connect_state.dart';
 
 class ConnectArgs {
-  BluetoothConnection connection;
-  String name;
-  String address;
+  final BluetoothConnection connection;
+  final String name;
+  final String address;
 
   ConnectArgs({
     required this.connection,
@@ -70,7 +70,11 @@ class ConnectCubit extends Cubit<ConnectState> {
     await args?.connection.close();
     BluetoothConnection.toAddress(address).then((attempt) {
       if (attempt.isConnected) {
-        args?.connection = attempt;
+        args = ConnectArgs(
+          connection: attempt,
+          name: name ?? '',
+          address: address,
+        );
         emit(ConnectConnected(name: name ?? '', address: address));
       } else {
         // TODO: ошибка

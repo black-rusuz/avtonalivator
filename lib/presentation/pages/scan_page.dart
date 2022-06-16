@@ -29,15 +29,19 @@ class ScanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ScanCubit, ScanState>(
       listener: (context, state) {
-        ConnectArgs? args = state is ScanConnected
-            ? ConnectArgs(
-                connection: state.connection,
-                name: state.name,
-                address: state.address,
-              )
-            : null;
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => getHomeProvider(args)));
+        if (state is ScanConnected) {
+          ConnectArgs args = ConnectArgs(
+            connection: state.connection,
+            name: state.name,
+            address: state.address,
+          );
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (_) => getHomeProvider(args)));
+        }
+        if (state is ScanSkipped) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => getHomeProvider()));
+        }
       },
       buildWhen: ((prev, next) => next is ScanDevices),
       builder: (context, state) {

@@ -30,7 +30,7 @@ class ScanCubit extends Cubit<ScanState> {
   }
 
   void scan() async {
-    devices = [];
+    devices.clear();
     emit(ScanDevices(devices: devices));
     await FlutterBluetoothSerial.instance.cancelDiscovery();
     await devicesSubscription?.cancel();

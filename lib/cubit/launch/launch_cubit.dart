@@ -13,6 +13,10 @@ class LaunchCubit extends Cubit<LaunchState> {
       emit(LaunchAnimate());
       await Future.delayed(const Duration(milliseconds: 1500));
     }
+    requestEnable();
+  }
+
+  void requestEnable() async {
     emit(LaunchStatus(
       isAvailable: await FlutterBluetoothSerial.instance.isAvailable ?? false,
       isEnabled: await FlutterBluetoothSerial.instance.requestEnable() ?? false,

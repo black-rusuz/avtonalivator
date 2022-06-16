@@ -23,9 +23,7 @@ class TuningCubit extends Cubit<TuningState> {
         pumpF,
       ];
 
-  void init() {
-    allPumps.forEach(emitPump);
-  }
+  void init() {}
 
   void setPump(PumpModel pump) {
     switch (pump.id) {

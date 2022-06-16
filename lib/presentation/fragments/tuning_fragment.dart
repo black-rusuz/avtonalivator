@@ -16,7 +16,7 @@ class TuningFragment extends StatelessWidget {
         const BaseAppBar(title: 'Регулировка'),
         SliverWidgetList(
           children: context
-              .watch<TuningCubit>()
+              .read<TuningCubit>()
               .allPumps
               .map((e) => TuningCard(pump: e))
               .toList(),

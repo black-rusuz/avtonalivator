@@ -14,7 +14,7 @@ class LaunchPage extends StatelessWidget {
   final Duration duration = const Duration(milliseconds: 750);
 
   void requestEnable(BuildContext context) =>
-      context.read<LaunchCubit>().init();
+      context.read<LaunchCubit>().requestEnable();
 
   @override
   Widget build(BuildContext context) {

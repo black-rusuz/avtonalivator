@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       );
 
   FloatingActionButton? get button =>
-      selectedIndex == 0 && context.watch<ConnectCubit>().isConnected
+      selectedIndex == 0 && context.read<ConnectCubit>().isConnected
           ? FloatingActionButton.extended(
               onPressed: () => context.read<ConnectCubit>().sendPour(),
               icon: const Icon(Icons.local_drink_rounded),
