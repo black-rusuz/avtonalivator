@@ -65,7 +65,7 @@ class ScanPage extends StatelessWidget {
             onPressed: () => context.read<ScanCubit>().skip(),
           ),
           body: RefreshIndicator(
-            edgeOffset: 284,
+            edgeOffset: MediaQuery.of(context).viewPadding.top + 260,
             onRefresh: () => context.read<ScanCubit>().init(),
             child: CustomScrollView(
               slivers: [
@@ -73,7 +73,8 @@ class ScanPage extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Container(
                     constraints: BoxConstraints(
-                      minHeight: MediaQuery.of(context).size.height - 284,
+                      minHeight: MediaQuery.of(context).size.height -
+                          (MediaQuery.of(context).viewPadding.top + 260),
                     ),
                     decoration: const BoxDecoration(
                       color: Style.yellowAccent,
