@@ -37,9 +37,23 @@ class CocktailsCubit extends Cubit<CocktailsState> {
     emit(CocktailsFetched(cocktails: _cocktails, filtered: filtered));
   }
 
-  void setFilter(bool value) {
+  void setFilter(bool value, List<String> drinks) {
     filtered = value;
-    emit(CocktailsFetched(cocktails: cocktails, filtered: filtered));
+    if (filtered) {
+      emit(CocktailsFetched(
+        cocktails: filterCocktails(drinks),
+        filtered: filtered,
+      ));
+    } else {
+      emit(CocktailsFetched(cocktails: cocktails, filtered: filtered));
+    }
+  }
+
+  List<CocktailModel> filterCocktails(List<String> drinks) {
+    List<String> _drinks = drinks.map((drink) => drink.toLowerCase()).toList();
+    List<CocktailModel> _cocktails =
+        cocktails.where((cocktail) => cocktail.containAll(_drinks)).toList();
+    return _cocktails;
   }
 
   @override

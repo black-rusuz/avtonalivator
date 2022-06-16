@@ -37,6 +37,18 @@ class CocktailModel extends Equatable {
     this.description,
   });
 
+  List<String> get ingredients => [
+        if (drinkA != null) drinkA!,
+        if (drinkB != null) drinkB!,
+        if (drinkC != null) drinkC!,
+        if (drinkD != null) drinkD!,
+        if (drinkE != null) drinkE!,
+        if (drinkF != null) drinkF!,
+      ];
+
+  bool containAll(List<String> drinks) => ingredients
+      .every((ingredient) => drinks.contains(ingredient.toLowerCase()));
+
   @override
   List<Object?> get props => [
         id,

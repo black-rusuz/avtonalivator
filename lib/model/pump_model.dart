@@ -13,25 +13,6 @@ class PumpModel extends Equatable {
     required this.isEnabled,
   });
 
-  String get letter {
-    switch (id) {
-      case (1):
-        return 'a';
-      case (2):
-        return 'b';
-      case (3):
-        return 'c';
-      case (4):
-        return 'd';
-      case (5):
-        return 'e';
-      case (6):
-        return 'f';
-      default:
-        return '';
-    }
-  }
-
   static PumpModel get base => const PumpModel(
         id: 0,
         name: 'Напиток',
@@ -51,6 +32,25 @@ class PumpModel extends Equatable {
       volume: volume ?? this.volume,
       isEnabled: isEnabled ?? this.isEnabled,
     );
+  }
+
+  String get letter {
+    switch (id) {
+      case (1):
+        return 'a';
+      case (2):
+        return 'b';
+      case (3):
+        return 'c';
+      case (4):
+        return 'd';
+      case (5):
+        return 'e';
+      case (6):
+        return 'f';
+      default:
+        return '';
+    }
   }
 
   @override
