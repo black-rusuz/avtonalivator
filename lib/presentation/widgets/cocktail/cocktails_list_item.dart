@@ -5,10 +5,10 @@ import '../../../model/cocktail_model.dart';
 import '../common/base_divider.dart';
 import 'cocktail_detail.dart';
 
-class CocktailListItem extends StatelessWidget {
+class CocktailsListItem extends StatelessWidget {
   final CocktailModel cocktail;
 
-  const CocktailListItem({
+  const CocktailsListItem({
     Key? key,
     required this.cocktail,
   }) : super(key: key);

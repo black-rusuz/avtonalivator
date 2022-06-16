@@ -10,12 +10,10 @@ import '../../repository/repository_local.dart';
 part 'cocktails_state.dart';
 
 class CocktailsCubit extends Cubit<CocktailsState> {
-  CocktailsCubit() : super(CocktailsInitial());
+  CocktailsCubit() : super(const CocktailsInitial());
 
   final Repository repository = RepositoryLocal();
-
   List<CocktailModel> cocktails = [];
-
   StreamSubscription<List<CocktailModel>>? cocktailsSubscription;
 
   void init() {
