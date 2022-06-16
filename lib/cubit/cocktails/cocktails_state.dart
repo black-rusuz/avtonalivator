@@ -6,7 +6,7 @@ abstract class CocktailsState extends Equatable {
   const CocktailsState(this.filtered);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [filtered];
 }
 
 class CocktailsInitial extends CocktailsState {
@@ -22,5 +22,5 @@ class CocktailsFetched extends CocktailsState {
   }) : super(filtered ?? false);
 
   @override
-  List<Object> get props => [cocktails];
+  List<Object> get props => [cocktails, filtered];
 }

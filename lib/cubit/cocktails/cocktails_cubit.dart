@@ -10,10 +10,13 @@ import '../../repository/repository_local.dart';
 part 'cocktails_state.dart';
 
 class CocktailsCubit extends Cubit<CocktailsState> {
+  final Repository repository = RepositoryLocal();
+
   CocktailsCubit() : super(const CocktailsInitial());
 
-  final Repository repository = RepositoryLocal();
+  bool filtered = false;
   List<CocktailModel> cocktails = [];
+
   StreamSubscription<List<CocktailModel>>? cocktailsSubscription;
 
   void init() {
@@ -25,6 +28,11 @@ class CocktailsCubit extends Cubit<CocktailsState> {
       cocktails = v;
       emit(CocktailsFetched(cocktails: cocktails));
     });
+  }
+
+  void setFilter(bool value) {
+    filtered = value;
+    emit(CocktailsFetched(cocktails: cocktails, filtered: value));
   }
 
   @override
