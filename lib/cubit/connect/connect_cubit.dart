@@ -29,7 +29,7 @@ class ConnectCubit extends Cubit<ConnectState> {
   ConnectCubit([this.args]) : super(ConnectInitial());
 
   bool get isConnected => args != null;
-  final String debouncer = 'refresher';
+
   final String refreshCommand = 'y1';
   final String pourCommand = 'z1';
 
@@ -45,7 +45,7 @@ class ConnectCubit extends Cubit<ConnectState> {
       refreshCommand,
     ].join(' ');
     EasyDebounce.debounce(
-      debouncer,
+      '_',
       const Duration(milliseconds: 100),
       () async => await sendCommand(command),
     );
@@ -95,7 +95,7 @@ class ConnectCubit extends Cubit<ConnectState> {
   @override
   Future<void> close() async {
     await args?.connection.finish();
-    EasyDebounce.cancel(debouncer);
+    EasyDebounce.cancelAll();
     return super.close();
   }
 }

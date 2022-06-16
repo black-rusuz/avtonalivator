@@ -1,12 +1,28 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CocktailSearch extends StatelessWidget {
-  final TextEditingController? controller;
+import '../../../cubit/cocktails/cocktails_cubit.dart';
 
-  const CocktailSearch({
-    Key? key,
-    this.controller,
-  }) : super(key: key);
+class CocktailSearch extends StatefulWidget {
+  const CocktailSearch({Key? key}) : super(key: key);
+
+  @override
+  State<CocktailSearch> createState() => _CocktailSearchState();
+}
+
+class _CocktailSearchState extends State<CocktailSearch> {
+  TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() => EasyDebounce.debounce(
+          '_',
+          const Duration(milliseconds: 50),
+          () => context.read<CocktailsCubit>().search(controller.text),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,5 +46,11 @@ class CocktailSearch extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    EasyDebounce.cancelAll();
+    super.dispose();
   }
 }

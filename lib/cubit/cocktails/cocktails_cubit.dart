@@ -30,9 +30,16 @@ class CocktailsCubit extends Cubit<CocktailsState> {
     });
   }
 
+  void search(String name) {
+    List<CocktailModel> _cocktails = cocktails
+        .where((e) => e.name.toLowerCase().startsWith(name.toLowerCase()))
+        .toList();
+    emit(CocktailsFetched(cocktails: _cocktails, filtered: filtered));
+  }
+
   void setFilter(bool value) {
     filtered = value;
-    emit(CocktailsFetched(cocktails: cocktails, filtered: value));
+    emit(CocktailsFetched(cocktails: cocktails, filtered: filtered));
   }
 
   @override
