@@ -24,13 +24,9 @@ class ScanDeviceListItem extends StatelessWidget {
           children: [
             const BaseDivider(indent: 0),
             ListTile(
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 2,
-              ),
+              contentPadding: const EdgeInsets.symmetric(vertical: 2),
               onTap: onTap,
-              //leading: const Icon(Icons.device_unknown),
               title: Text(device.name ?? device.address),
-              //subtitle: Text(device.address),
               trailing: const Icon(Icons.bluetooth),
             ),
             const BaseDivider(indent: 0),

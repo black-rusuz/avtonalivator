@@ -2,7 +2,6 @@ import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 
 import '../common/base_divider.dart';
-import '../common/sliver_widget_list.dart';
 
 class CocktailDrink extends StatelessWidget {
   final String name;
@@ -16,7 +15,7 @@ class CocktailDrink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverWidgetList(
+    return Column(
       children: [
         const BaseDivider(),
         ListTile(
