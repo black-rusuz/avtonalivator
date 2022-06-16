@@ -1,12 +1,12 @@
+import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/connect/connect_cubit.dart';
-import '../../style.dart';
-import 'common/base_card.dart';
+import '../../../cubit/connect/connect_cubit.dart';
+import '../common/base_card.dart';
 
-class PumpButton extends StatelessWidget {
-  const PumpButton({Key? key}) : super(key: key);
+class SettingsPumpButton extends StatelessWidget {
+  const SettingsPumpButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

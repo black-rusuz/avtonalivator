@@ -7,7 +7,7 @@ import '../widgets/common/barmen_card.dart';
 import '../widgets/common/base_app_bar.dart';
 import '../widgets/common/scan_device_list.dart';
 import '../widgets/common/sliver_widget_list.dart';
-import '../widgets/pump_button.dart';
+import '../widgets/home/settings_pump_button.dart';
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({Key? key}) : super(key: key);
@@ -60,7 +60,7 @@ class SettingsFragment extends StatelessWidget {
                         : null,
                   ),
                   state is ConnectSuccess
-                      ? const PumpButton()
+                      ? const SettingsPumpButton()
                       : BlocBuilder<ScanCubit, ScanState>(
                           buildWhen: ((prev, next) => next is ScanDevices),
                           builder: (context, state) {

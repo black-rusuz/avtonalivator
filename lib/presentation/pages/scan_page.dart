@@ -8,7 +8,7 @@ import '../../cubit/connect/connect_cubit.dart';
 import '../../cubit/scan/scan_cubit.dart';
 import '../../cubit/tuning/tuning_cubit.dart';
 import '../widgets/common/scan_device_list.dart';
-import '../widgets/scan_app_bar.dart';
+import '../widgets/home/scan_app_bar.dart';
 import 'home_page.dart';
 
 class ScanPage extends StatelessWidget {
