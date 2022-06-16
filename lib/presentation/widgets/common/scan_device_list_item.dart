@@ -1,3 +1,4 @@
+import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
@@ -15,22 +16,27 @@ class ScanDeviceListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const BaseDivider(),
-        ListTile(
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 2,
-            horizontal: 30,
-          ),
-          onTap: onTap,
-          //leading: const Icon(Icons.device_unknown),
-          title: Text(device.name ?? device.address),
-          //subtitle: Text(device.address),
-          trailing: const Icon(Icons.bluetooth),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Material(
+        color: Style.yellowAccent,
+        child: Column(
+          children: [
+            const BaseDivider(indent: 0),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 2,
+              ),
+              onTap: onTap,
+              //leading: const Icon(Icons.device_unknown),
+              title: Text(device.name ?? device.address),
+              //subtitle: Text(device.address),
+              trailing: const Icon(Icons.bluetooth),
+            ),
+            const BaseDivider(indent: 0),
+          ],
         ),
-        const BaseDivider(),
-      ],
+      ),
     );
   }
 }
