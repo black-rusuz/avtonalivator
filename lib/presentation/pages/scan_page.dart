@@ -25,7 +25,7 @@ class ScanPage extends StatelessWidget {
             create: (_) => ConnectCubit(connection, name, address)..init()),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
         BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
-        BlocProvider<ScanCubit>(create: (context) => ScanCubit())
+        BlocProvider<ScanCubit>(create: (context) => ScanCubit()),
       ],
       child: const HomePage(),
     );
@@ -66,7 +66,7 @@ class ScanPage extends StatelessWidget {
           ),
           body: RefreshIndicator(
             edgeOffset: MediaQuery.of(context).viewPadding.top + 260,
-            onRefresh: () => context.read<ScanCubit>().init(),
+            onRefresh: () async => context.read<ScanCubit>().scan(),
             child: CustomScrollView(
               slivers: [
                 const ScanAppBar(),

@@ -10,13 +10,23 @@ part 'scan_state.dart';
 class ScanCubit extends Cubit<ScanState> {
   ScanCubit() : super(ScanInitial());
 
-  final List<BluetoothDevice> devices = [];
-  BluetoothConnection? connection;
   bool isDiscovering = false;
   bool isConnecting = false;
+  List<BluetoothDevice> devices = [];
+  BluetoothConnection? connection;
 
   StreamSubscription<BluetoothDiscoveryResult>? devicesSubscription;
   StreamSubscription<bool>? discoveringSubscription;
+
+  Stream<bool> get isDiscoveringStream async* {
+    while (!isClosed) {
+      yield await Future.delayed(
+        const Duration(seconds: 1),
+        () async =>
+            await FlutterBluetoothSerial.instance.isDiscovering ?? false,
+      );
+    }
+  }
 
   void emitProcessing() {
     if (!isClosed) {
@@ -27,37 +37,35 @@ class ScanCubit extends Cubit<ScanState> {
     }
   }
 
-  Stream<bool> get isDiscoveringStream async* {
-    while (true) {
-      yield await Future.delayed(
-        const Duration(seconds: 1),
-        () async {
-          isDiscovering =
-              await FlutterBluetoothSerial.instance.isDiscovering ?? false;
-          emitProcessing();
-          return isDiscovering;
-        },
-      );
-    }
+  Future<void> init() async {
+    discover();
+    scan();
   }
 
-  Future<void> init() async {
-    discoveringSubscription = isDiscoveringStream.listen((_) {});
-    devices.clear();
+  void discover() async {
+    await discoveringSubscription?.cancel();
+    discoveringSubscription = isDiscoveringStream.listen((v) {
+      isDiscovering = v;
+      emitProcessing();
+    });
+  }
+
+  void scan() async {
+    devices = [];
     emit(ScanDevices(devices: devices));
     await FlutterBluetoothSerial.instance.cancelDiscovery();
     await devicesSubscription?.cancel();
-    devicesSubscription = FlutterBluetoothSerial.instance
+    FlutterBluetoothSerial.instance
         .startDiscovery()
         .listen((result) => addDevice(result.device));
   }
 
-  addDevice(BluetoothDevice device) async {
+  void addDevice(BluetoothDevice device) async {
     if (!devices.contains(device)) devices.add(device);
     emit(ScanDevices(devices: devices));
   }
 
-  Future<void> connect(String name, String address) async {
+  void connect(String name, String address) async {
     isConnecting = true;
     emitProcessing();
     await connection?.close();
@@ -75,8 +83,8 @@ class ScanCubit extends Cubit<ScanState> {
   @override
   Future<void> close() async {
     await FlutterBluetoothSerial.instance.cancelDiscovery();
-    await devicesSubscription?.cancel();
     await discoveringSubscription?.cancel();
+    await devicesSubscription?.cancel();
     return super.close();
   }
 }

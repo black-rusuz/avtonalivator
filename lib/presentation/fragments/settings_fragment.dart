@@ -23,7 +23,7 @@ class SettingsFragment extends StatelessWidget {
               : MediaQuery.of(context).viewPadding.top + 244,
           onRefresh: state is ConnectSuccess
               ? () async {}
-              : () => context.read<ScanCubit>().init(),
+              : () async => context.read<ScanCubit>().scan(),
           child: CustomScrollView(
             slivers: [
               BaseAppBar(
@@ -50,7 +50,7 @@ class SettingsFragment extends StatelessWidget {
                     onTap: state is ConnectSuccess
                         ? () {
                             context.read<ConnectCubit>().disconnect();
-                            context.read<ScanCubit>().init();
+                            context.read<ScanCubit>().scan();
                           }
                         : null,
                   ),
