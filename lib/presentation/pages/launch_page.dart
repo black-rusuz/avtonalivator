@@ -50,7 +50,7 @@ class LaunchPage extends StatelessWidget {
                             child: const Text('Включить Bluetooth'),
                             style: ElevatedButton.styleFrom(
                               primary: Style.yellow,
-                              onPrimary: Style.switchEnabled,
+                              onPrimary: Style.black,
                             ),
                           ),
                         ],
@@ -78,7 +78,7 @@ class LaunchPage extends StatelessWidget {
                       style: TextStyle(
                         color: state is LaunchInitial
                             ? Colors.transparent
-                            : Colors.black,
+                            : Style.black,
                       ),
                     ),
                     AnimatedDefaultTextStyle(
@@ -90,7 +90,7 @@ class LaunchPage extends StatelessWidget {
                       style: TextStyle(
                         color: state is LaunchInitial
                             ? Colors.transparent
-                            : Colors.black,
+                            : Style.black,
                       ),
                     ),
                   ],
@@ -107,7 +107,7 @@ class LaunchPage extends StatelessWidget {
                       left: 87.5,
                       child: const Text(
                         '•',
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 20, color: Style.black),
                       ),
                     ),
                   ],

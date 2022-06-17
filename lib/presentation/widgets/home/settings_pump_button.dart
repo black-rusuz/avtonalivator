@@ -29,8 +29,8 @@ class SettingsPumpButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Прокачать помпы', style: Style.cardHeader),
-                  Text('Выгнать воздух из системы', style: Style.cardText),
+                  Text('Прокачать помпы', style: Style.text),
+                  Text('Выгнать воздух из системы', style: Style.additional),
                 ],
               ),
             ),

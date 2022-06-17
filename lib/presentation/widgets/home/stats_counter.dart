@@ -62,8 +62,7 @@ class StatsCounter extends StatelessWidget {
                     ),
                     Text(
                       litersWord,
-                      style: Style.cardHeader
-                          .copyWith(color: Style.switchDisabled),
+                      style: Style.textLight,
                     ),
                   ],
                 ),

@@ -1,3 +1,4 @@
+import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 
 class AppBarActionsLoader extends StatelessWidget {
@@ -11,7 +12,7 @@ class AppBarActionsLoader extends StatelessWidget {
         height: 24,
         margin: const EdgeInsets.all(12),
         child: const CircularProgressIndicator(
-          color: Colors.black,
+          color: Style.black,
           strokeWidth: 3,
         ),
       ),

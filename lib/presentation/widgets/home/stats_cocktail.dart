@@ -80,7 +80,7 @@ class StatsCocktail extends StatelessWidget {
             count != null
                 ? count.toString() + countWord
                 : daysAgo.toString() + daysWord,
-            style: Style.listAdditionalText,
+            style: Style.textLight,
           ),
         ),
         const BaseDivider(),

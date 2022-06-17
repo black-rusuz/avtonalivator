@@ -15,32 +15,30 @@ class TuningCardInner extends StatelessWidget {
   TextStyle get numberStyle => TextStyle(
         fontSize: 96,
         color: pump.isEnabled
-            ? Style.switchEnabled.withOpacity(0.1)
-            : Style.switchDisabled.withOpacity(0.2),
+            ? Style.black.withOpacity(0.1)
+            : Style.greyLight.withOpacity(0.2),
       );
 
   TextStyle get textStyle => const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Style.switchEnabled,
+        color: Style.black,
       );
 
   TextStyle get volumeStyle => TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: pump.isEnabled
-            ? Style.switchEnabled.withOpacity(0.7)
-            : Style.switchDisabled,
+        color: pump.isEnabled ? Style.black.withOpacity(0.7) : Style.greyLight,
       );
 
   SliderThemeData sliderStyle(BuildContext context) =>
       SliderTheme.of(context).copyWith(
         trackHeight: 5,
-        activeTrackColor: pump.isEnabled ? Style.switchEnabled : Style.yellow,
+        activeTrackColor: pump.isEnabled ? Style.black : Style.yellow,
         inactiveTrackColor: pump.isEnabled
             ? Style.yellowAccent.withOpacity(0.7)
-            : const Color.fromRGBO(237, 237, 237, 1),
-        thumbColor: pump.isEnabled ? Style.switchEnabled : Style.yellow,
+            : Style.greyDivider,
+        thumbColor: pump.isEnabled ? Style.black : Style.yellow,
         thumbShape: const RoundSliderThumbShape(
           enabledThumbRadius: 5,
           elevation: 0,

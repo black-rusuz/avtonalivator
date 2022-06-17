@@ -41,9 +41,7 @@ class BarmenCard extends StatelessWidget {
                 child: isConnecting
                     ? CircularProgressIndicator(
                         strokeWidth: 6,
-                        color: isActive
-                            ? Style.switchEnabled
-                            : Style.switchDisabled,
+                        color: isActive ? Style.black : Style.greyLight,
                       )
                     : SvgPicture.asset(
                         isActive
@@ -59,25 +57,25 @@ class BarmenCard extends StatelessWidget {
                 children: [
                   Text(
                     isActive ? 'Автобармен $title' : 'Устройство не подключено',
-                    style: Style.cardHeader,
+                    style: Style.text,
                   ),
                   if (isActive)
                     Text(
                       subtitle!,
-                      style: Style.cardText.copyWith(
-                        color: Style.switchEnabled.withOpacity(0.7),
+                      style: Style.additional.copyWith(
+                        color: Style.black.withOpacity(0.7),
                       ),
                     ),
                   isActive
                       ? Text(
                           'Нажмите на карточку,\nчтобы отключить автобармен',
-                          style: Style.cardText.copyWith(
-                            color: Style.switchEnabled.withOpacity(0.7),
+                          style: Style.additional.copyWith(
+                            color: Style.black.withOpacity(0.7),
                           ),
                         )
                       : Text(
                           'Нажмите на элемент списка,\nчтобы подключить автобармен',
-                          style: Style.cardText,
+                          style: Style.additional,
                         ),
                 ],
               ),

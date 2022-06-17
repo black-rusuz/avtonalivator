@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage> {
   BottomNavigationBar get navBar => BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Style.yellowAccent,
-        selectedItemColor: Style.switchEnabled,
-        unselectedItemColor: Style.switchEnabled,
+        selectedItemColor: Style.black,
+        unselectedItemColor: Style.black,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: selectedIndex,

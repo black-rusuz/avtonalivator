@@ -20,8 +20,8 @@ class BaseSwitch extends StatelessWidget {
       toggleSize: 21,
       borderRadius: 25,
       padding: 2,
-      activeColor: Style.switchEnabled.withOpacity(0.7),
-      inactiveColor: Style.switchDisabled,
+      activeColor: Style.black.withOpacity(0.7),
+      inactiveColor: Style.greyLight,
       value: value,
       onToggle: onToggle,
     );

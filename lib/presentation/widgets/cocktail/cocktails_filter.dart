@@ -31,7 +31,7 @@ class CocktailsFilter extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Готово к наливу', style: Style.cardHeader),
+              Text('Готово к наливу', style: Style.text),
               BaseSwitch(
                 value: state.filtered,
                 onToggle: (v) => setFilter(context, v),

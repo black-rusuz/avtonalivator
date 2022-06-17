@@ -23,7 +23,7 @@ class CocktailDrink extends StatelessWidget {
           minLeadingWidth: 0,
           leading: const Icon(Icons.local_drink_rounded),
           title: Text(name),
-          trailing: Text('$volumeмл', style: Style.listAdditionalText),
+          trailing: Text('$volumeмл', style: Style.textLight),
         ),
         const BaseDivider(),
       ],

@@ -1,3 +1,4 @@
+import 'package:avtonalivator/style.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class _CocktailSearchState extends State<CocktailSearch> {
           hintText: 'Поиск',
           suffixIcon: const Icon(
             Icons.search,
-            color: Color.fromRGBO(196, 196, 196, 1),
+            color: Style.greyLight,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),

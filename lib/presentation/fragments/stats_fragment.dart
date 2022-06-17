@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../style.dart';
 import '../widgets/common/base_app_bar.dart';
+import '../widgets/common/page_header.dart';
 import '../widgets/common/sliver_widget_list.dart';
 import '../widgets/home/stats_cocktail.dart';
 import '../widgets/home/stats_counter.dart';
@@ -11,24 +11,18 @@ class StatsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
-        const BaseAppBar(title: 'Статистика'),
+        BaseAppBar(title: 'Статистика'),
         SliverWidgetList(
           children: [
-            const StatsCounter(liters: 372),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text('Любимые коктейли:', style: Style.pageTitle),
-            ),
-            const StatsCocktail(name: 'Пьяная Мэри', count: 42),
-            const StatsCocktail(name: 'Б51', count: 34),
-            const StatsCocktail(name: 'Русская рулетка', count: 17),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text('Последний коктейль:', style: Style.pageTitle),
-            ),
-            const StatsCocktail(name: 'Русская рулетка', daysAgo: 2),
+            StatsCounter(liters: 372),
+            PageHeader(text: 'Любимые коктейли:'),
+            StatsCocktail(name: 'Пьяная Мэри', count: 42),
+            StatsCocktail(name: 'Б51', count: 34),
+            StatsCocktail(name: 'Русская рулетка', count: 17),
+            PageHeader(text: 'Последний коктейль:'),
+            StatsCocktail(name: 'Русская рулетка', daysAgo: 2),
           ],
         ),
       ],
