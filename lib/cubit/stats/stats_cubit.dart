@@ -1,26 +1,26 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../model/cocktail_model.dart';
-
 part 'stats_state.dart';
 
 class StatsCubit extends Cubit<StatsState> {
   StatsCubit() : super(StatsInitial());
 
-  final Map<CocktailModel, int> cocktailsCounts = {
-    const CocktailModel(id: 1, name: 'Аллах Бабах'): 42,
-    const CocktailModel(id: 1, name: 'Русская рулетка'): 35,
-    const CocktailModel(id: 1, name: 'Б-52'): 27,
+  double liters = 0;
+  Map<String, int> cocktailsCounts = {
+    'Аллах Бабах': 42,
+    'Русская рулетка': 35,
+    'Б-52': 27,
   };
-
-  final Map<CocktailModel, int> cocktailsDays = {
-    const CocktailModel(id: 1, name: 'Отчисленный Богдан'): 5
-  };
+  Map<String, int> cocktailsDays = {'Отчисленный Богдан': 5};
 
   void init() {
+    updateValues();
+  }
+
+  void updateValues() {
     emit(StatsValues(
-      liters: 372,
+      liters: liters,
       cocktailsCounts: cocktailsCounts,
       cocktailsDays: cocktailsDays,
     ));

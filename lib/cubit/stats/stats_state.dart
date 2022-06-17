@@ -11,8 +11,8 @@ class StatsInitial extends StatsState {}
 
 class StatsValues extends StatsState {
   final double liters;
-  final Map<CocktailModel, int> cocktailsCounts;
-  final Map<CocktailModel, int> cocktailsDays;
+  final Map<String, int> cocktailsCounts;
+  final Map<String, int> cocktailsDays;
 
   const StatsValues({
     required this.liters,

@@ -36,27 +36,27 @@ class StatsFragment extends StatelessWidget {
               StatsCounter(
                 liters: state is StatsValues ? state.liters.floor() : 0,
               ),
-              if (state is StatsValues)
+              if (state is StatsValues && state.cocktailsCounts.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const PageHeader(text: 'Любимые коктейли:'),
                     ...state.cocktailsCounts.entries
                         .map((e) => StatsCocktail(
-                              name: e.key.name,
+                              name: e.key,
                               count: e.value,
                             ))
                         .toList(),
                   ],
                 ),
-              if (state is StatsValues)
+              if (state is StatsValues && state.cocktailsDays.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const PageHeader(text: 'Последний коктейль:'),
                     ...state.cocktailsDays.entries
                         .map((e) => StatsCocktail(
-                              name: e.key.name,
+                              name: e.key,
                               daysAgo: e.value,
                             ))
                         .toList(),
