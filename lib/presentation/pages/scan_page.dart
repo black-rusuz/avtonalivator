@@ -6,8 +6,8 @@ import '../../cubit/cocktails/cocktails_cubit.dart';
 import '../../cubit/connect/connect_cubit.dart';
 import '../../cubit/scan/scan_cubit.dart';
 import '../../cubit/tuning/tuning_cubit.dart';
-import '../widgets/common/scan_device_list.dart';
-import '../widgets/home/scan_app_bar.dart';
+import '../widgets/common/device_list.dart';
+import '../widgets/scan_app_bar.dart';
 import 'home_page.dart';
 
 class ScanPage extends StatelessWidget {
@@ -69,7 +69,7 @@ class ScanPage extends StatelessWidget {
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(30)),
                     ),
-                    child: ScanDeviceList(
+                    child: DeviceList(
                       devices: state is ScanDevices ? state.devices : [],
                     ),
                   ),

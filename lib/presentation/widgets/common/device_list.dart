@@ -4,13 +4,13 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../../cubit/connect/connect_cubit.dart';
 import '../../../cubit/scan/scan_cubit.dart';
-import 'scan_device_list_item.dart';
+import 'device_list_item.dart';
 
-class ScanDeviceList extends StatelessWidget {
+class DeviceList extends StatelessWidget {
   final List<BluetoothDevice> devices;
   final bool directly;
 
-  const ScanDeviceList({
+  const DeviceList({
     Key? key,
     required this.devices,
     this.directly = false,
@@ -24,7 +24,7 @@ class ScanDeviceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: devices
-          .map((e) => ScanDeviceListItem(
+          .map((e) => DeviceListItem(
                 device: e,
                 onTap: () => connect(context, e.name, e.address),
               ))

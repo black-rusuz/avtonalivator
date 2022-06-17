@@ -4,11 +4,11 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../common/base_divider.dart';
 
-class ScanDeviceListItem extends StatelessWidget {
+class DeviceListItem extends StatelessWidget {
   final BluetoothDevice device;
   final void Function() onTap;
 
-  const ScanDeviceListItem({
+  const DeviceListItem({
     Key? key,
     required this.device,
     required this.onTap,

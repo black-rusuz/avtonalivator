@@ -6,7 +6,7 @@ import '../../cubit/scan/scan_cubit.dart';
 import '../widgets/common/app_bar_actions_loader.dart';
 import '../widgets/common/barmen_card.dart';
 import '../widgets/common/base_app_bar.dart';
-import '../widgets/common/scan_device_list.dart';
+import '../widgets/common/device_list.dart';
 import '../widgets/common/sliver_widget_list.dart';
 import '../widgets/home/settings_pump_button.dart';
 
@@ -60,7 +60,7 @@ class SettingsFragment extends StatelessWidget {
                       : BlocBuilder<ScanCubit, ScanState>(
                           buildWhen: ((prev, next) => next is ScanDevices),
                           builder: (context, state) {
-                            return ScanDeviceList(
+                            return DeviceList(
                               devices:
                                   state is ScanDevices ? state.devices : [],
                               directly: true,

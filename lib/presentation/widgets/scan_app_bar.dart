@@ -2,9 +2,9 @@ import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../cubit/scan/scan_cubit.dart';
-import '../common/app_bar_actions_loader.dart';
-import '../common/barmen_card.dart';
+import '../../cubit/scan/scan_cubit.dart';
+import 'common/app_bar_actions_loader.dart';
+import 'common/barmen_card.dart';
 
 class ScanAppBar extends StatelessWidget {
   const ScanAppBar({Key? key}) : super(key: key);
