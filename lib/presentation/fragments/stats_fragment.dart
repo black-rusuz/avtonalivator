@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/common/base_app_bar.dart';
 import '../widgets/common/page_header.dart';
-import '../widgets/common/sliver_widget_list.dart';
+import '../widgets/common/sliver_column.dart';
 import '../widgets/home/stats_cocktail.dart';
 import '../widgets/home/stats_counter.dart';
 
@@ -14,7 +14,7 @@ class StatsFragment extends StatelessWidget {
     return const CustomScrollView(
       slivers: [
         BaseAppBar(title: 'Статистика'),
-        SliverWidgetList(
+        SliverColumn(
           children: [
             StatsCounter(liters: 372),
             PageHeader(text: 'Любимые коктейли:'),

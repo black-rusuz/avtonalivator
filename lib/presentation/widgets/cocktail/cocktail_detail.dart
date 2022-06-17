@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../model/cocktail_model.dart';
 import '../common/base_app_bar.dart';
-import '../common/sliver_widget_list.dart';
+import '../common/sliver_column.dart';
 import 'cocktail_description.dart';
 import 'cocktail_drink.dart';
 import 'cocktail_image.dart';
@@ -20,7 +20,7 @@ class CocktailDetail extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         BaseAppBar(title: cocktail.name),
-        SliverWidgetList(
+        SliverColumn(
           children: [
             CocktailImage(imageUrl: cocktail.imageUrl),
             if (cocktail.drinkA != null && cocktail.volumeA != null)
