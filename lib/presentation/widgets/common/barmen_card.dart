@@ -26,7 +26,6 @@ class BarmenCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseCard(
       isActive: isActive,
-      duration: 200,
       margin: margin,
       padding: const EdgeInsets.all(25),
       onTap: onTap,

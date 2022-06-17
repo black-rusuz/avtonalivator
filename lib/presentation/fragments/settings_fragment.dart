@@ -46,7 +46,7 @@ class SettingsFragment extends StatelessWidget {
                   BarmenCard(
                     title: state is ConnectConnected ? state.name : null,
                     subtitle: state is ConnectConnected ? state.address : null,
-                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 50),
+                    margin: const EdgeInsets.fromLTRB(35, 10, 35, 50),
                     isConnecting: state is ConnectConnecting,
                     onTap: state is ConnectConnected
                         ? () {

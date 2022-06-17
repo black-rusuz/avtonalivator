@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubit/stats/stats_cubit.dart';
+import '../../style.dart';
 import '../widgets/common/base_app_bar.dart';
 import '../widgets/common/base_card.dart';
 import '../widgets/common/page_header.dart';
@@ -11,6 +12,18 @@ import '../widgets/home/stats_counter.dart';
 
 class StatsFragment extends StatelessWidget {
   const StatsFragment({Key? key}) : super(key: key);
+
+  void showAchievements(BuildContext context) => showModalBottomSheet(
+        context: context,
+        //isScrollControlled: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        ),
+        builder: (context) => const FractionallySizedBox(
+          heightFactor: 0.8,
+          child: SizedBox(),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +63,22 @@ class StatsFragment extends StatelessWidget {
                   ],
                 ),
               BaseCard(
-                padding: const EdgeInsets.symmetric(vertical: 25),
+                padding: const EdgeInsets.symmetric(vertical: 18),
                 margin: const EdgeInsets.all(20),
-                child: Text(
-                  'Достижения',
-                  textAlign: TextAlign.center,
-                  style: Style.text,
+                onTap: () => showAchievements(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(Icons.emoji_events_rounded),
+                    ),
+                    Text(
+                      'Достижения',
+                      textAlign: TextAlign.center,
+                      style: Style.text.copyWith(fontSize: 18),
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -2,33 +2,27 @@ import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 
 class BaseCard extends StatelessWidget {
-  final double? height;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final bool isActive;
   final Widget child;
-  final int duration;
   final void Function()? onTap;
 
   const BaseCard({
     Key? key,
-    this.height,
     this.padding,
     this.margin,
     this.isActive = false,
     required this.child,
-    this.duration = 0,
     this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: 300,
-      height: height,
       padding: padding,
       margin: margin,
-      duration: Duration(milliseconds: duration),
+      duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         color: isActive ? Style.yellow : Style.yellowAccent,
         borderRadius: BorderRadius.circular(30),

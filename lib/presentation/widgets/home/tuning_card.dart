@@ -19,18 +19,14 @@ class TuningCard extends StatelessWidget {
       builder: (context, state) {
         if (state is TuningPump && state.pump.id == pump.id) {
           return BaseCard(
-            height: 85,
             margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
             isActive: state.pump.isEnabled,
-            duration: 200,
             child: TuningCardInner(pump: state.pump),
           );
         }
         return BaseCard(
-          height: 85,
           margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
           isActive: pump.isEnabled,
-          duration: 200,
           child: TuningCardInner(pump: pump),
         );
       },
