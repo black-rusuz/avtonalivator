@@ -1,3 +1,4 @@
+import 'package:avtonalivator/cubit/tuning/tuning_cubit.dart';
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,11 +58,16 @@ class _HomePageState extends State<HomePage> {
   FloatingActionButton? get button =>
       selectedIndex == 0 && context.read<ConnectCubit>().isConnected
           ? FloatingActionButton.extended(
-              onPressed: () => context.read<ConnectCubit>().sendPour(),
+              onPressed: sendPour,
               icon: const Icon(Icons.local_drink_rounded),
               label: const Text('Налить'),
             )
           : null;
+
+  void sendPour() {
+    context.read<TuningCubit>().saveStats();
+    context.read<ConnectCubit>().sendPour();
+  }
 
   @override
   Widget build(BuildContext context) {

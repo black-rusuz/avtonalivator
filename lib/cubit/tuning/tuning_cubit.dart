@@ -1,10 +1,14 @@
+import 'package:avtonalivator/constants.dart';
 import 'package:bloc/bloc.dart';
+import 'package:localstore/localstore.dart';
 
 import '../../model/pump_model.dart';
 
 part 'tuning_state.dart';
 
 class TuningCubit extends Cubit<TuningState> {
+  final db = Localstore.instance;
+
   TuningCubit() : super(TuningInitial());
 
   PumpModel pumpA = PumpModel.base.copyWith(id: 1);
@@ -64,6 +68,22 @@ class TuningCubit extends Cubit<TuningState> {
         }
         break;
     }
+  }
+
+  void saveStats() async {
+    int milliliters = 0;
+    for (var e in allPumps) {
+      if (e.isEnabled) milliliters += e.volume.floor();
+    }
+
+    Map<String, dynamic>? map =
+        await db.collection(Constants.collection).doc(Constants.liters).get();
+    double liters = (map?[Constants.liters] ?? 0).toDouble();
+    liters = liters + milliliters * 0.001;
+    db
+        .collection(Constants.collection)
+        .doc(Constants.liters)
+        .set({Constants.liters: liters});
   }
 
   void emitPump(PumpModel pump) => emit(TuningPump(pump: pump));

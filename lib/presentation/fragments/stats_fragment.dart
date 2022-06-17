@@ -27,64 +27,66 @@ class StatsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<StatsCubit>().updateValues();
     return CustomScrollView(
       slivers: [
         const BaseAppBar(title: 'Статистика'),
-        BlocBuilder<StatsCubit, StatsState>(builder: (context, state) {
-          return SliverColumn(
-            children: [
-              StatsCounter(
-                liters: state is StatsValues ? state.liters.floor() : 0,
-              ),
-              if (state is StatsValues && state.cocktailsCounts.isNotEmpty)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const PageHeader(text: 'Любимые коктейли:'),
-                    ...state.cocktailsCounts.entries
-                        .map((e) => StatsCocktail(
-                              name: e.key,
-                              count: e.value,
-                            ))
-                        .toList(),
-                  ],
+        BlocBuilder<StatsCubit, StatsState>(
+          builder: (context, state) {
+            return SliverColumn(
+              children: [
+                StatsCounter(
+                  liters: state is StatsValues ? state.liters.floor() : 0,
                 ),
-              if (state is StatsValues && state.cocktailsDays.isNotEmpty)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const PageHeader(text: 'Последний коктейль:'),
-                    ...state.cocktailsDays.entries
-                        .map((e) => StatsCocktail(
-                              name: e.key,
-                              daysAgo: e.value,
-                            ))
-                        .toList(),
-                  ],
+                if (state is StatsValues && state.cocktailsCounts.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const PageHeader(text: 'Любимые коктейли:'),
+                      ...state.cocktailsCounts.entries
+                          .map((e) => StatsCocktail(
+                                name: e.key,
+                                count: e.value,
+                              ))
+                          .toList(),
+                    ],
+                  ),
+                if (state is StatsValues && state.cocktailsDays.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const PageHeader(text: 'Последний коктейль:'),
+                      ...state.cocktailsDays.entries
+                          .map((e) => StatsCocktail(
+                                name: e.key,
+                                daysAgo: e.value,
+                              ))
+                          .toList(),
+                    ],
+                  ),
+                BaseCard(
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  margin: const EdgeInsets.all(20),
+                  onTap: () => showAchievements(context),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(Icons.emoji_events_rounded),
+                      ),
+                      Text(
+                        'Достижения',
+                        textAlign: TextAlign.center,
+                        style: Style.text.copyWith(fontSize: 18),
+                      ),
+                    ],
+                  ),
                 ),
-              BaseCard(
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                margin: const EdgeInsets.all(20),
-                onTap: () => context.read<StatsCubit>().getValues(),
-                //onTap: () => showAchievements(context),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: Icon(Icons.emoji_events_rounded),
-                    ),
-                    Text(
-                      'Достижения',
-                      textAlign: TextAlign.center,
-                      style: Style.text.copyWith(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          );
-        }),
+              ],
+            );
+          },
+        ),
       ],
     );
   }
