@@ -65,7 +65,8 @@ class StatsFragment extends StatelessWidget {
               BaseCard(
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 margin: const EdgeInsets.all(20),
-                onTap: () => showAchievements(context),
+                onTap: () => context.read<StatsCubit>().getValues(),
+                //onTap: () => showAchievements(context),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

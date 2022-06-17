@@ -20,6 +20,7 @@ dependencies:
   dio: ^4.0.6
   easy_debounce: ^2.0.2+1
   cached_network_image: ^3.2.1
+  localstore: ^1.2.3
 
 dev_dependencies:
   flutter_test:
