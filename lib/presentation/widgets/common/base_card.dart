@@ -19,17 +19,17 @@ class BaseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      padding: padding,
-      margin: margin,
-      duration: const Duration(milliseconds: 200),
-      decoration: BoxDecoration(
-        color: isActive ? Style.yellow : Style.yellowAccent,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: Style.cardShadows,
-      ),
-      child: InkWell(
-        onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        padding: padding,
+        margin: margin,
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          color: isActive ? Style.yellow : Style.yellowAccent,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: Style.cardShadows,
+        ),
         child: child,
       ),
     );

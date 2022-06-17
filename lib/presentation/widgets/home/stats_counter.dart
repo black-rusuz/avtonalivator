@@ -74,9 +74,14 @@ class StatsCounter extends StatelessWidget {
               child: Transform(
                 alignment: Alignment.center,
                 transform: Matrix4.rotationY(pi),
-                child: CircularProgressIndicator(
-                  value: value,
-                  strokeWidth: 10,
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween<double>(begin: 0.0, end: value),
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOutSine,
+                  builder: (_, value, __) => CircularProgressIndicator(
+                    value: value,
+                    strokeWidth: 10,
+                  ),
                 ),
               ),
             ),

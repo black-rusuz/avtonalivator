@@ -21,7 +21,7 @@ class StatsFragment extends StatelessWidget {
         ),
         builder: (context) => const FractionallySizedBox(
           heightFactor: 0.8,
-          child: SizedBox(),
+          child: Center(child: Text('Тут пока ничего нет...')),
         ),
       );
 
