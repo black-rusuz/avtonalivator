@@ -16,10 +16,10 @@ class ScanPage extends StatelessWidget {
   MultiBlocProvider getHomeProvider([ConnectArgs? args]) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<ScanCubit>(create: (_) => ScanCubit()),
         BlocProvider<ConnectCubit>(create: (_) => ConnectCubit(args)..init()),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
         BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
-        BlocProvider<ScanCubit>(create: (context) => ScanCubit()),
       ],
       child: const HomePage(),
     );

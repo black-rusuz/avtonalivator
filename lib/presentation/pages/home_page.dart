@@ -66,9 +66,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Style.yellowAccent,
       body: pages[selectedIndex],
       bottomNavigationBar: navBar,
-      backgroundColor: Style.yellowAccent,
       floatingActionButton: button,
     );
   }

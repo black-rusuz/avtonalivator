@@ -8,14 +8,10 @@ class LaunchCubit extends Cubit<LaunchState> {
   LaunchCubit() : super(LaunchInitial());
 
   void init() async {
-    Future.delayed(
-      const Duration(milliseconds: 1000),
-      () => emit(LaunchAnimate()),
-    );
-    Future.delayed(
-      const Duration(milliseconds: 1500),
-      () => requestEnable(),
-    );
+    await Future.delayed(const Duration(milliseconds: 1000));
+    emit(LaunchAnimate());
+    await Future.delayed(const Duration(milliseconds: 1500));
+    requestEnable();
   }
 
   void requestEnable() async {
