@@ -33,7 +33,7 @@ class ScanAppBar extends StatelessWidget {
             buildWhen: ((prev, next) => next is ScanConnecting),
             builder: (context, state) {
               return BarmenCard(
-                margin: const EdgeInsets.only(top: 50),
+                margin: const EdgeInsets.fromLTRB(20, 50, 20, 0),
                 isConnecting: state is ScanConnecting,
               );
             },

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubit/cocktails/cocktails_cubit.dart';
 import '../../cubit/connect/connect_cubit.dart';
 import '../../cubit/scan/scan_cubit.dart';
+import '../../cubit/stats/stats_cubit.dart';
 import '../../cubit/tuning/tuning_cubit.dart';
 import '../widgets/common/device_list.dart';
 import '../widgets/scan_app_bar.dart';
@@ -16,10 +17,11 @@ class ScanPage extends StatelessWidget {
   MultiBlocProvider getHomeProvider([ConnectArgs? args]) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ScanCubit>(create: (_) => ScanCubit()),
-        BlocProvider<ConnectCubit>(create: (_) => ConnectCubit(args)..init()),
         BlocProvider<TuningCubit>(create: (_) => TuningCubit()..init()),
         BlocProvider<CocktailsCubit>(create: (_) => CocktailsCubit()..init()),
+        BlocProvider<StatsCubit>(create: (_) => StatsCubit()..init()),
+        BlocProvider<ConnectCubit>(create: (_) => ConnectCubit(args)..init()),
+        BlocProvider<ScanCubit>(create: (_) => ScanCubit()),
       ],
       child: const HomePage(),
     );
