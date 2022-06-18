@@ -28,7 +28,7 @@ class CocktailsListItem extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
       builder: (context) => FractionallySizedBox(
-        heightFactor: 0.8,
+        heightFactor: 0.65,
         child: CocktailDetail(
           cocktail: cocktail,
           tuningCubit: tuning,
