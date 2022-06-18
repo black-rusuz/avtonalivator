@@ -6,6 +6,7 @@ import '../../../cubit/connect/connect_cubit.dart';
 import '../../../cubit/tuning/tuning_cubit.dart';
 import '../../../model/pump_model.dart';
 import '../common/base_switch.dart';
+import '../common/page_header.dart';
 
 class TuningCardInner extends StatelessWidget {
   final PumpModel pump;
@@ -47,6 +48,9 @@ class TuningCardInner extends StatelessWidget {
         overlayShape: SliderComponentShape.noOverlay,
       );
 
+  void setName(BuildContext context, String? name) =>
+      setPump(context, pump.copyWith(name: name));
+
   void setVolume(BuildContext context, double value) =>
       setPump(context, pump.copyWith(volume: value));
 
@@ -57,6 +61,28 @@ class TuningCardInner extends StatelessWidget {
     context.read<TuningCubit>().setPump(pump);
     context.read<ConnectCubit>().sendRefresh(pump);
   }
+
+  void openPicker(BuildContext context) => showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        ),
+        builder: (context) => ListView(
+          children: [
+            const PageHeader(text: 'Выберите:'),
+            ...['Напиток', 'Водка', 'Спрайт']
+                .map((e) => TextButton(
+                      onPressed: () {},
+                      child: Text(e),
+                      style: ElevatedButton.styleFrom(
+                        onPrimary: Style.black,
+                        minimumSize: const Size.fromHeight(45),
+                      ),
+                    ))
+                .toList(),
+          ],
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +101,14 @@ class TuningCardInner extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 30),
                 child: Row(
                   children: [
-                    Text('Напиток', style: textStyle),
+                    SizedBox(
+                      height: 25,
+                      child: TextButton(
+                        onPressed: () => openPicker(context),
+                        child: Text(pump.name, style: textStyle),
+                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child:

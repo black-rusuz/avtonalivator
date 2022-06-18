@@ -22,20 +22,25 @@ class LaunchStatusPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: !isAvailable
-            ? const Text('Bluetooth не поддерживается устройством')
+            ? Text('Bluetooth не поддерживается устройством', style: Style.text)
             : Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 100),
-                    child: Text('Вы не включили Bluetooth'),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Text('Вы не включили Bluetooth', style: Style.text),
                   ),
                   TextButton(
                     onPressed: () => requestEnable(context),
                     child: const Text('Включить Bluetooth'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Style.yellow,
-                      onPrimary: Style.black,
+                    style: TextButton.styleFrom(
+                      primary: Style.black,
+                      backgroundColor: Style.yellow,
+                      minimumSize: const Size(0, 60),
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
                   ),
                 ],
