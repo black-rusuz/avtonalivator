@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../cubit/connect/connect_cubit.dart';
 import '../../../model/cocktail_model.dart';
 import '../common/base_app_bar.dart';
 import '../common/sliver_column.dart';
@@ -9,10 +10,12 @@ import 'cocktail_image.dart';
 
 class CocktailDetail extends StatelessWidget {
   final CocktailModel cocktail;
+  final ConnectCubit connectCubit;
 
   const CocktailDetail({
     Key? key,
     required this.cocktail,
+    required this.connectCubit,
   }) : super(key: key);
 
   @override
@@ -22,7 +25,11 @@ class CocktailDetail extends StatelessWidget {
         BaseAppBar(title: cocktail.name),
         SliverColumn(
           children: [
-            CocktailImage(imageUrl: cocktail.imageUrl),
+            CocktailImage(
+              imageUrl: cocktail.imageUrl,
+              // TODO:
+              onTap: () {},
+            ),
             if (cocktail.drinkA != null && cocktail.volumeA != null)
               CocktailDrink(name: cocktail.drinkA!, volume: cocktail.volumeA!),
             if (cocktail.drinkB != null && cocktail.volumeB != null)

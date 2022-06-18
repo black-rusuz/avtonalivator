@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../cubit/connect/connect_cubit.dart';
 import '../../../model/cocktail_model.dart';
 import '../common/base_divider.dart';
 import 'cocktail_detail.dart';
@@ -13,17 +15,20 @@ class CocktailsListItem extends StatelessWidget {
     required this.cocktail,
   }) : super(key: key);
 
-  void showCocktailModal(BuildContext context) => showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-        ),
-        builder: (context) => FractionallySizedBox(
-          heightFactor: 0.8,
-          child: CocktailDetail(cocktail: cocktail),
-        ),
-      );
+  void showCocktailModal(BuildContext context) {
+    ConnectCubit cubit = BlocProvider.of<ConnectCubit>(context, listen: false);
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      builder: (context) => FractionallySizedBox(
+        heightFactor: 0.8,
+        child: CocktailDetail(cocktail: cocktail, connectCubit: cubit),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 
 class CocktailImage extends StatelessWidget {
   final String? imageUrl;
+  final void Function() onTap;
 
-  const CocktailImage({Key? key, required this.imageUrl}) : super(key: key);
+  const CocktailImage({
+    Key? key,
+    required this.imageUrl,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,22 +19,25 @@ class CocktailImage extends StatelessWidget {
       child: CircleAvatar(
         radius: 80,
         backgroundColor: Style.yellow,
-        child: Padding(
-          padding: const EdgeInsets.all(2.5),
-          child: CircleAvatar(
-            radius: 80,
-            backgroundColor: Style.yellowAccent,
-            child: Padding(
-              padding: const EdgeInsets.all(2.5),
-              child: CachedNetworkImage(
-                fadeInCurve: Curves.easeInSine,
-                fadeOutCurve: Curves.easeOutSine,
-                height: 160,
-                width: 160,
-                fit: BoxFit.cover,
-                imageUrl: imageUrl ?? '',
-                placeholder: (_, __) => const Icon(Icons.liquor_rounded),
-                imageBuilder: (_, img) => CircleAvatar(foregroundImage: img),
+        child: GestureDetector(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(2.5),
+            child: CircleAvatar(
+              radius: 80,
+              backgroundColor: Style.yellowAccent,
+              child: Padding(
+                padding: const EdgeInsets.all(2.5),
+                child: CachedNetworkImage(
+                  fadeInCurve: Curves.easeInSine,
+                  fadeOutCurve: Curves.easeOutSine,
+                  height: 160,
+                  width: 160,
+                  fit: BoxFit.cover,
+                  imageUrl: imageUrl ?? '',
+                  placeholder: (_, __) => const Icon(Icons.liquor_rounded),
+                  imageBuilder: (_, img) => CircleAvatar(foregroundImage: img),
+                ),
               ),
             ),
           ),
