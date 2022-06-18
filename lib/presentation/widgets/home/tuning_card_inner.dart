@@ -6,8 +6,10 @@ import '../../../cubit/cocktails/cocktails_cubit.dart';
 import '../../../cubit/connect/connect_cubit.dart';
 import '../../../cubit/tuning/tuning_cubit.dart';
 import '../../../model/pump_model.dart';
+import '../common/base_app_bar.dart';
+import '../common/base_divider.dart';
 import '../common/base_switch.dart';
-import '../common/page_header.dart';
+import '../common/sliver_column.dart';
 
 class TuningCardInner extends StatelessWidget {
   final PumpModel pump;
@@ -71,28 +73,36 @@ class TuningCardInner extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      builder: (context) => ListView(
-        children: [
-          const PageHeader(text: 'Выберите:'),
-          ...ingredients
-              .map((e) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: TextButton(
-                      onPressed: () {
-                        cubit.setPump(pump.copyWith(name: e));
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(e),
-                      style: TextButton.styleFrom(
-                        primary: Style.black,
-                        minimumSize: const Size.fromHeight(45),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
+      builder: (context) => CustomScrollView(
+        slivers: [
+          const BaseAppBar(title: 'Выберите напиток'),
+          SliverColumn(
+            children: ingredients
+                .map((e) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        children: [
+                          const BaseDivider(),
+                          TextButton(
+                            onPressed: () {
+                              cubit.setPump(pump.copyWith(name: e));
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(e),
+                            style: TextButton.styleFrom(
+                              primary: Style.black,
+                              minimumSize: const Size.fromHeight(45),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                          ),
+                          const BaseDivider(),
+                        ],
                       ),
-                    ),
-                  ))
-              .toList(),
+                    ))
+                .toList(),
+          ),
         ],
       ),
     );

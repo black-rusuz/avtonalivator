@@ -39,11 +39,9 @@ class StatsCubit extends Cubit<StatsState> {
             .get() ??
         cocktailsCounts;
     cocktailsCounts = counts as Map<String, int>;
-    Map<String, dynamic>? last = await db
-            .collection(Constants.collection)
-            .doc(Constants.last)
-            .get() ??
-        cocktailsDays;
+    Map<String, dynamic>? last =
+        await db.collection(Constants.collection).doc(Constants.last).get() ??
+            cocktailsDays;
     cocktailsDays = last as Map<String, int>;
   }
 }

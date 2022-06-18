@@ -1,9 +1,9 @@
-import 'package:avtonalivator/cubit/tuning/tuning_cubit.dart';
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubit/connect/connect_cubit.dart';
+import '../../cubit/tuning/tuning_cubit.dart';
 import '../fragments/all.dart';
 
 class HomePage extends StatefulWidget {
