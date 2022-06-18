@@ -36,7 +36,7 @@ class StatsFragment extends StatelessWidget {
             return SliverColumn(
               children: [
                 StatsCounter(
-                  liters: state is StatsValues ? state.liters.floor() : 0,
+                  liters: state is StatsValues ? state.liters : 0,
                 ),
                 if (state is StatsValues && state.cocktailsCounts.isNotEmpty)
                   Column(

@@ -5,39 +5,53 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StatsCounter extends StatelessWidget {
-  final int liters;
+  final double liters;
 
   const StatsCounter({Key? key, required this.liters}) : super(key: key);
 
   String get litersWord {
-    switch (liters % 100) {
+    if (liters < 1) return 'литра выпито';
+    switch (liters.floor() % 100) {
       case 11:
       case 12:
       case 13:
       case 14:
-        return ' литров выпито';
+        return 'литров выпито';
     }
-    switch (liters % 10) {
+    switch (liters.floor() % 10) {
       case 0:
       case 5:
       case 6:
       case 7:
       case 8:
       case 9:
-        return ' литров выпито';
+        return 'литров выпито';
       case 1:
-        return ' литр выпит';
+        return 'литр выпит';
       case 2:
       case 3:
       case 4:
-        return ' литра выпито';
+        return 'литра выпито';
     }
-    return ' литров выпито';
+    return 'литров выпито';
   }
 
-  double get value =>
-      int.parse(liters.toString() + '0').toDouble() /
-      int.parse('1' + '0' * (liters.toString().length + 1));
+  double get value {
+    if (liters < 1) return liters;
+    int _liters = liters.floor();
+    switch (_liters.toString().length) {
+      case 1:
+        return liters < 5 ? liters / 5 : liters / 10;
+      case 2:
+        return liters < 50 ? liters / 50 : liters / 100;
+      case 3:
+        return liters < 500 ? liters / 500 : liters / 1000;
+      case 4:
+        return liters < 5000 ? liters / 5000 : liters / 10000;
+    }
+    return int.parse(liters.toString() + '0').toDouble() /
+        int.parse('1' + '0' * (liters.toString().length + 1));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +68,11 @@ class StatsCounter extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      liters.toString(),
+                      liters < 10
+                          ? liters.toStringAsFixed(2)
+                          : liters < 100
+                              ? liters.toStringAsFixed(1)
+                              : liters.floor().toString(),
                       style: GoogleFonts.inter(
                         fontSize: 64,
                         fontWeight: FontWeight.w900,
