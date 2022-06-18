@@ -26,6 +26,7 @@ class LaunchPage extends StatelessWidget {
           );
         }
       },
+      buildWhen: ((prev, next) => !(next is LaunchStatus && next.isEnabled)),
       builder: (context, state) {
         return state is LaunchStatus
             ? LaunchStatusPage(

@@ -21,6 +21,7 @@ dependencies:
   easy_debounce: ^2.0.2+1
   cached_network_image: ^3.2.1
   localstore: ^1.2.3
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:

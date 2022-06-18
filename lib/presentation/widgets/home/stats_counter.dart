@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class StatsCounter extends StatelessWidget {
   final double liters;
@@ -38,8 +37,7 @@ class StatsCounter extends StatelessWidget {
 
   double get value {
     if (liters < 1) return liters;
-    int _liters = liters.floor();
-    switch (_liters.toString().length) {
+    switch (liters.floor().toString().length) {
       case 1:
         return liters < 5 ? liters / 5 : liters / 10;
       case 2:
@@ -57,51 +55,34 @@ class StatsCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Center(
-        child: Stack(
+      child: CircularPercentIndicator(
+        percent: value,
+        lineWidth: 10,
+        radius: 260 / 2,
+        reverse: true,
+        animation: true,
+        animationDuration: 1000,
+        curve: Curves.easeInOutSine,
+        circularStrokeCap: CircularStrokeCap.round,
+        progressColor: Style.yellow,
+        backgroundColor: Style.greyDivider,
+        center: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Positioned(
-              width: 260,
-              height: 260,
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      liters < 10
-                          ? liters.toStringAsFixed(2)
-                          : liters < 100
-                              ? liters.toStringAsFixed(1)
-                              : liters.floor().toString(),
-                      style: GoogleFonts.inter(
-                        fontSize: 64,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    Text(
-                      litersWord,
-                      style: Style.textLight,
-                    ),
-                  ],
-                ),
+            Text(
+              liters < 10
+                  ? liters.toStringAsFixed(2)
+                  : liters < 100
+                      ? liters.toStringAsFixed(1)
+                      : liters.floor().toString(),
+              style: GoogleFonts.inter(
+                fontSize: 64,
+                fontWeight: FontWeight.w900,
               ),
             ),
-            SizedBox(
-              width: 260,
-              height: 260,
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationY(pi),
-                child: TweenAnimationBuilder<double>(
-                  tween: Tween<double>(begin: 0.0, end: value),
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeInOutSine,
-                  builder: (_, value, __) => CircularProgressIndicator(
-                    value: value,
-                    strokeWidth: 10,
-                  ),
-                ),
-              ),
+            Text(
+              litersWord,
+              style: Style.textLight,
             ),
           ],
         ),

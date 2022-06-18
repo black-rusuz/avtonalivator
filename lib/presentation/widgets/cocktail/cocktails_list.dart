@@ -15,7 +15,10 @@ class CocktailsList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: state.cocktails.isEmpty
-                ? const Center(child: Text('Нет подходящих коктейлей'))
+                ? const Center(
+                    heightFactor: 15,
+                    child: Text('Нет подходящих коктейлей'),
+                  )
                 : Column(
                     children: state.cocktails
                         .map((e) => CocktailsListItem(cocktail: e))
