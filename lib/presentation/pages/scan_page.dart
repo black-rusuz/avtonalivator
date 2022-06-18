@@ -68,8 +68,9 @@ class ScanPage extends StatelessWidget {
                     ),
                     decoration: const BoxDecoration(
                       color: Style.yellowAccent,
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(30)),
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(30),
+                      ),
                     ),
                     child: DeviceList(
                       devices: state is ScanDevices ? state.devices : [],

@@ -2,6 +2,7 @@ import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../cubit/cocktails/cocktails_cubit.dart';
 import '../../../cubit/connect/connect_cubit.dart';
 import '../../../cubit/tuning/tuning_cubit.dart';
 import '../../../model/pump_model.dart';
@@ -62,27 +63,40 @@ class TuningCardInner extends StatelessWidget {
     context.read<ConnectCubit>().sendRefresh(pump);
   }
 
-  void openPicker(BuildContext context) => showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-        ),
-        builder: (context) => ListView(
-          children: [
-            const PageHeader(text: 'Выберите:'),
-            ...['Напиток', 'Водка', 'Спрайт']
-                .map((e) => TextButton(
-                      onPressed: () {},
+  void openPicker(BuildContext context) {
+    List<String> ingredients = context.read<CocktailsCubit>().ingredients;
+    TuningCubit cubit = BlocProvider.of<TuningCubit>(context, listen: false);
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      builder: (context) => ListView(
+        children: [
+          const PageHeader(text: 'Выберите:'),
+          ...ingredients
+              .map((e) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: TextButton(
+                      onPressed: () {
+                        cubit.setPump(pump.copyWith(name: e));
+                        Navigator.of(context).pop();
+                      },
                       child: Text(e),
-                      style: ElevatedButton.styleFrom(
-                        onPrimary: Style.black,
+                      style: TextButton.styleFrom(
+                        primary: Style.black,
                         minimumSize: const Size.fromHeight(45),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
-                    ))
-                .toList(),
-          ],
-        ),
-      );
+                    ),
+                  ))
+              .toList(),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,19 +115,17 @@ class TuningCardInner extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 30),
                 child: Row(
                   children: [
-                    SizedBox(
-                      height: 25,
-                      child: TextButton(
-                        onPressed: () => openPicker(context),
-                        child: Text(pump.name, style: textStyle),
-                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                    TextButton(
+                      onPressed: () => openPicker(context),
+                      child: Text(pump.name, style: textStyle),
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(right: 8),
+                        minimumSize: const Size(0, 25),
+                        maximumSize: const Size.fromHeight(25),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child:
-                          Text('${pump.volume.round()}мл', style: volumeStyle),
-                    ),
+                    Text('${pump.volume.round()}мл', style: volumeStyle),
                     const Expanded(child: SizedBox()),
                     BaseSwitch(
                       value: pump.isEnabled,

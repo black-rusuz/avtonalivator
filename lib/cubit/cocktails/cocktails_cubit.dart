@@ -19,6 +19,13 @@ class CocktailsCubit extends Cubit<CocktailsState> {
 
   StreamSubscription<List<CocktailModel>>? cocktailsSubscription;
 
+  List<String> get ingredients => cocktails
+      .map((e) => e.ingredients)
+      .toList()
+      .expand((e) => e)
+      .toSet()
+      .toList();
+
   void init() {
     getCocktails();
   }

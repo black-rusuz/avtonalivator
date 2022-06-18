@@ -68,6 +68,7 @@ class StatsFragment extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   margin: const EdgeInsets.all(20),
                   onTap: () => showAchievements(context),
+                  isActive: true,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
