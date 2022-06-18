@@ -21,7 +21,6 @@ class CocktailsCubit extends Cubit<CocktailsState> {
 
   List<String> get ingredients => cocktails
       .map((e) => e.ingredients)
-      .toList()
       .expand((e) => e)
       .toSet()
       .toList();

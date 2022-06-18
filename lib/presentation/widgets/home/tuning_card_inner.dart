@@ -114,6 +114,7 @@ class TuningCardInner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<CocktailsCubit>().getCocktails();
     setPump(context, pump);
     return Stack(
       children: [
