@@ -18,7 +18,16 @@ class BaseAppBar extends StatelessWidget {
       backgroundColor: Colors.transparent,
       centerTitle: true,
       title: Text(title, style: Style.pageTitle),
-      actions: actions,
+      actions: Navigator.canPop(context)
+          ? [
+              IconButton(
+                padding: const EdgeInsets.fromLTRB(8, 8, 20, 8),
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close_rounded),
+              )
+            ]
+          : actions,
+      leading: const SizedBox(),
     );
   }
 }
