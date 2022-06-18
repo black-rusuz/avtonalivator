@@ -46,7 +46,7 @@ class CocktailModel extends Equatable {
         if (drinkF != null) drinkF!,
       ];
 
-  bool containAll(List<String> drinks) => ingredients
+  bool contains(List<String> drinks) => ingredients
       .every((ingredient) => drinks.contains(ingredient.toLowerCase()));
 
   @override

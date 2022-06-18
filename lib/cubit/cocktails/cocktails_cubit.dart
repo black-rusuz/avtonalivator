@@ -59,7 +59,7 @@ class CocktailsCubit extends Cubit<CocktailsState> {
   List<CocktailModel> filterCocktails(List<String> drinks) {
     List<String> _drinks = drinks.map((drink) => drink.toLowerCase()).toList();
     List<CocktailModel> _cocktails =
-        cocktails.where((cocktail) => cocktail.containAll(_drinks)).toList();
+        cocktails.where((cocktail) => cocktail.contains(_drinks)).toList();
     return _cocktails;
   }
 

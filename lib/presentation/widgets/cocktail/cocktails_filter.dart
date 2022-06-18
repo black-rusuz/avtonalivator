@@ -3,20 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../cubit/cocktails/cocktails_cubit.dart';
+import '../../../cubit/tuning/tuning_cubit.dart';
 import '../common/base_card.dart';
 import '../common/base_switch.dart';
 
 class CocktailsFilter extends StatelessWidget {
   const CocktailsFilter({Key? key}) : super(key: key);
 
-  // TODO:
   setFilter(BuildContext context, bool value) =>
-      context.read<CocktailsCubit>().setFilter(value, [
-        'водка',
-        'спрайт',
-        'ликер',
-        'сок',
-      ]);
+      context.read<CocktailsCubit>().setFilter(
+            value,
+            context.read<TuningCubit>().drinks,
+          );
 
   @override
   Widget build(BuildContext context) {
