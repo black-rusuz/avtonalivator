@@ -25,7 +25,7 @@ class CocktailDetail extends StatelessWidget {
   }) : super(key: key);
 
   void onTap(BuildContext context) {
-    if (cocktail.contains(tuningCubit.drinks)) {
+    if (cocktail.contains(tuningCubit.drinksEnabled)) {
       for (var tunedPump in tuningCubit.allPumps) {
         connectCubit.sendRefresh(tunedPump.mapCocktail(cocktail));
       }

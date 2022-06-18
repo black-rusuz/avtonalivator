@@ -13,7 +13,7 @@ class CocktailsFilter extends StatelessWidget {
   setFilter(BuildContext context, bool value) =>
       context.read<CocktailsCubit>().setFilter(
             value,
-            context.read<TuningCubit>().drinks,
+            context.read<TuningCubit>().drinksEnabled,
           );
 
   @override

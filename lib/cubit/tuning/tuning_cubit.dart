@@ -29,6 +29,9 @@ class TuningCubit extends Cubit<TuningState> {
 
   List<String> get drinks => allPumps.map((e) => e.name).toList();
 
+  List<String> get drinksEnabled =>
+      allPumps.expand((e) => [if (e.isEnabled) e.name]).toList();
+
   void init() {}
 
   void setPump(PumpModel pump) {
