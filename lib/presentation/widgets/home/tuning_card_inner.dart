@@ -129,28 +129,30 @@ class TuningCardInner extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 5),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: Row(
-                  children: [
-                    TextButton(
-                      onPressed: () => openPicker(context),
-                      child: Text(pump.name, style: textStyle),
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(right: 8),
-                        minimumSize: const Size(0, 25),
-                        maximumSize: const Size.fromHeight(25),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () => openPicker(context),
+                    child: Row(
+                      children: [
+                        Text(pump.name, style: textStyle),
+                        const SizedBox(width: 8),
+                        Text('${pump.volume.round()}мл', style: volumeStyle),
+                      ],
                     ),
-                    Text('${pump.volume.round()}мл', style: volumeStyle),
-                    const Expanded(child: SizedBox()),
-                    BaseSwitch(
-                      value: pump.isEnabled,
-                      onToggle: (value) => setEnabled(context, value),
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
+                      minimumSize: const Size(0, 25),
+                      maximumSize: const Size.fromHeight(25),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
-                  ],
-                ),
+                  ),
+                  BaseSwitch(
+                    value: pump.isEnabled,
+                    onToggle: (value) => setEnabled(context, value),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 35,
