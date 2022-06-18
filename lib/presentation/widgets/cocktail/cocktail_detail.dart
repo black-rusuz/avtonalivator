@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../cubit/connect/connect_cubit.dart';
+import '../../../cubit/stats/stats_cubit.dart';
+import '../../../cubit/tuning/tuning_cubit.dart';
 import '../../../model/cocktail_model.dart';
 import '../common/base_app_bar.dart';
 import '../common/sliver_column.dart';
@@ -10,13 +12,28 @@ import 'cocktail_image.dart';
 
 class CocktailDetail extends StatelessWidget {
   final CocktailModel cocktail;
+  final TuningCubit tuningCubit;
   final ConnectCubit connectCubit;
+  final StatsCubit statsCubit;
 
   const CocktailDetail({
     Key? key,
     required this.cocktail,
+    required this.tuningCubit,
     required this.connectCubit,
+    required this.statsCubit,
   }) : super(key: key);
+
+  void onTap(BuildContext context) {
+    if (cocktail.contains(tuningCubit.drinks)) {
+      for (var tunedPump in tuningCubit.allPumps) {
+        connectCubit.sendRefresh(tunedPump.mapCocktail(cocktail));
+      }
+      connectCubit.sendPour();
+    } else {
+      // TODO: сообщение
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +44,7 @@ class CocktailDetail extends StatelessWidget {
           children: [
             CocktailImage(
               imageUrl: cocktail.imageUrl,
-              // TODO:
-              onTap: () {},
+              onTap: () => onTap(context),
             ),
             if (cocktail.drinkA != null && cocktail.volumeA != null)
               CocktailDrink(name: cocktail.drinkA!, volume: cocktail.volumeA!),

@@ -70,46 +70,51 @@ class TuningCardInner extends StatelessWidget {
     TuningCubit cubit = BlocProvider.of<TuningCubit>(context, listen: false);
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      builder: (context) => CustomScrollView(
-        slivers: [
-          const BaseAppBar(title: 'Выберите напиток'),
-          SliverColumn(
-            children: ingredients
-                .map((e) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Column(
-                        children: [
-                          const BaseDivider(),
-                          TextButton(
-                            onPressed: () {
-                              cubit.setPump(pump.copyWith(name: e));
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(e),
-                            style: TextButton.styleFrom(
-                              primary: Style.black,
-                              minimumSize: const Size.fromHeight(45),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+      builder: (context) => FractionallySizedBox(
+        heightFactor: 0.75,
+        child: CustomScrollView(
+          slivers: [
+            const BaseAppBar(title: 'Выберите напиток'),
+            SliverColumn(
+              children: ingredients
+                  .map((e) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(
+                          children: [
+                            const BaseDivider(),
+                            TextButton(
+                              onPressed: () {
+                                cubit.setPump(pump.copyWith(name: e));
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(e),
+                              style: TextButton.styleFrom(
+                                primary: Style.black,
+                                minimumSize: const Size.fromHeight(45),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
                               ),
                             ),
-                          ),
-                          const BaseDivider(),
-                        ],
-                      ),
-                    ))
-                .toList(),
-          ),
-        ],
+                            const BaseDivider(),
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    setPump(context, pump);
     return Stack(
       children: [
         Positioned(

@@ -15,12 +15,12 @@ class StatsFragment extends StatelessWidget {
 
   void showAchievements(BuildContext context) => showModalBottomSheet(
         context: context,
-        //isScrollControlled: true,
+        isScrollControlled: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
         ),
         builder: (context) => const FractionallySizedBox(
-          heightFactor: 0.8,
+          heightFactor: 0.4,
           child: Center(child: Text('Тут пока ничего нет...')),
         ),
       );

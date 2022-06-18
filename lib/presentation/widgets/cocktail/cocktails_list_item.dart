@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../cubit/connect/connect_cubit.dart';
+import '../../../cubit/stats/stats_cubit.dart';
+import '../../../cubit/tuning/tuning_cubit.dart';
 import '../../../model/cocktail_model.dart';
 import '../common/base_divider.dart';
 import 'cocktail_detail.dart';
@@ -16,7 +18,9 @@ class CocktailsListItem extends StatelessWidget {
   }) : super(key: key);
 
   void showCocktailModal(BuildContext context) {
-    ConnectCubit cubit = BlocProvider.of<ConnectCubit>(context, listen: false);
+    TuningCubit tuning = context.read<TuningCubit>();
+    ConnectCubit connect = context.read<ConnectCubit>();
+    StatsCubit stats = context.read<StatsCubit>();
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -25,7 +29,12 @@ class CocktailsListItem extends StatelessWidget {
       ),
       builder: (context) => FractionallySizedBox(
         heightFactor: 0.8,
-        child: CocktailDetail(cocktail: cocktail, connectCubit: cubit),
+        child: CocktailDetail(
+          cocktail: cocktail,
+          tuningCubit: tuning,
+          connectCubit: connect,
+          statsCubit: stats,
+        ),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import 'cocktail_model.dart';
+
 class PumpModel extends Equatable {
   final int id;
   final String name;
@@ -51,6 +53,52 @@ class PumpModel extends Equatable {
       default:
         return '';
     }
+  }
+
+  PumpModel mapCocktail(CocktailModel cocktail) {
+    if (name.toLowerCase() == cocktail.drinkA?.toLowerCase()) {
+      return copyWith(
+        name: cocktail.drinkA,
+        volume: cocktail.volumeA?.toDouble(),
+        isEnabled: true,
+      );
+    }
+    if (name.toLowerCase() == cocktail.drinkB?.toLowerCase()) {
+      return copyWith(
+        name: cocktail.drinkB,
+        volume: cocktail.volumeB?.toDouble(),
+        isEnabled: true,
+      );
+    }
+    if (name.toLowerCase() == cocktail.drinkC?.toLowerCase()) {
+      return copyWith(
+        name: cocktail.drinkC,
+        volume: cocktail.volumeC?.toDouble(),
+        isEnabled: true,
+      );
+    }
+    if (name.toLowerCase() == cocktail.drinkD?.toLowerCase()) {
+      return copyWith(
+        name: cocktail.drinkD,
+        volume: cocktail.volumeD?.toDouble(),
+        isEnabled: true,
+      );
+    }
+    if (name.toLowerCase() == cocktail.drinkE?.toLowerCase()) {
+      return copyWith(
+        name: cocktail.drinkE,
+        volume: cocktail.volumeE?.toDouble(),
+        isEnabled: true,
+      );
+    }
+    if (name.toLowerCase() == cocktail.drinkF?.toLowerCase()) {
+      return copyWith(
+        name: cocktail.drinkF,
+        volume: cocktail.volumeF?.toDouble(),
+        isEnabled: true,
+      );
+    }
+    return copyWith(isEnabled: false);
   }
 
   @override

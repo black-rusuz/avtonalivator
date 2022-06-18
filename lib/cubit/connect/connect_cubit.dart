@@ -39,15 +39,14 @@ class ConnectCubit extends Cubit<ConnectState> {
     }
   }
 
-  void sendRefresh(PumpModel pump) {
-    String command = [
-      pump.letter + (pump.isEnabled ? pump.volume.round().toString() : '0'),
-      refreshCommand,
-    ].join(' ');
+  void sendRefresh(PumpModel pump) async {
+    String value =
+        pump.letter + (pump.isEnabled ? pump.volume.round().toString() : '0');
+    await sendCommand(value);
     EasyDebounce.debounce(
       '_',
       const Duration(milliseconds: 100),
-      () async => await sendCommand(command),
+      () async => await sendCommand(refreshCommand),
     );
   }
 
@@ -56,7 +55,7 @@ class ConnectCubit extends Cubit<ConnectState> {
     await sendCommand(pourCommand);
   }
 
-  Future<void> sendCommand(String command) async {
+  Future sendCommand(String command) async {
     if (kDebugMode) print(command);
     command = command.trim() + '\r';
     List<int> encodedChars = utf8.encode(command);
