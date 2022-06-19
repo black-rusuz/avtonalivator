@@ -3,19 +3,28 @@ import 'package:flutter/material.dart';
 
 class BaseAppBar extends StatelessWidget {
   final String title;
+  final bool pinned;
   final List<Widget>? actions;
 
   const BaseAppBar({
     Key? key,
     required this.title,
+    this.pinned = false,
     this.actions,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      collapsedHeight: 65,
-      backgroundColor: Colors.transparent,
+      pinned: pinned,
+      backgroundColor: pinned ? const Color(0xFFF9F9F9) : Colors.transparent,
+      shape: pinned
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            )
+          : null,
+      elevation: 0,
+      collapsedHeight: pinned ? 60 : 65,
       centerTitle: true,
       title: Text(title, style: Style.pageTitle),
       actions: Navigator.canPop(context)

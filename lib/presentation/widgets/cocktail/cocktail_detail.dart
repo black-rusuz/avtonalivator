@@ -11,6 +11,7 @@ import 'cocktail_drink.dart';
 import 'cocktail_image.dart';
 
 class CocktailDetail extends StatelessWidget {
+  final ScrollController controller;
   final CocktailModel cocktail;
   final TuningCubit tuningCubit;
   final ConnectCubit connectCubit;
@@ -18,6 +19,7 @@ class CocktailDetail extends StatelessWidget {
 
   const CocktailDetail({
     Key? key,
+    required this.controller,
     required this.cocktail,
     required this.tuningCubit,
     required this.connectCubit,
@@ -38,6 +40,7 @@ class CocktailDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      controller: controller,
       slivers: [
         BaseAppBar(title: cocktail.name),
         SliverColumn(

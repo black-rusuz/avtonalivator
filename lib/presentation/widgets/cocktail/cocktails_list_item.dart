@@ -27,9 +27,11 @@ class CocktailsListItem extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      builder: (context) => FractionallySizedBox(
-        heightFactor: 0.65,
-        child: CocktailDetail(
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        maxChildSize: 0.65,
+        builder: (context, controller) => CocktailDetail(
+          controller: controller,
           cocktail: cocktail,
           tuningCubit: tuning,
           connectCubit: connect,

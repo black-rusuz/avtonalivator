@@ -19,9 +19,13 @@ class StatsFragment extends StatelessWidget {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
         ),
-        builder: (context) => const FractionallySizedBox(
-          heightFactor: 0.4,
-          child: Center(child: Text('Тут пока ничего нет...')),
+        builder: (context) => DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.4,
+          maxChildSize: 0.75,
+          builder: (context, controller) => const Center(
+            child: Text('Тут пока ничего нет...'),
+          ),
         ),
       );
 

@@ -74,11 +74,13 @@ class TuningCardInner extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
-      builder: (context) => FractionallySizedBox(
-        heightFactor: 0.75,
-        child: CustomScrollView(
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        maxChildSize: 0.5,
+        builder: (context, controller) => CustomScrollView(
+          controller: controller,
           slivers: [
-            const BaseAppBar(title: 'Выберите напиток'),
+            const BaseAppBar(title: 'Выберите напиток', pinned: true),
             SliverColumn(
               children: ingredients
                   .map((e) => Padding(
