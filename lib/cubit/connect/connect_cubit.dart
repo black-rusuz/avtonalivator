@@ -32,6 +32,7 @@ class ConnectCubit extends Cubit<ConnectState> {
 
   final String refreshCommand = 'y1';
   final String pourCommand = 'z1';
+  final String pumpAirCommand = 'a15 b15 c15 d15 e15 d15 y1 z1';
 
   void init() {
     if (isConnected) {
@@ -40,9 +41,9 @@ class ConnectCubit extends Cubit<ConnectState> {
   }
 
   void sendRefresh(PumpModel pump) async {
-    String value =
-        pump.letter + (pump.isEnabled ? pump.volume.round().toString() : '0');
-    await sendCommand(value);
+    int value = pump.isEnabled ? pump.volume.round() : 0;
+    String command = pump.letter + value.toString();
+    await sendCommand(command);
     EasyDebounce.debounce(
       '_',
       const Duration(milliseconds: 100),
@@ -53,6 +54,11 @@ class ConnectCubit extends Cubit<ConnectState> {
   void sendPour() async {
     // TODO: анимация налива
     await sendCommand(pourCommand);
+  }
+
+  void sendPumpAir() async {
+    // TODO: анимация прокачки
+    await sendCommand(pumpAirCommand);
   }
 
   Future sendCommand(String command) async {

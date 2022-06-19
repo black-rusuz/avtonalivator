@@ -16,7 +16,7 @@ class CocktailsList extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: state.cocktails.isEmpty
                 ? const Center(
-                    heightFactor: 15,
+                    heightFactor: 10,
                     child: Text('Нет подходящих коктейлей'),
                   )
                 : Column(
@@ -26,7 +26,10 @@ class CocktailsList extends StatelessWidget {
                   ),
           );
         }
-        return const CircularProgressIndicator();
+        return const Center(
+          heightFactor: 5,
+          child: CircularProgressIndicator(),
+        );
       },
     );
   }

@@ -38,21 +38,18 @@ class TuningCardInner extends StatelessWidget {
   SliderThemeData sliderStyle(BuildContext context) =>
       SliderTheme.of(context).copyWith(
         trackHeight: 5,
+        overlayShape: SliderComponentShape.noOverlay,
+        thumbColor: pump.isEnabled ? Style.black : Style.yellow,
         activeTrackColor: pump.isEnabled ? Style.black : Style.yellow,
         inactiveTrackColor: pump.isEnabled
             ? Style.yellowAccent.withOpacity(0.7)
             : Style.greyDivider,
-        thumbColor: pump.isEnabled ? Style.black : Style.yellow,
         thumbShape: const RoundSliderThumbShape(
           enabledThumbRadius: 5,
           elevation: 0,
           pressedElevation: 0,
         ),
-        overlayShape: SliderComponentShape.noOverlay,
       );
-
-  void setName(BuildContext context, String? name) =>
-      setPump(context, pump.copyWith(name: name));
 
   void setVolume(BuildContext context, double value) =>
       setPump(context, pump.copyWith(volume: value));
@@ -76,7 +73,9 @@ class TuningCardInner extends StatelessWidget {
       ),
       builder: (context) => DraggableScrollableSheet(
         expand: false,
-        maxChildSize: 0.5,
+        initialChildSize: 0.45,
+        minChildSize: 0.44,
+        maxChildSize: 0.45,
         builder: (context, controller) => CustomScrollView(
           controller: controller,
           slivers: [
@@ -87,7 +86,7 @@ class TuningCardInner extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Column(
                           children: [
-                            const BaseDivider(),
+                            const BaseDivider(indent: 0),
                             TextButton(
                               onPressed: () {
                                 cubit.setPump(pump.copyWith(name: e));
@@ -102,7 +101,7 @@ class TuningCardInner extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const BaseDivider(),
+                            const BaseDivider(indent: 0),
                           ],
                         ),
                       ))

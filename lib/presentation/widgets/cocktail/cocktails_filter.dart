@@ -10,11 +10,9 @@ import '../common/base_switch.dart';
 class CocktailsFilter extends StatelessWidget {
   const CocktailsFilter({Key? key}) : super(key: key);
 
-  setFilter(BuildContext context, bool value) =>
-      context.read<CocktailsCubit>().setFilter(
-            value,
-            context.read<TuningCubit>().drinksEnabled,
-          );
+  setFilter(BuildContext context, bool value) => context
+      .read<CocktailsCubit>()
+      .setFilter(value, context.read<TuningCubit>().drinksEnabled);
 
   @override
   Widget build(BuildContext context) {

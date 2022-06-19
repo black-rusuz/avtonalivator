@@ -56,7 +56,7 @@ class SettingsFragment extends StatelessWidget {
                         : null,
                   ),
                   state is ConnectConnected
-                      ? const SettingsPumpButton()
+                      ? const SettingsPumpAirButton()
                       : BlocBuilder<ScanCubit, ScanState>(
                           buildWhen: ((prev, next) => next is ScanDevices),
                           builder: (context, state) {

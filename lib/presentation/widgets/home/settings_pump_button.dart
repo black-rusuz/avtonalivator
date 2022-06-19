@@ -5,17 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../cubit/connect/connect_cubit.dart';
 import '../common/base_card.dart';
 
-class SettingsPumpButton extends StatelessWidget {
-  const SettingsPumpButton({Key? key}) : super(key: key);
+class SettingsPumpAirButton extends StatelessWidget {
+  const SettingsPumpAirButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BaseCard(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       margin: const EdgeInsets.all(20),
-      onTap: () => context
-          .read<ConnectCubit>()
-          .sendCommand('a15 b15 c15 d15 e15 d15 y1 z1'),
+      onTap: () => context.read<ConnectCubit>().sendPumpAir(),
       child: IntrinsicHeight(
         child: Row(
           mainAxisSize: MainAxisSize.min,
