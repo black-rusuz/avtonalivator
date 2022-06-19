@@ -14,7 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Автобармен',
-      theme: ThemeData(primarySwatch: Style.yellow),
+      theme: ThemeData(
+        primarySwatch: Style.yellow,
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Style.yellowAccent,
+        ),
+      ),
       home: BlocProvider<LaunchCubit>(
         create: (context) => LaunchCubit()..init(),
         child: const LaunchPage(),

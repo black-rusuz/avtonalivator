@@ -1,3 +1,4 @@
+import 'package:avtonalivator/presentation/widgets/home/settings_copyright.dart';
 import 'package:avtonalivator/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,6 +56,8 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
+  Widget? get bottom => selectedIndex == 3 ? const SettingsCopyright() : null;
+
   FloatingActionButton? get button =>
       selectedIndex == 0 && context.read<ConnectCubit>().isConnected
           ? FloatingActionButton.extended(
@@ -75,6 +78,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Style.yellowAccent,
       body: pages[selectedIndex],
       bottomNavigationBar: navBar,
+      bottomSheet: bottom,
       floatingActionButton: button,
     );
   }
