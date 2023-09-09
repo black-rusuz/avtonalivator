@@ -19,10 +19,10 @@ class AnimatedText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedDefaultTextStyle(
       duration: duration,
-      child: Text(text),
       style: style.copyWith(
         color: !animate ? Colors.transparent : Style.black,
       ),
+      child: Text(text),
     );
   }
 }

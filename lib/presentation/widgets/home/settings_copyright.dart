@@ -40,9 +40,9 @@ class SettingsCopyright extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Avatar(
               url: 'https://github.com/gsusha.png',
               color: Color(0xFF71C285),

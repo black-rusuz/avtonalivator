@@ -47,12 +47,12 @@ class _HomePageState extends State<HomePage> {
         label: '',
         icon: icon,
         activeIcon: Container(
-          child: icon,
           padding: const EdgeInsets.all(5),
           decoration: const BoxDecoration(
             color: Style.yellow,
             shape: BoxShape.circle,
           ),
+          child: icon,
         ),
       );
 

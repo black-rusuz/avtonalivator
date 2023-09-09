@@ -17,13 +17,11 @@ class ScanAppBar extends StatelessWidget {
       expandedHeight: 260,
       title: Text('Подключение', style: Style.pageTitle),
       actions: [
-        StreamBuilder(
+        StreamBuilder<bool>(
           stream: context.read<ScanCubit>().isDiscoveringStream,
           initialData: false,
           builder: (_, snapshot) => Center(
-            child: (snapshot.data as bool?) == true
-                ? const AppBarActionsLoader()
-                : null,
+            child: snapshot.data == true ? const AppBarActionsLoader() : null,
           ),
         )
       ],

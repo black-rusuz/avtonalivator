@@ -47,8 +47,8 @@ class StatsCounter extends StatelessWidget {
       case 4:
         return liters < 5000 ? liters / 5000 : liters / 10000;
     }
-    return int.parse(liters.toString() + '0').toDouble() /
-        int.parse('1' + '0' * (liters.toString().length + 1));
+    return int.parse('${liters}0').toDouble() /
+        int.parse('1${'0' * (liters.toString().length + 1)}');
   }
 
   @override

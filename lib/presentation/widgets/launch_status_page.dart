@@ -32,9 +32,8 @@ class LaunchStatusPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () => requestEnable(context),
-                    child: const Text('Включить Bluetooth'),
                     style: TextButton.styleFrom(
-                      primary: Style.black,
+                      foregroundColor: Style.black,
                       backgroundColor: Style.yellow,
                       minimumSize: const Size(0, 60),
                       padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -42,6 +41,7 @@ class LaunchStatusPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
+                    child: const Text('Включить Bluetooth'),
                   ),
                 ],
               ),

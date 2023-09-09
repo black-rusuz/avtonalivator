@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../model/cocktail_model.dart';
 import '../../repository/repository.dart';
@@ -19,11 +19,8 @@ class CocktailsCubit extends Cubit<CocktailsState> {
 
   StreamSubscription<List<CocktailModel>>? cocktailsSubscription;
 
-  List<String> get ingredients => cocktails
-      .map((e) => e.ingredients)
-      .expand((e) => e)
-      .toSet()
-      .toList();
+  List<String> get ingredients =>
+      cocktails.map((e) => e.ingredients).expand((e) => e).toSet().toList();
 
   void init() {
     getCocktails();
@@ -37,10 +34,11 @@ class CocktailsCubit extends Cubit<CocktailsState> {
   }
 
   void search(String name) {
-    List<CocktailModel> _cocktails = cocktails
+    List<CocktailModel> cocktails = this
+        .cocktails
         .where((e) => e.name.toLowerCase().startsWith(name.toLowerCase()))
         .toList();
-    emit(CocktailsFetched(cocktails: _cocktails, filtered: filtered));
+    emit(CocktailsFetched(cocktails: cocktails, filtered: filtered));
   }
 
   void setFilter(bool value, List<String> drinks) {
@@ -56,9 +54,9 @@ class CocktailsCubit extends Cubit<CocktailsState> {
   }
 
   List<CocktailModel> filterCocktails(List<String> drinks) {
-    List<CocktailModel> _cocktails =
-        cocktails.where((cocktail) => cocktail.contains(drinks)).toList();
-    return _cocktails;
+    List<CocktailModel> cocktails =
+        this.cocktails.where((cocktail) => cocktail.contains(drinks)).toList();
+    return cocktails;
   }
 
   @override

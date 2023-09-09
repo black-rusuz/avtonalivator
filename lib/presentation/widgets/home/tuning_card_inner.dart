@@ -92,14 +92,14 @@ class TuningCardInner extends StatelessWidget {
                                 cubit.setPump(pump.copyWith(name: e));
                                 Navigator.of(context).pop();
                               },
-                              child: Text(e),
                               style: TextButton.styleFrom(
-                                primary: Style.black,
+                                foregroundColor: Style.black,
                                 minimumSize: const Size.fromHeight(45),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                               ),
+                              child: Text(e),
                             ),
                             const BaseDivider(indent: 0),
                           ],
@@ -135,18 +135,18 @@ class TuningCardInner extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () => openPicker(context),
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
+                      minimumSize: const Size(0, 25),
+                      maximumSize: const Size.fromHeight(25),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
                     child: Row(
                       children: [
                         Text(pump.name, style: textStyle),
                         const SizedBox(width: 8),
                         Text('${pump.volume.round()}мл', style: volumeStyle),
                       ],
-                    ),
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
-                      minimumSize: const Size(0, 25),
-                      maximumSize: const Size.fromHeight(25),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   ),
                   BaseSwitch(

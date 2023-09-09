@@ -30,11 +30,11 @@ class SettingsFragment extends StatelessWidget {
               BaseAppBar(
                 title: 'Настройки',
                 actions: [
-                  StreamBuilder(
+                  StreamBuilder<bool>(
                     stream: context.read<ScanCubit>().isDiscoveringStream,
                     initialData: false,
                     builder: (_, snapshot) => Center(
-                      child: (snapshot.data as bool?) == true
+                      child: snapshot.data == true
                           ? const AppBarActionsLoader()
                           : null,
                     ),

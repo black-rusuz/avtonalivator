@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:typed_data';
 
-import 'package:bloc/bloc.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../model/pump_model.dart';
@@ -63,7 +62,7 @@ class ConnectCubit extends Cubit<ConnectState> {
 
   Future sendCommand(String command) async {
     if (kDebugMode) print(command);
-    command = command.trim() + '\r';
+    command = '${command.trim()}\r';
     List<int> encodedChars = utf8.encode(command);
     Uint8List output = Uint8List.fromList(encodedChars);
     args?.connection.output.add(output);
