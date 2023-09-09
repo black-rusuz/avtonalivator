@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/cubit/connect/connect_cubit.dart';
 import '../../domain/cubit/tuning/tuning_cubit.dart';
 import '../../style.dart';
-import '../fragments/all.dart';
+import '../fragments/cocktails_fragment.dart';
+import '../fragments/settings_fragment.dart';
+import '../fragments/stats_fragment.dart';
+import '../fragments/tuning_fragment.dart';
 import '../widgets/home/settings_copyright.dart';
 
 class HomePage extends StatefulWidget {
