@@ -70,6 +70,7 @@ class SettingsCopyright extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(height: 4),
         RichText(
           text: TextSpan(
             style: GoogleFonts.comfortaa(
