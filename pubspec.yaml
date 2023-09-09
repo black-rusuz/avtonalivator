@@ -32,8 +32,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/barmen.svg
-    - assets/barmen_grey.svg
+    - assets/icons
+    - assets/data
 
 flutter_icons:
   image_path: "assets/icon.png"

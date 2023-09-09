@@ -1,7 +1,7 @@
-import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../style.dart';
 import 'base_card.dart';
 
 class BarmenCard extends StatelessWidget {
@@ -44,8 +44,8 @@ class BarmenCard extends StatelessWidget {
                       )
                     : SvgPicture.asset(
                         isActive
-                            ? 'assets/barmen.svg'
-                            : 'assets/barmen_grey.svg',
+                            ? 'assets/icons/barmen.svg'
+                            : 'assets/icons/barmen_grey.svg',
                       ),
               ),
             ),

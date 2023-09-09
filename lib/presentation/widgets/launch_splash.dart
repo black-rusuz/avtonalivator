@@ -1,7 +1,7 @@
-import '../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../style.dart';
 import 'common/animated_text.dart';
 
 class LaunchSplash extends StatelessWidget {
@@ -45,7 +45,7 @@ class LaunchSplash extends StatelessWidget {
           Center(
             child: Stack(
               children: [
-                SvgPicture.asset('assets/barmen.svg'),
+                SvgPicture.asset('assets/icons/barmen.svg'),
                 AnimatedPositioned(
                   duration: duration,
                   curve: Curves.easeInQuart,
