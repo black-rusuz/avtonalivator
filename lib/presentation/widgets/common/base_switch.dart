@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
@@ -7,10 +7,10 @@ class BaseSwitch extends StatelessWidget {
   final void Function(bool) onToggle;
 
   const BaseSwitch({
-    Key? key,
+    super.key,
     required this.value,
     required this.onToggle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

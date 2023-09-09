@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,13 +12,13 @@ class BarmenCard extends StatelessWidget {
   final bool isConnecting;
 
   const BarmenCard({
-    Key? key,
+    super.key,
     this.title,
     this.subtitle,
     this.margin,
     this.onTap,
     this.isConnecting = false,
-  }) : super(key: key);
+  });
 
   bool get isActive => title != null && subtitle != null;
 

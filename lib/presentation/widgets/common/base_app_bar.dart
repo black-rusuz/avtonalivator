@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 
 class BaseAppBar extends StatelessWidget {
@@ -7,11 +7,11 @@ class BaseAppBar extends StatelessWidget {
   final List<Widget>? actions;
 
   const BaseAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.pinned = false,
     this.actions,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -18,13 +18,13 @@ class CocktailDetail extends StatelessWidget {
   final StatsCubit statsCubit;
 
   const CocktailDetail({
-    Key? key,
+    super.key,
     required this.controller,
     required this.cocktail,
     required this.tuningCubit,
     required this.connectCubit,
     required this.statsCubit,
-  }) : super(key: key);
+  });
 
   void onTap(BuildContext context) {
     if (cocktail.contains(tuningCubit.drinksEnabled)) {

@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedText extends StatelessWidget {
@@ -9,11 +9,11 @@ class AnimatedText extends StatelessWidget {
 
   const AnimatedText(
     this.text, {
-    Key? key,
+    super.key,
     required this.style,
     required this.duration,
     required this.animate,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

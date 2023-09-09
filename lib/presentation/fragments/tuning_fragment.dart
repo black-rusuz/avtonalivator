@@ -7,7 +7,7 @@ import '../widgets/common/sliver_column.dart';
 import '../widgets/home/tuning_card.dart';
 
 class TuningFragment extends StatelessWidget {
-  const TuningFragment({Key? key}) : super(key: key);
+  const TuningFragment({super.key});
 
   @override
   Widget build(BuildContext context) {

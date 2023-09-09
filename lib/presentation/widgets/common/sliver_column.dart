@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SliverColumn extends StatelessWidget {
   final List<Widget> children;
 
-  const SliverColumn({Key? key, required this.children}) : super(key: key);
+  const SliverColumn({super.key, required this.children});
 
   @override
   Widget build(BuildContext context) {

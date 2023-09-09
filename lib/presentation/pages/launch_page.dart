@@ -8,7 +8,7 @@ import '../widgets/launch_status_page.dart';
 import 'scan_page.dart';
 
 class LaunchPage extends StatelessWidget {
-  const LaunchPage({Key? key}) : super(key: key);
+  const LaunchPage({super.key});
 
   @override
   Widget build(BuildContext context) {

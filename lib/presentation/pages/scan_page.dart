@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +12,7 @@ import '../widgets/scan_app_bar.dart';
 import 'home_page.dart';
 
 class ScanPage extends StatelessWidget {
-  const ScanPage({Key? key}) : super(key: key);
+  const ScanPage({super.key});
 
   MultiBlocProvider getHomeProvider([ConnectArgs? args]) {
     return MultiBlocProvider(

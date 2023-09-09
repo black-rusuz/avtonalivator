@@ -9,7 +9,7 @@ import 'tuning_card_inner.dart';
 class TuningCard extends StatelessWidget {
   final PumpModel pump;
 
-  const TuningCard({Key? key, required this.pump}) : super(key: key);
+  const TuningCard({super.key, required this.pump});
 
   @override
   Widget build(BuildContext context) {

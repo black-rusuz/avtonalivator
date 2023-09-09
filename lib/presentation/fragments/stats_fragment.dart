@@ -10,7 +10,7 @@ import '../widgets/home/stats_cocktail.dart';
 import '../widgets/home/stats_counter.dart';
 
 class StatsFragment extends StatelessWidget {
-  const StatsFragment({Key? key}) : super(key: key);
+  const StatsFragment({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,10 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 
 class BaseDivider extends StatelessWidget {
   final double indent;
 
-  const BaseDivider({Key? key, this.indent = 20}) : super(key: key);
+  const BaseDivider({super.key, this.indent = 20});
 
   @override
   Widget build(BuildContext context) {

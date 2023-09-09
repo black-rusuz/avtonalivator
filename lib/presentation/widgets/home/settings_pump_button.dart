@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,7 +6,7 @@ import '../../../cubit/connect/connect_cubit.dart';
 import '../common/base_card.dart';
 
 class SettingsPumpAirButton extends StatelessWidget {
-  const SettingsPumpAirButton({Key? key}) : super(key: key);
+  const SettingsPumpAirButton({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,9 +8,9 @@ import '../common/base_card.dart';
 import '../common/base_switch.dart';
 
 class CocktailsFilter extends StatelessWidget {
-  const CocktailsFilter({Key? key}) : super(key: key);
+  const CocktailsFilter({super.key});
 
-  setFilter(BuildContext context, bool value) => context
+  void setFilter(BuildContext context, bool value) => context
       .read<CocktailsCubit>()
       .setFilter(value, context.read<TuningCubit>().drinksEnabled);
 

@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 
 import '../common/base_divider.dart';
@@ -9,12 +9,11 @@ class StatsCocktail extends StatelessWidget {
   final int? daysAgo;
 
   const StatsCocktail({
-    Key? key,
+    super.key,
     required this.name,
     this.count,
     this.daysAgo,
-  })  : assert(count != null || daysAgo != null),
-        super(key: key);
+  })  : assert(count != null || daysAgo != null);
 
   String get countWord {
     switch (count! % 100) {

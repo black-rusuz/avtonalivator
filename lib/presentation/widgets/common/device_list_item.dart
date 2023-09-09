@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
@@ -9,10 +9,10 @@ class DeviceListItem extends StatelessWidget {
   final void Function() onTap;
 
   const DeviceListItem({
-    Key? key,
+    super.key,
     required this.device,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

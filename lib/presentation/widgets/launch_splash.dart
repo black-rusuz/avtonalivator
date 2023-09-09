@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -9,10 +9,10 @@ class LaunchSplash extends StatelessWidget {
   final Duration duration;
 
   const LaunchSplash({
-    Key? key,
+    super.key,
     required this.animate,
     required this.duration,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

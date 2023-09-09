@@ -4,7 +4,7 @@ import '../../../style.dart';
 import '../common/base_card.dart';
 
 class StatsAchievements extends StatelessWidget {
-  const StatsAchievements({Key? key}) : super(key: key);
+  const StatsAchievements({super.key});
 
   void showAchievements(BuildContext context) => showModalBottomSheet(
         context: context,

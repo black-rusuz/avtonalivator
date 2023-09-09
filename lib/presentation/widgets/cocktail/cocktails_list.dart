@@ -5,7 +5,7 @@ import '../../../cubit/cocktails/cocktails_cubit.dart';
 import 'cocktails_list_item.dart';
 
 class CocktailsList extends StatelessWidget {
-  const CocktailsList({Key? key}) : super(key: key);
+  const CocktailsList({super.key});
 
   @override
   Widget build(BuildContext context) {

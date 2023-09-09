@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -6,7 +6,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 class StatsCounter extends StatelessWidget {
   final double liters;
 
-  const StatsCounter({Key? key, required this.liters}) : super(key: key);
+  const StatsCounter({super.key, required this.liters});
 
   String get litersWord {
     if (liters < 1) return 'литра выпито';

@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +14,7 @@ import '../common/sliver_column.dart';
 class TuningCardInner extends StatelessWidget {
   final PumpModel pump;
 
-  const TuningCardInner({Key? key, required this.pump}) : super(key: key);
+  const TuningCardInner({super.key, required this.pump});
 
   TextStyle get numberStyle => TextStyle(
         fontSize: 96,

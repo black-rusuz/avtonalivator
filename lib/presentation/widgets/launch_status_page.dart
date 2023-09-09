@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,10 +9,10 @@ class LaunchStatusPage extends StatelessWidget {
   final bool isEnabled;
 
   const LaunchStatusPage({
-    Key? key,
+    super.key,
     required this.isAvailable,
     required this.isEnabled,
-  }) : super(key: key);
+  });
 
   void requestEnable(BuildContext context) =>
       context.read<LaunchCubit>().requestEnable();

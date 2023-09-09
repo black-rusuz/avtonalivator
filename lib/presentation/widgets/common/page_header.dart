@@ -1,10 +1,10 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 
 class PageHeader extends StatelessWidget {
   final String text;
 
-  const PageHeader({Key? key, required this.text}) : super(key: key);
+  const PageHeader({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

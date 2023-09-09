@@ -11,7 +11,7 @@ import '../widgets/common/sliver_column.dart';
 import '../widgets/home/settings_pump_button.dart';
 
 class SettingsFragment extends StatelessWidget {
-  const SettingsFragment({Key? key}) : super(key: key);
+  const SettingsFragment({super.key});
 
   @override
   Widget build(BuildContext context) {

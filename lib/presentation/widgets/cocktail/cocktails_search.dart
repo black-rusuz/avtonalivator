@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../cubit/cocktails/cocktails_cubit.dart';
 
 class CocktailSearch extends StatefulWidget {
-  const CocktailSearch({Key? key}) : super(key: key);
+  const CocktailSearch({super.key});
 
   @override
   State<CocktailSearch> createState() => _CocktailSearchState();

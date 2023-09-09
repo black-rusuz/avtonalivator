@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 
 import '../common/base_divider.dart';
@@ -8,10 +8,10 @@ class CocktailDrink extends StatelessWidget {
   final int volume;
 
   const CocktailDrink({
-    Key? key,
+    super.key,
     required this.name,
     required this.volume,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

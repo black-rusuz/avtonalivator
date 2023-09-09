@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +7,10 @@ class CocktailImage extends StatelessWidget {
   final void Function() onTap;
 
   const CocktailImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

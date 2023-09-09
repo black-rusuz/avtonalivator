@@ -13,9 +13,9 @@ class CocktailsListItem extends StatelessWidget {
   final CocktailModel cocktail;
 
   const CocktailsListItem({
-    Key? key,
+    super.key,
     required this.cocktail,
-  }) : super(key: key);
+  });
 
   void showCocktailModal(BuildContext context) {
     TuningCubit tuning = context.read<TuningCubit>();

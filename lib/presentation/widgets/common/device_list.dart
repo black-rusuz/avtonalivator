@@ -11,10 +11,10 @@ class DeviceList extends StatelessWidget {
   final bool directly;
 
   const DeviceList({
-    Key? key,
+    super.key,
     required this.devices,
     this.directly = false,
-  }) : super(key: key);
+  });
 
   void connect(BuildContext context, String? name, String address) => directly
       ? context.read<ConnectCubit>().connect(name, address)

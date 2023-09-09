@@ -7,10 +7,10 @@ class Avatar extends StatelessWidget {
   final Color color;
 
   const Avatar({
-    Key? key,
+    super.key,
     required this.url,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class Avatar extends StatelessWidget {
 }
 
 class SettingsCopyright extends StatelessWidget {
-  const SettingsCopyright({Key? key}) : super(key: key);
+  const SettingsCopyright({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:avtonalivator/style.dart';
+import '../../../style.dart';
 import 'package:flutter/material.dart';
 
 class BaseCard extends StatelessWidget {
@@ -9,13 +9,13 @@ class BaseCard extends StatelessWidget {
   final void Function()? onTap;
 
   const BaseCard({
-    Key? key,
+    super.key,
     this.padding,
     this.margin,
     this.isActive = false,
     required this.child,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

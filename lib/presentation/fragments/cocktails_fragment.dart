@@ -7,7 +7,7 @@ import '../widgets/common/base_app_bar.dart';
 import '../widgets/common/sliver_column.dart';
 
 class CocktailsFragment extends StatelessWidget {
-  const CocktailsFragment({Key? key}) : super(key: key);
+  const CocktailsFragment({super.key});
 
   @override
   Widget build(BuildContext context) {

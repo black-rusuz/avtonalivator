@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CocktailDescription extends StatelessWidget {
   final String text;
 
-  const CocktailDescription({Key? key, required this.text}) : super(key: key);
+  const CocktailDescription({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
