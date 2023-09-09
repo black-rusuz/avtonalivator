@@ -44,4 +44,4 @@ flutter_icons:
 
 flutter_native_splash:
   color: "#FAD960"
-  image: "assets/barmen.png"
+  image: "assets/splash.png"
