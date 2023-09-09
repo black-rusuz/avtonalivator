@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/stats/stats_cubit.dart';
+import '../../domain/cubit/stats/stats_cubit.dart';
 import '../widgets/common/base_app_bar.dart';
 import '../widgets/common/page_header.dart';
 import '../widgets/common/sliver_column.dart';

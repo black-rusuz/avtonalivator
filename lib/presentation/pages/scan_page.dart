@@ -1,12 +1,12 @@
-import '../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/cocktails/cocktails_cubit.dart';
-import '../../cubit/connect/connect_cubit.dart';
-import '../../cubit/scan/scan_cubit.dart';
-import '../../cubit/stats/stats_cubit.dart';
-import '../../cubit/tuning/tuning_cubit.dart';
+import '../../domain/cubit/cocktails/cocktails_cubit.dart';
+import '../../domain/cubit/connect/connect_cubit.dart';
+import '../../domain/cubit/scan/scan_cubit.dart';
+import '../../domain/cubit/stats/stats_cubit.dart';
+import '../../domain/cubit/tuning/tuning_cubit.dart';
+import '../../style.dart';
 import '../widgets/common/device_list.dart';
 import '../widgets/scan_app_bar.dart';
 import 'home_page.dart';

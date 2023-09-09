@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../cubit/connect/connect_cubit.dart';
-import '../../../cubit/stats/stats_cubit.dart';
-import '../../../cubit/tuning/tuning_cubit.dart';
+import '../../../domain/cubit/connect/connect_cubit.dart';
+import '../../../domain/cubit/stats/stats_cubit.dart';
+import '../../../domain/cubit/tuning/tuning_cubit.dart';
 import '../../../model/cocktail_model.dart';
 import '../common/base_app_bar.dart';
 import '../common/sliver_column.dart';

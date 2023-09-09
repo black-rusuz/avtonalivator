@@ -1,8 +1,8 @@
-import '../../constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localstore/localstore.dart';
 
-import '../../model/pump_model.dart';
+import '../../../constants.dart';
+import '../../../model/pump_model.dart';
 
 part 'tuning_state.dart';
 

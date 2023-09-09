@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../cubit/cocktails/cocktails_cubit.dart';
+import '../../../domain/cubit/cocktails/cocktails_cubit.dart';
 import 'cocktails_list_item.dart';
 
 class CocktailsList extends StatelessWidget {

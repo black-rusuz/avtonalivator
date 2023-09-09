@@ -1,9 +1,9 @@
-import '../../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../cubit/cocktails/cocktails_cubit.dart';
-import '../../../cubit/tuning/tuning_cubit.dart';
+import '../../../domain/cubit/cocktails/cocktails_cubit.dart';
+import '../../../domain/cubit/tuning/tuning_cubit.dart';
+import '../../../style.dart';
 import '../common/base_card.dart';
 import '../common/base_switch.dart';
 

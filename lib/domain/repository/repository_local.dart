@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../model/cocktail_model.dart';
+import '../../model/cocktail_model.dart';
 import 'repository.dart';
 
 class RepositoryLocal extends Repository {

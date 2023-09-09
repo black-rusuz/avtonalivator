@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/cocktail_model.dart';
-import '../../repository/repository.dart';
-import '../../repository/repository_local.dart';
+import '../../../domain/repository/repository.dart';
+import '../../../domain/repository/repository_local.dart';
+import '../../../model/cocktail_model.dart';
 
 part 'cocktails_state.dart';
 

@@ -1,9 +1,9 @@
-import 'style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'cubit/launch/launch_cubit.dart';
+import 'domain/cubit/launch/launch_cubit.dart';
 import 'presentation/pages/launch_page.dart';
+import 'style.dart';
 
 void main() => runApp(const MyApp());
 

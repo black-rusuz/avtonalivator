@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-import '../../model/pump_model.dart';
+import '../../../model/pump_model.dart';
 
 part 'connect_state.dart';
 

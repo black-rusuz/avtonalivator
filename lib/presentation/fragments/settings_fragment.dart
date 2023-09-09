@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/connect/connect_cubit.dart';
-import '../../cubit/scan/scan_cubit.dart';
+import '../../domain/cubit/connect/connect_cubit.dart';
+import '../../domain/cubit/scan/scan_cubit.dart';
 import '../widgets/common/app_bar_actions_loader.dart';
 import '../widgets/common/barmen_card.dart';
 import '../widgets/common/base_app_bar.dart';

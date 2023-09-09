@@ -1,8 +1,8 @@
-import '../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/launch/launch_cubit.dart';
+import '../../domain/cubit/launch/launch_cubit.dart';
+import '../../style.dart';
 
 class LaunchStatusPage extends StatelessWidget {
   final bool isAvailable;

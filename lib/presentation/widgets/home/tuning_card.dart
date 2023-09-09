@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../cubit/tuning/tuning_cubit.dart';
+import '../../../domain/cubit/tuning/tuning_cubit.dart';
 import '../../../model/pump_model.dart';
 import '../common/base_card.dart';
 import 'tuning_card_inner.dart';

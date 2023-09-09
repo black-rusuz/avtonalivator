@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-import '../../../cubit/connect/connect_cubit.dart';
-import '../../../cubit/scan/scan_cubit.dart';
+import '../../../domain/cubit/connect/connect_cubit.dart';
+import '../../../domain/cubit/scan/scan_cubit.dart';
 import 'device_list_item.dart';
 
 class DeviceList extends StatelessWidget {

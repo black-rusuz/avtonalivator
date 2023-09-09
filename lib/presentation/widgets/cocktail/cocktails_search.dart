@@ -1,9 +1,9 @@
-import '../../../style.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../cubit/cocktails/cocktails_cubit.dart';
+import '../../../domain/cubit/cocktails/cocktails_cubit.dart';
+import '../../../style.dart';
 
 class CocktailSearch extends StatefulWidget {
   const CocktailSearch({super.key});

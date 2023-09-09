@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/launch/launch_cubit.dart';
-import '../../cubit/scan/scan_cubit.dart';
+import '../../domain/cubit/launch/launch_cubit.dart';
+import '../../domain/cubit/scan/scan_cubit.dart';
 import '../widgets/launch_splash.dart';
 import '../widgets/launch_status_page.dart';
 import 'scan_page.dart';

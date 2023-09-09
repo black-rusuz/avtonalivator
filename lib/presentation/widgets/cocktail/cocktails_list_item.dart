@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../cubit/connect/connect_cubit.dart';
-import '../../../cubit/stats/stats_cubit.dart';
-import '../../../cubit/tuning/tuning_cubit.dart';
+import '../../../domain/cubit/connect/connect_cubit.dart';
+import '../../../domain/cubit/stats/stats_cubit.dart';
+import '../../../domain/cubit/tuning/tuning_cubit.dart';
 import '../../../model/cocktail_model.dart';
 import '../common/base_divider.dart';
 import 'cocktail_detail.dart';

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../model/cocktail_model.dart';
+import '../../model/cocktail_model.dart';
 import 'repository.dart';
 
 class RepositoryRemote extends Repository {

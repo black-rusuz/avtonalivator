@@ -1,7 +1,8 @@
-import '../../constants.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localstore/localstore.dart';
+
+import '../../../constants.dart';
 
 part 'stats_state.dart';
 

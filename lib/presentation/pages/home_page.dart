@@ -1,11 +1,11 @@
-import '../widgets/home/settings_copyright.dart';
-import '../../style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/connect/connect_cubit.dart';
-import '../../cubit/tuning/tuning_cubit.dart';
+import '../../domain/cubit/connect/connect_cubit.dart';
+import '../../domain/cubit/tuning/tuning_cubit.dart';
+import '../../style.dart';
 import '../fragments/all.dart';
+import '../widgets/home/settings_copyright.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
