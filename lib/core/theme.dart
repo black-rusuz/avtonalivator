@@ -12,6 +12,7 @@ class AppTheme {
     ).copyWith(
       background: const Color(0xFFFFFFFF),
     ),
+    textTheme: GoogleFonts.interTextTheme(),
   );
 
   static const black = Color.fromRGBO(1, 0, 2, 1);
@@ -23,24 +24,24 @@ class AppTheme {
   static const radius = Radius.circular(20);
   static const borderRadius = BorderRadius.all(Radius.circular(20));
 
-  static final pageTitle = GoogleFonts.inter(
+  static const pageTitle = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
   );
 
-  static final text = GoogleFonts.inter(
+  static const text = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: black,
   );
 
-  static final textLight = GoogleFonts.inter(
+  static const textLight = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: greyLight,
   );
 
-  static final additional = GoogleFonts.inter(
+  static const additional = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     color: grey,

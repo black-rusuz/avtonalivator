@@ -6,6 +6,8 @@ import '../strings.dart';
 import 'basic_card.dart';
 import 'basic_image.dart';
 
+const _additional = AppTheme.additional;
+
 class BarmenCard extends StatelessWidget {
   final String? title;
   final String? subtitle;
@@ -31,8 +33,6 @@ class BarmenCard extends StatelessWidget {
 
   AssetsIcon get _image =>
       isActive ? AssetsIcon.barmen : AssetsIcon.barmen_grey;
-
-  static final additional = AppTheme.additional;
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +68,13 @@ class BarmenCard extends StatelessWidget {
                   if (isActive)
                     Text(
                       subtitle!,
-                      style: additional.copyWith(
+                      style: _additional.copyWith(
                         color: AppTheme.black.withOpacity(0.7),
                       ),
                     ),
                   Text(
                     _hint,
-                    style: additional.copyWith(
+                    style: _additional.copyWith(
                       color: isActive ? AppTheme.black.withOpacity(0.7) : null,
                     ),
                   ),

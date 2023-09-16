@@ -17,7 +17,7 @@ class ScanAppBar extends StatelessWidget {
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
       backgroundColor: AppTheme.accent,
-      title: Text(Strings.connection, style: AppTheme.pageTitle),
+      title: const Text(Strings.connection, style: AppTheme.pageTitle),
       flexibleSpace: FlexibleSpaceBar(
         background: Center(
           child: Padding(

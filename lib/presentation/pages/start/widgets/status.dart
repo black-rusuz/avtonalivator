@@ -18,15 +18,15 @@ class StartStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: !btAvailable
-          ? Text(
+          ? const Text(
               Strings.btUnavailable,
               style: AppTheme.text,
             )
           : Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 100),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 100),
                   child: Text(
                     Strings.btDisabled,
                     style: AppTheme.text,
