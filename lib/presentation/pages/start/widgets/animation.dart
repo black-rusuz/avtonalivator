@@ -52,8 +52,8 @@ class StartAnimation extends StatelessWidget {
                 AnimatedPositioned(
                   duration: _duration,
                   curve: Curves.easeInQuart,
-                  top: !animate ? 29 : 52,
-                  left: 87.5,
+                  top: !animate ? 24 : 48,
+                  left: 85,
                   child: const Text(
                     '•',
                     style: TextStyle(fontSize: 20, color: AppTheme.black),
