@@ -1,30 +1,29 @@
 part of '../scan.dart';
 
 class ScanAppBar extends StatelessWidget {
-  const ScanAppBar({super.key});
+  final double height;
+  final bool isConnecting;
+
+  const ScanAppBar({
+    super.key,
+    required this.height,
+    required this.isConnecting,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       centerTitle: true,
-      collapsedHeight: 60,
-      expandedHeight: 260,
-      title: Text(
-        Strings.connection,
-        style: AppTheme.pageTitle,
-      ),
+      collapsedHeight: kToolbarHeight,
+      expandedHeight: height,
+      backgroundColor: AppTheme.accent,
+      title: Text(Strings.connection, style: AppTheme.pageTitle),
       flexibleSpace: FlexibleSpaceBar(
         background: Center(
-          child: const SizedBox(),
-          // child: BlocBuilder<ScanCubit, ScanState>(
-          //   buildWhen: ((prev, next) => next is ScanConnecting),
-          //   builder: (context, state) {
-          //     return BarmenCard(
-          //       margin: const EdgeInsets.fromLTRB(30, 50, 30, 10),
-          //       isConnecting: state is ScanConnecting,
-          //     );
-          //   },
-          // ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(30, 60, 30, 0),
+            child: BarmenCard(isConnecting: isConnecting),
+          ),
         ),
       ),
       actions: [
