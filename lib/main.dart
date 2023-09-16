@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'core/setup.dart';
 import 'core/router.dart';
+import 'core/setup.dart';
 import 'core/theme.dart';
 
 void main() {
@@ -13,10 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: AppTheme.value,
-      routerConfig: AppRoutes.router,
+      initialRoute: AppRoutes.home,
+      onGenerateRoute: AppRoutes.openPage,
     );
   }
 }
