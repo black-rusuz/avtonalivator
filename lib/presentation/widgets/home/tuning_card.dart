@@ -14,7 +14,7 @@ class TuningCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TuningCubit, TuningState>(
-      buildWhen: ((_, next) => next is TuningPump && next.pump.id == pump.id),
+      buildWhen: (_, next) => next is TuningPump && next.pump.id == pump.id,
       builder: (context, state) {
         if (state is TuningPump && state.pump.id == pump.id) {
           return BaseCard(
