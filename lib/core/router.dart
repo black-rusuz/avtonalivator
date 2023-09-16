@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../presentation/pages/connect/connect.dart';
 import '../presentation/pages/home/home.dart';
+import '../presentation/pages/start/cubit/start_cubit.dart';
 import '../presentation/pages/start/start.dart';
+import 'injection.dart';
 
 class AppRoutes {
   static const start = '/start';
@@ -20,7 +23,12 @@ class AppRoutes {
 
     switch (mainRoute) {
       case start:
-        return _getRoute(const StartPage());
+        return _getRoute(
+          BlocProvider(
+            create: (_) => get<StartCubit>()..init(),
+            child: const StartPage(),
+          ),
+        );
       case connect:
         return _getRoute(const ConnectPage());
       case home:
