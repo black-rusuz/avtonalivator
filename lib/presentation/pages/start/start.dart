@@ -30,7 +30,7 @@ class StartPage extends StatelessWidget {
 
   void listener(BuildContext context, StartState state) {
     if (state is StartFulfilled && state.btEnabled) {
-      Navigator.of(context).pushNamed(AppRoutes.connect);
+      Navigator.of(context).pushNamed(AppRoutes.scan);
     }
   }
 

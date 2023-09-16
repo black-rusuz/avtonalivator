@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../presentation/pages/connect/connect.dart';
 import '../presentation/pages/home/home.dart';
+import '../presentation/pages/scan/scan.dart';
 import '../presentation/pages/start/cubit/start_cubit.dart';
 import '../presentation/pages/start/start.dart';
 import 'injection.dart';
 
 class AppRoutes {
   static const start = '/start';
-  static const connect = '/connect';
+  static const scan = '/scan';
   static const home = '/home';
 
   static const tuning = '/home/tuning';
@@ -29,8 +29,8 @@ class AppRoutes {
             child: const StartPage(),
           ),
         );
-      case connect:
-        return _getRoute(const ConnectPage());
+      case scan:
+        return _getRoute(const ScanPage());
       case home:
         return _getHomeRoute(path);
     }

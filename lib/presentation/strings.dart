@@ -10,6 +10,10 @@ class Strings {
   static const btDisabled = 'Вы не включили Bluetooth';
   static const enableBt = 'Включить Bluetooth';
 
+  // * Scan
+
+  static const skipNow = 'Пока пропустить';
+
   // * Home
 
   static const tuning = 'Регулировка';
