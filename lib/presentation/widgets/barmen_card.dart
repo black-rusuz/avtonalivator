@@ -11,7 +11,6 @@ const _additional = AppTheme.additional;
 class BarmenCard extends StatelessWidget {
   final String? title;
   final String? subtitle;
-  final EdgeInsets? margin;
   final VoidCallback? onTap;
   final bool isConnecting;
 
@@ -19,7 +18,6 @@ class BarmenCard extends StatelessWidget {
     super.key,
     this.title,
     this.subtitle,
-    this.margin,
     this.onTap,
     this.isConnecting = false,
   });
