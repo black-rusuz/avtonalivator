@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme.dart';
 import '../../fragments/cocktails.dart';
 import '../../fragments/settings.dart';
 import '../../fragments/stats.dart';
@@ -24,9 +25,27 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  String get title {
+    switch (index) {
+      case 0:
+        return Strings.tuning;
+      case 1:
+        return Strings.cocktails;
+      case 2:
+        return Strings.stats;
+      case 3:
+        return Strings.settings;
+    }
+    return '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(title, style: AppTheme.pageTitle),
+      ),
       body: const [
         TuningFragment(),
         CocktailsFragment(),
