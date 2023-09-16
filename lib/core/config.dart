@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 import '../data/model/config.dart';
 
@@ -16,7 +16,7 @@ class AppConfig {
   factory AppConfig.fromApi(ApiConfig config) {
     return AppConfig(
       accentColor: _tryParseColor(config.accentColor) ?? _defaultColor,
-      drinksQuantity: config.drinksCount ?? 6,
+      drinksQuantity: config.drinksQuantity ?? 6,
     );
   }
 }

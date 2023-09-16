@@ -7,12 +7,12 @@ part of 'config.dart';
 // **************************************************************************
 
 _$_ApiConfig _$$_ApiConfigFromJson(Map<String, dynamic> json) => _$_ApiConfig(
-      accentColor: json['accent_color'] as String?,
-      drinksCount: json['drinks_count'] as int?,
+      accentColor: json['accentColor'] as String?,
+      drinksQuantity: json['drinksQuantity'] as int?,
     );
 
 Map<String, dynamic> _$$_ApiConfigToJson(_$_ApiConfig instance) =>
     <String, dynamic>{
-      'accent_color': instance.accentColor,
-      'drinks_count': instance.drinksCount,
+      'accentColor': instance.accentColor,
+      'drinksQuantity': instance.drinksQuantity,
     };
