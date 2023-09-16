@@ -27,8 +27,8 @@ class StatsFragment extends StatelessWidget {
             ),
             child: ListView.separated(
               shrinkWrap: true,
-              padding: const EdgeInsets.all(15),
               physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
               itemCount: 20,
               itemBuilder: itemBuilder,
               separatorBuilder: separatorBuilder,
