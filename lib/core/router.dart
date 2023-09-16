@@ -1,16 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
+import '../presentation/pages/home/home.dart';
+
 class AppRoutes {
-  static const String main = '/';
-  static const String home = '/home';
+  static const String home = '/';
 
   static final router = GoRouter(
-    initialLocation: AppRoutes.main,
+    initialLocation: AppRoutes.home,
     routes: [
       GoRoute(
-        path: AppRoutes.main,
-        builder: (_, __) => const SizedBox(),
+        path: AppRoutes.home,
+        builder: (context, state) => const HomePage(),
       ),
     ],
   );
