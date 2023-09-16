@@ -14,7 +14,9 @@ class ConfigRepository {
 
   final _config = BehaviorSubject<AppConfig>.seeded(AppConfig());
 
-  Stream<AppConfig> get config => _config;
+  AppConfig get value => _config.value;
+
+  Stream<AppConfig> get stream => _config;
 
   Future<AppConfig> getConfig() async {
     final config = await _source.getConfig();

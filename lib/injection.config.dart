@@ -10,13 +10,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:avtonalivator/data/connector.dart' as _i3;
-import 'package:avtonalivator/data/data_source.dart' as _i8;
+import 'package:avtonalivator/data/data_source.dart' as _i7;
 import 'package:avtonalivator/domain/repository/cocktails_repository.dart'
-    as _i9;
-import 'package:avtonalivator/domain/repository/config_repository.dart' as _i10;
+    as _i8;
+import 'package:avtonalivator/domain/repository/config_repository.dart' as _i9;
 import 'package:avtonalivator/injection.dart' as _i11;
 import 'package:avtonalivator/presentation/fragments/tuning/bloc/tuning_bloc.dart'
-    as _i7;
+    as _i10;
 import 'package:avtonalivator/presentation/pages/scan/cubit/scan_cubit.dart'
     as _i5;
 import 'package:avtonalivator/presentation/pages/start/cubit/start_cubit.dart'
@@ -41,12 +41,13 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i4.Dio>(registerModule.dio);
     gh.factory<_i5.ScanCubit>(() => _i5.ScanCubit());
     gh.factory<_i6.StartCubit>(() => _i6.StartCubit());
-    gh.factory<_i7.TuningBloc>(() => _i7.TuningBloc());
-    gh.factory<_i8.DataSource>(() => _i8.DataSource(gh<_i4.Dio>()));
-    gh.singleton<_i9.CocktailsRepository>(
-        _i9.CocktailsRepository(gh<_i8.DataSource>()));
-    gh.singleton<_i10.ConfigRepository>(
-        _i10.ConfigRepository(gh<_i8.DataSource>()));
+    gh.factory<_i7.DataSource>(() => _i7.DataSource(gh<_i4.Dio>()));
+    gh.singleton<_i8.CocktailsRepository>(
+        _i8.CocktailsRepository(gh<_i7.DataSource>()));
+    gh.singleton<_i9.ConfigRepository>(
+        _i9.ConfigRepository(gh<_i7.DataSource>()));
+    gh.factory<_i10.TuningBloc>(
+        () => _i10.TuningBloc(gh<_i9.ConfigRepository>()));
     return this;
   }
 }
