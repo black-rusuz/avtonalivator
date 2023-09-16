@@ -3,25 +3,25 @@ import 'package:equatable/equatable.dart';
 import '../../data/model/cocktail.dart';
 import 'drink.dart';
 
-class Cocktail extends Equatable {
+class UiCocktail extends Equatable {
   final int id;
   final String name;
   final String image;
-  final List<Drink> drinks;
+  final List<UiDrink> drinks;
 
-  const Cocktail({
+  const UiCocktail({
     required this.id,
     required this.name,
     required this.image,
     required this.drinks,
   });
 
-  factory Cocktail.fromApi(ApiCocktail cocktail) {
-    return Cocktail(
+  factory UiCocktail.fromApi(ApiCocktail cocktail) {
+    return UiCocktail(
       id: cocktail.id,
       name: cocktail.name,
       image: cocktail.imageUrl,
-      drinks: cocktail.drinks.map(Drink.fromApi).toList(),
+      drinks: cocktail.drinks.map(UiDrink.fromApi).toList(),
     );
   }
 

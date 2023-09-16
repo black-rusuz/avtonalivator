@@ -12,16 +12,16 @@ class CocktailsRepository {
     getCocktails();
   }
 
-  final _cocktails = BehaviorSubject<List<Cocktail>>.seeded([]);
+  final _cocktails = BehaviorSubject<List<UiCocktail>>.seeded([]);
 
-  Future<List<Cocktail>> getCocktails() async {
+  Future<List<UiCocktail>> getCocktails() async {
     final list = await _source.getCocktails();
-    final cocktails = list.map(Cocktail.fromApi).toList();
+    final cocktails = list.map(UiCocktail.fromApi).toList();
     _cocktails.add(cocktails);
     return cocktails;
   }
 
-  Stream<List<Cocktail>> get cocktails {
+  Stream<List<UiCocktail>> get cocktails {
     return _cocktails;
   }
 }

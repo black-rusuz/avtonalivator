@@ -2,17 +2,17 @@ import 'package:equatable/equatable.dart';
 
 import '../../data/model/drink.dart';
 
-class Drink extends Equatable {
+class UiDrink extends Equatable {
   final String name;
   final int volume;
 
-  const Drink({
+  const UiDrink({
     required this.name,
     required this.volume,
   });
 
-  factory Drink.fromApi(ApiDrink drink) {
-    return Drink(name: drink.name, volume: drink.volume);
+  factory UiDrink.fromApi(ApiDrink drink) {
+    return UiDrink(name: drink.name, volume: drink.volume);
   }
 
   @override
