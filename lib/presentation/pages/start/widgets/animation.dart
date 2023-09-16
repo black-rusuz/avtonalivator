@@ -36,6 +36,7 @@ class StartAnimation extends StatelessWidget {
                   duration: _duration,
                   animate: animate,
                 ),
+                const SizedBox(height: 10),
                 AnimatedText(
                   Strings.description,
                   style: launchSubheader,
