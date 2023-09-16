@@ -10,12 +10,13 @@ abstract class TuningState extends Equatable {
 class TuningInitial extends TuningState {}
 
 class TuningFulfilled extends TuningState {
-  final Set<UiPump> pumps;
+  final List<UiPump> pumps;
 
   const TuningFulfilled({required this.pumps});
 
   @override
   List<Object?> get props => [
+        UniqueKey(),
         [...pumps]
       ];
 }

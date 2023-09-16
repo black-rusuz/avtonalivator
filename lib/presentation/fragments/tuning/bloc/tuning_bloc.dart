@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,14 +19,13 @@ class TuningBloc extends Bloc<TuningEvent, TuningState> {
     _init();
   }
 
-  Set<UiPump> pumps = {};
+  List<UiPump> pumps = [];
 
   // * Init
 
   void _init() {
     final quantity = _config.value.drinksQuantity;
-    pumps = List.generate(quantity, (index) => UiPump.base.copyWith(id: index))
-        .toSet();
+    pumps = List.generate(quantity, (index) => UiPump.base.copyWith(id: index));
     _addFetched();
   }
 
@@ -41,7 +41,16 @@ class TuningBloc extends Bloc<TuningEvent, TuningState> {
 
   void _setPump(SetPump event, Emitter<TuningState> emit) {
     final pump = event.pump;
-    pumps.add(pump);
+    pumps.update(pump);
     _addFetched();
+  }
+}
+
+extension Update<T> on List<T> {
+  void update(T element) {
+    if (contains(element)) {
+      final index = indexOf(element);
+      this[index] = element;
+    }
   }
 }
