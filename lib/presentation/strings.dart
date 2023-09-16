@@ -1,7 +1,7 @@
 class Strings {
   // * General
 
-  static const title = 'Автобармен';
+  static const autoBartender = 'Автобармен';
   static const description = 'Система автоналива напитков';
 
   // * Start
@@ -12,8 +12,13 @@ class Strings {
 
   // * Scan
 
-  static const skipNow = 'Пока пропустить';
   static const connection = 'Подключение';
+  static const notConnected = 'Устройство не подключено';
+  static const tapToConnect =
+      'Нажмите на элемент списка,\nчтобы подключить автобармен';
+  static const tapToDisconnect =
+      'Нажмите на карточку,\nчтобы отключить автобармен';
+  static const skipNow = 'Пока пропустить';
 
   // * Home
 

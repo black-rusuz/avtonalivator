@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme.dart';
 import '../assets_image.dart';
+import '../strings.dart';
 import 'basic_card.dart';
 import 'basic_image.dart';
 
@@ -24,11 +25,9 @@ class BarmenCard extends StatelessWidget {
   bool get isActive => title != null && subtitle != null;
 
   String get _title =>
-      isActive ? 'Автобармен $title' : 'Устройство не подключено';
+      isActive ? '${Strings.autoBartender} $title' : Strings.notConnected;
 
-  String get _hint => isActive
-      ? 'Нажмите на карточку,\nчтобы отключить автобармен'
-      : 'Нажмите на элемент списка,\nчтобы подключить автобармен';
+  String get _hint => isActive ? Strings.tapToDisconnect : Strings.tapToConnect;
 
   AssetsIcon get _image =>
       isActive ? AssetsIcon.barmen : AssetsIcon.barmen_grey;

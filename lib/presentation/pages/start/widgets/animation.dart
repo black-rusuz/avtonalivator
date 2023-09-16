@@ -31,7 +31,7 @@ class StartAnimation extends StatelessWidget {
             child: Column(
               children: [
                 AnimatedText(
-                  Strings.title,
+                  Strings.autoBartender,
                   style: launchHeader,
                   duration: _duration,
                   animate: animate,
