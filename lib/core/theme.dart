@@ -20,6 +20,9 @@ class AppTheme {
   static const greyDivider = Color.fromRGBO(237, 237, 237, 1);
   static const white = Colors.white;
 
+  static const radius = Radius.circular(30);
+  static const borderRadius = BorderRadius.all(Radius.circular(30));
+
   static final pageTitle = GoogleFonts.inter(
     fontSize: 20,
     fontWeight: FontWeight.w700,
@@ -42,24 +45,6 @@ class AppTheme {
     fontWeight: FontWeight.w400,
     color: grey,
   );
-
-  static List<BoxShadow> cardShadows = const [
-    BoxShadow(
-      blurRadius: 2,
-      offset: Offset(0, 0.2),
-      color: Color.fromRGBO(0, 0, 0, 0.02),
-    ),
-    BoxShadow(
-      blurRadius: 7,
-      offset: Offset(0, 0.5),
-      color: Color.fromRGBO(0, 0, 0, 0.04),
-    ),
-    BoxShadow(
-      blurRadius: 30,
-      offset: Offset(0, 2),
-      color: Color.fromRGBO(0, 0, 0, 0.06),
-    ),
-  ];
 }
 
 MaterialColor _createMaterialColor(Color color) {
