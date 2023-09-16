@@ -32,4 +32,9 @@ class StartCubit extends Cubit<StartState> {
     _enabled = await bluetooth.requestEnable() ?? false;
     emit(StartFulfilled(btAvailable: _available, btEnabled: _enabled));
   }
+
+  Future<void> requestEnable() async {
+    _enabled = await bluetooth.requestEnable() ?? false;
+    emit(StartFulfilled(btAvailable: _available, btEnabled: _enabled));
+  }
 }
