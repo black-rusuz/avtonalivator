@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../presentation/pages/home/home.dart';
+import '../presentation/pages/scan/cubit/scan_cubit.dart';
 import '../presentation/pages/scan/scan.dart';
 import '../presentation/pages/start/cubit/start_cubit.dart';
 import '../presentation/pages/start/start.dart';
@@ -30,7 +31,12 @@ class AppRoutes {
           ),
         );
       case scan:
-        return _getRoute(const ScanPage());
+        return _getRoute(
+          BlocProvider(
+            create: (_) => get<ScanCubit>(),
+            child: const ScanPage(),
+          ),
+        );
       case home:
         return _getHomeRoute(path);
     }

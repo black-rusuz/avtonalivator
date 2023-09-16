@@ -13,6 +13,7 @@ class Strings {
   // * Scan
 
   static const skipNow = 'Пока пропустить';
+  static const connection = 'Подключение';
 
   // * Home
 

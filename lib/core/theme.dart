@@ -5,6 +5,7 @@ class AppTheme {
   static const accent = Color(0xFFFAD960);
 
   static final value = ThemeData(
+    useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: _createMaterialColor(accent),
@@ -17,6 +18,7 @@ class AppTheme {
   static const grey = Color.fromRGBO(130, 130, 130, 1);
   static const greyLight = Color.fromRGBO(196, 196, 196, 1);
   static const greyDivider = Color.fromRGBO(237, 237, 237, 1);
+  static const white = Colors.white;
 
   static final pageTitle = GoogleFonts.inter(
     fontSize: 20,
