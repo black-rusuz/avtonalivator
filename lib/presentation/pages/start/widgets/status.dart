@@ -38,9 +38,9 @@ class StartStatus extends StatelessWidget {
                     foregroundColor: AppTheme.black,
                     backgroundColor: AppTheme.accent,
                     minimumSize: const Size(0, 60),
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: AppTheme.borderRadius,
                     ),
                   ),
                   child: const Text(Strings.enableBt),

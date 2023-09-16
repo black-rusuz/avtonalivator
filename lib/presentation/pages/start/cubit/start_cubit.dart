@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 part 'start_state.dart';
 
-const _duration = Duration(milliseconds: 500);
+const _duration = Duration(milliseconds: 1000);
 
 @injectable
 class StartCubit extends Cubit<StartState> {
