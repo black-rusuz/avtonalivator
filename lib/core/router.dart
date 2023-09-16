@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../presentation/pages/connect/connect.dart';
 import '../presentation/pages/home/home.dart';
+import '../presentation/pages/start/start.dart';
 
 class AppRoutes {
   static const start = '/start';
@@ -18,7 +20,9 @@ class AppRoutes {
 
     switch (mainRoute) {
       case start:
+        return _getRoute(const StartPage());
       case connect:
+        return _getRoute(const ConnectPage());
       case home:
         return _getHomeRoute(path);
     }
