@@ -43,15 +43,15 @@ class _HomePageState extends State<HomePage> {
           ),
           NavigationDestination(
             icon: Icon(Icons.liquor_rounded),
-            label: Strings.tuning,
+            label: Strings.cocktails,
           ),
           NavigationDestination(
             icon: Icon(Icons.insert_chart_outlined_outlined),
-            label: Strings.tuning,
+            label: Strings.stats,
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_rounded),
-            label: Strings.tuning,
+            label: Strings.settings,
           ),
         ],
       ),

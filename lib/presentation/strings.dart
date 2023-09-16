@@ -22,7 +22,7 @@ class Strings {
 
   // * Home
 
-  static const tuning = 'Регулировка';
+  static const tuning = 'Приготовить';
   static const cocktails = 'Коктейли';
   static const stats = 'Статистика';
   static const settings = 'Настройки';
