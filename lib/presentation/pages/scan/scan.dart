@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
+import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
@@ -13,6 +14,11 @@ part 'widgets/app_bar.dart';
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
 
+  void skip(BuildContext context) {
+    // context.read<ScanCubit>().skip();
+    Navigator.of(context).pushReplacementNamed(AppRoutes.home);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +29,7 @@ class ScanPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text(Strings.skipNow),
         icon: const Icon(Icons.skip_next_rounded),
-        // onPressed: () => context.read<ScanCubit>().skip(),
-        onPressed: () {},
+        onPressed: () => skip(context),
       ),
     );
   }
