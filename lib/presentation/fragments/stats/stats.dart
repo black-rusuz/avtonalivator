@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme.dart';
-import '../strings.dart';
-import '../widgets/basic_card.dart';
-import '../widgets/basic_sliver_bar.dart';
-import '../widgets/stats_counter.dart';
+import '../../../core/theme.dart';
+import '../../strings.dart';
+import '../../widgets/basic_card.dart';
+import '../../widgets/basic_sliver_bar.dart';
+import 'widgets/counter.dart';
 
 class StatsFragment extends StatelessWidget {
   const StatsFragment({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme.dart';
-import '../../domain/model/cocktail.dart';
-import 'basic_card.dart';
+import '../../../../core/theme.dart';
+import '../../../../domain/model/cocktail.dart';
+import '../../../widgets/basic_card.dart';
 
 class CocktailCard extends StatelessWidget {
   final UiCocktail cocktail;

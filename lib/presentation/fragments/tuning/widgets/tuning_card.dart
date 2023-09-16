@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme.dart';
-import 'basic_card.dart';
+import '../../../../core/theme.dart';
+import '../../../widgets/basic_card.dart';
 
 class TuningCard extends StatelessWidget {
   const TuningCard({super.key});

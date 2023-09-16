@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../strings.dart';
+import '../../strings.dart';
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});

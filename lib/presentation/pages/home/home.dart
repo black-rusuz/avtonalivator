@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
-import '../../fragments/cocktails.dart';
-import '../../fragments/settings.dart';
-import '../../fragments/stats.dart';
-import '../../fragments/tuning.dart';
+import '../../fragments/cocktails/cocktails.dart';
+import '../../fragments/settings/settings.dart';
+import '../../fragments/stats/stats.dart';
+import '../../fragments/tuning/tuning.dart';
 import '../../strings.dart';
 
 class HomePage extends StatefulWidget {
@@ -51,7 +52,10 @@ class _HomePageState extends State<HomePage> {
                 style: AppTheme.pageTitle,
               ),
             ),
-      body: bodies[index],
+      body: MultiBlocProvider(
+        providers: [],
+        child: bodies[index],
+      ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: showFragment,
         selectedIndex: index,

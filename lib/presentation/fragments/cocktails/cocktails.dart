@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
-import '../widgets/tuning_card.dart';
+import '../../../domain/model/cocktail.dart';
+import 'widgets/cocktail_card.dart';
 
-class TuningFragment extends StatelessWidget {
-  const TuningFragment({super.key});
+class CocktailsFragment extends StatelessWidget {
+  const CocktailsFragment({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,11 @@ class TuningFragment extends StatelessWidget {
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    return const TuningCard();
+    const item = UiCocktail(id: 0, name: 'name', image: 'image', drinks: []);
+    return CocktailCard(
+      cocktail: item,
+      onItemTap: (v) {},
+    );
   }
 
   Widget separatorBuilder(BuildContext context, int index) {

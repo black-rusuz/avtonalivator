@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-import '../../core/theme.dart';
+import '../../../../core/theme.dart';
 
 class StatsCounter extends StatelessWidget {
   final double liters;
