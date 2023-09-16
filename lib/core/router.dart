@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../injection.dart';
 import '../presentation/pages/home/home.dart';
 import '../presentation/pages/scan/cubit/scan_cubit.dart';
 import '../presentation/pages/scan/scan.dart';
 import '../presentation/pages/start/cubit/start_cubit.dart';
 import '../presentation/pages/start/start.dart';
-import 'injection.dart';
 
 class AppRoutes {
   static const start = '/start';

@@ -9,12 +9,12 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:avtonalivator/core/injection.dart' as _i10;
 import 'package:avtonalivator/data/connector.dart' as _i3;
 import 'package:avtonalivator/data/data_source.dart' as _i7;
 import 'package:avtonalivator/domain/repository/cocktails_repository.dart'
     as _i8;
 import 'package:avtonalivator/domain/repository/config_repository.dart' as _i9;
+import 'package:avtonalivator/injection.dart' as _i10;
 import 'package:avtonalivator/presentation/pages/scan/cubit/scan_cubit.dart'
     as _i5;
 import 'package:avtonalivator/presentation/pages/start/cubit/start_cubit.dart'
