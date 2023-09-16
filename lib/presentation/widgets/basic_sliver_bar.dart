@@ -6,14 +6,16 @@ class BasicSliverBar extends StatelessWidget {
   final Color? color;
   final double? maxHeight;
   final Widget? title;
+  final Widget? trailing;
   final Widget child;
 
   const BasicSliverBar({
     super.key,
     this.color,
     this.maxHeight,
-    required this.child,
     this.title,
+    this.trailing,
+    required this.child,
   });
 
   @override
@@ -26,7 +28,12 @@ class BasicSliverBar extends StatelessWidget {
       expandedHeight: height,
       backgroundColor: color ?? AppTheme.white,
       title: title,
-      flexibleSpace: child,
+      actions: trailing == null ? null : [trailing!],
+      flexibleSpace: FlexibleSpaceBar(
+        background: Center(
+          child: child,
+        ),
+      ),
     );
   }
 }

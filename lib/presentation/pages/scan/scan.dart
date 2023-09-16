@@ -6,6 +6,7 @@ import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
+import '../../widgets/basic_sliver_bar.dart';
 import 'cubit/scan_cubit.dart';
 import 'widgets/device_list.dart';
 

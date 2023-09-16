@@ -12,41 +12,33 @@ class ScanAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      centerTitle: true,
-      collapsedHeight: kToolbarHeight,
-      expandedHeight: height,
-      backgroundColor: AppTheme.accent,
+    return BasicSliverBar(
+      color: AppTheme.accent,
+      maxHeight: height,
       title: const Text(Strings.connection, style: AppTheme.pageTitle),
-      flexibleSpace: FlexibleSpaceBar(
-        background: Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(30, 60, 30, 0),
-            child: BarmenCard(isConnecting: isConnecting),
-          ),
-        ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(30, 60, 30, 0),
+        child: BarmenCard(isConnecting: isConnecting),
       ),
-      actions: [
-        StreamBuilder<bool>(
-          stream: context.read<ScanCubit>().isDiscovering,
-          initialData: false,
-          builder: (_, snapshot) => Center(
-            child: snapshot.data != true
-                ? null
-                : Center(
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      margin: const EdgeInsets.all(12),
-                      child: const CircularProgressIndicator(
-                        color: AppTheme.black,
-                        strokeWidth: 3,
-                      ),
+      trailing: StreamBuilder<bool>(
+        stream: context.read<ScanCubit>().isDiscovering,
+        initialData: false,
+        builder: (_, snapshot) => Center(
+          child: snapshot.data != true
+              ? null
+              : Center(
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    margin: const EdgeInsets.all(12),
+                    child: const CircularProgressIndicator(
+                      color: AppTheme.black,
+                      strokeWidth: 3,
                     ),
                   ),
-          ),
-        )
-      ],
+                ),
+        ),
+      ),
     );
   }
 }
