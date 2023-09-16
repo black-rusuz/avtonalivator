@@ -25,33 +25,31 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  String get title {
-    switch (index) {
-      case 0:
-        return Strings.tuning;
-      case 1:
-        return Strings.cocktails;
-      case 2:
-        return Strings.stats;
-      case 3:
-        return Strings.settings;
-    }
-    return '';
-  }
+  static const titles = [
+    Strings.tuning,
+    Strings.cocktails,
+    Strings.stats,
+    Strings.settings,
+  ];
+
+  static const bodies = [
+    TuningFragment(),
+    CocktailsFragment(),
+    StatsFragment(),
+    SettingsFragment(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(title, style: AppTheme.pageTitle),
+        title: Text(
+          titles[index],
+          style: AppTheme.pageTitle,
+        ),
       ),
-      body: const [
-        TuningFragment(),
-        CocktailsFragment(),
-        StatsFragment(),
-        SettingsFragment()
-      ][index],
+      body: bodies[index],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: showFragment,
         selectedIndex: index,
