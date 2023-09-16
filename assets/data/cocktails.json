@@ -1,0 +1,57 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Белый русский",
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/019/607/012/non_2x/cocktail-graphic-clipart-design-free-png.png",
+      "drinks": [
+        {
+          "name": "Водка",
+          "volume": 30
+        },
+        {
+          "name": "Кофейный ликёр",
+          "volume": 30
+        },
+        {
+          "name": "Нежирные сливки",
+          "volume": 30
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Джин тоник",
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/019/607/012/non_2x/cocktail-graphic-clipart-design-free-png.png",
+      "drinks": [
+        {
+          "name": "Джин",
+          "volume": 50
+        },
+        {
+          "name": "Тоник",
+          "volume": 150
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Кровавая Мэри",
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/019/607/012/non_2x/cocktail-graphic-clipart-design-free-png.png",
+      "drinks": [
+        {
+          "name": "Водка",
+          "volume": 50
+        },
+        {
+          "name": "Томатный сок",
+          "volume": 120
+        },
+        {
+          "name": "Лимонный сок",
+          "volume": 10
+        }
+      ]
+    }
+  ]
+}
