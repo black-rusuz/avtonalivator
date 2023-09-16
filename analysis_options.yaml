@@ -2,7 +2,9 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
-    - lib/injection.config.dart
+    - lib/core/injection.config.dart
+    - lib/data/model/**.g.dart
+    - lib/data/model/**.freezed.dart
   errors:
     invalid_annotation_target: ignore
 
