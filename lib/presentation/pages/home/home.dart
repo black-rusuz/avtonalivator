@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
+import '../../../injection.dart';
 import '../../fragments/cocktails/cocktails.dart';
 import '../../fragments/settings/settings.dart';
 import '../../fragments/stats/stats.dart';
@@ -53,7 +54,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
       body: MultiBlocProvider(
-        providers: [],
+        providers: [
+          BlocProvider(create: (_) => get<TuningBloc>()),
+        ],
         child: bodies[index],
       ),
       bottomNavigationBar: NavigationBar(
