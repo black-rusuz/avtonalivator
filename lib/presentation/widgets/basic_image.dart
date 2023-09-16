@@ -25,6 +25,8 @@ class BasicImage extends StatelessWidget {
 
   bool get isUrl => uri.contains('http');
 
+  bool get isSvg => uri.contains('svg');
+
   ImageProvider get provider => isUrl
       ? CachedNetworkImageProvider(uri)
       : AssetImage(uri) as ImageProvider;
@@ -50,14 +52,16 @@ class BasicImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: borderRadius,
-      child: Image(
-        image: provider,
-        height: height,
-        width: width,
-        fit: fit,
-        loadingBuilder: skeleton,
-        errorBuilder: buildSvg,
-      ),
+      child: isSvg
+          ? buildSvg(context, '', null)
+          : Image(
+              image: provider,
+              height: height,
+              width: width,
+              fit: fit,
+              loadingBuilder: skeleton,
+              errorBuilder: buildSvg,
+            ),
     );
   }
 }

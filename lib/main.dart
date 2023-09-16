@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'core/router.dart';
 import 'core/setup.dart';
 import 'core/theme.dart';
+import 'presentation/strings.dart';
 
 void main() {
   setupApp().then((_) => runApp(const MyApp()));
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: Strings.title,
       theme: AppTheme.value,
       initialRoute: AppRoutes.start,
       onGenerateRoute: AppRoutes.openPage,
