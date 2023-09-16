@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'init.dart';
+import 'core/setup.dart';
+import 'core/router.dart';
+import 'core/theme.dart';
 
 void main() {
   setupApp().then((_) => runApp(const MyApp()));
@@ -11,12 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SizedBox(),
+      theme: AppTheme.value,
+      routerConfig: AppRoutes.router,
     );
   }
 }
