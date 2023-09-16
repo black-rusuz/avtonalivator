@@ -1,15 +1,15 @@
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../datasource/cocktails_source.dart';
+import '../../data/data_source.dart';
 import '../model/cocktail.dart';
 
 @singleton
 class CocktailsRepository {
-  final CocktailsSource _source;
+  final DataSource _source;
 
   CocktailsRepository(this._source) {
-    getCocktails();
+    getCocktails().then(_cocktails.add);
   }
 
   final _cocktails = BehaviorSubject<List<UiCocktail>>.seeded([]);
@@ -17,7 +17,6 @@ class CocktailsRepository {
   Future<List<UiCocktail>> getCocktails() async {
     final list = await _source.getCocktails();
     final cocktails = list.map(UiCocktail.fromApi).toList();
-    _cocktails.add(cocktails);
     return cocktails;
   }
 
