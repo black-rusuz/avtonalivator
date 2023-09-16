@@ -10,3 +10,9 @@ class TuningInit extends TuningEvent {
 class TuningFetched extends TuningEvent {
   const TuningFetched();
 }
+
+class SetPump extends TuningEvent {
+  final UiPump pump;
+
+  SetPump(this.pump);
+}

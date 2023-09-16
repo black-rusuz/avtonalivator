@@ -14,6 +14,7 @@ class TuningBloc extends Bloc<TuningEvent, TuningState> {
 
   TuningBloc(this._config) : super(TuningInitial()) {
     on<TuningFetched>(_emitFulfilled);
+    on<SetPump>(_setPump);
     _init();
   }
 
@@ -36,5 +37,11 @@ class TuningBloc extends Bloc<TuningEvent, TuningState> {
 
   void _emitFulfilled(TuningFetched event, Emitter<TuningState> emit) {
     emit(TuningFulfilled(pumps: pumps));
+  }
+
+  void _setPump(SetPump event, Emitter<TuningState> emit) {
+    final pump = event.pump;
+    pumps.add(pump);
+    _addFetched();
   }
 }
