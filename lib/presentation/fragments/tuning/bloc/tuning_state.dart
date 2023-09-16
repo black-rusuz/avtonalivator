@@ -10,7 +10,7 @@ abstract class TuningState extends Equatable {
 class TuningInitial extends TuningState {}
 
 class TuningFulfilled extends TuningState {
-  final List<UiPump> pumps;
+  final Set<UiPump> pumps;
 
   const TuningFulfilled({required this.pumps});
 
