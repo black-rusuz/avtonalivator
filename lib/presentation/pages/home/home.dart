@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   static const titles = [
     Strings.tuning,
     Strings.cocktails,
-    Strings.stats,
+    null,
     Strings.settings,
   ];
 
@@ -42,13 +42,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          titles[index],
-          style: AppTheme.pageTitle,
-        ),
-      ),
+      appBar: titles[index] == null
+          ? null
+          : AppBar(
+              centerTitle: true,
+              title: Text(
+                titles[index]!,
+                style: AppTheme.pageTitle,
+              ),
+            ),
       body: bodies[index],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: showFragment,
