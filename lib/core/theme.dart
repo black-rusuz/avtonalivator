@@ -20,8 +20,8 @@ class AppTheme {
   static const greyDivider = Color.fromRGBO(237, 237, 237, 1);
   static const white = Colors.white;
 
-  static const radius = Radius.circular(30);
-  static const borderRadius = BorderRadius.all(Radius.circular(30));
+  static const radius = Radius.circular(20);
+  static const borderRadius = BorderRadius.all(Radius.circular(20));
 
   static final pageTitle = GoogleFonts.inter(
     fontSize: 20,
