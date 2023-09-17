@@ -37,15 +37,17 @@ class _CocktailsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = ScrollController();
     final provider = context.read<CocktailsProvider>();
 
     return CustomScrollView(
+      controller: controller,
       slivers: [
         _CocktailsAppBar(search: provider.searchCocktail),
         SliverToBoxAdapter(
           child: ListView.separated(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            controller: controller,
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
             itemCount: cocktails.length,
             itemBuilder: itemBuilder,
@@ -65,6 +67,6 @@ class _CocktailsList extends StatelessWidget {
   }
 
   Widget separatorBuilder(BuildContext context, int index) {
-    return SizedBox(height: index == 0 ? 20 : 10);
+    return const SizedBox(height: 10);
   }
 }

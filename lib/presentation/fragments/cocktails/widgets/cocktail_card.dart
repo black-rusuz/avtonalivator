@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme.dart';
 import '../../../../domain/model/cocktail.dart';
 import '../../../widgets/basic_card.dart';
+import '../../../widgets/basic_image.dart';
 
 class CocktailCard extends StatelessWidget {
   final UiCocktail cocktail;
@@ -17,9 +18,24 @@ class CocktailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasicCard(
-      padding: const EdgeInsets.all(20),
       color: AppTheme.background,
-      child: Text(cocktail.name),
+      padding: const EdgeInsets.all(10),
+      borderRadius: BorderRadius.circular(50),
+      child: Row(
+        children: [
+          ClipOval(
+            child: BasicImage(
+              cocktail.image,
+              height: 50,
+              width: 50,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(cocktail.name),
+          ),
+        ],
+      ),
     );
   }
 }

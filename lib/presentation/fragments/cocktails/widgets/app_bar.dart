@@ -7,7 +7,9 @@ class _CocktailsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const height = kToolbarHeight + SearchField.height;
+    final query = MediaQuery.of(context);
+    final height = query.size.height * 0.4;
+    // const height = kToolbarHeight + SearchField.height;
     final topPadding = MediaQuery.of(context).viewPadding.top;
 
     return SliverAppBar(
@@ -15,6 +17,7 @@ class _CocktailsAppBar extends StatelessWidget {
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
       backgroundColor: AppTheme.background,
+      // TODO: фон
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: EdgeInsets.only(top: topPadding + 13),
