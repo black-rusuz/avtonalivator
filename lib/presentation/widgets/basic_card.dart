@@ -1,6 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/theme.dart';
+
+final _debugBorder =
+    Border.all(width: 2, color: Colors.lightGreenAccent.withOpacity(0.5));
 
 const _defaultShadow = [
   BoxShadow(
@@ -30,7 +34,7 @@ class BasicCard extends StatelessWidget {
   final BorderRadius borderRadius;
   final Color? color;
   final BoxShadow? shadow;
-  final Alignment alignment;
+  final Alignment? alignment;
   final VoidCallback? onTap;
 
   const BasicCard({
@@ -44,7 +48,7 @@ class BasicCard extends StatelessWidget {
     this.borderRadius = AppTheme.borderRadius,
     this.color,
     this.shadow,
-    this.alignment = Alignment.center,
+    this.alignment,
     this.onTap,
   });
 
@@ -61,7 +65,7 @@ class BasicCard extends StatelessWidget {
           padding: padding,
           decoration: BoxDecoration(
             color: color,
-            border: border,
+            border: kDebugMode ? _debugBorder : border,
             borderRadius: borderRadius,
             boxShadow: color == null
                 ? null
@@ -69,10 +73,12 @@ class BasicCard extends StatelessWidget {
                     ? [shadow!]
                     : _defaultShadow,
           ),
-          child: Align(
-            alignment: alignment,
-            child: child,
-          ),
+          child: alignment == null
+              ? child
+              : Align(
+                  alignment: alignment!,
+                  child: child,
+                ),
         ),
       ),
     );
