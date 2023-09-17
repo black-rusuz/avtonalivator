@@ -30,6 +30,7 @@ class BasicCard extends StatelessWidget {
   final BorderRadius borderRadius;
   final Color? color;
   final BoxShadow? shadow;
+  final Alignment alignment;
   final VoidCallback? onTap;
 
   const BasicCard({
@@ -43,6 +44,7 @@ class BasicCard extends StatelessWidget {
     this.borderRadius = AppTheme.borderRadius,
     this.color,
     this.shadow,
+    this.alignment = Alignment.center,
     this.onTap,
   });
 
@@ -58,7 +60,7 @@ class BasicCard extends StatelessWidget {
           height: height,
           padding: padding,
           decoration: BoxDecoration(
-            color: color ?? Theme.of(context).scaffoldBackgroundColor,
+            color: color,
             border: border,
             borderRadius: borderRadius,
             boxShadow: color == null
@@ -67,7 +69,10 @@ class BasicCard extends StatelessWidget {
                     ? [shadow!]
                     : _defaultShadow,
           ),
-          child: child,
+          child: Align(
+            alignment: alignment,
+            child: child,
+          ),
         ),
       ),
     );
