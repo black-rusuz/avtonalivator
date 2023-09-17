@@ -8,8 +8,8 @@ extension SearchSubstring on String {
     return result;
   }
 
-  bool searchIn(String pattern) {
-    final value = pattern.toLowerCase();
+  bool searchIn(String source) {
+    final value = source.toLowerCase();
     final result = value.startsWith(_this.toLowerCase());
     return result;
   }
