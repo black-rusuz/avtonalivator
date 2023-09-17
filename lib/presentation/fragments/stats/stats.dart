@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../core/theme.dart';
 import '../../strings.dart';
 import '../../widgets/basic_card.dart';
-import '../../widgets/basic_sliver_bar.dart';
 import 'widgets/counter.dart';
+
+part 'widgets/app_bar.dart';
 
 class StatsFragment extends StatelessWidget {
   const StatsFragment({super.key});
@@ -13,10 +14,7 @@ class StatsFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const BasicSliverBar(
-          title: Text(Strings.stats, style: AppTheme.pageTitle),
-          child: StatsCounter(liters: 0.92),
-        ),
+        const _StatsAppBar(),
         SliverToBoxAdapter(
           child: Ink(
             decoration: const BoxDecoration(
