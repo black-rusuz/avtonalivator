@@ -20,6 +20,8 @@ class AppTheme {
     visualDensity: VisualDensity.adaptivePlatformDensity,
     colorSchemeSeed: accent,
     textTheme: GoogleFonts.interTextTheme(),
+    scaffoldBackgroundColor: white,
+    appBarTheme: const AppBarTheme(backgroundColor: white),
     sliderTheme: SliderThemeData(
       trackHeight: 5,
       overlayShape: SliderComponentShape.noOverlay,
