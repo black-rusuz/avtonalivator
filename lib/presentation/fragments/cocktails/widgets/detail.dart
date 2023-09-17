@@ -7,6 +7,28 @@ import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
 
+void showDetail(BuildContext context, UiCocktail cocktail) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    clipBehavior: Clip.antiAlias,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: AppTheme.radius),
+    ),
+    builder: (_) {
+      return DraggableScrollableSheet(
+        expand: false,
+        builder: (_, controller) {
+          return CocktailDetail(
+            cocktail: cocktail,
+            controller: controller,
+          );
+        },
+      );
+    },
+  );
+}
+
 class CocktailDetail extends StatelessWidget {
   final UiCocktail cocktail;
   final ScrollController? controller;

@@ -30,28 +30,6 @@ class _CocktailsList extends StatelessWidget {
 
   const _CocktailsList({required this.cocktails});
 
-  void showDetail(BuildContext context, UiCocktail cocktail) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      clipBehavior: Clip.antiAlias,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: AppTheme.radius),
-      ),
-      builder: (_) {
-        return DraggableScrollableSheet(
-          expand: false,
-          builder: (_, controller) {
-            return CocktailDetail(
-              cocktail: cocktail,
-              controller: controller,
-            );
-          },
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final provider = context.read<CocktailsProvider>();
