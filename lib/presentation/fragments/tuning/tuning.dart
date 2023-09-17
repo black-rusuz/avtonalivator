@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/model/pump.dart';
 import '../../widgets/loader.dart';
+import '../cocktails/cocktails.dart';
 import 'bloc/tuning_bloc.dart';
 import 'widgets/tuning_card.dart';
 
@@ -44,7 +45,7 @@ class _TuningBody extends StatelessWidget {
     return TuningCard(
       pump: pump,
       setPump: (pump) => setPump(context, pump),
-      drinks: const [],
+      drinks: context.read<CocktailsProvider>().drinks,
     );
   }
 
