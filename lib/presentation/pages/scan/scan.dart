@@ -6,6 +6,7 @@ import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
+import '../../widgets/loader.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'cubit/scan_cubit.dart';
 import 'widgets/device_list.dart';
@@ -36,6 +37,22 @@ class ScanPage extends StatelessWidget {
   }
 
   Widget builder(BuildContext context, ScanState state) {
+    if (state is ScanFulfilled) return _ScanBody(state: state);
+    return const Loader();
+  }
+}
+
+class _ScanBody extends StatelessWidget {
+  final ScanFulfilled state;
+
+  const _ScanBody({required this.state});
+
+  void connectToDevice(BuildContext context, BluetoothDevice device) {
+    // context.read<ScanCubit>().connect(device);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final appBarHeight = mediaQuery.size.height * 0.4;
 
@@ -46,14 +63,8 @@ class ScanPage extends StatelessWidget {
         sliverAppBar: ScanAppBar(isConnecting: false, height: appBarHeight),
         bodyBuilder: (_, c) {
           return DeviceList(
-            devices: List.generate(
-              50,
-              (index) => BluetoothDevice(
-                name: 'Device $index',
-                address: index.hashCode.toString(),
-              ),
-            ),
-            onItemTap: (value) {},
+            devices: state.devices,
+            onItemTap: (device) => connectToDevice(context, device),
           );
         },
       ),

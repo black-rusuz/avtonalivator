@@ -8,3 +8,16 @@ abstract class ScanState extends Equatable {
 }
 
 class ScanInitial extends ScanState {}
+
+class ScanFulfilled extends ScanState {
+  final List<BluetoothDevice> devices;
+
+  const ScanFulfilled({
+    required this.devices,
+  });
+
+  @override
+  List<Object?> get props => [
+        [...devices],
+      ];
+}
