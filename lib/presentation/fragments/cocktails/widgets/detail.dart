@@ -68,6 +68,12 @@ class CocktailDetail extends StatelessWidget {
                 children: cocktail.drinks.map(drinkMapper).toList(),
               ),
             ),
+            if (cocktail.description.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 15, 30, 30),
+                child: Text(cocktail.description),
+              ),
+            const SizedBox(height: 80),
           ],
         ),
         Positioned(
