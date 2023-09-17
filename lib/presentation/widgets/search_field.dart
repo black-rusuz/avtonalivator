@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/theme.dart';
 import '../strings.dart';
 
 class SearchField extends StatelessWidget {
@@ -14,12 +15,15 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: onChanged,
-      controller: controller,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: const InputDecoration(
-        labelText: Strings.enterName,
+    return Ink(
+      color: AppTheme.white,
+      child: TextField(
+        onChanged: onChanged,
+        controller: controller,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: const InputDecoration(
+          labelText: Strings.enterName,
+        ),
       ),
     );
   }

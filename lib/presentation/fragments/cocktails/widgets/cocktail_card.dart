@@ -16,10 +16,10 @@ class CocktailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BasicCard(
-      padding: EdgeInsets.all(20),
+    return BasicCard(
+      padding: const EdgeInsets.all(20),
       color: AppTheme.white,
-      child: Text('Card'),
+      child: Text(cocktail.name),
     );
   }
 }
