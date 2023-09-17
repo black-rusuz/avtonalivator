@@ -24,6 +24,7 @@ class VolumeDialog extends StatelessWidget {
       data: Theme.of(context).copyWith(),
       child: AlertDialog(
         content: TextField(
+          autofocus: true,
           onChanged: (s) => setVolume(double.tryParse(s) ?? 0),
           keyboardType: TextInputType.number,
           decoration: const InputDecoration(
