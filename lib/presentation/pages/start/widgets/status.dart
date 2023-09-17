@@ -32,9 +32,9 @@ class StartStatus extends StatelessWidget {
                     style: AppTheme.text,
                   ),
                 ),
-                TextButton(
+                ElevatedButton(
                   onPressed: () => requestEnable(context),
-                  style: TextButton.styleFrom(
+                  style: ElevatedButton.styleFrom(
                     foregroundColor: AppTheme.black,
                     backgroundColor: AppTheme.accent,
                     minimumSize: const Size(0, 60),
