@@ -61,13 +61,11 @@ class AppTheme {
 
   static const textLight = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w500,
     color: greyLight,
   );
 
   static const additional = TextStyle(
     fontSize: 10,
-    fontWeight: FontWeight.w400,
     color: grey,
   );
 }

@@ -74,7 +74,7 @@ class TuningCard extends StatelessWidget {
 
   // * Presentation
 
-  String get name {
+  String get pickerTitle {
     return pump.name.isEmpty ? Strings.pickDrink : pump.name;
   }
 
@@ -82,12 +82,7 @@ class TuningCard extends StatelessWidget {
     return pump.volume.toStringAsFixed(0) + Strings.ml;
   }
 
-  static const textStyle = TextStyle(
-    fontSize: 14,
-    height: 1,
-    fontWeight: FontWeight.w500,
-    color: AppTheme.black,
-  );
+  static final textStyle = AppTheme.text.copyWith(height: 1);
 
   TextStyle get numberStyle => TextStyle(
         fontSize: 100,
@@ -97,12 +92,8 @@ class TuningCard extends StatelessWidget {
             : AppTheme.greyLight.withOpacity(0.2),
       );
 
-  TextStyle get volumeStyle => TextStyle(
-        fontSize: 14,
-        height: 1,
-        fontWeight: FontWeight.w500,
-        color: isActive ? AppTheme.black.withOpacity(0.7) : AppTheme.greyLight,
-      );
+  TextStyle get volumeStyle => textStyle.copyWith(
+      color: isActive ? AppTheme.black.withOpacity(0.7) : AppTheme.greyLight);
 
   SliderThemeData sliderStyle(BuildContext context) {
     return SliderTheme.of(context).copyWith(
@@ -152,7 +143,7 @@ class TuningCard extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           color: Colors.redAccent,
                           child: AnimatedText(
-                            name,
+                            pickerTitle,
                             duration: _duration,
                             style: textStyle,
                           ),
