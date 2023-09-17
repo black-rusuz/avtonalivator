@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Белый русский",
-      "imageUrl": "https://static.vecteezy.com/system/resources/previews/019/607/012/non_2x/cocktail-graphic-clipart-design-free-png.png",
+      "imageUrl": "https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg",
       "drinks": [
         {
           "name": "Водка",
@@ -22,7 +22,7 @@
     {
       "id": 2,
       "name": "Джин тоник",
-      "imageUrl": "https://static.vecteezy.com/system/resources/previews/019/607/012/non_2x/cocktail-graphic-clipart-design-free-png.png",
+      "imageUrl": "https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg",
       "drinks": [
         {
           "name": "Джин",
@@ -37,7 +37,7 @@
     {
       "id": 3,
       "name": "Кровавая Мэри",
-      "imageUrl": "https://static.vecteezy.com/system/resources/previews/019/607/012/non_2x/cocktail-graphic-clipart-design-free-png.png",
+      "imageUrl": "https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg",
       "drinks": [
         {
           "name": "Водка",
