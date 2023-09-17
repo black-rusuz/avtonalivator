@@ -7,7 +7,7 @@ import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
 
-const _horizontal = EdgeInsets.symmetric(horizontal: 15);
+const _horizontal = AppTheme.horizontalPadding;
 
 void showDetail(BuildContext context, UiCocktail cocktail) {
   showModalBottomSheet(

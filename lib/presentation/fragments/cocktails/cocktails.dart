@@ -47,7 +47,7 @@ class _CocktailsList extends StatelessWidget {
         return ListView.separated(
           shrinkWrap: true,
           controller: controller,
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+          padding: AppTheme.listPadding,
           itemCount: cocktails.length,
           itemBuilder: itemBuilder,
           separatorBuilder: separatorBuilder,

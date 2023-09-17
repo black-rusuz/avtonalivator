@@ -153,7 +153,7 @@ class TuningCard extends StatelessWidget {
                       BasicCard(
                         onTap: () => openVolumeField(context),
                         height: 50,
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: AppTheme.horizontalPadding,
                         alignment: Alignment.centerLeft,
                         child: AnimatedText(
                           volume,
