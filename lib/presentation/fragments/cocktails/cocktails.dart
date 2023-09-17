@@ -19,15 +19,7 @@ class CocktailsFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cocktails = context.watch<CocktailsProvider>().cocktails;
-    return _CocktailsList(
-      cocktails: [
-        ...cocktails,
-        ...cocktails,
-        ...cocktails,
-        ...cocktails,
-        ...cocktails,
-      ],
-    );
+    return _CocktailsList(cocktails: cocktails);
   }
 }
 
