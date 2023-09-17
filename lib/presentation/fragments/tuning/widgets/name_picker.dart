@@ -59,11 +59,13 @@ class _NamePickerState extends State<NamePicker> {
             child: SearchField(onChanged: setValue),
           ),
           Expanded(
-            child: CupertinoPicker(
-              itemExtent: 32,
-              onSelectedItemChanged: setDrink,
-              children: drinks.map(drinkMapper).toList(),
-            ),
+            child: drinks.isEmpty
+                ? const SizedBox()
+                : CupertinoPicker(
+                    itemExtent: 32,
+                    onSelectedItemChanged: setDrink,
+                    children: drinks.map(drinkMapper).toList(),
+                  ),
           ),
           SizedBox(height: query.viewInsets.bottom),
           const SizedBox(height: 10),
