@@ -11,6 +11,11 @@ class VolumeDialog extends StatelessWidget {
     required this.setVolume,
   });
 
+  void cancel(BuildContext context) {
+    setVolume(lastValue);
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -26,10 +31,7 @@ class VolumeDialog extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () {
-            setVolume(lastValue);
-            Navigator.of(context).pop();
-          },
+          onPressed: () => cancel(context),
           child: const Text('Закрыть'),
         ),
         ElevatedButton(

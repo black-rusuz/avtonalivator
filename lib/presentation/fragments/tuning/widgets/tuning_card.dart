@@ -49,7 +49,7 @@ class TuningCard extends StatelessWidget {
       builder: (_) {
         return NamePicker(
           drinks: drinks,
-          setName: setName,
+          setDrink: setName,
         );
       },
     );
