@@ -5,17 +5,19 @@ import '../../core/theme.dart';
 class BasicSwitch extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
+  final double height;
 
   const BasicSwitch({
     super.key,
     required this.value,
     required this.onChanged,
+    this.height = 40,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: height,
       child: FittedBox(
         fit: BoxFit.contain,
         child: CupertinoSwitch(

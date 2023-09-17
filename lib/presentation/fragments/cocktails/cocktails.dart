@@ -10,6 +10,7 @@ import 'provider.dart';
 import 'widgets/background.dart';
 import 'widgets/cocktail_card.dart';
 import 'widgets/detail.dart';
+import 'widgets/filter_card.dart';
 
 export 'provider.dart';
 
@@ -37,6 +38,10 @@ class _CocktailsList extends StatelessWidget {
       sliverAppBar: _CocktailsAppBar(
         search: provider.searchCocktail,
         background: CocktailsBackground(cocktails: provider.cocktails),
+      ),
+      body: FilterCard(
+        isActive: false,
+        onChanged: (v) {},
       ),
       bodyBuilder: (_, controller) {
         return ListView.separated(
