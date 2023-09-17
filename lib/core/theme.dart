@@ -11,6 +11,8 @@ class AppTheme {
   static const divider = Color(0xFFEDEDED);
   static const background = Colors.white;
 
+  static const double paddingValue = 15;
+  static const padding = EdgeInsets.all(paddingValue);
   static const radius = Radius.circular(20);
   static const borderRadius = BorderRadius.all(Radius.circular(20));
   static const border = OutlineInputBorder(borderRadius: borderRadius);

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 import '../strings.dart';
 
-const _padding = EdgeInsets.all(15);
+const _padding = AppTheme.padding;
 
 class SearchField extends StatelessWidget {
   static final double height = 50 + _padding.vertical;
@@ -20,7 +20,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: AppTheme.padding,
       child: Ink(
         decoration: const BoxDecoration(
           color: AppTheme.background,

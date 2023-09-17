@@ -110,7 +110,7 @@ class _DrinkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasicCard(
       color: AppTheme.background,
-      padding: const EdgeInsets.all(15),
+      padding: AppTheme.padding,
       margin: EdgeInsets.only(bottom: gap),
       child: Row(
         children: [

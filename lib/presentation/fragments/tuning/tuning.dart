@@ -41,7 +41,7 @@ class _TuningBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.all(15),
+      padding: AppTheme.padding,
       itemCount: state.pumps.length,
       itemBuilder: itemBuilder,
       separatorBuilder: separatorBuilder,

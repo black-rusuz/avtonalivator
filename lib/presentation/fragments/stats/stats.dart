@@ -30,7 +30,7 @@ class StatsFragment extends StatelessWidget {
 
   Widget? itemBuilder(BuildContext context, int index) {
     return const BasicCard(
-      padding: EdgeInsets.all(15),
+      padding: AppTheme.padding,
       color: AppTheme.background,
       child: Text('Card'),
     );

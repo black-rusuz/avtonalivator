@@ -65,7 +65,7 @@ class _DeviceCard extends StatelessWidget {
     return BasicCard(
       onTap: onTap,
       color: AppTheme.background,
-      padding: const EdgeInsets.all(15),
+      padding: AppTheme.padding,
       child: SizedBox(
         height: 46,
         child: Row(

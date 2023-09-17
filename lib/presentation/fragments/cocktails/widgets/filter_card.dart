@@ -20,7 +20,7 @@ class FilterCard extends StatelessWidget {
     return BasicCard(
       onTap: () => onChanged(!isActive),
       margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-      padding: const EdgeInsets.all(15),
+      padding: AppTheme.padding,
       color: isActive ? AppTheme.accent : AppTheme.background,
       borderRadius: BorderRadius.circular(100),
       child: Row(
