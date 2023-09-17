@@ -7,6 +7,8 @@ import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
 
+const _horizontal = EdgeInsets.symmetric(horizontal: 15);
+
 void showDetail(BuildContext context, UiCocktail cocktail) {
   showModalBottomSheet(
     context: context,
@@ -55,25 +57,28 @@ class CocktailDetail extends StatelessWidget {
               cocktail.image,
               borderRadius: const BorderRadius.vertical(top: AppTheme.radius),
             ),
+            const SizedBox(height: 30),
             Padding(
-              padding: const EdgeInsets.fromLTRB(30, 30, 30, 15),
+              padding: _horizontal * 2,
               child: Text(
                 cocktail.name,
                 style: AppTheme.pageTitle.copyWith(fontSize: 24),
               ),
             ),
+            const SizedBox(height: 15),
             Padding(
-              padding: const EdgeInsets.all(15),
+              padding: _horizontal,
               child: Column(
                 children: cocktail.drinks.map(drinkMapper).toList(),
               ),
             ),
+            const SizedBox(height: 15),
             if (cocktail.description.isNotEmpty)
               Padding(
-                padding: const EdgeInsets.fromLTRB(30, 15, 30, 30),
+                padding: _horizontal * 2,
                 child: Text(cocktail.description),
               ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 120),
           ],
         ),
         Positioned(
@@ -111,7 +116,7 @@ class _DrinkCard extends StatelessWidget {
         children: [
           const Icon(
             Icons.local_drink_rounded,
-            size: 48,
+            size: 36,
           ),
           const SizedBox(width: 8),
           Expanded(
