@@ -6,6 +6,7 @@ import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
+import '../../widgets/sliver_scaffold.dart';
 import 'cubit/scan_cubit.dart';
 import 'widgets/device_list.dart';
 
@@ -41,25 +42,20 @@ class ScanPage extends StatelessWidget {
     return RefreshIndicator(
       edgeOffset: mediaQuery.viewPadding.top + appBarHeight,
       onRefresh: () async => context.read<ScanCubit>().scan(),
-      child: CustomScrollView(
-        slivers: [
-          ScanAppBar(
-            isConnecting: false,
-            height: appBarHeight,
-          ),
-          SliverToBoxAdapter(
-            child: DeviceList(
-              devices: List.generate(
-                50,
-                (index) => BluetoothDevice(
-                  name: 'Device $index',
-                  address: index.hashCode.toString(),
-                ),
+      child: SliverScaffold(
+        sliverAppBar: ScanAppBar(isConnecting: false, height: appBarHeight),
+        bodyBuilder: (_, c) {
+          return DeviceList(
+            devices: List.generate(
+              50,
+              (index) => BluetoothDevice(
+                name: 'Device $index',
+                address: index.hashCode.toString(),
               ),
-              onItemTap: (value) {},
             ),
-          ),
-        ],
+            onItemTap: (value) {},
+          );
+        },
       ),
     );
   }

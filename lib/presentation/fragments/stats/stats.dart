@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme.dart';
 import '../../strings.dart';
 import '../../widgets/basic_card.dart';
+import '../../widgets/sliver_scaffold.dart';
 import 'widgets/counter.dart';
 
 part 'widgets/app_bar.dart';
@@ -12,29 +13,18 @@ class StatsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = ScrollController();
-
-    return CustomScrollView(
-      controller: controller,
-      slivers: [
-        const _StatsAppBar(),
-        SliverToBoxAdapter(
-          child: Ink(
-            decoration: const BoxDecoration(
-              color: AppTheme.background,
-              borderRadius: BorderRadius.vertical(top: AppTheme.radius),
-            ),
-            child: ListView.separated(
-              shrinkWrap: true,
-              controller: controller,
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
-              itemCount: 20,
-              itemBuilder: itemBuilder,
-              separatorBuilder: separatorBuilder,
-            ),
-          ),
-        ),
-      ],
+    return SliverScaffold(
+      sliverAppBar: const _StatsAppBar(),
+      bodyBuilder: (_, controller) {
+        return ListView.separated(
+          shrinkWrap: true,
+          controller: controller,
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+          itemCount: 20,
+          itemBuilder: itemBuilder,
+          separatorBuilder: separatorBuilder,
+        );
+      },
     );
   }
 

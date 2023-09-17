@@ -5,6 +5,7 @@ import '../../../../core/theme.dart';
 import '../../../domain/model/cocktail.dart';
 import '../../strings.dart';
 import '../../widgets/search_field.dart';
+import '../../widgets/sliver_scaffold.dart';
 import 'provider.dart';
 import 'widgets/cocktail_card.dart';
 
@@ -37,24 +38,19 @@ class _CocktailsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = ScrollController();
     final provider = context.read<CocktailsProvider>();
-
-    return CustomScrollView(
-      controller: controller,
-      slivers: [
-        _CocktailsAppBar(search: provider.searchCocktail),
-        SliverToBoxAdapter(
-          child: ListView.separated(
-            shrinkWrap: true,
-            controller: controller,
-            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
-            itemCount: cocktails.length,
-            itemBuilder: itemBuilder,
-            separatorBuilder: separatorBuilder,
-          ),
-        ),
-      ],
+    return SliverScaffold(
+      sliverAppBar: _CocktailsAppBar(search: provider.searchCocktail),
+      bodyBuilder: (_, controller) {
+        return ListView.separated(
+          shrinkWrap: true,
+          controller: controller,
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+          itemCount: cocktails.length,
+          itemBuilder: itemBuilder,
+          separatorBuilder: separatorBuilder,
+        );
+      },
     );
   }
 
