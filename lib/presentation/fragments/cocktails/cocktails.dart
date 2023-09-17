@@ -8,6 +8,7 @@ import '../../widgets/search_field.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'provider.dart';
 import 'widgets/cocktail_card.dart';
+import 'widgets/detail.dart';
 
 export 'provider.dart';
 
@@ -27,6 +28,18 @@ class _CocktailsList extends StatelessWidget {
   final List<UiCocktail> cocktails;
 
   const _CocktailsList({required this.cocktails});
+
+  void showDetail(BuildContext context, UiCocktail cocktail) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: AppTheme.radius),
+      ),
+      builder: (_) {
+        return CocktailDetail(cocktail: cocktail);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +63,7 @@ class _CocktailsList extends StatelessWidget {
     final item = cocktails[index];
     return CocktailCard(
       cocktail: item,
-      onItemTap: (v) {},
+      onItemTap: (cocktail) => showDetail(context, cocktail),
     );
   }
 

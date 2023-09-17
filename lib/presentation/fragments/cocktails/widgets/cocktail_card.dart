@@ -18,6 +18,7 @@ class CocktailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasicCard(
+      onTap: () => onItemTap(cocktail),
       color: AppTheme.background,
       padding: const EdgeInsets.all(10),
       borderRadius: BorderRadius.circular(50),
