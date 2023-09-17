@@ -17,7 +17,7 @@ class TuningFragment extends StatelessWidget {
   }
 
   Widget builder(BuildContext context, TuningState state) {
-    if (state is TuningFulfilled) return TuningBody(state: state);
+    if (state is TuningFulfilled) return _TuningBody(state: state);
     return const Loader();
   }
 }
@@ -33,10 +33,10 @@ class Loader extends StatelessWidget {
   }
 }
 
-class TuningBody extends StatelessWidget {
+class _TuningBody extends StatelessWidget {
   final TuningFulfilled state;
 
-  const TuningBody({super.key, required this.state});
+  const _TuningBody({required this.state});
 
   @override
   Widget build(BuildContext context) {

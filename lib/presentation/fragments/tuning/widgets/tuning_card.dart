@@ -20,7 +20,8 @@ class TuningCard extends StatelessWidget {
   );
 
   TextStyle get numberStyle => TextStyle(
-        fontSize: 96,
+        fontSize: 100,
+        height: 1,
         color: isActive
             ? AppTheme.black.withOpacity(0.1)
             : AppTheme.greyLight.withOpacity(0.2),
@@ -56,10 +57,15 @@ class TuningCard extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              Positioned(
-                top: -12,
+              Positioned.fill(
                 left: 10,
-                child: Text(pump.id.toString(), style: numberStyle),
+                right: null,
+                child: Center(
+                  child: Text(
+                    pump.id.toString(),
+                    style: numberStyle,
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 5),
