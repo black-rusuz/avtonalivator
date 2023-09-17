@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     Strings.tuning,
     null,
     null,
-    Strings.settings,
+    null,
   ];
 
   static const bodies = [

@@ -1,8 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/theme.dart';
+import '../../strings.dart';
+import '../../widgets/sliver_scaffold.dart';
 import '../tuning/bloc/tuning_bloc.dart';
 import 'widgets/settings_card.dart';
+
+part 'widgets/app_bar.dart';
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
@@ -15,11 +20,18 @@ class SettingsFragment extends StatelessWidget {
   }
 
   Widget builder(BuildContext context, TuningState state) {
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
-      itemCount: 8,
-      itemBuilder: itemBuilder,
-      separatorBuilder: separatorBuilder,
+    return SliverScaffold(
+      sliverAppBar: const _SettingsAppBar(),
+      bodyBuilder: (_, controller) {
+        return ListView.separated(
+          shrinkWrap: true,
+          controller: controller,
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+          itemCount: 20,
+          itemBuilder: itemBuilder,
+          separatorBuilder: separatorBuilder,
+        );
+      },
     );
   }
 
