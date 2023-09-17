@@ -18,18 +18,25 @@ class _CocktailsAppBar extends StatelessWidget {
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
       backgroundColor: AppTheme.background,
-      // TODO: фон
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           children: [
             if (background != null) Positioned.fill(child: background!),
             Positioned.fill(
-              child: Padding(
-                padding: EdgeInsets.only(top: topPadding + 13),
-                child: const Text(
-                  Strings.cocktails,
-                  textAlign: TextAlign.center,
-                  style: AppTheme.pageTitle,
+              top: topPadding + 13,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
+                  decoration: const BoxDecoration(
+                    color: AppTheme.background,
+                    borderRadius: AppTheme.borderRadius,
+                  ),
+                  child: const Text(
+                    Strings.cocktails,
+                    style: AppTheme.pageTitle,
+                  ),
                 ),
               ),
             ),
