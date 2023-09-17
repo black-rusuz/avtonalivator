@@ -17,7 +17,7 @@ class UiPump extends Equatable {
 
   static UiPump get base => const UiPump(
         id: 0,
-        name: 'Напиток',
+        name: '',
         volume: 25,
         isEnabled: true,
       );

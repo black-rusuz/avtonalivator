@@ -147,7 +147,7 @@ class TuningCard extends StatelessWidget {
                         child: BasicCard(
                           onTap: () => openNamePicker(context),
                           height: 50,
-                          padding: const EdgeInsets.only(left: 50, right: 30),
+                          padding: const EdgeInsets.only(left: 50, right: 15),
                           alignment: Alignment.centerLeft,
                           color: Colors.redAccent,
                           child: AnimatedText(
