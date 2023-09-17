@@ -12,6 +12,7 @@ class ApiCocktail with _$ApiCocktail {
     @Default('') String name,
     @Default('') String imageUrl,
     @Default([]) List<ApiDrink> drinks,
+    @Default('') String description,
   }) = _ApiCocktail;
 
   factory ApiCocktail.fromJson(Map<String, dynamic> json) =>

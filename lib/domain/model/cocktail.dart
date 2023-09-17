@@ -8,12 +8,14 @@ class UiCocktail extends Equatable {
   final String name;
   final String image;
   final List<UiDrink> drinks;
+  final String description;
 
   const UiCocktail({
     required this.id,
     required this.name,
     required this.image,
     required this.drinks,
+    required this.description,
   });
 
   factory UiCocktail.fromApi(ApiCocktail cocktail) {
@@ -22,6 +24,7 @@ class UiCocktail extends Equatable {
       name: cocktail.name,
       image: cocktail.imageUrl,
       drinks: cocktail.drinks.map(UiDrink.fromApi).toList(),
+      description: cocktail.description,
     );
   }
 

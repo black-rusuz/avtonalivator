@@ -15,6 +15,7 @@ _$_ApiCocktail _$$_ApiCocktailFromJson(Map<String, dynamic> json) =>
               ?.map((e) => ApiDrink.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      description: json['description'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_ApiCocktailToJson(_$_ApiCocktail instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$_ApiCocktailToJson(_$_ApiCocktail instance) =>
       'name': instance.name,
       'imageUrl': instance.imageUrl,
       'drinks': instance.drinks.map((e) => e.toJson()).toList(),
+      'description': instance.description,
     };

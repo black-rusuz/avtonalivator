@@ -24,6 +24,7 @@ mixin _$ApiCocktail {
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   List<ApiDrink> get drinks => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,12 @@ abstract class $ApiCocktailCopyWith<$Res> {
           ApiCocktail value, $Res Function(ApiCocktail) then) =
       _$ApiCocktailCopyWithImpl<$Res, ApiCocktail>;
   @useResult
-  $Res call({int id, String name, String imageUrl, List<ApiDrink> drinks});
+  $Res call(
+      {int id,
+      String name,
+      String imageUrl,
+      List<ApiDrink> drinks,
+      String description});
 }
 
 /// @nodoc
@@ -57,6 +63,7 @@ class _$ApiCocktailCopyWithImpl<$Res, $Val extends ApiCocktail>
     Object? name = null,
     Object? imageUrl = null,
     Object? drinks = null,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,6 +82,10 @@ class _$ApiCocktailCopyWithImpl<$Res, $Val extends ApiCocktail>
           ? _value.drinks
           : drinks // ignore: cast_nullable_to_non_nullable
               as List<ApiDrink>,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -87,7 +98,12 @@ abstract class _$$_ApiCocktailCopyWith<$Res>
       __$$_ApiCocktailCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String imageUrl, List<ApiDrink> drinks});
+  $Res call(
+      {int id,
+      String name,
+      String imageUrl,
+      List<ApiDrink> drinks,
+      String description});
 }
 
 /// @nodoc
@@ -105,6 +121,7 @@ class __$$_ApiCocktailCopyWithImpl<$Res>
     Object? name = null,
     Object? imageUrl = null,
     Object? drinks = null,
+    Object? description = null,
   }) {
     return _then(_$_ApiCocktail(
       id: null == id
@@ -123,6 +140,10 @@ class __$$_ApiCocktailCopyWithImpl<$Res>
           ? _value._drinks
           : drinks // ignore: cast_nullable_to_non_nullable
               as List<ApiDrink>,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -134,7 +155,8 @@ class _$_ApiCocktail implements _ApiCocktail {
       {required this.id,
       this.name = '',
       this.imageUrl = '',
-      final List<ApiDrink> drinks = const []})
+      final List<ApiDrink> drinks = const [],
+      this.description = ''})
       : _drinks = drinks;
 
   factory _$_ApiCocktail.fromJson(Map<String, dynamic> json) =>
@@ -158,8 +180,12 @@ class _$_ApiCocktail implements _ApiCocktail {
   }
 
   @override
+  @JsonKey()
+  final String description;
+
+  @override
   String toString() {
-    return 'ApiCocktail(id: $id, name: $name, imageUrl: $imageUrl, drinks: $drinks)';
+    return 'ApiCocktail(id: $id, name: $name, imageUrl: $imageUrl, drinks: $drinks, description: $description)';
   }
 
   @override
@@ -171,13 +197,15 @@ class _$_ApiCocktail implements _ApiCocktail {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            const DeepCollectionEquality().equals(other._drinks, _drinks));
+            const DeepCollectionEquality().equals(other._drinks, _drinks) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, imageUrl,
-      const DeepCollectionEquality().hash(_drinks));
+      const DeepCollectionEquality().hash(_drinks), description);
 
   @JsonKey(ignore: true)
   @override
@@ -198,7 +226,8 @@ abstract class _ApiCocktail implements ApiCocktail {
       {required final int id,
       final String name,
       final String imageUrl,
-      final List<ApiDrink> drinks}) = _$_ApiCocktail;
+      final List<ApiDrink> drinks,
+      final String description}) = _$_ApiCocktail;
 
   factory _ApiCocktail.fromJson(Map<String, dynamic> json) =
       _$_ApiCocktail.fromJson;
@@ -211,6 +240,8 @@ abstract class _ApiCocktail implements ApiCocktail {
   String get imageUrl;
   @override
   List<ApiDrink> get drinks;
+  @override
+  String get description;
   @override
   @JsonKey(ignore: true)
   _$$_ApiCocktailCopyWith<_$_ApiCocktail> get copyWith =>
