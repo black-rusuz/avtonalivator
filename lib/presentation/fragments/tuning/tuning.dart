@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../domain/model/pump.dart';
 import 'bloc/tuning_bloc.dart';
 import 'widgets/tuning_card.dart';
 
@@ -50,7 +51,15 @@ class _TuningBody extends StatelessWidget {
 
   Widget itemBuilder(BuildContext context, int index) {
     final pump = state.pumps[index];
-    return TuningCard(pump: pump);
+    return TuningCard(
+      pump: pump,
+      setPump: (pump) => setPump(context, pump),
+    );
+  }
+
+  void setPump(BuildContext context, UiPump pump) {
+    final bloc = context.read<TuningBloc>();
+    bloc.add(SetPump(pump));
   }
 
   Widget separatorBuilder(BuildContext context, int index) {
