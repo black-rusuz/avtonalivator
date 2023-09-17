@@ -33,7 +33,7 @@ class Strings {
   static const ml = 'мл';
 
   static const enterName = 'Введите название';
-  static const enterVolume = 'Введите объём';
+  static const enterVolume = 'Введите объём (мл)';
   static const cancel = 'Закрыть';
   static const ok = 'Ок';
 
