@@ -9,8 +9,13 @@ import '../../../widgets/basic_image.dart';
 
 class CocktailDetail extends StatelessWidget {
   final UiCocktail cocktail;
+  final ScrollController? controller;
 
-  const CocktailDetail({super.key, required this.cocktail});
+  const CocktailDetail({
+    super.key,
+    required this.cocktail,
+    this.controller,
+  });
 
   Widget drinkMapper(UiDrink drink) {
     return _DrinkCard(drink: drink, gap: 10);
@@ -18,26 +23,38 @@ class CocktailDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BasicCard(
-      child: ListView(
-        controller: PrimaryScrollController.of(context),
-        children: [
-          BasicImage(
-            cocktail.image,
-            borderRadius: const BorderRadius.vertical(top: AppTheme.radius),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 30, 30, 15),
-            child: Text(cocktail.name, style: AppTheme.pageTitle),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              children: cocktail.drinks.map(drinkMapper).toList(),
+    return Stack(
+      children: [
+        ListView(
+          shrinkWrap: true,
+          controller: controller,
+          children: [
+            BasicImage(
+              cocktail.image,
+              borderRadius: const BorderRadius.vertical(top: AppTheme.radius),
             ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(30, 30, 30, 15),
+              child: Text(cocktail.name, style: AppTheme.pageTitle),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                children: cocktail.drinks.map(drinkMapper).toList(),
+              ),
+            ),
+          ],
+        ),
+        Positioned(
+          bottom: 30,
+          right: 30,
+          child: FloatingActionButton.extended(
+            onPressed: () {},
+            icon: const Icon(Icons.water_drop),
+            label: const Text(Strings.tuning),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

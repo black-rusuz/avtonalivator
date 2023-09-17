@@ -33,11 +33,20 @@ class _CocktailsList extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      clipBehavior: Clip.antiAlias,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: AppTheme.radius),
       ),
       builder: (_) {
-        return CocktailDetail(cocktail: cocktail);
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (_, controller) {
+            return CocktailDetail(
+              cocktail: cocktail,
+              controller: controller,
+            );
+          },
+        );
       },
     );
   }
