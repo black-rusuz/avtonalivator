@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../strings.dart';
+
 class VolumeDialog extends StatelessWidget {
   final double lastValue;
   final ValueChanged<double> setVolume;
@@ -25,7 +27,7 @@ class VolumeDialog extends StatelessWidget {
           onChanged: (s) => setVolume(double.tryParse(s) ?? 0),
           keyboardType: TextInputType.number,
           decoration: const InputDecoration(
-            labelText: 'Введите объём',
+            labelText: Strings.enterVolume,
           ),
           inputFormatters: [
             FilteringTextInputFormatter.deny(',', replacementString: '.'),
@@ -34,11 +36,11 @@ class VolumeDialog extends StatelessWidget {
         actions: [
           OutlinedButton(
             onPressed: () => cancel(context),
-            child: const Text('Закрыть'),
+            child: const Text(Strings.cancel),
           ),
           FilledButton(
             onPressed: Navigator.of(context).pop,
-            child: const Text('Ок'),
+            child: const Text(Strings.ok),
           ),
         ],
       ),

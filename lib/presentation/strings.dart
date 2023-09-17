@@ -1,3 +1,4 @@
+/// Далеко не локализация, но лучше, чем распихать строки по всей вёрстке
 class Strings {
   // * General
 
@@ -26,4 +27,20 @@ class Strings {
   static const cocktails = 'Коктейли';
   static const stats = 'Статистика';
   static const settings = 'Настройки';
+
+  // * Common
+
+  static const pickDrink = 'Выберите напиток';
+  static const ml = 'мл';
+
+  static const enterName = 'Введите название';
+  static const enterVolume = 'Введите объём';
+  static const cancel = 'Закрыть';
+  static const ok = 'Ок';
+
+  // * Stats
+
+  static const oneLiter = 'литр выпит';
+  static const fewLiters = 'литра выпито';
+  static const manyLiters = 'литров выпито';
 }

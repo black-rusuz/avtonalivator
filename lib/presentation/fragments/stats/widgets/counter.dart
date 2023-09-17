@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../../../core/theme.dart';
+import '../../../strings.dart';
 
 class StatsCounter extends StatelessWidget {
   final double liters;
@@ -10,13 +11,13 @@ class StatsCounter extends StatelessWidget {
   const StatsCounter({super.key, required this.liters});
 
   String get litersWord {
-    if (liters < 1) return 'литра выпито';
+    if (liters < 1) return Strings.fewLiters;
     switch (liters.floor() % 100) {
       case 11:
       case 12:
       case 13:
       case 14:
-        return 'литров выпито';
+        return Strings.manyLiters;
     }
     switch (liters.floor() % 10) {
       case 0:
@@ -25,18 +26,18 @@ class StatsCounter extends StatelessWidget {
       case 7:
       case 8:
       case 9:
-        return 'литров выпито';
+        return Strings.manyLiters;
       case 1:
-        return 'литр выпит';
+        return Strings.oneLiter;
       case 2:
       case 3:
       case 4:
-        return 'литра выпито';
+        return Strings.fewLiters;
     }
-    return 'литров выпито';
+    return Strings.manyLiters;
   }
 
-  double get value {
+  double get percent {
     if (liters < 1) return liters;
     switch (liters.floor().toString().length) {
       case 1:
@@ -58,7 +59,7 @@ class StatsCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
-      percent: value,
+      percent: percent,
       lineWidth: 10,
       radius: MediaQuery.of(context).size.height * 0.4 / 3,
       animation: true,
@@ -74,8 +75,8 @@ class StatsCounter extends StatelessWidget {
             liters < 10
                 ? liters.toStringAsFixed(2)
                 : liters < 100
-                ? liters.toStringAsFixed(1)
-                : liters.floor().toString(),
+                    ? liters.toStringAsFixed(1)
+                    : liters.floor().toString(),
             style: GoogleFonts.inter(
               fontSize: 64,
               fontWeight: FontWeight.w900,

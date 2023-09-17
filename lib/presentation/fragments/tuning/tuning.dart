@@ -54,20 +54,7 @@ class _TuningBody extends StatelessWidget {
     return TuningCard(
       pump: pump,
       setPump: (pump) => setPump(context, pump),
-      drinks: const [
-        'Виски',
-        'Водка',
-        'Кола',
-        'Виски',
-        'Водка',
-        'Кола',
-        'Виски',
-        'Водка',
-        'Кола',
-        'Виски',
-        'Водка',
-        'Кола',
-      ],
+      drinks: const [],
     );
   }
 

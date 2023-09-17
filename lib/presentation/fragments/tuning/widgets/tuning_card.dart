@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
 import '../../../../domain/model/pump.dart';
+import '../../../strings.dart';
 import '../../../widgets/animated_text.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_switch.dart';
@@ -73,7 +74,13 @@ class TuningCard extends StatelessWidget {
 
   // * Presentation
 
-  String get name => pump.name.isEmpty ? 'Выберите напиток' : pump.name;
+  String get name {
+    return pump.name.isEmpty ? Strings.pickDrink : pump.name;
+  }
+
+  String get volume {
+    return pump.volume.toStringAsFixed(0) + Strings.ml;
+  }
 
   static const textStyle = TextStyle(
     fontSize: 14,
@@ -157,7 +164,7 @@ class TuningCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         alignment: Alignment.centerLeft,
                         child: AnimatedText(
-                          '${pump.volume.toStringAsFixed(0)}мл',
+                          volume,
                           duration: _duration,
                           style: volumeStyle,
                         ),

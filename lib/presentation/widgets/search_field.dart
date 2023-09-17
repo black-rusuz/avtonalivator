@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../strings.dart';
+
 class SearchField extends StatelessWidget {
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
@@ -17,7 +19,7 @@ class SearchField extends StatelessWidget {
       controller: controller,
       textCapitalization: TextCapitalization.sentences,
       decoration: const InputDecoration(
-        labelText: 'Введите название',
+        labelText: Strings.enterName,
       ),
     );
   }
