@@ -1,9 +1,10 @@
 part of '../cocktails.dart';
 
 class _CocktailsAppBar extends StatelessWidget {
+  final Widget? background;
   final ValueChanged<String>? search;
 
-  const _CocktailsAppBar({this.search});
+  const _CocktailsAppBar({this.search, this.background});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +20,20 @@ class _CocktailsAppBar extends StatelessWidget {
       backgroundColor: AppTheme.background,
       // TODO: фон
       flexibleSpace: FlexibleSpaceBar(
-        background: Padding(
-          padding: EdgeInsets.only(top: topPadding + 13),
-          child: const Text(
-            Strings.cocktails,
-            textAlign: TextAlign.center,
-            style: AppTheme.pageTitle,
-          ),
+        background: Stack(
+          children: [
+            if (background != null) Positioned.fill(child: background!),
+            Positioned.fill(
+              child: Padding(
+                padding: EdgeInsets.only(top: topPadding + 13),
+                child: const Text(
+                  Strings.cocktails,
+                  textAlign: TextAlign.center,
+                  style: AppTheme.pageTitle,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       bottom: PreferredSize(

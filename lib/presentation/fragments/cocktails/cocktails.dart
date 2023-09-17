@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/theme.dart';
 import '../../../domain/model/cocktail.dart';
 import '../../strings.dart';
+import '../../widgets/loader.dart';
 import '../../widgets/search_field.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'provider.dart';
@@ -55,7 +56,10 @@ class _CocktailsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.read<CocktailsProvider>();
     return SliverScaffold(
-      sliverAppBar: _CocktailsAppBar(search: provider.searchCocktail),
+      sliverAppBar: _CocktailsAppBar(
+        search: provider.searchCocktail,
+        background: const Loader(),
+      ),
       bodyBuilder: (_, controller) {
         return ListView.separated(
           shrinkWrap: true,
