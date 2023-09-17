@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 import '../../../../core/theme.dart';
 import '../../../domain/model/cocktail.dart';
 import '../../strings.dart';
-import '../../widgets/loader.dart';
 import '../../widgets/search_field.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'provider.dart';
+import 'widgets/background.dart';
 import 'widgets/cocktail_card.dart';
 import 'widgets/detail.dart';
 
@@ -58,7 +58,9 @@ class _CocktailsList extends StatelessWidget {
     return SliverScaffold(
       sliverAppBar: _CocktailsAppBar(
         search: provider.searchCocktail,
-        background: const Loader(),
+        background: CocktailsBackground(
+          imageUrls: provider.cocktails.map((e) => e.image).toList(),
+        ),
       ),
       bodyBuilder: (_, controller) {
         return ListView.separated(
