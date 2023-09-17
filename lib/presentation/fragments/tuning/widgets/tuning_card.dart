@@ -126,7 +126,8 @@ class TuningCard extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            left: 10,
+            top: 8,
+            left: 14,
             right: null,
             child: Center(
               child: AnimatedText(
@@ -137,7 +138,7 @@ class TuningCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Column(
               children: [
                 IntrinsicHeight(
