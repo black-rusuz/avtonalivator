@@ -41,9 +41,7 @@ class _CocktailsList extends StatelessWidget {
 
     return CustomScrollView(
       slivers: [
-        _CocktailsAppBar(
-          search: provider.searchCocktail,
-        ),
+        _CocktailsAppBar(search: provider.searchCocktail),
         SliverToBoxAdapter(
           child: ListView.separated(
             shrinkWrap: true,
