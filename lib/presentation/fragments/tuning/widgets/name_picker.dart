@@ -6,8 +6,6 @@ import '../../../utils.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/search_field.dart';
 
-const double _indent = 15;
-
 class NamePicker extends StatefulWidget {
   final List<String> drinks;
   final ValueChanged<String> setDrink;
@@ -55,14 +53,13 @@ class _NamePickerState extends State<NamePicker> {
     final query = MediaQuery.of(context);
     return Ink(
       height: drinks.isEmpty
-          ? query.viewInsets.bottom + 50 + _indent * 2
+          ? query.viewInsets.bottom + SearchField.height
           : query.size.height * 0.4 + query.viewInsets.bottom,
       child: Column(
         children: [
           BasicCard(
-            height: 50 + _indent * 2,
+            height: SearchField.height,
             alignment: Alignment.center,
-            padding: const EdgeInsets.all(_indent),
             child: SearchField(onChanged: setValue),
           ),
           if (drinks.isNotEmpty)
