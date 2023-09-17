@@ -17,16 +17,40 @@ class TuningFragment extends StatelessWidget {
   }
 
   Widget builder(BuildContext context, TuningState state) {
+    if (state is TuningFulfilled) return TuningBody(state: state);
+    return const Loader();
+  }
+}
+
+class Loader extends StatelessWidget {
+  const Loader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+}
+
+class TuningBody extends StatelessWidget {
+  final TuningFulfilled state;
+
+  const TuningBody({super.key, required this.state});
+
+  @override
+  Widget build(BuildContext context) {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
-      itemCount: 8,
+      itemCount: state.pumps.length,
       itemBuilder: itemBuilder,
       separatorBuilder: separatorBuilder,
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    return const TuningCard();
+    final pump = state.pumps[index];
+    return TuningCard(pump: pump);
   }
 
   Widget separatorBuilder(BuildContext context, int index) {

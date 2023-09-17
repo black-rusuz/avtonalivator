@@ -25,7 +25,10 @@ class TuningBloc extends Bloc<TuningEvent, TuningState> {
 
   void _init() {
     final quantity = _config.value.drinksQuantity;
-    pumps = List.generate(quantity, (index) => UiPump.base.copyWith(id: index));
+    pumps = List.generate(
+      quantity,
+      (index) => UiPump.base.copyWith(id: ++index),
+    );
     _addFetched();
   }
 
