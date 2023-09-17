@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
 import '../../../../domain/model/cocktail.dart';
+import '../../../../domain/model/drink.dart';
+import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
 
@@ -9,6 +11,10 @@ class CocktailDetail extends StatelessWidget {
   final UiCocktail cocktail;
 
   const CocktailDetail({super.key, required this.cocktail});
+
+  Widget drinkMapper(UiDrink drink) {
+    return _DrinkCard(drink: drink, gap: 10);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +26,51 @@ class CocktailDetail extends StatelessWidget {
             cocktail.image,
             borderRadius: const BorderRadius.vertical(top: AppTheme.radius),
           ),
-          Text(cocktail.name),
-          ...cocktail.drinks.map((e) => Text(e.toString())),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(30, 30, 30, 15),
+            child: Text(cocktail.name, style: AppTheme.pageTitle),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: cocktail.drinks.map(drinkMapper).toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DrinkCard extends StatelessWidget {
+  final UiDrink drink;
+  final double gap;
+
+  const _DrinkCard({
+    required this.drink,
+    required this.gap,
+  });
+
+  String get volume => drink.volume.toString() + Strings.ml;
+
+  @override
+  Widget build(BuildContext context) {
+    return BasicCard(
+      color: AppTheme.background,
+      padding: const EdgeInsets.all(15),
+      margin: EdgeInsets.only(bottom: gap),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.local_drink_rounded,
+            size: 48,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(drink.name),
+          ),
+          const SizedBox(width: 8),
+          Text(volume),
         ],
       ),
     );

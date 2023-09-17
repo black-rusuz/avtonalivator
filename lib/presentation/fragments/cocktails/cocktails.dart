@@ -32,6 +32,7 @@ class _CocktailsList extends StatelessWidget {
   void showDetail(BuildContext context, UiCocktail cocktail) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: AppTheme.radius),
       ),
