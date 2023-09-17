@@ -13,6 +13,17 @@ class AppTheme {
       background: const Color(0xFFFFFFFF),
     ),
     textTheme: GoogleFonts.interTextTheme(),
+    sliderTheme: SliderThemeData(
+      trackHeight: 5,
+      overlayShape: SliderComponentShape.noOverlay,
+      activeTickMarkColor: Colors.transparent,
+      inactiveTickMarkColor: Colors.transparent,
+      thumbShape: const RoundSliderThumbShape(
+        elevation: 0,
+        pressedElevation: 0,
+        enabledThumbRadius: 5,
+      ),
+    ),
   );
 
   static const black = Color.fromRGBO(1, 0, 2, 1);
