@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
 import '../../../../domain/model/pump.dart';
+import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_switch.dart';
 
 const _duration = Duration(seconds: 1);
@@ -15,6 +16,7 @@ class TuningCard extends StatelessWidget {
 
   static const textStyle = TextStyle(
     fontSize: 14,
+    height: 1,
     fontWeight: FontWeight.w500,
     color: AppTheme.black,
   );
@@ -29,6 +31,7 @@ class TuningCard extends StatelessWidget {
 
   TextStyle get volumeStyle => TextStyle(
         fontSize: 14,
+        height: 1,
         fontWeight: FontWeight.w500,
         color: isActive ? AppTheme.black.withOpacity(0.7) : AppTheme.greyLight,
       );
@@ -46,50 +49,52 @@ class TuningCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: _duration,
-      child: InkWell(
-        // TODO: openName or disable
-        onTap: () {},
-        borderRadius: AppTheme.borderRadius,
-        child: Ink(
-          decoration: BoxDecoration(
-            color: isActive ? AppTheme.accent : AppTheme.white,
-            borderRadius: AppTheme.borderRadius,
-          ),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                left: 10,
-                right: null,
-                child: Center(
-                  child: Text(
-                    pump.id.toString(),
-                    style: numberStyle,
-                  ),
+      child: Ink(
+        decoration: BoxDecoration(
+          color: isActive ? AppTheme.accent : AppTheme.white,
+          borderRadius: AppTheme.borderRadius,
+        ),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              left: 10,
+              right: null,
+              child: Center(
+                child: Text(
+                  pump.id.toString(),
+                  style: numberStyle,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+              child: Column(
+                children: [
+                  IntrinsicHeight(
+                    child: Row(
                       children: [
-                        TextButton(
-                          // TODO: openName
-                          // onPressed: () => openPicker(context),
-                          onPressed: () {},
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.fromLTRB(30, 0, 10, 0),
-                            minimumSize: const Size(0, 25),
-                            maximumSize: const Size.fromHeight(25),
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        Expanded(
+                          child: BasicCard(
+                            // TODO: open setName
+                            // onPressed: () => openPicker(context),
+                            onTap: () {},
+                            height: 50,
+                            padding: const EdgeInsets.only(left: 50, right: 30),
+                            alignment: Alignment.centerLeft,
+                            child: Text(pump.name, style: textStyle),
                           ),
-                          child: Row(
-                            children: [
-                              Text(pump.name, style: textStyle),
-                              const SizedBox(width: 8),
-                              Text('25мл', style: volumeStyle),
-                            ],
+                        ),
+                        const SizedBox(width: 8),
+                        BasicCard(
+                          // TODO: open setVolume
+                          // onPressed: () => openPicker(context),
+                          onTap: () {},
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            '${pump.volume.toStringAsFixed(0)}мл',
+                            style: volumeStyle,
                           ),
                         ),
                         BasicSwitch(
@@ -100,26 +105,26 @@ class TuningCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SliderTheme(
-                      data: sliderStyle(context),
-                      child: SizedBox(
-                        height: 35,
-                        child: Slider(
-                          min: 0,
-                          max: 250,
-                          divisions: 50,
-                          value: 25,
-                          onChanged: (value) {},
-                          // TODO: setVolume
-                          // onChanged: (value) => setVolume(context, value),
-                        ),
+                  ),
+                  SliderTheme(
+                    data: sliderStyle(context),
+                    child: SizedBox(
+                      height: 40,
+                      child: Slider(
+                        min: 0,
+                        max: 250,
+                        divisions: 50,
+                        value: 25,
+                        onChanged: (value) {},
+                        // TODO: setVolume
+                        // onChanged: (value) => setVolume(context, value),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
