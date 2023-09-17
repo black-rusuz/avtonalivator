@@ -1,13 +1,16 @@
 extension SearchSubstring on String {
+  /// Для удобочитаемости
+  String get _this => this;
+
   bool search(String pattern) {
     final value = pattern.toLowerCase();
-    final result = toLowerCase().startsWith(value);
+    final result = _this.toLowerCase().startsWith(value);
     return result;
   }
 
   bool searchIn(String pattern) {
     final value = pattern.toLowerCase();
-    final result = value.startsWith(this);
+    final result = value.startsWith(_this.toLowerCase());
     return result;
   }
 }

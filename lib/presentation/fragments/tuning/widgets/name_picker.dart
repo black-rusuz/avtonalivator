@@ -20,22 +20,20 @@ class NamePicker extends StatefulWidget {
 }
 
 class _NamePickerState extends State<NamePicker> {
-  String value = '';
+  String inputValue = '';
 
-  List<String> get drinks => widget.drinks.where(value.searchIn).toList();
+  List<String> get drinks => widget.drinks.where(inputValue.searchIn).toList();
 
-  void setPattern(String value) {
-    final drink = drinks.firstWhereOrNull(value.searchIn);
-
-    if (drink != null) {
-      widget.setDrink(drink);
-    } else {
-      widget.setDrink(value);
-    }
-
+  void setValue(String value) {
     setState(() {
-      this.value = value;
+      inputValue = value;
     });
+    setMatchDrink();
+  }
+
+  void setMatchDrink() {
+    final drink = drinks.firstOrNull;
+    widget.setDrink(drink ?? inputValue);
   }
 
   void setDrink(int index) {
@@ -58,7 +56,7 @@ class _NamePickerState extends State<NamePicker> {
         children: [
           Padding(
             padding: const EdgeInsets.all(15),
-            child: SearchField(onChanged: setPattern),
+            child: SearchField(onChanged: setValue),
           ),
           Expanded(
             child: CupertinoPicker(
