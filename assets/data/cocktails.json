@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Белый русский",
-      "imageUrl": "https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg",
+      "imageUrl": "https://www.liquor.com/thmb/wzgqg2FC1Sqbwo_PAJofVVZIMRk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__liquor__2017__12__20073201__white-russian-720x720-article-cbe4b9a832c64f8da0bb09407caefa7f.jpg",
       "drinks": [
         {
           "name": "Водка",
@@ -22,7 +22,7 @@
     {
       "id": 2,
       "name": "Джин тоник",
-      "imageUrl": "https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg",
+      "imageUrl": "https://agratefulmeal.com/wp-content/uploads/2023/02/elderflower-gin-tonic-featured.jpg",
       "drinks": [
         {
           "name": "Джин",
@@ -37,7 +37,7 @@
     {
       "id": 3,
       "name": "Кровавая Мэри",
-      "imageUrl": "https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg",
+      "imageUrl": "https://www.liquor.com/thmb/kvzllkWRv-mOjXXMcF0Bcuc4sRQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Bloody-Mary-Classic_Tim_Nusog_4000x4000_primary-68db8a83de544d8ba566accfa13a55e4.jpg",
       "drinks": [
         {
           "name": "Водка",
