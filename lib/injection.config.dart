@@ -14,7 +14,9 @@ import 'package:avtonalivator/data/data_source.dart' as _i7;
 import 'package:avtonalivator/domain/repository/cocktails_repository.dart'
     as _i8;
 import 'package:avtonalivator/domain/repository/config_repository.dart' as _i9;
-import 'package:avtonalivator/injection.dart' as _i11;
+import 'package:avtonalivator/injection.dart' as _i12;
+import 'package:avtonalivator/presentation/fragments/cocktails/cocktails_provider.dart'
+    as _i11;
 import 'package:avtonalivator/presentation/fragments/tuning/bloc/tuning_bloc.dart'
     as _i10;
 import 'package:avtonalivator/presentation/pages/scan/cubit/scan_cubit.dart'
@@ -48,8 +50,10 @@ extension GetItInjectableX on _i1.GetIt {
         _i9.ConfigRepository(gh<_i7.DataSource>()));
     gh.factory<_i10.TuningBloc>(
         () => _i10.TuningBloc(gh<_i9.ConfigRepository>()));
+    gh.factory<_i11.CocktailsProvider>(
+        () => _i11.CocktailsProvider(gh<_i8.CocktailsRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i11.RegisterModule {}
+class _$RegisterModule extends _i12.RegisterModule {}
