@@ -26,7 +26,12 @@ class _NamePickerState extends State<NamePicker> {
 
   void setPattern(String value) {
     final drink = drinks.firstWhereOrNull(value.searchIn);
-    if (drink != null) widget.setDrink(drink);
+
+    if (drink != null) {
+      widget.setDrink(drink);
+    } else {
+      widget.setDrink(value);
+    }
 
     setState(() {
       this.value = value;

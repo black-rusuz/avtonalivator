@@ -54,7 +54,11 @@ class _TuningBody extends StatelessWidget {
     return TuningCard(
       pump: pump,
       setPump: (pump) => setPump(context, pump),
-      drinks: List.generate(20, (index) => '${index.hashCode}'),
+      drinks: [
+        'Виски',
+        'Водка',
+        'Кола',
+      ],
     );
   }
 

@@ -15,6 +15,7 @@ class SearchField extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       controller: controller,
+      textCapitalization: TextCapitalization.sentences,
       decoration: const InputDecoration(
         labelText: 'Введите название',
       ),
