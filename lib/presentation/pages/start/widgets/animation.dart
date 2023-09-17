@@ -32,16 +32,18 @@ class StartAnimation extends StatelessWidget {
               children: [
                 AnimatedText(
                   Strings.autoBartender,
-                  style: launchHeader,
                   duration: _duration,
-                  animate: animate,
+                  style: launchHeader.copyWith(
+                    color: !animate ? Colors.transparent : AppTheme.black,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 AnimatedText(
                   Strings.description,
-                  style: launchSubheader,
                   duration: _duration,
-                  animate: animate,
+                  style: launchSubheader.copyWith(
+                    color: !animate ? Colors.transparent : AppTheme.black,
+                  ),
                 ),
               ],
             ),
