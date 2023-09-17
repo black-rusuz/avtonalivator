@@ -36,9 +36,7 @@ class _CocktailsList extends StatelessWidget {
     return SliverScaffold(
       sliverAppBar: _CocktailsAppBar(
         search: provider.searchCocktail,
-        background: CocktailsBackground(
-          imageUrls: provider.cocktails.map((e) => e.image).toList(),
-        ),
+        background: CocktailsBackground(cocktails: provider.cocktails),
       ),
       bodyBuilder: (_, controller) {
         return ListView.separated(

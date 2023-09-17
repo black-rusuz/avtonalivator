@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
+import '../../../../domain/model/cocktail.dart';
 import '../../../widgets/basic_image.dart';
 
 const _transition = Duration(milliseconds: 600);
@@ -18,9 +19,9 @@ const _gradient = LinearGradient(
 );
 
 class CocktailsBackground extends StatefulWidget {
-  final List<String> imageUrls;
+  final List<UiCocktail> cocktails;
 
-  const CocktailsBackground({super.key, required this.imageUrls});
+  const CocktailsBackground({super.key, required this.cocktails});
 
   @override
   State<CocktailsBackground> createState() => _CocktailsBackgroundState();
@@ -30,6 +31,8 @@ class _CocktailsBackgroundState extends State<CocktailsBackground> {
   final controller = PageController();
   StreamSubscription? streamSub;
 
+  List<String> get imageUrls => widget.cocktails.map((e) => e.image).toList();
+
   @override
   void initState() {
     super.initState();
@@ -38,7 +41,7 @@ class _CocktailsBackgroundState extends State<CocktailsBackground> {
   }
 
   void animateToPage(int page) {
-    page = page % widget.imageUrls.length;
+    page = page % imageUrls.length;
     controller.animateToPage(page, duration: _transition, curve: Curves.ease);
   }
 
@@ -54,14 +57,14 @@ class _CocktailsBackgroundState extends State<CocktailsBackground> {
       foregroundDecoration: const BoxDecoration(gradient: _gradient),
       child: PageView.builder(
         controller: controller,
-        itemCount: widget.imageUrls.length,
+        itemCount: imageUrls.length,
         itemBuilder: itemBuilder,
       ),
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    final url = widget.imageUrls[index];
+    final url = imageUrls[index];
     return BasicImage(url, fit: BoxFit.cover);
   }
 }
