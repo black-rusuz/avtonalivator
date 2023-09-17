@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils.dart';
+import '../../../widgets/basic_card.dart';
 import '../../../widgets/search_field.dart';
+
+const double _indent = 15;
 
 class NamePicker extends StatefulWidget {
   final List<String> drinks;
@@ -51,24 +54,26 @@ class _NamePickerState extends State<NamePicker> {
   Widget build(BuildContext context) {
     final query = MediaQuery.of(context);
     return Ink(
-      height: query.size.height * 0.4 + query.viewInsets.bottom,
+      height: drinks.isEmpty
+          ? query.viewInsets.bottom + 50 + _indent * 2
+          : query.size.height * 0.4 + query.viewInsets.bottom,
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
+          BasicCard(
+            height: 50 + _indent * 2,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(_indent),
             child: SearchField(onChanged: setValue),
           ),
-          Expanded(
-            child: drinks.isEmpty
-                ? const SizedBox()
-                : CupertinoPicker(
-                    itemExtent: 32,
-                    onSelectedItemChanged: setDrink,
-                    children: drinks.map(drinkMapper).toList(),
-                  ),
-          ),
+          if (drinks.isNotEmpty)
+            Expanded(
+              child: CupertinoPicker(
+                itemExtent: 32,
+                onSelectedItemChanged: setDrink,
+                children: drinks.map(drinkMapper).toList(),
+              ),
+            ),
           SizedBox(height: query.viewInsets.bottom),
-          const SizedBox(height: 10),
         ],
       ),
     );
