@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
@@ -8,6 +10,7 @@ import '../../../widgets/basic_switch.dart';
 import 'name_picker.dart';
 import 'volume_dialog.dart';
 
+const double _maxVolume = 500;
 const _duration = Duration(milliseconds: 200);
 
 class TuningCard extends StatelessWidget {
@@ -172,7 +175,7 @@ class TuningCard extends StatelessWidget {
                     height: 40,
                     child: Slider(
                       min: 0,
-                      max: 250,
+                      max: max(pump.volume, _maxVolume),
                       divisions: 50,
                       value: pump.volume,
                       onChanged: setVolume,
