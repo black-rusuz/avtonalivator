@@ -57,7 +57,10 @@ class CocktailDetail extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 30, 30, 15),
-              child: Text(cocktail.name, style: AppTheme.pageTitle),
+              child: Text(
+                cocktail.name,
+                style: AppTheme.pageTitle.copyWith(fontSize: 24),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(15),
