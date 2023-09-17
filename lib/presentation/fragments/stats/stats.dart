@@ -12,7 +12,10 @@ class StatsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = ScrollController();
+
     return CustomScrollView(
+      controller: controller,
       slivers: [
         const _StatsAppBar(),
         SliverToBoxAdapter(
@@ -23,7 +26,7 @@ class StatsFragment extends StatelessWidget {
             ),
             child: ListView.separated(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              controller: controller,
               padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
               itemCount: 20,
               itemBuilder: itemBuilder,
