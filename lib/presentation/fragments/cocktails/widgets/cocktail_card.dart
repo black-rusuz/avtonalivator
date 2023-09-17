@@ -20,7 +20,7 @@ class CocktailCard extends StatelessWidget {
     return BasicCard(
       onTap: () => onItemTap(cocktail),
       color: AppTheme.background,
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(8),
       borderRadius: BorderRadius.circular(50),
       child: Row(
         children: [

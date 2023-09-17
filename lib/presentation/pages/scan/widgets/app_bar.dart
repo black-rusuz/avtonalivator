@@ -32,15 +32,14 @@ class ScanAppBar extends StatelessWidget {
           builder: (_, snapshot) => Center(
             child: snapshot.data != true
                 ? null
-                : Center(
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      margin: const EdgeInsets.all(12),
-                      child: const CircularProgressIndicator(
-                        color: AppTheme.black,
-                        strokeWidth: 3,
-                      ),
+                : Container(
+                    width: 24,
+                    height: 24,
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.only(right: 16),
+                    child: const CircularProgressIndicator(
+                      color: AppTheme.black,
+                      strokeWidth: 3,
                     ),
                   ),
           ),
