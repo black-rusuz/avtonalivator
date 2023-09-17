@@ -23,7 +23,8 @@ class _CocktailsAppBar extends StatelessWidget {
           children: [
             if (background != null) Positioned.fill(child: background!),
             Positioned.fill(
-              top: topPadding + 13,
+              /// Подобрал рандомно
+              top: topPadding + 12.5,
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
