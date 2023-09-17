@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/model/pump.dart';
+import '../../widgets/loader.dart';
 import 'bloc/tuning_bloc.dart';
 import 'widgets/tuning_card.dart';
 
@@ -23,17 +24,6 @@ class TuningFragment extends StatelessWidget {
   }
 }
 
-class Loader extends StatelessWidget {
-  const Loader({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-}
-
 class _TuningBody extends StatelessWidget {
   final TuningFulfilled state;
 
@@ -42,7 +32,7 @@ class _TuningBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+      padding: const EdgeInsets.all(15),
       itemCount: state.pumps.length,
       itemBuilder: itemBuilder,
       separatorBuilder: separatorBuilder,

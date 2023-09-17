@@ -22,6 +22,9 @@ class AppTheme {
     textTheme: GoogleFonts.interTextTheme(),
     scaffoldBackgroundColor: background,
     appBarTheme: const AppBarTheme(backgroundColor: background),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: Color.lerp(AppTheme.accent, AppTheme.black, 0.1),
+    ),
     sliderTheme: SliderThemeData(
       trackHeight: 5,
       overlayShape: SliderComponentShape.noOverlay,
