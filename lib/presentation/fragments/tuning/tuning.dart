@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/theme.dart';
 import '../../../domain/model/pump.dart';
+import '../../strings.dart';
 import '../../widgets/loader.dart';
 import '../cocktails/cocktails.dart';
 import 'bloc/tuning_bloc.dart';
@@ -14,8 +16,14 @@ class TuningFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TuningBloc, TuningState>(
-      builder: builder,
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(Strings.tuning, style: AppTheme.pageTitle),
+      ),
+      body: BlocBuilder<TuningBloc, TuningState>(
+        builder: builder,
+      ),
     );
   }
 

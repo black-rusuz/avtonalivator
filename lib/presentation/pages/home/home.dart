@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme.dart';
 import '../../../injection.dart';
 import '../../fragments/cocktails/cocktails.dart';
 import '../../fragments/settings/settings.dart';
@@ -28,13 +27,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  static const titles = [
-    Strings.tuning,
-    null,
-    null,
-    null,
-  ];
-
   static const bodies = [
     TuningFragment(),
     CocktailsFragment(),
@@ -45,15 +37,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: titles[index] == null
-          ? null
-          : AppBar(
-              centerTitle: true,
-              title: Text(
-                titles[index]!,
-                style: AppTheme.pageTitle,
-              ),
-            ),
+      /// В TuningFragment свой Scaffold
+      primary: index != 0,
       body: MultiProvider(
         providers: [
           BlocProvider(create: (_) => get<TuningBloc>()),
