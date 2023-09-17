@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../strings.dart';
 import '../tuning/bloc/tuning_bloc.dart';
 import 'widgets/settings_card.dart';
 

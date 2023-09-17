@@ -10,11 +10,11 @@ class _CocktailsAppBar extends StatelessWidget {
     const height = kToolbarHeight + SearchField.height;
 
     return SliverAppBar(
+      pinned: true,
       centerTitle: true,
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
       backgroundColor: AppTheme.white,
-      pinned: true,
       title: const Text(Strings.cocktails, style: AppTheme.pageTitle),
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
