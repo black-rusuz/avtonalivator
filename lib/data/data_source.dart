@@ -24,13 +24,9 @@ class DataSource {
     final response = await _get(uri);
     final data = response.data;
 
-    List<ApiCocktail> result = [];
-    try {
-      final list = data['data'];
-      result = list.map((e) => ApiCocktail.fromJson(e)).toList();
-    } catch (_) {
-      // TODO: log
-    }
+    final list = data['data'];
+    final result =
+        list.map<ApiCocktail>((e) => ApiCocktail.fromJson(e)).toList();
     return result;
   }
 
