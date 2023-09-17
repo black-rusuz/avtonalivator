@@ -5,21 +5,29 @@ import '../../../../domain/model/pump.dart';
 import '../../../widgets/animated_text.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_switch.dart';
+import 'name_picker.dart';
+import 'volume_dialog.dart';
 
 const _duration = Duration(milliseconds: 200);
 
 class TuningCard extends StatelessWidget {
   final UiPump pump;
   final ValueChanged<UiPump> setPump;
+  final List<String> drinks;
 
-  const TuningCard({super.key, required this.pump, required this.setPump});
+  const TuningCard({
+    super.key,
+    required this.pump,
+    required this.setPump,
+    required this.drinks,
+  });
 
   // * Logic
 
   bool get isActive => pump.isEnabled;
 
-  void setEnabled(bool active) {
-    final newPump = pump.copyWith(isEnabled: active);
+  void setName(String name) {
+    final newPump = pump.copyWith(name: name);
     return setPump(newPump);
   }
 
@@ -28,7 +36,41 @@ class TuningCard extends StatelessWidget {
     return setPump(newPump);
   }
 
+  void setEnabled(bool active) {
+    final newPump = pump.copyWith(isEnabled: active);
+    return setPump(newPump);
+  }
+
+  // * Modals
+
+  void openNamePicker(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return NamePicker(
+          drinks: drinks,
+          setName: setName,
+        );
+      },
+    );
+  }
+
+  void openVolumeField(BuildContext context) {
+    final lastValue = pump.volume;
+    showDialog(
+      context: context,
+      builder: (_) {
+        return VolumeDialog(
+          lastValue: lastValue,
+          setVolume: setVolume,
+        );
+      },
+    );
+  }
+
   // * Presentation
+
+  String get name => pump.name.isEmpty ? 'Выберите напиток' : pump.name;
 
   static const textStyle = TextStyle(
     fontSize: 14,
@@ -93,14 +135,13 @@ class TuningCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: BasicCard(
-                          // TODO: open setName
-                          // onPressed: () => openPicker(context),
-                          onTap: () {},
+                          onTap: () => openNamePicker(context),
                           height: 50,
                           padding: const EdgeInsets.only(left: 50, right: 30),
                           alignment: Alignment.centerLeft,
+                          color: Colors.redAccent,
                           child: AnimatedText(
-                            pump.name,
+                            name,
                             duration: _duration,
                             style: textStyle,
                           ),
@@ -108,9 +149,7 @@ class TuningCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       BasicCard(
-                        // TODO: open setVolume
-                        // onPressed: () => openPicker(context),
-                        onTap: () {},
+                        onTap: () => openVolumeField(context),
                         height: 50,
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         alignment: Alignment.centerLeft,
