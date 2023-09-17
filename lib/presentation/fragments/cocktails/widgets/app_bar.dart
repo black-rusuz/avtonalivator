@@ -34,7 +34,7 @@ class _CocktailsAppBar extends StatelessWidget {
                     color: AppTheme.background,
                     borderRadius: AppTheme.borderRadius,
                   ),
-                  child: const Text(
+                  child: Text(
                     Strings.cocktails,
                     style: AppTheme.pageTitle,
                   ),

@@ -19,8 +19,8 @@ class AppTheme {
     useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     colorSchemeSeed: accent,
-    textTheme: GoogleFonts.interTextTheme(),
     scaffoldBackgroundColor: background,
+    textTheme: GoogleFonts.rubikTextTheme(),
     appBarTheme: const AppBarTheme(backgroundColor: background),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Color.lerp(AppTheme.accent, AppTheme.black, 0.1),
@@ -48,7 +48,7 @@ class AppTheme {
     ),
   );
 
-  static const pageTitle = TextStyle(
+  static final pageTitle = GoogleFonts.raleway(
     fontSize: 20,
     fontWeight: FontWeight.w700,
   );

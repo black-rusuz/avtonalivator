@@ -12,7 +12,7 @@ class _StatsAppBar extends StatelessWidget {
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
       backgroundColor: AppTheme.background,
-      title: const Text(Strings.stats, style: AppTheme.pageTitle),
+      title: Text(Strings.stats, style: AppTheme.pageTitle),
       flexibleSpace: const FlexibleSpaceBar(
         background: Center(
           child: Padding(

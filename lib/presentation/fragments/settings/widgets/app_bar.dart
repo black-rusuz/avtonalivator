@@ -12,7 +12,7 @@ class _SettingsAppBar extends StatelessWidget {
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
       backgroundColor: AppTheme.background,
-      title: const Text(Strings.settings, style: AppTheme.pageTitle),
+      title: Text(Strings.settings, style: AppTheme.pageTitle),
       // TODO: фон
       flexibleSpace: const FlexibleSpaceBar(),
     );

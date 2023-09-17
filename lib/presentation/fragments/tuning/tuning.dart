@@ -19,7 +19,7 @@ class TuningFragment extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(Strings.tuning, style: AppTheme.pageTitle),
+        title: Text(Strings.tuning, style: AppTheme.pageTitle),
       ),
       body: BlocBuilder<TuningBloc, TuningState>(
         builder: builder,

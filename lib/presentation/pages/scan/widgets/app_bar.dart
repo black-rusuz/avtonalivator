@@ -16,7 +16,7 @@ class ScanAppBar extends StatelessWidget {
       centerTitle: true,
       expandedHeight: height,
       backgroundColor: AppTheme.accent,
-      title: const Text(Strings.connection, style: AppTheme.pageTitle),
+      title: Text(Strings.connection, style: AppTheme.pageTitle),
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: const EdgeInsets.fromLTRB(30, 60, 30, 0),
