@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/theme.dart';
 
-final _debugBorder =
-    Border.all(width: 2, color: Colors.lightGreenAccent.withOpacity(0.5));
+const _disableDebug = true;
+final _debugBorder = Border.all(width: 2, color: Colors.redAccent);
 
 const _defaultShadow = [
   BoxShadow(
@@ -64,8 +66,16 @@ class BasicCard extends StatelessWidget {
           height: height,
           padding: padding,
           decoration: BoxDecoration(
-            color: color,
-            border: kDebugMode ? _debugBorder : border,
+            color: _disableDebug
+                ? color
+                : kDebugMode
+                    ? Color(Random().nextInt(0xFFFFFFFF))
+                    : color,
+            border: _disableDebug
+                ? border
+                : kDebugMode
+                    ? _debugBorder
+                    : border,
             borderRadius: borderRadius,
             boxShadow: color == null
                 ? null
