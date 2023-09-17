@@ -17,7 +17,7 @@ class ScanAppBar extends StatelessWidget {
       maxHeight: height,
       title: const Text(Strings.connection, style: AppTheme.pageTitle),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 60, 30, 0),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: BarmenCard(isConnecting: isConnecting),
       ),
       trailing: StreamBuilder<bool>(

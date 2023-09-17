@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 
 class BasicSliverBar extends StatelessWidget {
+  final EdgeInsets padding;
   final Color? color;
   final double? maxHeight;
   final Widget? title;
@@ -11,6 +12,7 @@ class BasicSliverBar extends StatelessWidget {
 
   const BasicSliverBar({
     super.key,
+    this.padding = const EdgeInsets.only(top: 60),
     this.color,
     this.maxHeight,
     this.title,
@@ -31,7 +33,10 @@ class BasicSliverBar extends StatelessWidget {
       actions: trailing == null ? null : [trailing!],
       flexibleSpace: FlexibleSpaceBar(
         background: Center(
-          child: child,
+          child: Padding(
+            padding: padding,
+            child: child,
+          ),
         ),
       ),
     );

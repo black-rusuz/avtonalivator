@@ -15,9 +15,7 @@ class StatsFragment extends StatelessWidget {
       slivers: [
         const BasicSliverBar(
           title: Text(Strings.stats, style: AppTheme.pageTitle),
-          child: Center(
-            child: StatsCounter(liters: 0.92),
-          ),
+          child: StatsCounter(liters: 0.92),
         ),
         SliverToBoxAdapter(
           child: Ink(

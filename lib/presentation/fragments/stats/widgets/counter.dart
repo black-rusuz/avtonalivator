@@ -57,38 +57,35 @@ class StatsCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: CircularPercentIndicator(
-        percent: value,
-        lineWidth: 10,
-        radius: MediaQuery.of(context).size.height * 0.4 / 4,
-        animation: true,
-        animationDuration: 1000,
-        curve: Curves.easeInOutSine,
-        circularStrokeCap: CircularStrokeCap.round,
-        progressColor: AppTheme.accent,
-        backgroundColor: AppTheme.greyDivider,
-        center: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              liters < 10
-                  ? liters.toStringAsFixed(2)
-                  : liters < 100
-                      ? liters.toStringAsFixed(1)
-                      : liters.floor().toString(),
-              style: GoogleFonts.inter(
-                fontSize: 64,
-                fontWeight: FontWeight.w900,
-              ),
+    return CircularPercentIndicator(
+      percent: value,
+      lineWidth: 10,
+      radius: MediaQuery.of(context).size.height * 0.4 / 3,
+      animation: true,
+      animationDuration: 1000,
+      curve: Curves.easeInOutSine,
+      circularStrokeCap: CircularStrokeCap.round,
+      progressColor: AppTheme.accent,
+      backgroundColor: AppTheme.greyDivider,
+      center: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            liters < 10
+                ? liters.toStringAsFixed(2)
+                : liters < 100
+                ? liters.toStringAsFixed(1)
+                : liters.floor().toString(),
+            style: GoogleFonts.inter(
+              fontSize: 64,
+              fontWeight: FontWeight.w900,
             ),
-            Text(
-              litersWord,
-              style: AppTheme.textLight,
-            ),
-          ],
-        ),
+          ),
+          Text(
+            litersWord,
+            style: AppTheme.textLight,
+          ),
+        ],
       ),
     );
   }
