@@ -26,7 +26,8 @@ class _CocktailsAppBar extends StatelessWidget {
         ),
       ),
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
+        /// Подобрал рандомное значение без оверфлоу
+        preferredSize: const Size.fromHeight(22),
         child: SearchField(onChanged: search),
       ),
     );
