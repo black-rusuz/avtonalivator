@@ -15,7 +15,7 @@ import 'package:avtonalivator/domain/repository/cocktails_repository.dart'
     as _i8;
 import 'package:avtonalivator/domain/repository/config_repository.dart' as _i9;
 import 'package:avtonalivator/injection.dart' as _i12;
-import 'package:avtonalivator/presentation/fragments/cocktails/cocktails_provider.dart'
+import 'package:avtonalivator/presentation/fragments/cocktails/provider.dart'
     as _i11;
 import 'package:avtonalivator/presentation/fragments/tuning/bloc/tuning_bloc.dart'
     as _i10;

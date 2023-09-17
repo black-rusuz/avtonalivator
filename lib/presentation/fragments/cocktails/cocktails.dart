@@ -5,10 +5,10 @@ import '../../../../core/theme.dart';
 import '../../../domain/model/cocktail.dart';
 import '../../strings.dart';
 import '../../widgets/search_field.dart';
-import 'cocktails_provider.dart';
+import 'provider.dart';
 import 'widgets/cocktail_card.dart';
 
-export 'cocktails_provider.dart';
+export 'provider.dart';
 
 part 'widgets/app_bar.dart';
 
