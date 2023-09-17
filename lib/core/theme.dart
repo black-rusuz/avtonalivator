@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const accent = Color(0xFFFAD960);
+  static const _accent = Color(0xFFFAD960);
+  static final accent = _createMaterialColor(_accent);
 
   static const black = Color(0xFF010002);
   static const grey = Color(0xFF828282);
@@ -17,11 +18,7 @@ class AppTheme {
   static final value = ThemeData(
     useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    colorScheme: ColorScheme.fromSwatch(
-      primarySwatch: _createMaterialColor(accent),
-    ).copyWith(
-      background: const Color(0xFFFFFFFF),
-    ),
+    colorSchemeSeed: accent,
     textTheme: GoogleFonts.interTextTheme(),
     sliderTheme: SliderThemeData(
       trackHeight: 5,
@@ -71,13 +68,16 @@ class AppTheme {
 }
 
 MaterialColor _createMaterialColor(Color color) {
-  final shadeValues = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
-  final shadeEntries = shadeValues.map((e) => _getShade(e, color));
-  final shades = Map.fromEntries(shadeEntries);
-  return MaterialColor(color.value, shades);
-}
-
-MapEntry<int, Color> _getShade(int value, Color color) {
-  final shade = color.withOpacity(value / 1000);
-  return MapEntry(value, shade);
+  return MaterialColor(color.value, {
+    50: color.withOpacity(0.05),
+    100: color.withOpacity(0.1),
+    200: color.withOpacity(0.2),
+    300: color.withOpacity(0.3),
+    400: color.withOpacity(0.4),
+    500: color.withOpacity(0.5),
+    600: color.withOpacity(0.6),
+    700: color.withOpacity(0.7),
+    800: color.withOpacity(0.8),
+    900: color.withOpacity(0.9),
+  });
 }

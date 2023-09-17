@@ -18,27 +18,30 @@ class VolumeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      content: TextField(
-        onChanged: (s) => setVolume(double.tryParse(s) ?? 0),
-        keyboardType: TextInputType.number,
-        decoration: const InputDecoration(
-          labelText: 'Введите объём',
+    return Theme(
+      data: Theme.of(context).copyWith(),
+      child: AlertDialog(
+        content: TextField(
+          onChanged: (s) => setVolume(double.tryParse(s) ?? 0),
+          keyboardType: TextInputType.number,
+          decoration: const InputDecoration(
+            labelText: 'Введите объём',
+          ),
+          inputFormatters: [
+            FilteringTextInputFormatter.deny(',', replacementString: '.'),
+          ],
         ),
-        inputFormatters: [
-          FilteringTextInputFormatter.deny(',', replacementString: '.'),
+        actions: [
+          OutlinedButton(
+            onPressed: () => cancel(context),
+            child: const Text('Закрыть'),
+          ),
+          FilledButton(
+            onPressed: Navigator.of(context).pop,
+            child: const Text('Ок'),
+          ),
         ],
       ),
-      actions: [
-        TextButton(
-          onPressed: () => cancel(context),
-          child: const Text('Закрыть'),
-        ),
-        ElevatedButton(
-          onPressed: Navigator.of(context).pop,
-          child: const Text('Ок'),
-        ),
-      ],
     );
   }
 }
