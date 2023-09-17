@@ -4,6 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static const accent = Color(0xFFFAD960);
 
+  static const black = Color(0xFF010002);
+  static const grey = Color(0xFF828282);
+  static const greyLight = Color(0xFFC4C4C4);
+  static const greyDivider = Color(0xFFEDEDED);
+  static const white = Colors.white;
+
+  static const radius = Radius.circular(20);
+  static const borderRadius = BorderRadius.all(Radius.circular(20));
+  static const border = OutlineInputBorder(borderRadius: borderRadius);
+
   static final value = ThemeData(
     useMaterial3: true,
     visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -24,16 +34,17 @@ class AppTheme {
         enabledThumbRadius: 5,
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      hintStyle: textLight.copyWith(color: grey),
+      labelStyle: textLight.copyWith(color: grey),
+      helperStyle: textLight.copyWith(color: grey),
+      border: border,
+      enabledBorder: border.copyWith(
+        borderSide: const BorderSide(color: AppTheme.greyLight),
+      ),
+    ),
   );
-
-  static const black = Color.fromRGBO(1, 0, 2, 1);
-  static const grey = Color.fromRGBO(130, 130, 130, 1);
-  static const greyLight = Color.fromRGBO(196, 196, 196, 1);
-  static const greyDivider = Color.fromRGBO(237, 237, 237, 1);
-  static const white = Colors.white;
-
-  static const radius = Radius.circular(20);
-  static const borderRadius = BorderRadius.all(Radius.circular(20));
 
   static const pageTitle = TextStyle(
     fontSize: 20,
