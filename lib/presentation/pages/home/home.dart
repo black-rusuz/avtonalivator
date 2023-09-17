@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/theme.dart';
 import '../../../injection.dart';
@@ -53,9 +54,10 @@ class _HomePageState extends State<HomePage> {
                 style: AppTheme.pageTitle,
               ),
             ),
-      body: MultiBlocProvider(
+      body: MultiProvider(
         providers: [
           BlocProvider(create: (_) => get<TuningBloc>()),
+          ChangeNotifierProvider(create: (_) => get<CocktailsProvider>()),
         ],
         child: bodies[index],
       ),
