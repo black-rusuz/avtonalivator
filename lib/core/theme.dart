@@ -8,8 +8,8 @@ class AppTheme {
   static const black = Color(0xFF010002);
   static const grey = Color(0xFF828282);
   static const greyLight = Color(0xFFC4C4C4);
-  static const greyDivider = Color(0xFFEDEDED);
-  static const white = Colors.white;
+  static const divider = Color(0xFFEDEDED);
+  static const background = Colors.white;
 
   static const radius = Radius.circular(20);
   static const borderRadius = BorderRadius.all(Radius.circular(20));
@@ -20,8 +20,8 @@ class AppTheme {
     visualDensity: VisualDensity.adaptivePlatformDensity,
     colorSchemeSeed: accent,
     textTheme: GoogleFonts.interTextTheme(),
-    scaffoldBackgroundColor: white,
-    appBarTheme: const AppBarTheme(backgroundColor: white),
+    scaffoldBackgroundColor: background,
+    appBarTheme: const AppBarTheme(backgroundColor: background),
     sliderTheme: SliderThemeData(
       trackHeight: 5,
       overlayShape: SliderComponentShape.noOverlay,

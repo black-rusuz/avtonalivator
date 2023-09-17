@@ -67,7 +67,7 @@ class StatsCounter extends StatelessWidget {
       curve: Curves.easeInOutSine,
       circularStrokeCap: CircularStrokeCap.round,
       progressColor: AppTheme.accent,
-      backgroundColor: AppTheme.greyDivider,
+      backgroundColor: AppTheme.divider,
       center: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

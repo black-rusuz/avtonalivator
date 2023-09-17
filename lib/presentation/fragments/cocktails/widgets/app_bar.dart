@@ -14,7 +14,7 @@ class _CocktailsAppBar extends StatelessWidget {
       pinned: true,
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
-      backgroundColor: AppTheme.white,
+      backgroundColor: AppTheme.background,
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: EdgeInsets.only(top: topPadding + 13),

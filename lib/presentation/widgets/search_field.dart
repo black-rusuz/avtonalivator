@@ -23,7 +23,7 @@ class SearchField extends StatelessWidget {
       padding: const EdgeInsets.all(_padding),
       child: Ink(
         decoration: const BoxDecoration(
-          color: AppTheme.white,
+          color: AppTheme.background,
           borderRadius: AppTheme.borderRadius,
         ),
         child: TextField(

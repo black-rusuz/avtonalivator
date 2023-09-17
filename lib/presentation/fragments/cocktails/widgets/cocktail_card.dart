@@ -18,7 +18,7 @@ class CocktailCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasicCard(
       padding: const EdgeInsets.all(20),
-      color: AppTheme.white,
+      color: AppTheme.background,
       child: Text(cocktail.name),
     );
   }

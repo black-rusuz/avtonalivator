@@ -19,7 +19,7 @@ class DeviceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ink(
       decoration: const BoxDecoration(
-        color: AppTheme.white,
+        color: AppTheme.background,
         borderRadius: BorderRadius.vertical(top: AppTheme.radius),
       ),
       child: ListView.separated(
@@ -64,7 +64,7 @@ class _DeviceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasicCard(
       onTap: onTap,
-      color: AppTheme.white,
+      color: AppTheme.background,
       padding: const EdgeInsets.all(15),
       child: SizedBox(
         height: 46,

@@ -10,7 +10,7 @@ class SettingsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BasicCard(
       padding: EdgeInsets.all(20),
-      color: AppTheme.white,
+      color: AppTheme.background,
       child: Text('Card'),
     );
   }

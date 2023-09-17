@@ -109,7 +109,7 @@ class TuningCard extends StatelessWidget {
       thumbColor: isActive ? AppTheme.black : AppTheme.accent,
       activeTrackColor: isActive ? AppTheme.black : AppTheme.accent,
       inactiveTrackColor:
-          isActive ? AppTheme.white.withOpacity(0.7) : AppTheme.greyDivider,
+          isActive ? AppTheme.background.withOpacity(0.7) : AppTheme.divider,
     );
   }
 
@@ -118,7 +118,7 @@ class TuningCard extends StatelessWidget {
     return AnimatedContainer(
       duration: _duration,
       decoration: BoxDecoration(
-        color: isActive ? AppTheme.accent : AppTheme.white,
+        color: isActive ? AppTheme.accent : AppTheme.background,
         borderRadius: BorderRadius.circular(30),
         // TODO: borderRadius
         // borderRadius: AppTheme.borderRadius,

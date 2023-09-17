@@ -18,7 +18,7 @@ class StatsFragment extends StatelessWidget {
         SliverToBoxAdapter(
           child: Ink(
             decoration: const BoxDecoration(
-              color: AppTheme.white,
+              color: AppTheme.background,
               borderRadius: BorderRadius.vertical(top: AppTheme.radius),
             ),
             child: ListView.separated(
@@ -38,7 +38,7 @@ class StatsFragment extends StatelessWidget {
   Widget? itemBuilder(BuildContext context, int index) {
     return const BasicCard(
       padding: EdgeInsets.all(20),
-      color: AppTheme.white,
+      color: AppTheme.background,
       child: Text('Card'),
     );
   }
