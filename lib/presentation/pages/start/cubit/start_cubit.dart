@@ -22,8 +22,9 @@ class StartCubit extends Cubit<StartState> {
   bool _isAvailable = true;
   bool _isEnabled = false;
 
-  Future<void> requestEnable() async {
+  Future<bool> requestEnable() async {
     _isEnabled = await _serial.requestEnable() ?? false;
+    return _isEnabled;
   }
 
   Future<void> _init() async {
@@ -60,8 +61,7 @@ class StartCubit extends Cubit<StartState> {
     if (_isEnabled && _hasPermission) {
       emit(StartGoScan());
     } else {
-      final request = await _serial.requestEnable();
-      _isEnabled = request ?? false;
+      await requestEnable();
       emit(_fullState);
     }
   }
