@@ -80,15 +80,20 @@ class ScanPage extends StatelessWidget {
     final appBar = mediaQuery.size.height * 0.4;
 
     state = state as ScanFulfilled;
-    return SliverScaffold(
-      sliverAppBar: ScanAppBar(
-        isConnecting: state.isConnecting,
-        height: appBar,
-      ),
-      body: DeviceList(
-        minHeight: mediaQuery.size.height * 0.6 - statusBar,
-        devices: state.devices,
-        onItemTap: (device) => _connectToDevice(context, device),
+
+    return RefreshIndicator(
+      edgeOffset: appBar + statusBar,
+      onRefresh: () async => context.read<ScanCubit>().scan(),
+      child: SliverScaffold(
+        sliverAppBar: ScanAppBar(
+          isConnecting: state.isConnecting,
+          height: appBar,
+        ),
+        body: DeviceList(
+          minHeight: mediaQuery.size.height * 0.6 - statusBar,
+          devices: state.devices,
+          onItemTap: (device) => _connectToDevice(context, device),
+        ),
       ),
     );
   }
