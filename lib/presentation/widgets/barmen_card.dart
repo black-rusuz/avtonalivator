@@ -41,7 +41,7 @@ class BarmenCard extends StatelessWidget {
       onTap: onTap,
       padding: const EdgeInsets.all(20),
       color: isActive ? AppTheme.accent : AppTheme.background,
-      width: 360,
+      width: 340,
       child: IntrinsicHeight(
         child: Row(
           children: [
