@@ -7,6 +7,7 @@ import '../injection.dart';
 
 Future<void> setupApp() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initHive();
   initServices();
 }
 

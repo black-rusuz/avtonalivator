@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
+import 'package:injectable/injectable.dart';
 
 const _lastAddress = 'lastAddress';
 const _pumpsQuantity = 'pumpsQuantity';
 
+@injectable
 class SettingsBox {
   static const name = 'settings';
   final _box = Hive.box(name);
