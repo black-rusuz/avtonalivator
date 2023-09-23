@@ -22,7 +22,7 @@ class ConnectionProvider extends ChangeNotifier {
 
   Future<void> sendPour() async {
     _inputSub?.cancel();
-    _inputSub = _input.listen((event) {});
+    _inputSub = _input.listen(_streamListener);
   }
 
   void disconnect() async {
@@ -40,4 +40,8 @@ class ConnectionProvider extends ChangeNotifier {
     _inputSub?.cancel();
     return super.dispose();
   }
+}
+
+void _streamListener(String event) {
+  print(event);
 }

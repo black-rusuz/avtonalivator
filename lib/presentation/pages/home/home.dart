@@ -35,41 +35,49 @@ class _HomePageState extends State<HomePage> {
     SettingsFragment(),
   ];
 
+  Widget buttonBuilder(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () => context.read<ConnectionProvider>().sendPour(),
+      child: const Icon(Icons.track_changes_rounded),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      /// В TuningFragment свой Scaffold
-      primary: index != 0,
-      body: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => get<ConnectionProvider>()),
-          BlocProvider(create: (_) => get<TuningBloc>()),
-          ChangeNotifierProvider(create: (_) => get<CocktailsProvider>()),
-          BlocProvider(create: (_) => get<SettingsCubit>()),
-        ],
-        child: bodies[index],
-      ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: showFragment,
-        selectedIndex: index,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.tune_rounded),
-            label: Strings.tuning,
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.liquor_rounded),
-            label: Strings.cocktails,
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.insert_chart_outlined_outlined),
-            label: Strings.stats,
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_rounded),
-            label: Strings.settings,
-          ),
-        ],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => get<ConnectionProvider>()),
+        BlocProvider(create: (_) => get<TuningBloc>()),
+        ChangeNotifierProvider(create: (_) => get<CocktailsProvider>()),
+        BlocProvider(create: (_) => get<SettingsCubit>()),
+      ],
+      child: Scaffold(
+        /// В TuningFragment свой Scaffold
+        primary: index != 0,
+        body: bodies[index],
+        floatingActionButton: Builder(builder: buttonBuilder),
+        bottomNavigationBar: NavigationBar(
+          onDestinationSelected: showFragment,
+          selectedIndex: index,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.tune_rounded),
+              label: Strings.tuning,
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.liquor_rounded),
+              label: Strings.cocktails,
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.insert_chart_outlined_outlined),
+              label: Strings.stats,
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.settings_rounded),
+              label: Strings.settings,
+            ),
+          ],
+        ),
       ),
     );
   }
