@@ -17,16 +17,16 @@ export 'cubit/settings_cubit.dart';
 
 part 'widgets/app_bar.dart';
 
-void _disconnect(BuildContext context) {
-  context.read<ConnectionProvider>().disconnect();
-}
-
-void _goScan(BuildContext context) {
-  Navigator.of(context).pushReplacementNamed(AppRoutes.scan);
-}
-
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
+
+  void disconnect(BuildContext context) {
+    context.read<ConnectionProvider>().disconnect();
+  }
+
+  void goScan(BuildContext context) {
+    Navigator.of(context).pushReplacementNamed(AppRoutes.scan);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +38,15 @@ class SettingsFragment extends StatelessWidget {
   Widget builder(BuildContext context, SettingsState state) {
     final appBar = MediaQuery.of(context).size.height * 0.4;
     final device = context.watch<ConnectionProvider>().device;
+    final action =
+        device == null ? () => goScan(context) : () => disconnect(context);
 
     return SliverScaffold(
       sliverAppBar: SettingsAppBar(
         height: appBar,
         isConnecting: false,
         device: device,
-        onTap: device == null
-            ? () => _goScan(context)
-            : () => _disconnect(context),
+        onTap: action,
       ),
       body: state is! SettingsFulfilled ? const Loader() : null,
       bodyBuilder: state is SettingsFulfilled
