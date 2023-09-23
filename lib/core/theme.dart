@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static const _accent = Color(0xFFFAD960);
   static final accent = _createMaterialColor(_accent);
+  static const error = Colors.redAccent;
 
   static const black = Color(0xFF010002);
   static const grey = Color(0xFF828282);
