@@ -26,7 +26,7 @@ class SettingsBox {
     return value;
   }
 
-  set lastAddress(UiDevice value) {
+  set lastDevice(UiDevice? value) {
     _box.put(_lastDevice, value);
   }
 
