@@ -25,7 +25,7 @@ class Connector {
 
   Future<BluetoothConnection?> connect(BluetoothDevice device) async {
     try {
-      _connect(device.address);
+      await _connect(device.address);
     } catch (_) {
       // TODO: log
     }
