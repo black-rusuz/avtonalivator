@@ -26,7 +26,7 @@ class AppRoutes {
       case start:
         return _getRoute(
           BlocProvider(
-            create: (_) => get<StartCubit>()..init(),
+            create: (_) => get<StartCubit>(),
             child: const StartPage(),
           ),
         );

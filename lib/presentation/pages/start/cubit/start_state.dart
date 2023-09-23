@@ -7,19 +7,29 @@ abstract class StartState extends Equatable {
 
 class StartInitial extends StartState {}
 
+// * Build
+
 class StartAnimate extends StartState {}
 
-class StartPermissionError extends StartState {}
+class StartStatus extends StartState {
+  final bool noPermission;
+  final bool notAvailable;
+  final bool enabled;
 
-class StartFulfilled extends StartState {
-  final bool btAvailable;
-  final bool btEnabled;
-
-  StartFulfilled({required this.btAvailable, required this.btEnabled});
+  StartStatus({
+    required this.noPermission,
+    required this.notAvailable,
+    required this.enabled,
+  });
 
   @override
   List<Object?> get props => [
-        btAvailable,
-        btEnabled,
+        noPermission,
+        notAvailable,
+        enabled,
       ];
 }
+
+// * Listen
+
+class StartGoScan extends StartState {}

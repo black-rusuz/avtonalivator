@@ -10,45 +10,65 @@ const _duration = Duration(milliseconds: 1000);
 
 @injectable
 class StartCubit extends Cubit<StartState> {
-  final bluetooth = FlutterBluetoothSerial.instance;
+  final _serial = FlutterBluetoothSerial.instance;
+  final _status = Permission.bluetooth;
+  final _scan = Permission.bluetoothScan;
 
-  StartCubit() : super(StartInitial());
-
-  bool _available = false;
-  bool _enabled = false;
-
-  Future<void> init() async {
-    await _animate();
-    await _requestPermission();
-    await _launch();
+  StartCubit() : super(StartInitial()) {
+    _init();
   }
+
+  bool _hasPermission = true;
+  bool _isAvailable = true;
+  bool _isEnabled = false;
+
+  Future<void> requestEnable() async {
+    _isEnabled = await _serial.requestEnable() ?? false;
+  }
+
+  Future<void> _init() async {
+    await _animate();
+    await Future.delayed(_duration);
+    await _requestPermission();
+    await _checkBluetooth();
+  }
+
+  // * State emitters
 
   Future<void> _animate() async {
     await Future.delayed(_duration);
     emit(StartAnimate());
   }
 
-  Future<void> _launch() async {
-    await Future.delayed(_duration);
-    _available = await bluetooth.isAvailable ?? false;
-    _enabled = await bluetooth.requestEnable() ?? false;
-    emit(StartFulfilled(btAvailable: _available, btEnabled: _enabled));
-  }
-
   Future<void> _requestPermission() async {
-    final permission = await Permission.bluetoothScan.status;
+    var permission = await _scan.status;
+    _hasPermission = permission.isGranted;
 
-    if (!permission.isGranted) {
-      try {
-        await Permission.bluetoothScan.request();
-      } catch (_) {
-        emit(StartPermissionError());
-      }
+    try {
+      permission = await _scan.request();
+      _hasPermission = permission.isGranted;
+    } catch (_) {
+      // TODO: log
     }
   }
 
-  Future<void> requestEnable() async {
-    _enabled = await bluetooth.requestEnable() ?? false;
-    emit(StartFulfilled(btAvailable: _available, btEnabled: _enabled));
+  Future<void> _checkBluetooth() async {
+    final permission = await _status.serviceStatus;
+    _isAvailable = permission.isNotApplicable;
+    _isEnabled = permission.isEnabled;
+
+    if (_isEnabled && _hasPermission) {
+      emit(StartGoScan());
+    } else {
+      final request = await _serial.requestEnable();
+      _isEnabled = request ?? false;
+      emit(_fullState);
+    }
   }
+
+  StartStatus get _fullState => StartStatus(
+        noPermission: !_hasPermission,
+        notAvailable: !_isAvailable,
+        enabled: _isEnabled,
+      );
 }

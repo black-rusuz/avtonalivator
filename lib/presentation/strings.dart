@@ -7,9 +7,12 @@ class Strings {
 
   // * Start
 
+  static const btNoPermission =
+      'Требуется разрешение для поиска устройств поблизости';
+  static const btGoSettings = 'Перейти в настройки';
   static const btUnavailable = 'Bluetooth не поддерживается устройством';
   static const btDisabled = 'Вы не включили Bluetooth';
-  static const enableBt = 'Включить Bluetooth';
+  static const btEnable = 'Включить Bluetooth';
 
   // * Scan
 

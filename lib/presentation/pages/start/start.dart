@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/theme.dart';
 import '../../../core/router.dart';
@@ -20,25 +21,26 @@ class StartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<StartCubit, StartState>(
-        listenWhen: (prev, next) => next is StartFulfilled,
+        listenWhen: (prev, next) => next is StartGoScan,
         listener: listener,
-        buildWhen: (prev, next) => !(next is StartFulfilled && next.btEnabled),
+        buildWhen: (prev, next) => next is !StartGoScan,
         builder: builder,
       ),
     );
   }
 
   void listener(BuildContext context, StartState state) {
-    if (state is StartFulfilled && state.btEnabled) {
+    if (state is StartGoScan) {
       Navigator.of(context).pushReplacementNamed(AppRoutes.scan);
     }
   }
 
   Widget builder(BuildContext context, StartState state) {
-    if (state is StartFulfilled) {
-      return StartStatus(
-        btAvailable: state.btAvailable,
-        btEnabled: state.btEnabled,
+    if (state is StartStatus) {
+      return StartBody(
+        noPermission: state.noPermission,
+        notAvailable: state.notAvailable,
+        notEnabled: !state.enabled,
       );
     } else {
       return StartAnimation(animate: state is StartAnimate);
