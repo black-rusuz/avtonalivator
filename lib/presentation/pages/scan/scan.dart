@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../../core/router.dart';
 import '../../../core/theme.dart';
+import '../../../domain/model/device.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
 import '../../widgets/loader.dart';
@@ -47,8 +47,8 @@ class _ScanBody extends StatelessWidget {
 
   const _ScanBody({required this.state});
 
-  void connectToDevice(BuildContext context, BluetoothDevice device) {
-    // context.read<ScanCubit>().connect(device);
+  void connectToDevice(BuildContext context, UiDevice device) {
+    context.read<ScanCubit>().connect(device);
   }
 
   @override

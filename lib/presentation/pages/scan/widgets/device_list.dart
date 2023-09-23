@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../../../../core/theme.dart';
+import '../../../../domain/model/device.dart';
 import '../../../widgets/basic_card.dart';
 
 class DeviceList extends StatelessWidget {
-  final List<BluetoothDevice> devices;
-  final ValueChanged<BluetoothDevice> onItemTap;
+  final List<UiDevice> devices;
+  final ValueChanged<UiDevice> onItemTap;
 
   const DeviceList({
     super.key,

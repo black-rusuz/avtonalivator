@@ -10,7 +10,7 @@ abstract class ScanState extends Equatable {
 class ScanInitial extends ScanState {}
 
 class ScanFulfilled extends ScanState {
-  final List<BluetoothDevice> devices;
+  final List<UiDevice> devices;
 
   const ScanFulfilled({
     required this.devices,
