@@ -41,21 +41,24 @@ class BarmenCard extends StatelessWidget {
       onTap: onTap,
       padding: const EdgeInsets.all(20),
       color: isActive ? AppTheme.accent : AppTheme.background,
+      width: 360,
       child: IntrinsicHeight(
         child: Row(
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 25),
-              child: SizedBox(
-                height: 68,
-                width: 68,
-                child: isConnecting
-                    ? CircularProgressIndicator(
-                        strokeWidth: 6,
-                        color: isActive ? AppTheme.black : AppTheme.greyLight,
-                      )
-                    : BasicImage(_image.path),
-              ),
+              child: isConnecting
+                  ? SizedBox(
+                      height: 68,
+                      width: 68,
+                      child: Padding(
+                        padding: AppTheme.padding,
+                        child: CircularProgressIndicator(
+                          color: isActive ? AppTheme.black : AppTheme.greyLight,
+                        ),
+                      ),
+                    )
+                  : BasicImage(_image.path, height: 68, width: 68),
             ),
             Expanded(
               child: Column(

@@ -19,7 +19,7 @@ class ScanAppBar extends StatelessWidget {
       title: Text(Strings.connection, style: AppTheme.pageTitle),
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 60, 30, 0),
+          padding: const EdgeInsets.only(top: 60),
           child: Center(
             child: BarmenCard(isConnecting: isConnecting),
           ),
