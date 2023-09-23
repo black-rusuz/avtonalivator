@@ -1,11 +1,11 @@
-part of '../start.dart';
+part of '../launch.dart';
 
 const _duration = Duration(milliseconds: 750);
 
-class StartAnimation extends StatelessWidget {
+class LaunchAnimation extends StatelessWidget {
   final bool animate;
 
-  const StartAnimation({super.key, required this.animate});
+  const LaunchAnimation({super.key, required this.animate});
 
   static final launchHeader = GoogleFonts.inter(
     fontSize: 32,

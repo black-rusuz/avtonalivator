@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../injection.dart';
 import '../presentation/pages/home/home.dart';
+import '../presentation/pages/launch/cubit/launch_cubit.dart';
+import '../presentation/pages/launch/launch.dart';
 import '../presentation/pages/scan/cubit/scan_cubit.dart';
 import '../presentation/pages/scan/scan.dart';
-import '../presentation/pages/start/cubit/start_cubit.dart';
-import '../presentation/pages/start/start.dart';
 
 class AppRoutes {
-  static const start = '/start';
+  static const launch = '/launch';
   static const scan = '/scan';
   static const home = '/home';
 
@@ -23,11 +23,11 @@ class AppRoutes {
     final mainRoute = '/' + path.split('/')[1];
 
     switch (mainRoute) {
-      case start:
+      case launch:
         return _getRoute(
           BlocProvider(
-            create: (_) => get<StartCubit>(),
-            child: const StartPage(),
+            create: (_) => get<LaunchCubit>(),
+            child: const LaunchPage(),
           ),
         );
       case scan:

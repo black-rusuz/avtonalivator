@@ -14,17 +14,17 @@ import 'package:avtonalivator/data/data_source.dart' as _i8;
 import 'package:avtonalivator/domain/repository/cocktails_repository.dart'
     as _i10;
 import 'package:avtonalivator/domain/repository/config_repository.dart' as _i11;
-import 'package:avtonalivator/domain/storage/settings.dart' as _i5;
+import 'package:avtonalivator/domain/storage/settings.dart' as _i6;
 import 'package:avtonalivator/domain/storage/stats.dart' as _i7;
 import 'package:avtonalivator/injection.dart' as _i14;
 import 'package:avtonalivator/presentation/fragments/cocktails/provider.dart'
     as _i13;
 import 'package:avtonalivator/presentation/fragments/tuning/bloc/tuning_bloc.dart'
     as _i12;
+import 'package:avtonalivator/presentation/pages/launch/cubit/launch_cubit.dart'
+    as _i5;
 import 'package:avtonalivator/presentation/pages/scan/cubit/scan_cubit.dart'
     as _i9;
-import 'package:avtonalivator/presentation/pages/start/cubit/start_cubit.dart'
-    as _i6;
 import 'package:dio/dio.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
@@ -43,12 +43,12 @@ extension GetItInjectableX on _i1.GetIt {
     final registerModule = _$RegisterModule();
     gh.singleton<_i3.Connector>(_i3.Connector());
     gh.singleton<_i4.Dio>(registerModule.dio);
-    gh.factory<_i5.SettingsBox>(() => _i5.SettingsBox());
-    gh.factory<_i6.StartCubit>(() => _i6.StartCubit());
+    gh.factory<_i5.LaunchCubit>(() => _i5.LaunchCubit());
+    gh.factory<_i6.SettingsBox>(() => _i6.SettingsBox());
     gh.factory<_i7.StatsBox>(() => _i7.StatsBox());
     gh.factory<_i8.DataSource>(() => _i8.DataSource(gh<_i4.Dio>()));
     gh.factory<_i9.ScanCubit>(() => _i9.ScanCubit(
-          gh<_i5.SettingsBox>(),
+          gh<_i6.SettingsBox>(),
           gh<_i3.Connector>(),
         ));
     gh.singleton<_i10.CocktailsRepository>(

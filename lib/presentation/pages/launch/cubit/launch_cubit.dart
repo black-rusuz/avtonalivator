@@ -4,17 +4,17 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-part 'start_state.dart';
+part 'launch_state.dart';
 
 const _duration = Duration(milliseconds: 1000);
 
 @injectable
-class StartCubit extends Cubit<StartState> {
+class LaunchCubit extends Cubit<LaunchState> {
   final _serial = FlutterBluetoothSerial.instance;
   final _status = Permission.bluetooth;
   final _scan = Permission.bluetoothScan;
 
-  StartCubit() : super(StartInitial()) {
+  LaunchCubit() : super(LaunchInitial()) {
     _init();
   }
 
@@ -24,7 +24,7 @@ class StartCubit extends Cubit<StartState> {
 
   Future<void> requestEnable() async {
     _isEnabled = await _serial.requestEnable() ?? false;
-    final state = _isEnabled ? StartGoScan() : _fullState;
+    final state = _isEnabled ? LaunchGoScan() : _fullState;
     emit(state);
   }
 
@@ -38,7 +38,7 @@ class StartCubit extends Cubit<StartState> {
 
   Future<void> _animate() async {
     await Future.delayed(_duration);
-    emit(StartAnimate());
+    emit(LaunchAnimate());
     await Future.delayed(_duration);
   }
 
@@ -61,7 +61,7 @@ class StartCubit extends Cubit<StartState> {
 
     if (_hasPermission) {
       if (_isEnabled) {
-        emit(StartGoScan());
+        emit(LaunchGoScan());
       } else {
         await requestEnable();
       }
@@ -70,7 +70,7 @@ class StartCubit extends Cubit<StartState> {
     }
   }
 
-  StartStatus get _fullState => StartStatus(
+  LaunchStatus get _fullState => LaunchStatus(
         noPermission: !_hasPermission,
         notAvailable: !_isAvailable,
         enabled: _isEnabled,

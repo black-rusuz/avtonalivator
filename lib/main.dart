@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: Strings.autoBartender,
       theme: AppTheme.value,
-      initialRoute: AppRoutes.start,
+      initialRoute: AppRoutes.launch,
       onGenerateRoute: AppRoutes.openPage,
     );
   }

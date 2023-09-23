@@ -1,22 +1,22 @@
-part of 'start_cubit.dart';
+part of 'launch_cubit.dart';
 
-abstract class StartState extends Equatable {
+abstract class LaunchState extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class StartInitial extends StartState {}
+class LaunchInitial extends LaunchState {}
 
 // * Build
 
-class StartAnimate extends StartState {}
+class LaunchAnimate extends LaunchState {}
 
-class StartStatus extends StartState {
+class LaunchStatus extends LaunchState {
   final bool noPermission;
   final bool notAvailable;
   final bool enabled;
 
-  StartStatus({
+  LaunchStatus({
     required this.noPermission,
     required this.notAvailable,
     required this.enabled,
@@ -32,4 +32,4 @@ class StartStatus extends StartState {
 
 // * Listen
 
-class StartGoScan extends StartState {}
+class LaunchGoScan extends LaunchState {}

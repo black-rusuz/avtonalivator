@@ -5,7 +5,7 @@ class Strings {
   static const autoBartender = 'Автобармен';
   static const description = 'Система автоналива напитков';
 
-  // * Start
+  // * Launch
 
   static const btNoPermission =
       'Требуется разрешение для поиска устройств поблизости';

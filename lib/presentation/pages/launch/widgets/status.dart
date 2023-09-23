@@ -1,11 +1,11 @@
-part of '../start.dart';
+part of '../launch.dart';
 
-class StartBody extends StatelessWidget {
+class LaunchBody extends StatelessWidget {
   final bool noPermission;
   final bool notAvailable;
   final bool notEnabled;
 
-  const StartBody({
+  const LaunchBody({
     super.key,
     required this.noPermission,
     required this.notAvailable,
@@ -30,7 +30,7 @@ class StartBody extends StatelessWidget {
 class _NoPermission extends StatelessWidget {
   void openSettings(BuildContext context) {
     openAppSettings();
-    Navigator.of(context).pushReplacementNamed(AppRoutes.start);
+    Navigator.of(context).pushReplacementNamed(AppRoutes.launch);
   }
 
   @override
@@ -70,7 +70,7 @@ class _NotAvailable extends StatelessWidget {
 
 class _NotEnabled extends StatelessWidget {
   void requestEnable(BuildContext context) {
-    context.read<StartCubit>().requestEnable();
+    context.read<LaunchCubit>().requestEnable();
   }
 
   @override

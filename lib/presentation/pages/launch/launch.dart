@@ -9,41 +9,41 @@ import '../../assets_image.dart';
 import '../../strings.dart';
 import '../../widgets/animated_text.dart';
 import '../../widgets/basic_image.dart';
-import 'cubit/start_cubit.dart';
+import 'cubit/launch_cubit.dart';
 
 part 'widgets/animation.dart';
 part 'widgets/status.dart';
 
-class StartPage extends StatelessWidget {
-  const StartPage({super.key});
+class LaunchPage extends StatelessWidget {
+  const LaunchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<StartCubit, StartState>(
-        listenWhen: (prev, next) => next is StartGoScan,
+      body: BlocConsumer<LaunchCubit, LaunchState>(
+        listenWhen: (prev, next) => next is LaunchGoScan,
         listener: listener,
-        buildWhen: (prev, next) => next is !StartGoScan,
+        buildWhen: (prev, next) => next is! LaunchGoScan,
         builder: builder,
       ),
     );
   }
 
-  void listener(BuildContext context, StartState state) {
-    if (state is StartGoScan) {
+  void listener(BuildContext context, LaunchState state) {
+    if (state is LaunchGoScan) {
       Navigator.of(context).pushReplacementNamed(AppRoutes.scan);
     }
   }
 
-  Widget builder(BuildContext context, StartState state) {
-    if (state is StartStatus) {
-      return StartBody(
+  Widget builder(BuildContext context, LaunchState state) {
+    if (state is LaunchStatus) {
+      return LaunchBody(
         noPermission: state.noPermission,
         notAvailable: state.notAvailable,
         notEnabled: !state.enabled,
       );
     } else {
-      return StartAnimation(animate: state is StartAnimate);
+      return LaunchAnimation(animate: state is LaunchAnimate);
     }
   }
 }
