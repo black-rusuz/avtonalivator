@@ -27,18 +27,19 @@ class ScanError extends ScanState {}
 
 // * Build
 
-class ScanConnecting extends ScanState {}
-
 class ScanFulfilled extends ScanState {
   final List<UiDevice> devices;
+  final bool isConnecting;
 
   const ScanFulfilled({
     required this.devices,
+    this.isConnecting = false,
   });
 
   @override
   List<Object?> get props => [
         UniqueKey(),
         [...devices],
+        isConnecting,
       ];
 }

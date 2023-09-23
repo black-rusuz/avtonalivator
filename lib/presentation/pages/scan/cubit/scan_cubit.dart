@@ -34,7 +34,7 @@ class ScanCubit extends Cubit<ScanState> {
   }
 
   Future<void> connect(UiDevice device) async {
-    emit(ScanConnecting());
+    emit(ScanFulfilled(devices: _devices, isConnecting: true));
     final libDevice = device.toLib();
     final connection = await _connector.connect(libDevice);
 

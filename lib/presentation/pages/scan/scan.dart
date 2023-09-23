@@ -11,9 +11,8 @@ import '../../widgets/sliver_scaffold.dart';
 import 'cubit/scan_cubit.dart';
 import 'widgets/device_list.dart';
 
-part 'screen/body.dart';
-part 'screen/know_device.dart';
 part 'widgets/app_bar.dart';
+part 'widgets/know_device.dart';
 
 void _connectToDevice(BuildContext context, UiDevice device) {
   context.read<ScanCubit>().connect(device);
@@ -37,10 +36,7 @@ class ScanPage extends StatelessWidget {
             next is ScanConnected ||
             next is ScanError,
         listener: listener,
-        buildWhen: (prev, next) =>
-            next is ScanAutoConnect ||
-            next is ScanConnecting ||
-            next is ScanFulfilled,
+        buildWhen: (prev, next) => next is ScanFulfilled,
         builder: builder,
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -79,10 +75,21 @@ class ScanPage extends StatelessWidget {
   }
 
   Widget builder(BuildContext context, ScanState state) {
-    final isConnecting = state is ScanConnecting ||
-        state is ScanAutoConnect && state.isConnecting;
+    final mediaQuery = MediaQuery.of(context);
+    final statusBar = mediaQuery.viewPadding.top;
+    final appBar = mediaQuery.size.height * 0.4;
 
-    if (state is! ScanFulfilled) state = const ScanFulfilled(devices: []);
-    return _ScanBody(state: state, isConnecting: isConnecting);
+    state = state as ScanFulfilled;
+    return SliverScaffold(
+      sliverAppBar: ScanAppBar(
+        isConnecting: state.isConnecting,
+        height: appBar,
+      ),
+      body: DeviceList(
+        minHeight: mediaQuery.size.height * 0.6 - statusBar,
+        devices: state.devices,
+        onItemTap: (device) => _connectToDevice(context, device),
+      ),
+    );
   }
 }
