@@ -1,20 +1,39 @@
 part of '../settings.dart';
 
-class _SettingsAppBar extends StatelessWidget {
-  const _SettingsAppBar();
+class SettingsAppBar extends StatelessWidget {
+  final UiDevice? device;
+  final double height;
+  final bool isConnecting;
+  final VoidCallback? onTap;
+
+  const SettingsAppBar({
+    super.key,
+    this.device,
+    required this.height,
+    required this.isConnecting,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height * 0.4;
-
     return SliverAppBar(
       centerTitle: true,
-      collapsedHeight: kToolbarHeight,
       expandedHeight: height,
-      backgroundColor: AppTheme.background,
+      backgroundColor: device == null ? AppTheme.accent : AppTheme.background,
       title: Text(Strings.settings, style: AppTheme.pageTitle),
-      // TODO: фон
-      flexibleSpace: const FlexibleSpaceBar(),
+      flexibleSpace: FlexibleSpaceBar(
+        background: Padding(
+          padding: const EdgeInsets.only(top: 60),
+          child: Center(
+            child: BarmenCard(
+              title: device?.name ?? device?.address,
+              subtitle: device?.address,
+              isConnecting: isConnecting,
+              onTap: onTap,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
