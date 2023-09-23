@@ -6,29 +6,34 @@ import '../../../../domain/model/device.dart';
 import '../../../widgets/basic_card.dart';
 
 class DeviceList extends StatelessWidget {
+  final double minHeight;
   final List<UiDevice> devices;
   final ValueChanged<UiDevice> onItemTap;
 
   const DeviceList({
     super.key,
+    required this.minHeight,
     required this.devices,
     required this.onItemTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      decoration: const BoxDecoration(
-        color: AppTheme.background,
-        borderRadius: BorderRadius.vertical(top: AppTheme.radius),
-      ),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: AppTheme.listPadding,
-        itemCount: devices.length,
-        itemBuilder: itemBuilder,
-        separatorBuilder: separatorBuilder,
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: minHeight),
+      child: Ink(
+        decoration: const BoxDecoration(
+          color: AppTheme.background,
+          borderRadius: BorderRadius.vertical(top: AppTheme.radius),
+        ),
+        child: ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: AppTheme.listPadding,
+          itemCount: devices.length,
+          itemBuilder: itemBuilder,
+          separatorBuilder: separatorBuilder,
+        ),
       ),
     );
   }
