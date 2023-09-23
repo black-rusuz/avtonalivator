@@ -2,6 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/model/device.dart';
+import '../model/param.dart';
 
 const _autoConnect = 'autoConnect';
 const _lastDevice = 'lastDevice';
@@ -12,14 +13,18 @@ class SettingsBox {
   static const name = 'settings';
   final _box = Hive.box(name);
 
-  bool get autoConnect {
-    final value = _box.get(_autoConnect);
-    return value ?? false;
+  // * Generic
+
+  T getParam<T>(String key, T defaultValue) {
+    final value = _box.get(key);
+    return value ?? defaultValue;
   }
 
-  set autoConnect(bool value) {
-    _box.put(_autoConnect, value);
+  void setParam<T>(String key, T value) {
+    _box.put(key, value);
   }
+
+  // * Others
 
   UiDevice? get lastDevice {
     final value = _box.get(_lastDevice);
@@ -30,12 +35,40 @@ class SettingsBox {
     _box.put(_lastDevice, value);
   }
 
+  bool get autoConnect {
+    final value = _box.get(_autoConnect);
+    return value ?? false;
+  }
+
+  void setAutoConnect(bool value) {
+    _box.put(_autoConnect, value);
+  }
+
   int get pumpsQuantity {
     final value = _box.get(_pumpsQuantity);
     return value ?? 6;
   }
 
-  set pumpsQuantity(int value) {
+  void setPumpsQuantity(int value) {
     _box.put(_pumpsQuantity, value);
+  }
+}
+
+extension SettingsParams on SettingsBox {
+  List<Param> get params {
+    return [
+      Param<bool>(
+        key: _autoConnect,
+        title: 'Подключаться автоматически',
+        description:
+            'Автоматически подключаться к последнему известному устройству',
+        value: getParam<bool>(_autoConnect, true),
+      ),
+      Param<int>(
+        key: _pumpsQuantity,
+        title: 'Количество помп',
+        value: getParam<int>(_pumpsQuantity, 6),
+      ),
+    ];
   }
 }

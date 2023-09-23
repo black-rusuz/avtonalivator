@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
+import '../../../domain/model/param.dart';
 import '../../strings.dart';
+import '../../widgets/loader.dart';
 import '../../widgets/sliver_scaffold.dart';
-import '../tuning/bloc/tuning_bloc.dart';
+import 'cubit/settings_cubit.dart';
 import 'widgets/settings_card.dart';
+
+export 'cubit/settings_cubit.dart';
 
 part 'widgets/app_bar.dart';
 
@@ -14,29 +18,51 @@ class SettingsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TuningBloc, TuningState>(
+    return BlocBuilder<SettingsCubit, SettingsState>(
       builder: builder,
     );
   }
 
-  Widget builder(BuildContext context, TuningState state) {
+  Widget builder(BuildContext context, SettingsState state) {
     return SliverScaffold(
       sliverAppBar: const _SettingsAppBar(),
-      bodyBuilder: (_, controller) {
-        return ListView.separated(
-          shrinkWrap: true,
-          controller: controller,
-          padding: AppTheme.listPadding,
-          itemCount: 20,
-          itemBuilder: itemBuilder,
-          separatorBuilder: separatorBuilder,
-        );
-      },
+      body: state is! SettingsFulfilled ? const Loader() : null,
+      bodyBuilder: state is SettingsFulfilled
+          ? (_, controller) {
+              return _SettingsList(
+                controller: controller,
+                params: state.params,
+              );
+            }
+          : null,
+    );
+  }
+}
+
+class _SettingsList extends StatelessWidget {
+  final ScrollController controller;
+  final List<Param> params;
+
+  const _SettingsList({
+    required this.controller,
+    required this.params,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      shrinkWrap: true,
+      controller: controller,
+      padding: AppTheme.listPadding,
+      itemCount: params.length,
+      itemBuilder: itemBuilder,
+      separatorBuilder: separatorBuilder,
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    return const SettingsCard();
+    final item = params[index];
+    return SettingsCard(param: item);
   }
 
   Widget separatorBuilder(BuildContext context, int index) {
