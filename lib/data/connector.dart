@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
 
@@ -7,7 +10,7 @@ class Connector {
 
   Connector();
 
-  BluetoothConnection? connection;
+  BluetoothConnection? _connection;
   BluetoothDevice? device;
 
   Future<bool> get isDiscovering async {
@@ -35,11 +38,33 @@ class Connector {
     } catch (_) {
       // TODO: log
     }
-    return connection;
+    return _connection;
+  }
+
+  Future<void> sendCommand(String command) async {
+    if (kDebugMode) print(command);
+    command = '$command\r';
+
+    final encodedChars = utf8.encode(command);
+    final output = Uint8List.fromList(encodedChars);
+
+    _connection?.output.add(output);
+    return await _connection?.output.allSent;
+  }
+
+  Stream<String> get input {
+    if (_connection?.input == null) {
+      return const Stream.empty();
+    } else {
+      return _connection!.input!
+          .map(_utfTransformer)
+          .takeWhile(_stringCollector)
+          .asBroadcastStream();
+    }
   }
 
   Future<void> disconnect() async {
-    await connection?.close();
+    await _connection?.close();
     device = null;
   }
 
@@ -47,8 +72,19 @@ class Connector {
     await disconnect();
 
     final attempt = await BluetoothConnection.toAddress(address);
-    if (attempt.isConnected) connection = attempt;
+    if (attempt.isConnected) _connection = attempt;
 
-    return connection;
+    return _connection;
   }
+}
+
+String _utfTransformer(Uint8List event) {
+  print(event);
+  final decoded = utf8.decode(event);
+  print(decoded);
+  return decoded;
+}
+
+bool _stringCollector(String element) {
+  return true;
 }
