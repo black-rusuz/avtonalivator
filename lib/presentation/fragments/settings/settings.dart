@@ -5,6 +5,7 @@ import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../../domain/model/device.dart';
 import '../../../domain/model/param.dart';
+import '../../connection/connection_cubit.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
 import '../../widgets/basic_card.dart';
@@ -17,7 +18,10 @@ export 'cubit/settings_cubit.dart';
 
 part 'widgets/app_bar.dart';
 
-void _disconnect(BuildContext context) {}
+void _disconnect(BuildContext context) {
+  final cubit = context.read<ConnectionCubit>();
+  cubit.disconnect();
+}
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});

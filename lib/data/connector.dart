@@ -23,6 +23,10 @@ class Connector {
     }
   }
 
+  Future<void> cancelDiscovery() {
+    return _bluetooth.cancelDiscovery();
+  }
+
   Future<BluetoothConnection?> connect(BluetoothDevice device) async {
     try {
       await _connect(device.address);
@@ -32,12 +36,12 @@ class Connector {
     return connection;
   }
 
-  Future<void> cancelDiscovery() {
-    return _bluetooth.cancelDiscovery();
+  Future<void> disconnect() async {
+    await connection?.close();
   }
 
   Future<BluetoothConnection?> _connect(String address) async {
-    await connection?.close();
+    await disconnect();
 
     final attempt = await BluetoothConnection.toAddress(address);
     if (attempt.isConnected) connection = attempt;
