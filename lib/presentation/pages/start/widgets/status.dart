@@ -15,9 +15,7 @@ class StartBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Builder(
-        builder: switchState,
-      ),
+      child: Builder(builder: switchState),
     );
   }
 
@@ -30,8 +28,9 @@ class StartBody extends StatelessWidget {
 }
 
 class _NoPermission extends StatelessWidget {
-  void openSettings() {
+  void openSettings(BuildContext context) {
     openAppSettings();
+    Navigator.of(context).pushReplacementNamed(AppRoutes.start);
   }
 
   @override
@@ -42,7 +41,7 @@ class _NoPermission extends StatelessWidget {
         const Text(Strings.btNoPermission),
         const SizedBox(height: 100),
         ElevatedButton(
-          onPressed: openSettings,
+          onPressed: () => openSettings(context),
           style: ElevatedButton.styleFrom(
             foregroundColor: AppTheme.black,
             backgroundColor: AppTheme.accent,
@@ -62,11 +61,9 @@ class _NoPermission extends StatelessWidget {
 class _NotAvailable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        Strings.btUnavailable,
-        style: AppTheme.text,
-      ),
+    return const Text(
+      Strings.btUnavailable,
+      style: AppTheme.text,
     );
   }
 }
