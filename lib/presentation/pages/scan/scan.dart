@@ -16,16 +16,15 @@ import 'widgets/device_list.dart';
 part 'widgets/app_bar.dart';
 part 'widgets/know_device.dart';
 
-void _connectToDevice(BuildContext context, UiDevice device) {
-  context.read<ScanCubit>().connect(device);
-}
-
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
 
   void skip(BuildContext context) {
-    // context.read<ScanCubit>().skip();
     Navigator.of(context).pushReplacementNamed(AppRoutes.home);
+  }
+
+  void connect(BuildContext context, UiDevice device) {
+    context.read<ScanCubit>().connect(device);
   }
 
   @override
@@ -33,52 +32,18 @@ class ScanPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppTheme.accent,
       body: BlocConsumer<ScanCubit, ScanState>(
+        buildWhen: (prev, next) => next is ScanFulfilled,
+        builder: builder,
         listenWhen: (prev, next) =>
             next is ScanAutoConnect ||
             next is ScanConnected ||
             next is ScanError,
         listener: listener,
-        buildWhen: (prev, next) => next is ScanFulfilled,
-        builder: builder,
       ),
       floatingActionButton: FloatingActionButton.extended(
         label: const Text(Strings.skipNow),
         icon: const Icon(Icons.skip_next_rounded),
         onPressed: () => skip(context),
-      ),
-    );
-  }
-
-  void listener(BuildContext context, ScanState state) {
-    if (state is ScanAutoConnect) {
-      final device = state.knownDevice;
-      showModalBottomSheet(
-        context: context,
-        builder: (_) => _KnownDeviceSheet(
-          device: device,
-          onTap: () {
-            _connectToDevice(context, device);
-            Navigator.of(context).pop();
-          },
-        ),
-      );
-    } else if (state is ScanConnected) {
-      Navigator.of(context).pushReplacementNamed(AppRoutes.home);
-    } else if (state is ScanError) {
-      showDialog(
-        context: context,
-        builder: errorBuilder,
-      );
-    }
-  }
-
-  Widget errorBuilder(BuildContext context) {
-    return const AlertDialog(
-      title: Text(Strings.connectionError),
-      content: Icon(
-        Icons.nearby_error_outlined,
-        size: 48,
-        color: AppTheme.error,
       ),
     );
   }
@@ -101,8 +66,41 @@ class ScanPage extends StatelessWidget {
         body: DeviceList(
           minHeight: mediaQuery.size.height * 0.6 - statusBar,
           devices: state.devices,
-          onItemTap: (device) => _connectToDevice(context, device),
+          onItemTap: (device) => connect(context, device),
         ),
+      ),
+    );
+  }
+
+  void listener(BuildContext context, ScanState state) {
+    final navigator = Navigator.of(context);
+
+    if (state is ScanConnected) {
+      navigator.pushReplacementNamed(AppRoutes.home);
+    } else if (state is ScanError) {
+      showDialog(context: context, builder: errorBuilder);
+    } else if (state is ScanAutoConnect) {
+      final device = state.knownDevice;
+      showModalBottomSheet(
+        context: context,
+        builder: (_) => _KnownDeviceSheet(
+          device: device,
+          onTap: () {
+            connect(context, device);
+            navigator.pop();
+          },
+        ),
+      );
+    }
+  }
+
+  Widget errorBuilder(BuildContext context) {
+    return const AlertDialog(
+      title: Text(Strings.connectionError),
+      content: Icon(
+        Icons.nearby_error_outlined,
+        size: 48,
+        color: AppTheme.error,
       ),
     );
   }
