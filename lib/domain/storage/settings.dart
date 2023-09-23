@@ -66,7 +66,7 @@ extension SettingsParams on SettingsBox {
       ),
       Param<int>(
         key: _pumpsQuantity,
-        title: 'Количество помп',
+        title: 'Количество ингредиентов',
         value: getParam<int>(_pumpsQuantity, 6),
       ),
     ];
