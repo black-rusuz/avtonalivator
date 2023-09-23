@@ -1,11 +1,9 @@
 part of '../scan.dart';
 
 class _KnownDeviceSheet extends StatelessWidget {
-  final ScanAutoConnect state;
+  final UiDevice device;
 
-  const _KnownDeviceSheet({required this.state});
-
-  UiDevice get device => state.knownDevice;
+  const _KnownDeviceSheet({required this.device});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +30,29 @@ class _KnownDeviceSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppTheme.paddingValue),
-          BarmenCard(
-            title: device.name ?? device.address,
-            isConnecting: state.isConnecting,
+          BasicCard(
             onTap: () => _connectToDevice(context, device),
+            color: AppTheme.background,
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                BasicImage(AssetsIcon.barmen_grey.path, height: 68, width: 68),
+                const SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      device.name ?? device.address,
+                      style: AppTheme.text,
+                    ),
+                    Text(
+                      device.address,
+                      style: AppTheme.textLight,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

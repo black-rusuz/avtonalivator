@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../../domain/model/device.dart';
+import '../../assets_image.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
 import '../../widgets/basic_card.dart';
+import '../../widgets/basic_image.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'cubit/scan_cubit.dart';
 import 'widgets/device_list.dart';
@@ -51,7 +53,7 @@ class ScanPage extends StatelessWidget {
     if (state is ScanAutoConnect) {
       showBottomSheet(
         context: context,
-        builder: (_) => _KnownDeviceSheet(state: state),
+        builder: (_) => _KnownDeviceSheet(device: state.knownDevice),
       );
     } else if (state is ScanConnected) {
       Navigator.of(context).pushReplacementNamed(AppRoutes.home);

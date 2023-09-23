@@ -35,14 +35,16 @@ class SettingsCard<T> extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     param.description!,
-                    style: AppTheme.textLight,
+                    style: AppTheme.additional,
                   ),
                 ],
-                const SizedBox(height: 8),
-                _ParamValue<T>.long(
-                  param.value,
-                  (v) => setValue(context, v),
-                ),
+                if (param.value is num) ...[
+                  const SizedBox(height: 8),
+                  _ParamValue<T>.long(
+                    param.value,
+                    (v) => setValue(context, v),
+                  ),
+                ],
               ],
             ),
           ),

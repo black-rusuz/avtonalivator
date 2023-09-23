@@ -13,12 +13,8 @@ class ScanInitial extends ScanState {}
 
 class ScanAutoConnect extends ScanState {
   final UiDevice knownDevice;
-  final bool isConnecting;
 
-  const ScanAutoConnect(
-    this.knownDevice,
-    this.isConnecting,
-  );
+  const ScanAutoConnect(this.knownDevice);
 }
 
 class ScanConnected extends ScanState {}

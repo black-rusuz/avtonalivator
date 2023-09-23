@@ -17,7 +17,7 @@ import 'package:avtonalivator/domain/repository/config_repository.dart' as _i14;
 import 'package:avtonalivator/domain/storage/settings.dart' as _i6;
 import 'package:avtonalivator/domain/storage/stats.dart' as _i8;
 import 'package:avtonalivator/injection.dart' as _i16;
-import 'package:avtonalivator/presentation/connection/connection_cubit.dart'
+import 'package:avtonalivator/presentation/connection/connection_provider.dart'
     as _i10;
 import 'package:avtonalivator/presentation/fragments/cocktails/provider.dart'
     as _i15;
@@ -53,8 +53,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i7.SettingsCubit(gh<_i6.SettingsBox>()));
     gh.factory<_i8.StatsBox>(() => _i8.StatsBox());
     gh.factory<_i9.TuningBloc>(() => _i9.TuningBloc(gh<_i6.SettingsBox>()));
-    gh.factory<_i10.ConnectionCubit>(
-        () => _i10.ConnectionCubit(gh<_i3.Connector>()));
+    gh.factory<_i10.ConnectionProvider>(
+        () => _i10.ConnectionProvider(gh<_i3.Connector>()));
     gh.factory<_i11.DataSource>(() => _i11.DataSource(gh<_i4.Dio>()));
     gh.factory<_i12.ScanCubit>(() => _i12.ScanCubit(
           gh<_i6.SettingsBox>(),

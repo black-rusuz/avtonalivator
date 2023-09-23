@@ -5,7 +5,7 @@ import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../../domain/model/device.dart';
 import '../../../domain/model/param.dart';
-import '../../connection/connection_cubit.dart';
+import '../../connection/connection_provider.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
 import '../../widgets/basic_card.dart';
@@ -19,7 +19,7 @@ export 'cubit/settings_cubit.dart';
 part 'widgets/app_bar.dart';
 
 void _disconnect(BuildContext context) {
-  final cubit = context.read<ConnectionCubit>();
+  final cubit = context.read<ConnectionProvider>();
   cubit.disconnect();
 }
 
@@ -35,7 +35,7 @@ class SettingsFragment extends StatelessWidget {
 
   Widget builder(BuildContext context, SettingsState state) {
     final appBar = MediaQuery.of(context).size.height * 0.4;
-    const device = UiDevice(name: 'Aboba', address: '00.00.11.20');
+    final device = context.watch<ConnectionProvider>().device;
 
     return SliverScaffold(
       sliverAppBar: SettingsAppBar(
@@ -48,7 +48,7 @@ class SettingsFragment extends StatelessWidget {
       bodyBuilder: state is SettingsFulfilled
           ? (_, controller) {
               return _SettingsList(
-                notConnected: true,
+                notConnected: device == null,
                 controller: controller,
                 params: state.params,
               );
@@ -93,11 +93,11 @@ class _SettingsList extends StatelessWidget {
         padding: AppTheme.padding,
         color: AppTheme.accent,
         onTap: () => goConnect(context),
-        child: const Text(Strings.connection),
+        child: const Text(Strings.connection, style: AppTheme.text),
       );
     }
-    index -= 1;
 
+    if (notConnected) index -= 1;
     final item = params[index];
     return SettingsCard(param: item);
   }
