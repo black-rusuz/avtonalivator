@@ -11,8 +11,9 @@ class _KnownDeviceSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasicCard(
       height: AppTheme.listPadding.vertical +
-          AppTheme.listPadding.vertical +
+          AppTheme.paddingValue +
           29 +
+          AppTheme.paddingValue +
           108,
       padding: AppTheme.listPadding,
       shadow: const BoxShadow(
@@ -22,13 +23,15 @@ class _KnownDeviceSheet extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: AppTheme.paddingValue),
           Padding(
-            padding: AppTheme.listPadding,
+            padding: AppTheme.horizontalPadding,
             child: Text(
               Strings.knownDeviceFound,
               style: AppTheme.pageTitle,
             ),
           ),
+          const SizedBox(height: AppTheme.paddingValue),
           BarmenCard(
             title: device.name ?? device.address,
             isConnecting: state.isConnecting,
