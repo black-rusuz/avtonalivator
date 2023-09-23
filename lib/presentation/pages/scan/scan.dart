@@ -38,7 +38,9 @@ class ScanPage extends StatelessWidget {
             next is ScanError,
         listener: listener,
         buildWhen: (prev, next) =>
-            next is ScanAutoConnect || next is ScanFulfilled,
+            next is ScanAutoConnect ||
+            next is ScanConnecting ||
+            next is ScanFulfilled,
         builder: builder,
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -77,7 +79,10 @@ class ScanPage extends StatelessWidget {
   }
 
   Widget builder(BuildContext context, ScanState state) {
+    final isConnecting = state is ScanConnecting ||
+        state is ScanAutoConnect && state.isConnecting;
+
     if (state is! ScanFulfilled) state = const ScanFulfilled(devices: []);
-    return _ScanBody(state: state);
+    return _ScanBody(state: state, isConnecting: isConnecting);
   }
 }
