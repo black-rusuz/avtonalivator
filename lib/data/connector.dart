@@ -8,6 +8,7 @@ class Connector {
   Connector();
 
   BluetoothConnection? connection;
+  BluetoothDevice? device;
 
   Future<bool> get isDiscovering async {
     final value = await _bluetooth.isDiscovering ?? false;
@@ -30,6 +31,7 @@ class Connector {
   Future<BluetoothConnection?> connect(BluetoothDevice device) async {
     try {
       await _connect(device.address);
+      this.device = device;
     } catch (_) {
       // TODO: log
     }
@@ -38,6 +40,7 @@ class Connector {
 
   Future<void> disconnect() async {
     await connection?.close();
+    device = null;
   }
 
   Future<BluetoothConnection?> _connect(String address) async {
