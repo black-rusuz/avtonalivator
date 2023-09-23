@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 part 'start_state.dart';
 
@@ -18,6 +19,7 @@ class StartCubit extends Cubit<StartState> {
 
   Future<void> init() async {
     await _animate();
+    await _requestPermission();
     await _launch();
   }
 
@@ -31,6 +33,18 @@ class StartCubit extends Cubit<StartState> {
     _available = await bluetooth.isAvailable ?? false;
     _enabled = await bluetooth.requestEnable() ?? false;
     emit(StartFulfilled(btAvailable: _available, btEnabled: _enabled));
+  }
+
+  Future<void> _requestPermission() async {
+    final permission = await Permission.bluetoothScan.status;
+
+    if (!permission.isGranted) {
+      try {
+        await Permission.bluetoothScan.request();
+      } catch (_) {
+        emit(StartPermissionError());
+      }
+    }
   }
 
   Future<void> requestEnable() async {

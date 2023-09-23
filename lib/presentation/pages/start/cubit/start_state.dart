@@ -9,6 +9,8 @@ class StartInitial extends StartState {}
 
 class StartAnimate extends StartState {}
 
+class StartPermissionError extends StartState {}
+
 class StartFulfilled extends StartState {
   final bool btAvailable;
   final bool btEnabled;
