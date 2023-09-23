@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../injection.dart';
+import '../../connection/connection_cubit.dart';
 import '../../fragments/cocktails/cocktails.dart';
 import '../../fragments/settings/settings.dart';
 import '../../fragments/stats/stats.dart';
@@ -41,6 +42,7 @@ class _HomePageState extends State<HomePage> {
       primary: index != 0,
       body: MultiProvider(
         providers: [
+          BlocProvider(create: (_) => get<ConnectionCubit>()),
           BlocProvider(create: (_) => get<TuningBloc>()),
           ChangeNotifierProvider(create: (_) => get<CocktailsProvider>()),
           BlocProvider(create: (_) => get<SettingsCubit>()),
