@@ -4,16 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../domain/model/pump.dart';
-import '../../../../domain/repository/config_repository.dart';
+import '../../../../domain/storage/settings.dart';
 
 part 'tuning_event.dart';
 part 'tuning_state.dart';
 
 @injectable
 class TuningBloc extends Bloc<TuningEvent, TuningState> {
-  final ConfigRepository _config;
+  final SettingsBox _settings;
 
-  TuningBloc(this._config) : super(TuningInitial()) {
+  TuningBloc(this._settings) : super(TuningInitial()) {
     on<TuningFetched>(_emitFulfilled);
     on<SetPump>(_setPump);
     _init();
@@ -24,7 +24,7 @@ class TuningBloc extends Bloc<TuningEvent, TuningState> {
   // * Init
 
   void _init() {
-    final quantity = _config.value.drinksQuantity;
+    final quantity = _settings.pumpsQuantity;
     pumps = List.generate(
       quantity,
       (index) => UiPump.base.copyWith(id: ++index),
