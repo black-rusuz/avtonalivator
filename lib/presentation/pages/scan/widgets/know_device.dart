@@ -2,8 +2,12 @@ part of '../scan.dart';
 
 class _KnownDeviceSheet extends StatelessWidget {
   final UiDevice device;
+  final VoidCallback onTap;
 
-  const _KnownDeviceSheet({required this.device});
+  const _KnownDeviceSheet({
+    required this.device,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class _KnownDeviceSheet extends StatelessWidget {
           ),
           const SizedBox(height: AppTheme.paddingValue),
           BasicCard(
-            onTap: () => _connectToDevice(context, device),
+            onTap: onTap,
             color: AppTheme.background,
             padding: const EdgeInsets.all(20),
             child: Row(

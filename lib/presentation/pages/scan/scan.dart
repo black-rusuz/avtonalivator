@@ -51,9 +51,16 @@ class ScanPage extends StatelessWidget {
 
   void listener(BuildContext context, ScanState state) {
     if (state is ScanAutoConnect) {
+      final device = state.knownDevice;
       showModalBottomSheet(
         context: context,
-        builder: (_) => _KnownDeviceSheet(device: state.knownDevice),
+        builder: (_) => _KnownDeviceSheet(
+          device: device,
+          onTap: () {
+            _connectToDevice(context, device);
+            Navigator.of(context).pop();
+          },
+        ),
       );
     } else if (state is ScanConnected) {
       Navigator.of(context).pushReplacementNamed(AppRoutes.home);

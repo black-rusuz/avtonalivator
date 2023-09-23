@@ -8,7 +8,6 @@ import '../../../domain/model/param.dart';
 import '../../connection/connection_provider.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
-import '../../widgets/basic_card.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'cubit/settings_cubit.dart';
@@ -19,8 +18,11 @@ export 'cubit/settings_cubit.dart';
 part 'widgets/app_bar.dart';
 
 void _disconnect(BuildContext context) {
-  final cubit = context.read<ConnectionProvider>();
-  cubit.disconnect();
+  context.read<ConnectionProvider>().disconnect();
+}
+
+void _goScan(BuildContext context) {
+  Navigator.of(context).pushReplacementNamed(AppRoutes.scan);
 }
 
 class SettingsFragment extends StatelessWidget {
@@ -42,13 +44,14 @@ class SettingsFragment extends StatelessWidget {
         height: appBar,
         isConnecting: false,
         device: device,
-        onTap: () => _disconnect(context),
+        onTap: device == null
+            ? () => _goScan(context)
+            : () => _disconnect(context),
       ),
       body: state is! SettingsFulfilled ? const Loader() : null,
       bodyBuilder: state is SettingsFulfilled
           ? (_, controller) {
               return _SettingsList(
-                notConnected: device == null,
                 controller: controller,
                 params: state.params,
               );
@@ -59,21 +62,13 @@ class SettingsFragment extends StatelessWidget {
 }
 
 class _SettingsList extends StatelessWidget {
-  final bool notConnected;
   final ScrollController controller;
   final List<Param> params;
 
   const _SettingsList({
-    required this.notConnected,
     required this.controller,
     required this.params,
   });
-
-  int get count => notConnected ? params.length + 1 : params.length;
-
-  void goConnect(BuildContext context) {
-    Navigator.of(context).pushReplacementNamed(AppRoutes.scan);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,23 +76,13 @@ class _SettingsList extends StatelessWidget {
       shrinkWrap: true,
       controller: controller,
       padding: AppTheme.listPadding,
-      itemCount: count,
+      itemCount: params.length,
       itemBuilder: itemBuilder,
       separatorBuilder: separatorBuilder,
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    if (notConnected && index == 0) {
-      return BasicCard(
-        padding: AppTheme.padding,
-        color: AppTheme.accent,
-        onTap: () => goConnect(context),
-        child: const Text(Strings.connection, style: AppTheme.text),
-      );
-    }
-
-    if (notConnected) index -= 1;
     final item = params[index];
     return SettingsCard(param: item);
   }
