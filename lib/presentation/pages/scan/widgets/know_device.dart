@@ -45,6 +45,7 @@ class _KnownDeviceSheet extends StatelessWidget {
                       device.name ?? device.address,
                       style: AppTheme.text,
                     ),
+                    const SizedBox(height: AppTheme.paddingValue),
                     Text(
                       device.address,
                       style: AppTheme.textLight,

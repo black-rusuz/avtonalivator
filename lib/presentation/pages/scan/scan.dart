@@ -51,7 +51,7 @@ class ScanPage extends StatelessWidget {
 
   void listener(BuildContext context, ScanState state) {
     if (state is ScanAutoConnect) {
-      showBottomSheet(
+      showModalBottomSheet(
         context: context,
         builder: (_) => _KnownDeviceSheet(device: state.knownDevice),
       );
