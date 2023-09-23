@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,13 +17,27 @@ class ConnectionProvider extends ChangeNotifier {
     device = _device == null ? null : UiDevice.fromLib(_device);
   }
 
-  void sendCommand() {
+  Stream<String> get _input => _connector.input;
+  StreamSubscription? _inputSub;
 
+  Future<void> sendPour() async {
+    _inputSub?.cancel();
+    _inputSub = _input.listen((event) {});
   }
 
   void disconnect() async {
     device = null;
     notifyListeners();
     await _connector.disconnect();
+  }
+
+  Future<void> _sendCommand(String command) {
+    return _connector.sendCommand(command);
+  }
+
+  @override
+  void dispose() {
+    _inputSub?.cancel();
+    return super.dispose();
   }
 }
