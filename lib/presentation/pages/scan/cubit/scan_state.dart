@@ -11,10 +11,10 @@ class ScanInitial extends ScanState {}
 
 // * Listen
 
-class ScanAutoConnect extends ScanState {
+class ScanLastFound extends ScanState {
   final UiDevice knownDevice;
 
-  const ScanAutoConnect(this.knownDevice);
+  const ScanLastFound(this.knownDevice);
 }
 
 class ScanConnected extends ScanState {}

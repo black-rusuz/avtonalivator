@@ -64,8 +64,11 @@ class ScanCubit extends Cubit<ScanState> {
     if (!duplicate) {
       if (isLast) {
         _devices.insert(0, device);
-        if (_autoConnect) await connect(device);
-        emit(ScanAutoConnect(device));
+        if (_autoConnect) {
+          await connect(device);
+        } else {
+          emit(ScanLastFound(device));
+        }
       } else {
         _devices.add(device);
       }

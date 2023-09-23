@@ -35,7 +35,7 @@ class ScanPage extends StatelessWidget {
         buildWhen: (prev, next) => next is ScanFulfilled,
         builder: builder,
         listenWhen: (prev, next) =>
-            next is ScanAutoConnect ||
+            next is ScanLastFound ||
             next is ScanConnected ||
             next is ScanError,
         listener: listener,
@@ -79,7 +79,7 @@ class ScanPage extends StatelessWidget {
       navigator.pushReplacementNamed(AppRoutes.home);
     } else if (state is ScanError) {
       showDialog(context: context, builder: errorBuilder);
-    } else if (state is ScanAutoConnect) {
+    } else if (state is ScanLastFound) {
       final device = state.knownDevice;
       showModalBottomSheet(
         context: context,
