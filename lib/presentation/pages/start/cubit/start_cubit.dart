@@ -18,18 +18,18 @@ class StartCubit extends Cubit<StartState> {
     _init();
   }
 
-  bool _hasPermission = true;
-  bool _isAvailable = true;
+  bool _hasPermission = false;
+  bool _isAvailable = false;
   bool _isEnabled = false;
 
-  Future<bool> requestEnable() async {
+  Future<void> requestEnable() async {
     _isEnabled = await _serial.requestEnable() ?? false;
-    return _isEnabled;
+    final state = _isEnabled ? StartGoScan() : _fullState;
+    emit(state);
   }
 
   Future<void> _init() async {
     await _animate();
-    await Future.delayed(_duration);
     await _requestPermission();
     await _checkBluetooth();
   }
@@ -39,6 +39,7 @@ class StartCubit extends Cubit<StartState> {
   Future<void> _animate() async {
     await Future.delayed(_duration);
     emit(StartAnimate());
+    await Future.delayed(_duration);
   }
 
   Future<void> _requestPermission() async {
@@ -54,14 +55,17 @@ class StartCubit extends Cubit<StartState> {
   }
 
   Future<void> _checkBluetooth() async {
-    final permission = await _status.serviceStatus;
-    _isAvailable = permission.isNotApplicable;
-    _isEnabled = permission.isEnabled;
+    final status = await _status.serviceStatus;
+    _isAvailable = !status.isNotApplicable;
+    _isEnabled = status.isEnabled;
 
-    if (_isEnabled && _hasPermission) {
-      emit(StartGoScan());
+    if (_hasPermission) {
+      if (_isEnabled) {
+        emit(StartGoScan());
+      } else {
+        await requestEnable();
+      }
     } else {
-      await requestEnable();
       emit(_fullState);
     }
   }
