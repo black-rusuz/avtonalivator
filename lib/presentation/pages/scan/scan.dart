@@ -6,13 +6,18 @@ import '../../../core/theme.dart';
 import '../../../domain/model/device.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
-import '../../widgets/loader.dart';
+import '../../widgets/basic_card.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'cubit/scan_cubit.dart';
-import 'widgets/device_card.dart';
 import 'widgets/device_list.dart';
 
+part 'screen/body.dart';
+part 'screen/know_device.dart';
 part 'widgets/app_bar.dart';
+
+void _connectToDevice(BuildContext context, UiDevice device) {
+  context.read<ScanCubit>().connect(device);
+}
 
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
@@ -26,7 +31,14 @@ class ScanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.accent,
-      body: BlocBuilder<ScanCubit, ScanState>(
+      body: BlocConsumer<ScanCubit, ScanState>(
+        listenWhen: (prev, next) =>
+            next is ScanAutoConnect ||
+            next is ScanConnected ||
+            next is ScanError,
+        listener: listener,
+        buildWhen: (prev, next) =>
+            next is ScanAutoConnect || next is ScanFulfilled,
         builder: builder,
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -37,40 +49,35 @@ class ScanPage extends StatelessWidget {
     );
   }
 
-  Widget builder(BuildContext context, ScanState state) {
-    if (state is ScanFulfilled) return _ScanBody(state: state);
-    return const Loader();
+  void listener(BuildContext context, ScanState state) {
+    if (state is ScanAutoConnect) {
+      showBottomSheet(
+        context: context,
+        builder: (_) => _KnownDeviceSheet(state: state),
+      );
+    } else if (state is ScanConnected) {
+      Navigator.of(context).pushReplacementNamed(AppRoutes.home);
+    } else if (state is ScanError) {
+      showDialog(
+        context: context,
+        builder: errorBuilder,
+      );
+    }
   }
-}
 
-class _ScanBody extends StatelessWidget {
-  final ScanFulfilled state;
-
-  const _ScanBody({required this.state});
-
-  void connectToDevice(BuildContext context, UiDevice device) {
-    context.read<ScanCubit>().connect(device);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final statusBar = mediaQuery.viewPadding.top;
-    final appBar = mediaQuery.size.height * 0.4;
-
-    return RefreshIndicator(
-      edgeOffset: appBar + statusBar,
-      onRefresh: () async => context.read<ScanCubit>().scan(),
-      child: SliverScaffold(
-        sliverAppBar: ScanAppBar(isConnecting: false, height: appBar),
-        bodyBuilder: (_, c) {
-          return DeviceList(
-            minHeight: mediaQuery.size.height * 0.6 - statusBar,
-            devices: state.devices,
-            onItemTap: (device) => connectToDevice(context, device),
-          );
-        },
+  Widget errorBuilder(BuildContext context) {
+    return const AlertDialog(
+      title: Text(Strings.connectionError),
+      content: Icon(
+        Icons.nearby_error_outlined,
+        size: 48,
+        color: AppTheme.error,
       ),
     );
+  }
+
+  Widget builder(BuildContext context, ScanState state) {
+    if (state is! ScanFulfilled) state = const ScanFulfilled(devices: []);
+    return _ScanBody(state: state);
   }
 }

@@ -18,11 +18,15 @@ class Strings {
 
   static const connection = 'Подключение';
   static const notConnected = 'Устройство не подключено';
+
   static const tapToConnect =
       'Нажмите на элемент списка,\nчтобы подключить автобармен';
   static const tapToDisconnect =
       'Нажмите на карточку,\nчтобы отключить автобармен';
   static const skipNow = 'Пока пропустить';
+
+  static const knownDeviceFound = 'Найдено знакомое устройство';
+  static const connectionError = 'Ошибка подключения';
 
   // * Home
 

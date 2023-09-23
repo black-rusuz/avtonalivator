@@ -24,8 +24,11 @@ class BarmenCard extends StatelessWidget {
 
   bool get isActive => title != null && subtitle != null;
 
-  String get _title =>
-      isActive ? '${Strings.autoBartender} $title' : Strings.notConnected;
+  String get _title => title != null
+      ? title!
+      : isActive
+          ? '${Strings.autoBartender} $title'
+          : Strings.notConnected;
 
   String get _hint => isActive ? Strings.tapToDisconnect : Strings.tapToConnect;
 
