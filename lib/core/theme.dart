@@ -45,14 +45,18 @@ class AppTheme {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const EdgeInsets.symmetric(
-          vertical: paddingValue / 3, horizontal: paddingValue),
-      hintStyle: textLight.copyWith(color: grey),
-      labelStyle: textLight.copyWith(color: grey),
-      helperStyle: textLight.copyWith(color: grey),
+      filled: true,
+      fillColor: AppTheme.background,
       border: border,
       enabledBorder: border.copyWith(
         borderSide: const BorderSide(color: AppTheme.greyLight),
+      ),
+      hintStyle: textLight.copyWith(color: grey),
+      labelStyle: textLight.copyWith(color: grey),
+      helperStyle: textLight.copyWith(color: grey),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: paddingValue / 3,
+        horizontal: paddingValue,
       ),
     ),
   );

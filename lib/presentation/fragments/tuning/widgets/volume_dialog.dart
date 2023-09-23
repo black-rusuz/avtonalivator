@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../core/theme.dart';
 import '../../../strings.dart';
 
 class VolumeDialog extends StatelessWidget {
@@ -27,8 +28,15 @@ class VolumeDialog extends StatelessWidget {
           autofocus: true,
           onChanged: (s) => setVolume(double.tryParse(s) ?? 0),
           keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            labelText: Strings.enterVolume,
+          decoration:  InputDecoration(
+            label: Container(
+              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+              decoration: const BoxDecoration(
+                color: AppTheme.background,
+                borderRadius: AppTheme.borderRadius,
+              ),
+              child: const Text(Strings.enterName),
+            ),
           ),
           inputFormatters: [
             FilteringTextInputFormatter.deny(',', replacementString: '.'),

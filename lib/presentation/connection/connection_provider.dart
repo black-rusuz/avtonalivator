@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/connector.dart';
@@ -9,14 +8,16 @@ import '../../domain/model/device.dart';
 class ConnectionProvider extends ChangeNotifier {
   final Connector _connector;
 
+  UiDevice? device;
+
   ConnectionProvider(this._connector) {
     final _device = _connector.device;
     device = _device == null ? null : UiDevice.fromLib(_device);
   }
 
-  UiDevice? device;
+  void sendCommand() {
 
-  BluetoothConnection? get connection => _connector.connection;
+  }
 
   void disconnect() async {
     device = null;
