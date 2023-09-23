@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/model/device.dart';
+
 const _autoConnect = 'autoConnect';
-const _lastAddress = 'lastAddress';
+const _lastDevice = 'lastDevice';
 const _pumpsQuantity = 'pumpsQuantity';
 
 @injectable
@@ -19,14 +21,14 @@ class SettingsBox {
     _box.put(_autoConnect, value);
   }
 
-  // String get lastAddress {
-  //   final value = _box.get(_lastAddress);
-  //   return value ?? '';
-  // }
-  //
-  // set lastAddress(String value) {
-  //   _box.put(_lastAddress, value);
-  // }
+  UiDevice? get lastDevice {
+    final value = _box.get(_lastDevice);
+    return value;
+  }
+
+  set lastAddress(UiDevice value) {
+    _box.put(_lastDevice, value);
+  }
 
   int get pumpsQuantity {
     final value = _box.get(_pumpsQuantity);

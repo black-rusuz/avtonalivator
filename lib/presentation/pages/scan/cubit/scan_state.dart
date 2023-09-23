@@ -9,6 +9,16 @@ abstract class ScanState extends Equatable {
 
 class ScanInitial extends ScanState {}
 
+class AutoConnect extends ScanState {
+  final UiDevice knownDevice;
+  final bool isConnecting;
+
+  const AutoConnect(
+    this.knownDevice,
+    this.isConnecting,
+  );
+}
+
 class ScanFulfilled extends ScanState {
   final List<UiDevice> devices;
 

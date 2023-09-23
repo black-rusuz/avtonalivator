@@ -10,17 +10,19 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:avtonalivator/data/connector.dart' as _i3;
-import 'package:avtonalivator/data/data_source.dart' as _i7;
+import 'package:avtonalivator/data/data_source.dart' as _i8;
 import 'package:avtonalivator/domain/repository/cocktails_repository.dart'
-    as _i8;
-import 'package:avtonalivator/domain/repository/config_repository.dart' as _i9;
-import 'package:avtonalivator/injection.dart' as _i12;
-import 'package:avtonalivator/presentation/fragments/cocktails/provider.dart'
-    as _i11;
-import 'package:avtonalivator/presentation/fragments/tuning/bloc/tuning_bloc.dart'
     as _i10;
+import 'package:avtonalivator/domain/repository/config_repository.dart' as _i11;
+import 'package:avtonalivator/domain/storage/settings.dart' as _i5;
+import 'package:avtonalivator/domain/storage/stats.dart' as _i7;
+import 'package:avtonalivator/injection.dart' as _i14;
+import 'package:avtonalivator/presentation/fragments/cocktails/provider.dart'
+    as _i13;
+import 'package:avtonalivator/presentation/fragments/tuning/bloc/tuning_bloc.dart'
+    as _i12;
 import 'package:avtonalivator/presentation/pages/scan/cubit/scan_cubit.dart'
-    as _i5;
+    as _i9;
 import 'package:avtonalivator/presentation/pages/start/cubit/start_cubit.dart'
     as _i6;
 import 'package:dio/dio.dart' as _i4;
@@ -41,19 +43,24 @@ extension GetItInjectableX on _i1.GetIt {
     final registerModule = _$RegisterModule();
     gh.singleton<_i3.Connector>(_i3.Connector());
     gh.singleton<_i4.Dio>(registerModule.dio);
-    gh.factory<_i5.ScanCubit>(() => _i5.ScanCubit());
+    gh.factory<_i5.SettingsBox>(() => _i5.SettingsBox());
     gh.factory<_i6.StartCubit>(() => _i6.StartCubit());
-    gh.factory<_i7.DataSource>(() => _i7.DataSource(gh<_i4.Dio>()));
-    gh.singleton<_i8.CocktailsRepository>(
-        _i8.CocktailsRepository(gh<_i7.DataSource>()));
-    gh.singleton<_i9.ConfigRepository>(
-        _i9.ConfigRepository(gh<_i7.DataSource>()));
-    gh.factory<_i10.TuningBloc>(
-        () => _i10.TuningBloc(gh<_i9.ConfigRepository>()));
-    gh.factory<_i11.CocktailsProvider>(
-        () => _i11.CocktailsProvider(gh<_i8.CocktailsRepository>()));
+    gh.factory<_i7.StatsBox>(() => _i7.StatsBox());
+    gh.factory<_i8.DataSource>(() => _i8.DataSource(gh<_i4.Dio>()));
+    gh.factory<_i9.ScanCubit>(() => _i9.ScanCubit(
+          gh<_i5.SettingsBox>(),
+          gh<_i3.Connector>(),
+        ));
+    gh.singleton<_i10.CocktailsRepository>(
+        _i10.CocktailsRepository(gh<_i8.DataSource>()));
+    gh.singleton<_i11.ConfigRepository>(
+        _i11.ConfigRepository(gh<_i8.DataSource>()));
+    gh.factory<_i12.TuningBloc>(
+        () => _i12.TuningBloc(gh<_i11.ConfigRepository>()));
+    gh.factory<_i13.CocktailsProvider>(
+        () => _i13.CocktailsProvider(gh<_i10.CocktailsRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i12.RegisterModule {}
+class _$RegisterModule extends _i14.RegisterModule {}
