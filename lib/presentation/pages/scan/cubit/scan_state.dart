@@ -27,6 +27,8 @@ class ScanError extends ScanState {}
 
 // * Build
 
+class ScanConnecting extends ScanState {}
+
 class ScanFulfilled extends ScanState {
   final List<UiDevice> devices;
 
