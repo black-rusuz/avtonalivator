@@ -9,6 +9,7 @@ import '../../widgets/barmen_card.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/sliver_scaffold.dart';
 import 'cubit/scan_cubit.dart';
+import 'widgets/device_card.dart';
 import 'widgets/device_list.dart';
 
 part 'widgets/app_bar.dart';

@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
 import '../../../../domain/model/device.dart';
-import '../../../widgets/basic_card.dart';
+import 'device_card.dart';
 
 class DeviceList extends StatelessWidget {
   final double minHeight;
@@ -39,72 +38,15 @@ class DeviceList extends StatelessWidget {
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    final item = devices[index];
-    return _DeviceCard(
-      title: item.name ?? item.address,
-      subtitle: item.address,
-      onTap: () => onItemTap(item),
+    final device = devices[index];
+    return DeviceCard(
+      title: device.name ?? device.address,
+      subtitle: device.address,
+      onTap: () => onItemTap(device),
     );
   }
 
   Widget separatorBuilder(BuildContext context, int index) {
     return const SizedBox(height: 10);
-  }
-}
-
-class _DeviceCard extends StatelessWidget {
-  final String title;
-  final String? subtitle;
-  final VoidCallback? onTap;
-
-  const _DeviceCard({
-    required this.title,
-    this.subtitle,
-    this.onTap,
-  });
-
-  bool get singleLine => subtitle?.isNotEmpty != true;
-
-  @override
-  Widget build(BuildContext context) {
-    return BasicCard(
-      onTap: onTap,
-      color: AppTheme.background,
-      padding: AppTheme.padding,
-      child: SizedBox(
-        height: 46,
-        child: Row(
-          children: [
-            Expanded(
-              child: singleLine
-                  ? Text(title)
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          title,
-                          maxLines: 1,
-                          softWrap: false,
-                          overflow: TextOverflow.fade,
-                          style: AppTheme.text,
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          subtitle!,
-                          maxLines: 1,
-                          softWrap: false,
-                          overflow: TextOverflow.fade,
-                          style: AppTheme.textLight.copyWith(fontSize: 12),
-                        ),
-                      ],
-                    ),
-            ),
-            const SizedBox(width: 16),
-            const Icon(CupertinoIcons.bluetooth)
-          ],
-        ),
-      ),
-    );
   }
 }
