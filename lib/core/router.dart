@@ -24,14 +24,14 @@ class AppRoutes {
 
     switch (mainRoute) {
       case launch:
-        return _getRoute(
+        return _makeRoute(
           BlocProvider(
             create: (_) => get<LaunchCubit>(),
             child: const LaunchPage(),
           ),
         );
       case scan:
-        return _getRoute(
+        return _makeRoute(
           BlocProvider(
             create: (_) => get<ScanCubit>(),
             child: const ScanPage(),
@@ -44,7 +44,7 @@ class AppRoutes {
     return null;
   }
 
-  static Route _getRoute(Widget child) {
+  static Route _makeRoute(Widget child) {
     return MaterialPageRoute(builder: (_) => child);
   }
 
@@ -55,7 +55,7 @@ class AppRoutes {
     final route = _homeSubRoutes.firstWhere((r) => r.contains(subPath));
     final index = _homeSubRoutes.indexOf(route);
 
-    return _getRoute(HomePage(index: index));
+    return _makeRoute(HomePage(index: index));
   }
 
   static List<String> get _homeSubRoutes => [
