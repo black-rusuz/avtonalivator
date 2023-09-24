@@ -24,10 +24,12 @@ class ConnectionProvider extends ChangeNotifier {
   Timer? _timer;
 
   void updatePump(UiPump pump) {
-    final liter = pump.liter;
-    final volume = pump.isEnabled ? pump.volume.round() : 0;
+    final command = pump.command;
+    return _sendCommand(command);
+  }
 
-    final command = '$liter$volume';
+  void updateAll(List<UiPump> pumps) {
+    final command = pumps.map((p) => p.command).join(' ');
     return _sendCommand(command);
   }
 
