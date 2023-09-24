@@ -8,24 +8,24 @@ class UiPump extends Equatable {
   final int id;
   final String name;
   final double volume;
-  final bool isEnabled;
+  final bool enabled;
 
   const UiPump({
     required this.id,
     required this.name,
     required this.volume,
-    required this.isEnabled,
+    required this.enabled,
   });
 
   static UiPump get base => const UiPump(
         id: 0,
         name: '',
         volume: 25,
-        isEnabled: true,
+        enabled: true,
       );
 
   String get command {
-    final value = isEnabled ? volume.round() : 0;
+    final value = enabled ? volume.round() : 0;
     return '$liter$value';
   }
 
@@ -33,13 +33,13 @@ class UiPump extends Equatable {
     int? id,
     String? name,
     double? volume,
-    bool? isEnabled,
+    bool? enabled,
   }) {
     return UiPump(
       id: id ?? this.id,
       name: name ?? this.name,
       volume: volume ?? this.volume,
-      isEnabled: isEnabled ?? this.isEnabled,
+      enabled: enabled ?? this.enabled,
     );
   }
 
@@ -72,17 +72,17 @@ class UiPump extends Equatable {
   UiPump mapCocktail(UiCocktail cocktail) {
     final drink = cocktail.drinks.firstWhereOrNull((d) => d.name.equals(name));
     final result = drink == null
-        ? copyWith(isEnabled: false)
+        ? copyWith(enabled: false)
         : copyWith(
             name: drink.name,
             volume: drink.volume.toDouble(),
-            isEnabled: true,
+            enabled: true,
           );
     return result;
   }
 
   @override
-  List<Object?> get props => [id, name, volume, isEnabled];
+  List<Object?> get props => [id, name, volume, enabled];
 
   /// Реализация PrimaryKey для провайдера [Tuning]
   @override

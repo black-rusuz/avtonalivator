@@ -28,7 +28,7 @@ class TuningCard extends StatelessWidget {
 
   // * Logic
 
-  bool get isActive => pump.isEnabled;
+  bool get isActive => pump.enabled;
 
   void setName(String name) {
     final newPump = pump.copyWith(name: name);
@@ -41,7 +41,7 @@ class TuningCard extends StatelessWidget {
   }
 
   void setEnabled(bool active) {
-    final newPump = pump.copyWith(isEnabled: active);
+    final newPump = pump.copyWith(enabled: active);
     return setPump(newPump);
   }
 
