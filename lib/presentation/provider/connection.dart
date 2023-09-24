@@ -25,7 +25,7 @@ class ConnectionProvider extends ChangeNotifier {
 
   void updatePump(UiPump pump) {
     final liter = pump.liter;
-    final volume = pump.isEnabled ? pump.volume : 0;
+    final volume = pump.isEnabled ? pump.volume.round() : 0;
 
     final command = '$liter$volume';
     return _sendCommand(command);
