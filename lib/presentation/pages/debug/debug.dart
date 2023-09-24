@@ -7,7 +7,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../../data/connection/fbs_adapter.dart';
+import '../../../domain/storage/commands.dart';
 import '../../../injection.dart';
+import '../../widgets/basic_card.dart';
+
+const double _gap = 10;
+const double _commandSize = 14;
 
 class DebugPage extends StatefulWidget {
   const DebugPage({super.key});
@@ -18,8 +23,11 @@ class DebugPage extends StatefulWidget {
 
 class _DebugPageState extends State<DebugPage> {
   final adapter = get<FbsAdapter>();
+  final commands = get<CommandsBox>();
+
   final logController = TextEditingController();
   final sendController = TextEditingController();
+
   final data = [];
 
   void sendCommand() {
@@ -31,8 +39,26 @@ class _DebugPageState extends State<DebugPage> {
     adapter.send(bytes);
   }
 
+  void saveCommand() {
+    setState(() {
+      commands.save(sendController.text);
+    });
+  }
+
+  void setCommand(String command) {
+    sendController.text = command;
+  }
+
+  void deleteCommand(String command) {
+    setState(() {
+      commands.delete(command);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final commands = this.commands.all;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppRoutes.debug),
@@ -45,12 +71,38 @@ class _DebugPageState extends State<DebugPage> {
           builder: builder,
         ),
       ),
-      bottomSheet: Padding(
-        padding: AppTheme.padding,
-        child: TextField(
-          controller: sendController,
-          onEditingComplete: sendCommand,
-        ),
+      bottomSheet: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (commands.isNotEmpty)
+            SizedBox(
+              height: _gap * 3 + _commandSize,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.all(_gap).copyWith(bottom: 0),
+                itemCount: commands.length,
+                itemBuilder: commandBuilder,
+                separatorBuilder: separatorBuilder,
+              ),
+            ),
+          Padding(
+            padding: AppTheme.padding,
+            child: TextField(
+              controller: sendController,
+              onEditingComplete: sendCommand,
+              decoration: InputDecoration(
+                icon: IconButton(
+                  onPressed: saveCommand,
+                  icon: const Icon(Icons.save_rounded),
+                ),
+                suffixIcon: IconButton(
+                  onPressed: sendCommand,
+                  icon: const Icon(Icons.send_outlined),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -88,5 +140,25 @@ class _DebugPageState extends State<DebugPage> {
     // TODO скролл не работает, надо сделать 400 строк
     logController.text = text;
     logController.selection = TextSelection.collapsed(offset: text.length);
+  }
+
+  Widget separatorBuilder(BuildContext context, int index) {
+    return const SizedBox(width: 8);
+  }
+
+  Widget commandBuilder(BuildContext context, int index) {
+    final command = commands.all[index];
+    return GestureDetector(
+      onLongPress: () => deleteCommand(command),
+      child: BasicCard(
+        onTap: () => setCommand(command),
+        color: AppTheme.accent,
+        padding: const EdgeInsets.all(_gap),
+        child: Text(
+          command,
+          style: const TextStyle(fontSize: _commandSize, height: 1),
+        ),
+      ),
+    );
   }
 }
