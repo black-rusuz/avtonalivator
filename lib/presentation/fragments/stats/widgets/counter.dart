@@ -60,8 +60,6 @@ class StatsCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     return PercentIndicator(
       percent: percent,
-      radius: MediaQuery.of(context).size.height * 0.4 / 3,
-      duration: 1000,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
