@@ -30,7 +30,7 @@ class HomePageState extends State<HomePage> {
   static const bodies = [
     TuningFragment(),
     CocktailsFragment(),
-    StatsFragment(),
+    // StatsFragment(),
     SettingsFragment(),
   ];
 
@@ -79,10 +79,10 @@ class HomePageState extends State<HomePage> {
             icon: Icon(Icons.liquor_rounded),
             label: Strings.cocktails,
           ),
-          NavigationDestination(
-            icon: Icon(Icons.insert_chart_outlined_outlined),
-            label: Strings.stats,
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.insert_chart_outlined_outlined),
+          //   label: Strings.stats,
+          // ),
           NavigationDestination(
             icon: Icon(Icons.settings_rounded),
             label: Strings.settings,
