@@ -13,8 +13,12 @@ const _debounce = Duration(milliseconds: 400);
 @injectable
 class ConnectionProvider extends ChangeNotifier {
   final Connector _connector;
+
   StreamSubscription? _inputSub;
   Timer? _timer;
+
+  List<String> _drinks = [];
+  int _step = 0;
 
   ConnectionProvider(this._connector) {
     device = _connector.device;
@@ -25,6 +29,12 @@ class ConnectionProvider extends ChangeNotifier {
   UiDevice? device;
   int percent = 0;
 
+  String? get drink {
+    final index = _step - 1;
+    if (index < 0) return null;
+    return _drinks.elementAtOrNull(index);
+  }
+
   // * Init
 
   DeviceData _inputPrinter(DeviceData data) {
@@ -34,16 +44,19 @@ class ConnectionProvider extends ChangeNotifier {
 
   void _inputListener(DeviceData data) {
     percent = data.percent;
+    _step = data.step;
+    notifyListeners();
   }
 
   // * Methods
 
-  void updatePump(UiPump pump) {
-    final command = pump.command;
-    return _sendCommand(command);
-  }
+  // void updatePump(UiPump pump) {
+  //   final command = pump.command;
+  //   return _sendCommand(command);
+  // }
 
   void updateAll(List<UiPump> pumps) {
+    _drinks = pumps.drinks;
     final command = pumps.command;
     return _sendCommand(command);
   }
