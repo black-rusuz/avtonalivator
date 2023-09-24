@@ -4,7 +4,7 @@ import '../parse_utils.dart';
 
 class DeviceData extends Equatable {
   final double weight;
-  final double percent;
+  final int percent;
   final DeviceMode mode;
   final int step;
   final List<int> volumes;
@@ -28,7 +28,7 @@ class DeviceData extends Equatable {
 
     return DeviceData(
       weight: ves.toDouble(),
-      percent: per.toDouble(),
+      percent: per.round(),
       mode: DeviceMode.fromNumber(mode.round()),
       step: step.round(),
       volumes: ml.map((e) => e.round()).toList(),
