@@ -1,13 +1,19 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-class InputTransformer extends StreamTransformerBase<int, Uint8List> {
-  List<int> collector = [];
+// ignore_for_file: unused_element
 
+const _cr = 10;
+const _lf = 13;
+
+/// Находит среди байтов перенос строки и выдаёт массивы строк
+class InputTransformer extends StreamTransformerBase<int, Uint8List> {
   @override
   Stream<Uint8List> bind(Stream<int> stream) async* {
+    final collector = <int>[];
+
     await for (final byte in stream) {
-      if (byte == 10) {
+      if (byte == _cr) {
         yield Uint8List.fromList(collector);
         collector.clear();
       } else {
