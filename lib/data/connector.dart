@@ -12,12 +12,14 @@ const _start = '\$ves';
 @singleton
 class Connector {
   final _bluetooth = FlutterBluetoothSerial.instance;
-  final _input = StreamController<Uint8List>();
+  final _input = StreamController<Uint8List>.broadcast();
 
   Connector();
 
   BluetoothConnection? _connection;
   BluetoothDevice? device;
+
+  // * Public
 
   Future<bool> get isDiscovering async {
     final value = await _bluetooth.isDiscovering ?? false;
@@ -62,14 +64,16 @@ class Connector {
   Stream<String> get input => _input.stream
       .expand((list) => list.map((byte) => byte))
       .transform(InputTransformer())
+      .distinct()
       .map(utf8.decode)
-      .where((s) => s.startsWith(_start))
-      .distinct();
+      .where((s) => s.startsWith(_start) && s.length == 80);
 
   Future<void> disconnect() async {
     await _connection?.close();
     device = null;
   }
+
+  // * Private
 
   Future<BluetoothConnection?> _connect(String address) async {
     await disconnect();
