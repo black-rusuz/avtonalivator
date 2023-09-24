@@ -87,7 +87,7 @@ class CocktailDetail extends StatelessWidget {
           child: FloatingActionButton.extended(
             onPressed: () {},
             icon: const Icon(Icons.water_drop),
-            label: const Text(Strings.tuning),
+            label: const Text(Strings.goPour),
           ),
         ),
       ],
