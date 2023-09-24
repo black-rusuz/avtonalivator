@@ -13,6 +13,7 @@ const _debounce = Duration(milliseconds: 400);
 @injectable
 class ConnectionProvider extends ChangeNotifier {
   final Connector _connector;
+  UiDevice? device;
 
   ConnectionProvider(this._connector) {
     device = _connector.device;
@@ -20,7 +21,6 @@ class ConnectionProvider extends ChangeNotifier {
     _inputSub = _connector.input.map(_inputPrinter).listen(_inputListener);
   }
 
-  UiDevice? device;
   StreamSubscription? _inputSub;
   Timer? _timer;
 
@@ -45,7 +45,14 @@ class ConnectionProvider extends ChangeNotifier {
     return _sendCommand(command);
   }
 
+  /// TODO: тут хардкод
   void startPour() {
+    const tare = 'w1';
+    final mode = DeviceMode.auto.command;
+    const step = 's0';
+
+    final command = '$tare $mode $step';
+    _sendCommand(command);
     // _sendCommand('w1 m0 s0');
   }
 

@@ -60,4 +60,6 @@ enum DeviceMode {
       orElse: () => DeviceMode.wait,
     );
   }
+
+  String get command => 'm$value';
 }
