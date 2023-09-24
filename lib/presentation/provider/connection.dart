@@ -41,7 +41,7 @@ class ConnectionProvider extends ChangeNotifier {
   }
 
   void updateAll(List<UiPump> pumps) {
-    final command = pumps.map((p) => p.command).join(' ');
+    final command = pumps.command;
     return _sendCommand(command);
   }
 

@@ -96,6 +96,10 @@ class UiPump extends Equatable {
 }
 
 extension Drinks on List<UiPump> {
+  String get command {
+    return map((p) => p.command).join(' ');
+  }
+
   List<String> get drinks {
     return map((drink) => drink.name).toList();
   }
