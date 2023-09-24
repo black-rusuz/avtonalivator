@@ -18,8 +18,6 @@ import 'package:avtonalivator/domain/repository/config_repository.dart' as _i14;
 import 'package:avtonalivator/domain/storage/settings.dart' as _i6;
 import 'package:avtonalivator/domain/storage/stats.dart' as _i8;
 import 'package:avtonalivator/injection.dart' as _i17;
-import 'package:avtonalivator/presentation/connection/connection_provider.dart'
-    as _i15;
 import 'package:avtonalivator/presentation/fragments/cocktails/provider.dart'
     as _i16;
 import 'package:avtonalivator/presentation/fragments/settings/cubit/settings_cubit.dart'
@@ -30,6 +28,7 @@ import 'package:avtonalivator/presentation/pages/launch/cubit/launch_cubit.dart'
     as _i5;
 import 'package:avtonalivator/presentation/pages/scan/cubit/scan_cubit.dart'
     as _i12;
+import 'package:avtonalivator/presentation/provider/connection.dart' as _i15;
 import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;

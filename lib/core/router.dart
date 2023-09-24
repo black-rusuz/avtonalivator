@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../injection.dart';
 import '../presentation/pages/home/home.dart';
@@ -7,6 +8,7 @@ import '../presentation/pages/launch/cubit/launch_cubit.dart';
 import '../presentation/pages/launch/launch.dart';
 import '../presentation/pages/scan/cubit/scan_cubit.dart';
 import '../presentation/pages/scan/scan.dart';
+import '../presentation/provider/connection.dart';
 
 class AppRoutes {
   static const launch = '/launch';
@@ -55,7 +57,10 @@ class AppRoutes {
     final route = _homeSubRoutes.firstWhere((r) => r.contains(subPath));
     final index = _homeSubRoutes.indexOf(route);
 
-    return _makeRoute(HomePage(index: index));
+    return _makeRoute(ChangeNotifierProvider(
+      create: (_) => get<ConnectionProvider>(),
+      child: HomePage(index: index),
+    ));
   }
 
   static List<String> get _homeSubRoutes => [
