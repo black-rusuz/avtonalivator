@@ -51,7 +51,6 @@ class _HomePageState extends State<HomePage> {
       body: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => get<TuningProvider>()),
-          BlocProvider(create: (_) => get<TuningBloc>()),
           ChangeNotifierProvider(create: (_) => get<CocktailsProvider>()),
           BlocProvider(create: (_) => get<SettingsCubit>()),
         ],
