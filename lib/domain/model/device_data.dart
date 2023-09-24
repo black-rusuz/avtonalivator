@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../utils.dart';
+import '../parse_utils.dart';
 
 class DeviceData extends Equatable {
   final double weight;
