@@ -11,16 +11,14 @@ import '../../provider/connection.dart';
 import '../../strings.dart';
 
 class HomePage extends StatefulWidget {
-  final int index;
-
-  const HomePage({super.key, required this.index});
+  const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  late int index = widget.index;
+class HomePageState extends State<HomePage> {
+  late int index = 0;
 
   void showFragment(int index) {
     setState(() {

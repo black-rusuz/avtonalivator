@@ -9,6 +9,8 @@ import '../presentation/pages/launch/launch.dart';
 import '../presentation/pages/scan/scan.dart';
 import '../presentation/provider/connection.dart';
 
+final _homeKey = GlobalKey<HomePageState>();
+
 class AppRoutes {
   static const launch = '/launch';
   static const scan = '/scan';
@@ -20,11 +22,15 @@ class AppRoutes {
   static const stats = '/home/stats';
   static const settings = '/home/settings';
 
-  static Route? openPage(RouteSettings settings) {
-    final path = settings.name ?? home;
-    final mainRoute = '/' + path.split('/')[1];
+  static void setHomeIndex(int index) {
+    _homeKey.currentState?.showFragment(index);
+  }
 
-    switch (mainRoute) {
+  static Route? openPage(RouteSettings settings) {
+    final _path = settings.name ?? home;
+    final _mainRoute = '/' + _path.split('/')[1];
+
+    switch (_mainRoute) {
       case launch:
         return _makeRoute(
           BlocProvider(
@@ -44,7 +50,7 @@ class AppRoutes {
       case home:
         return _makeRoute(ChangeNotifierProvider(
           create: (_) => get<ConnectionProvider>(),
-          child: _getHomePage(path),
+          child: _getHomePage(_path),
         ));
     }
 
@@ -62,7 +68,8 @@ class AppRoutes {
 
     final route = _homeSubRoutes.firstWhere((r) => r.contains(subPath));
     final index = _homeSubRoutes.indexOf(route);
-    return HomePage(index: index);
+    setHomeIndex(index);
+    return HomePage(key: _homeKey);
   }
 
   static List<String> get _homeSubRoutes => [

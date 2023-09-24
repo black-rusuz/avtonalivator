@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../core/router.dart';
 import '../../../../core/theme.dart';
 import '../../../../domain/model/cocktail.dart';
 import '../../../../domain/model/drink.dart';
 import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
+import '../../tuning/provider.dart';
 
 const _horizontal = AppTheme.horizontalPadding;
+
+void setCocktail(BuildContext context, UiCocktail cocktail) {
+  final tuning = context.read<TuningProvider>();
+  final pumps = tuning.pumps;
+
+  if (cocktail.isReady(pumps)) {
+    final newPumps = pumps.map((e) => e.mapCocktail(cocktail)).toList();
+    newPumps.forEach(tuning.updatePump);
+    Navigator.of(context).pop();
+    AppRoutes.setHomeIndex(0);
+  }
+}
 
 void showDetail(BuildContext context, UiCocktail cocktail) {
   showModalBottomSheet(
@@ -23,6 +38,7 @@ void showDetail(BuildContext context, UiCocktail cocktail) {
         builder: (_, controller) {
           return CocktailDetail(
             cocktail: cocktail,
+            setCocktail: () => setCocktail(context, cocktail),
             controller: controller,
           );
         },
@@ -33,11 +49,13 @@ void showDetail(BuildContext context, UiCocktail cocktail) {
 
 class CocktailDetail extends StatelessWidget {
   final UiCocktail cocktail;
+  final VoidCallback? setCocktail;
   final ScrollController? controller;
 
   const CocktailDetail({
     super.key,
     required this.cocktail,
+    this.setCocktail,
     this.controller,
   });
 
@@ -85,7 +103,7 @@ class CocktailDetail extends StatelessWidget {
           bottom: 30,
           right: 30,
           child: FloatingActionButton.extended(
-            onPressed: () {},
+            onPressed: setCocktail,
             icon: const Icon(Icons.water_drop),
             label: const Text(Strings.goPour),
           ),
