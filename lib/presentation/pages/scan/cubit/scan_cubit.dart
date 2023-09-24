@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../data/connection/connector.dart';
+import '../../../../data/connection/fbs_connector.dart';
 import '../../../../domain/model/device.dart';
 import '../../../../domain/storage/settings.dart';
 
@@ -16,7 +16,7 @@ const _streamDuration = Duration(milliseconds: 400);
 @injectable
 class ScanCubit extends Cubit<ScanState> {
   final SettingsBox _settings;
-  final Connector _connector;
+  final FbsConnector _connector;
 
   ScanCubit(this._settings, this._connector) : super(ScanInitial()) {
     scan();

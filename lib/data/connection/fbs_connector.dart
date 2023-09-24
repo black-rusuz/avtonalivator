@@ -10,11 +10,12 @@ import 'input_transformer.dart';
 const _start = '\$ves';
 
 @singleton
-class Connector {
+/// Реализация подключения для библиотеки flutter_bluetooth_serial
+class FbsConnector {
   final _bluetooth = FlutterBluetoothSerial.instance;
   final _input = StreamController<Uint8List>.broadcast();
 
-  Connector();
+  FbsConnector();
 
   BluetoothConnection? _connection;
   BluetoothDevice? device;

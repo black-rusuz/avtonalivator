@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/connection/connector.dart';
+import '../../data/connection/fbs_connector.dart';
 import '../../domain/model/device.dart';
 
 @injectable
 class ConnectionProvider extends ChangeNotifier {
-  final Connector _connector;
+  final FbsConnector _connector;
 
   UiDevice? device;
 
