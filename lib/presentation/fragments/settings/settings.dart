@@ -30,9 +30,7 @@ class SettingsFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
-      builder: builder,
-    );
+    return BlocBuilder<SettingsCubit, SettingsState>(builder: builder);
   }
 
   Widget builder(BuildContext context, SettingsState state) {
@@ -49,14 +47,12 @@ class SettingsFragment extends StatelessWidget {
         onTap: action,
       ),
       body: state is! SettingsFulfilled ? const Loader() : null,
-      bodyBuilder: state is SettingsFulfilled
-          ? (_, controller) {
-              return _SettingsList(
-                controller: controller,
-                params: state.params,
-              );
-            }
-          : null,
+      bodyBuilder: (_, controller) {
+        if (state is SettingsFulfilled) {
+          return _SettingsList(controller: controller, params: state.params);
+        }
+        return const SizedBox();
+      },
     );
   }
 }
