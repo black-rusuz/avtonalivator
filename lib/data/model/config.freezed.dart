@@ -21,9 +21,9 @@ ApiConfig _$ApiConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ApiConfig {
   String? get accentColor => throw _privateConstructorUsedError;
-  int? get drinksQuantity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ApiConfigCopyWith<ApiConfig> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,8 +33,9 @@ mixin _$ApiConfig {
 abstract class $ApiConfigCopyWith<$Res> {
   factory $ApiConfigCopyWith(ApiConfig value, $Res Function(ApiConfig) then) =
       _$ApiConfigCopyWithImpl<$Res, ApiConfig>;
+
   @useResult
-  $Res call({String? accentColor, int? drinksQuantity});
+  $Res call({String? accentColor});
 }
 
 /// @nodoc
@@ -44,6 +45,7 @@ class _$ApiConfigCopyWithImpl<$Res, $Val extends ApiConfig>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -51,17 +53,12 @@ class _$ApiConfigCopyWithImpl<$Res, $Val extends ApiConfig>
   @override
   $Res call({
     Object? accentColor = freezed,
-    Object? drinksQuantity = freezed,
   }) {
     return _then(_value.copyWith(
       accentColor: freezed == accentColor
           ? _value.accentColor
           : accentColor // ignore: cast_nullable_to_non_nullable
               as String?,
-      drinksQuantity: freezed == drinksQuantity
-          ? _value.drinksQuantity
-          : drinksQuantity // ignore: cast_nullable_to_non_nullable
-              as int?,
     ) as $Val);
   }
 }
@@ -71,9 +68,10 @@ abstract class _$$_ApiConfigCopyWith<$Res> implements $ApiConfigCopyWith<$Res> {
   factory _$$_ApiConfigCopyWith(
           _$_ApiConfig value, $Res Function(_$_ApiConfig) then) =
       __$$_ApiConfigCopyWithImpl<$Res>;
+
   @override
   @useResult
-  $Res call({String? accentColor, int? drinksQuantity});
+  $Res call({String? accentColor});
 }
 
 /// @nodoc
@@ -88,17 +86,12 @@ class __$$_ApiConfigCopyWithImpl<$Res>
   @override
   $Res call({
     Object? accentColor = freezed,
-    Object? drinksQuantity = freezed,
   }) {
     return _then(_$_ApiConfig(
       accentColor: freezed == accentColor
           ? _value.accentColor
           : accentColor // ignore: cast_nullable_to_non_nullable
               as String?,
-      drinksQuantity: freezed == drinksQuantity
-          ? _value.drinksQuantity
-          : drinksQuantity // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -106,19 +99,17 @@ class __$$_ApiConfigCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ApiConfig implements _ApiConfig {
-  const _$_ApiConfig({this.accentColor, this.drinksQuantity});
+  const _$_ApiConfig({this.accentColor});
 
   factory _$_ApiConfig.fromJson(Map<String, dynamic> json) =>
       _$$_ApiConfigFromJson(json);
 
   @override
   final String? accentColor;
-  @override
-  final int? drinksQuantity;
 
   @override
   String toString() {
-    return 'ApiConfig(accentColor: $accentColor, drinksQuantity: $drinksQuantity)';
+    return 'ApiConfig(accentColor: $accentColor)';
   }
 
   @override
@@ -127,14 +118,12 @@ class _$_ApiConfig implements _ApiConfig {
         (other.runtimeType == runtimeType &&
             other is _$_ApiConfig &&
             (identical(other.accentColor, accentColor) ||
-                other.accentColor == accentColor) &&
-            (identical(other.drinksQuantity, drinksQuantity) ||
-                other.drinksQuantity == drinksQuantity));
+                other.accentColor == accentColor));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, accentColor, drinksQuantity);
+  int get hashCode => Object.hash(runtimeType, accentColor);
 
   @JsonKey(ignore: true)
   @override
@@ -151,16 +140,14 @@ class _$_ApiConfig implements _ApiConfig {
 }
 
 abstract class _ApiConfig implements ApiConfig {
-  const factory _ApiConfig(
-      {final String? accentColor, final int? drinksQuantity}) = _$_ApiConfig;
+  const factory _ApiConfig({final String? accentColor}) = _$_ApiConfig;
 
   factory _ApiConfig.fromJson(Map<String, dynamic> json) =
       _$_ApiConfig.fromJson;
 
   @override
   String? get accentColor;
-  @override
-  int? get drinksQuantity;
+
   @override
   @JsonKey(ignore: true)
   _$$_ApiConfigCopyWith<_$_ApiConfig> get copyWith =>

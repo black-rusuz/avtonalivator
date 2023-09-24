@@ -6,17 +6,14 @@ const _defaultColor = Color(0xFFFAD960);
 
 class AppConfig {
   final Color accentColor;
-  final int drinksQuantity;
 
   AppConfig({
     this.accentColor = _defaultColor,
-    this.drinksQuantity = 6,
   });
 
   factory AppConfig.fromApi(ApiConfig config) {
     return AppConfig(
       accentColor: _tryParseColor(config.accentColor) ?? _defaultColor,
-      drinksQuantity: config.drinksQuantity ?? 6,
     );
   }
 }

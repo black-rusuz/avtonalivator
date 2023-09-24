@@ -7,7 +7,6 @@ part 'config.g.dart';
 class ApiConfig with _$ApiConfig {
   const factory ApiConfig({
     String? accentColor,
-    int? drinksQuantity,
   }) = _ApiConfig;
 
   factory ApiConfig.fromJson(Map<String, dynamic> json) =>
