@@ -5,15 +5,17 @@ import '../../core/theme.dart';
 
 class PercentIndicator extends StatelessWidget {
   final double percent;
-  final Widget child;
+  final Widget? child;
   final double? radius;
+  final bool animation;
   final int duration;
 
   const PercentIndicator({
     super.key,
     required this.percent,
-    required this.child,
+    this.child,
     this.radius,
+    this.animation = true,
     this.duration = 1000,
   });
 
@@ -24,7 +26,7 @@ class PercentIndicator extends StatelessWidget {
 
     return CircularPercentIndicator(
       lineWidth: 10,
-      animation: true,
+      animation: animation,
       animationDuration: duration,
       curve: Curves.easeInOutSine,
       progressColor: AppTheme.accent,
