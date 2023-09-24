@@ -1,12 +1,18 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
 
+import 'input_transformer.dart';
+
+const _start = '\$ves';
+
 @singleton
 class Connector {
   final _bluetooth = FlutterBluetoothSerial.instance;
+  final _input = StreamController<Uint8List>();
 
   Connector();
 
@@ -35,6 +41,7 @@ class Connector {
     try {
       await _connect(device.address);
       this.device = device;
+      await _setupStream();
     } catch (_) {
       // TODO: log
     }
@@ -52,16 +59,12 @@ class Connector {
     return await _connection?.output.allSent;
   }
 
-  Stream<String> get input {
-    if (_connection?.input == null) {
-      return const Stream.empty();
-    } else {
-      return _connection!.input!
-          .map(_utfTransformer)
-          .takeWhile(_stringCollector)
-          .asBroadcastStream();
-    }
-  }
+  Stream<String> get input => _input.stream
+      .expand((list) => list.map((byte) => byte))
+      .transform(InputTransformer())
+      .map(utf8.decode)
+      .where((s) => s.startsWith(_start))
+      .distinct();
 
   Future<void> disconnect() async {
     await _connection?.close();
@@ -76,15 +79,10 @@ class Connector {
 
     return _connection;
   }
-}
 
-String _utfTransformer(Uint8List event) {
-  print(event);
-  final decoded = utf8.decode(event);
-  print(decoded);
-  return decoded;
-}
-
-bool _stringCollector(String element) {
-  return true;
+  Future<void> _setupStream() async {
+    if (_connection?.input == null) return;
+    final stream = _connection!.input!;
+    _input.addStream(stream);
+  }
 }
