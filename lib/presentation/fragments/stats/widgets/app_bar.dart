@@ -8,7 +8,6 @@ class _StatsAppBar extends StatelessWidget {
     final height = MediaQuery.of(context).size.height * 0.4;
 
     return SliverAppBar(
-      centerTitle: true,
       collapsedHeight: kToolbarHeight,
       expandedHeight: height,
       backgroundColor: AppTheme.background,

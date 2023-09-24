@@ -29,7 +29,10 @@ class AppTheme {
     colorSchemeSeed: accent,
     scaffoldBackgroundColor: background,
     textTheme: GoogleFonts.rubikTextTheme(),
-    appBarTheme: const AppBarTheme(backgroundColor: background),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: background,
+      centerTitle: true,
+    ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       color: Color.lerp(AppTheme.accent, AppTheme.black, 0.1),
     ),

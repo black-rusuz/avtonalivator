@@ -21,7 +21,6 @@ class SettingsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      centerTitle: true,
       expandedHeight: height,
       backgroundColor: device == null ? AppTheme.accent : AppTheme.background,
       title: Text(Strings.settings, style: AppTheme.pageTitle),

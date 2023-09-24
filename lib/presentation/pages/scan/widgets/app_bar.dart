@@ -13,7 +13,6 @@ class ScanAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      centerTitle: true,
       expandedHeight: height,
       backgroundColor: AppTheme.accent,
       title: Text(Strings.connection, style: AppTheme.pageTitle),
