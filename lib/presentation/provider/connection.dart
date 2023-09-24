@@ -45,7 +45,7 @@ class ConnectionProvider extends ChangeNotifier {
     return _sendCommand(command);
   }
 
-  void sendPour() {
+  void startPour() {
     // _sendCommand('w1 m0 s0');
   }
 

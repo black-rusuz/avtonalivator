@@ -49,7 +49,7 @@ class HomePageState extends State<HomePage> {
       floatingActionButton: index != 0
           ? null
           : FloatingActionButton.extended(
-              onPressed: context.read<ConnectionProvider>().sendPour,
+              onPressed: context.read<ConnectionProvider>().startPour,
               icon: const Icon(Icons.local_drink_rounded),
               label: const Text(Strings.pour),
             ),
