@@ -25,8 +25,8 @@ class UiPump extends Equatable {
       );
 
   String get command {
-    final volume = this.volume.round();
-    return '$liter$volume';
+    final value = isEnabled ? volume.round() : 0;
+    return '$liter$value';
   }
 
   UiPump copyWith({
