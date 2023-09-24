@@ -42,7 +42,7 @@ class AppRoutes {
           ),
         );
       case debug:
-        return _makeRoute(DebugPage());
+        return _makeRoute(const DebugPage());
       case home:
         return _makeRoute(ChangeNotifierProvider(
           create: (_) => get<ConnectionProvider>(),
