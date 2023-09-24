@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../equals.dart';
 import 'cocktail.dart';
 
-final _liters = '0:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
+final _chars = '0:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
 
 class UiPump extends Equatable {
   final int id;
@@ -28,7 +28,7 @@ class UiPump extends Equatable {
 
   String get command {
     final value = enabled ? volume.round() : 0;
-    return '$liter$value';
+    return '$_char$value';
   }
 
   UiPump copyWith({
@@ -45,10 +45,6 @@ class UiPump extends Equatable {
     );
   }
 
-  String get liter {
-    return _liters[id];
-  }
-
   /// Находит напиток, соответствующий названию ингредиента,
   /// включает помпу и устанавливает объём.
   /// Если напиток не найден, помпа выключается.
@@ -62,6 +58,10 @@ class UiPump extends Equatable {
             enabled: true,
           );
     return result;
+  }
+
+  String get _char {
+    return _chars[id];
   }
 
   @override
