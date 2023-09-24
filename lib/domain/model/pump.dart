@@ -24,6 +24,11 @@ class UiPump extends Equatable {
         isEnabled: true,
       );
 
+  String get command {
+    final volume = this.volume.round();
+    return '$liter$volume';
+  }
+
   UiPump copyWith({
     int? id,
     String? name,
