@@ -32,11 +32,9 @@ class _DebugPageState extends State<DebugPage> {
 
   void sendCommand() {
     final text = sendController.text;
-    data.add(text);
-
     final list = utf8.encode(text);
     final bytes = Uint8List.fromList(list);
-    adapter.send(bytes);
+    adapter.send(bytes).then((_) => data.add(text));
   }
 
   void saveCommand() {
@@ -64,7 +62,7 @@ class _DebugPageState extends State<DebugPage> {
         title: const Text(AppRoutes.debug),
       ),
       body: Ink(
-        height: 382,
+        height: 360,
         padding: AppTheme.padding / 3,
         child: StreamBuilder<String>(
           stream: adapter.input.map(utf8.decode),
@@ -134,7 +132,7 @@ class _DebugPageState extends State<DebugPage> {
     if (snapshot == null) return;
     data.add(snapshot);
 
-    if (data.length >= 34) data.removeAt(0);
+    if (data.length >= 32) data.removeAt(0);
     final text = data.join('\n');
 
     // TODO скролл не работает, надо сделать 400 строк
