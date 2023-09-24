@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         ],
         child: bodies[index],
       ),
-      floatingActionButton: Builder(builder: buttonBuilder),
+      floatingActionButton: index != 0 ? null : Builder(builder: buttonBuilder),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: showFragment,
         selectedIndex: index,
