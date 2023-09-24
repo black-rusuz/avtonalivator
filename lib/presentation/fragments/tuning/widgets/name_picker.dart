@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils.dart';
+import '../../../search_utils.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/search_field.dart';
 

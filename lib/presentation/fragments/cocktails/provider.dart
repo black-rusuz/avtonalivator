@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../domain/model/cocktail.dart';
 import '../../../domain/repository/cocktails_repository.dart';
-import '../../utils.dart';
+import '../../search_utils.dart';
 
 @injectable
 class CocktailsProvider extends ChangeNotifier {

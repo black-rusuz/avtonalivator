@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../core/theme.dart';
 import '../../../assets_image.dart';
-import '../../../utils.dart';
+import '../../../search_utils.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
 
