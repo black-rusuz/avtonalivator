@@ -79,10 +79,11 @@ class FbsConnector implements Connector {
 
   @override
   Stream<DeviceData> get input {
+    // TODO: фильтры слишком долгие
     return _connector.input
         // .distinct()
         .map(utf8.decode)
-        .where((s) => s.startsWith(_start) && s.length >= 70)
+        // .where((s) => s.startsWith(_start) && s.length >= 70)
         .map(DeviceData.fromString);
   }
 
