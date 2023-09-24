@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   late int index = 0;
 
-  void showFragment(int index) {
+  void setIndex(int index) {
     setState(() {
       this.index = index;
     });
@@ -54,7 +54,7 @@ class HomePageState extends State<HomePage> {
               label: const Text(Strings.pour),
             ),
       bottomNavigationBar: NavigationBar(
-        onDestinationSelected: showFragment,
+        onDestinationSelected: setIndex,
         selectedIndex: index,
         destinations: const [
           NavigationDestination(

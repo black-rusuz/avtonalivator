@@ -23,7 +23,7 @@ class AppRoutes {
   static const settings = '/home/settings';
 
   static void setHomeIndex(int index) {
-    _homeKey.currentState?.showFragment(index);
+    _homeKey.currentState?.setIndex(index);
   }
 
   static Route? openPage(RouteSettings settings) {
