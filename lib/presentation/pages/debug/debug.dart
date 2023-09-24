@@ -12,8 +12,8 @@ import '../../../injection.dart';
 import '../../widgets/basic_card.dart';
 
 const _maxLines = 32;
-const double _gap = 10;
-const double _commandSize = 14;
+const double _gap = 8;
+const double _commandSize = 12;
 
 final _border = OutlineInputBorder(
   borderRadius: BorderRadius.circular(4),
