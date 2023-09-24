@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
+import '../equals.dart';
 import 'cocktail.dart';
 
 class UiPump extends Equatable {
@@ -59,52 +61,19 @@ class UiPump extends Equatable {
     }
   }
 
+  /// Находит напиток, соответствующий названию ингредиента,
+  /// включает помпу и устанавливает объём.
+  /// Если напиток не найден, помпа выключается.
   UiPump mapCocktail(UiCocktail cocktail) {
-    // TODO: implement mapCocktail
-    throw UnimplementedError();
-    //   if (name.toLowerCase() == cocktail.drinkA?.toLowerCase()) {
-    //     return copyWith(
-    //       name: cocktail.drinkA,
-    //       volume: cocktail.volumeA?.toDouble(),
-    //       isEnabled: true,
-    //     );
-    //   }
-    //   if (name.toLowerCase() == cocktail.drinkB?.toLowerCase()) {
-    //     return copyWith(
-    //       name: cocktail.drinkB,
-    //       volume: cocktail.volumeB?.toDouble(),
-    //       isEnabled: true,
-    //     );
-    //   }
-    //   if (name.toLowerCase() == cocktail.drinkC?.toLowerCase()) {
-    //     return copyWith(
-    //       name: cocktail.drinkC,
-    //       volume: cocktail.volumeC?.toDouble(),
-    //       isEnabled: true,
-    //     );
-    //   }
-    //   if (name.toLowerCase() == cocktail.drinkD?.toLowerCase()) {
-    //     return copyWith(
-    //       name: cocktail.drinkD,
-    //       volume: cocktail.volumeD?.toDouble(),
-    //       isEnabled: true,
-    //     );
-    //   }
-    //   if (name.toLowerCase() == cocktail.drinkE?.toLowerCase()) {
-    //     return copyWith(
-    //       name: cocktail.drinkE,
-    //       volume: cocktail.volumeE?.toDouble(),
-    //       isEnabled: true,
-    //     );
-    //   }
-    //   if (name.toLowerCase() == cocktail.drinkF?.toLowerCase()) {
-    //     return copyWith(
-    //       name: cocktail.drinkF,
-    //       volume: cocktail.volumeF?.toDouble(),
-    //       isEnabled: true,
-    //     );
-    //   }
-    //   return copyWith(isEnabled: false);
+    final drink = cocktail.drinks.firstWhereOrNull((d) => d.name.equals(name));
+    final result = drink == null
+        ? copyWith(isEnabled: false)
+        : copyWith(
+            name: drink.name,
+            volume: drink.volume.toDouble(),
+            isEnabled: true,
+          );
+    return result;
   }
 
   @override
@@ -118,5 +87,11 @@ class UiPump extends Equatable {
   @override
   bool operator ==(Object other) {
     return other is UiPump && id == other.id;
+  }
+}
+
+extension Drinks on List<UiPump> {
+  List<String> get drinks {
+    return map((drink) => drink.name).toList();
   }
 }

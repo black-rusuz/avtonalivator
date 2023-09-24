@@ -1,7 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 import '../../data/model/cocktail.dart';
+import '../equals.dart';
 import 'drink.dart';
+import 'pump.dart';
 
 class UiCocktail extends Equatable {
   final int id;
@@ -26,6 +28,14 @@ class UiCocktail extends Equatable {
       drinks: cocktail.drinks.map(UiDrink.fromApi).toList(),
       description: cocktail.description,
     );
+  }
+
+  List<String> get ingredients => drinks.map((e) => e.name).toList();
+
+  /// Каждый ингредиент установлен хотя бы в одной помпе
+  bool isReady(List<UiPump> pumps) {
+    final drinks = pumps.drinks;
+    return ingredients.every((ingredient) => drinks.any(ingredient.equals));
   }
 
   @override
