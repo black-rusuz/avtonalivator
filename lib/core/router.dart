@@ -40,7 +40,10 @@ class AppRoutes {
           ),
         );
       case home:
-        return _getHomeRoute(path);
+        return _makeRoute(ChangeNotifierProvider(
+          create: (_) => get<ConnectionProvider>(),
+          child: _getHomePage(path),
+        ));
     }
 
     return null;
@@ -50,17 +53,13 @@ class AppRoutes {
     return MaterialPageRoute(builder: (_) => child);
   }
 
-  static Route? _getHomeRoute(String path) {
+  static Widget _getHomePage(String path) {
     String subPath = path.replaceAll(home, '');
     if (subPath.isEmpty) subPath = tuning.replaceAll(home, '');
 
     final route = _homeSubRoutes.firstWhere((r) => r.contains(subPath));
     final index = _homeSubRoutes.indexOf(route);
-
-    return _makeRoute(ChangeNotifierProvider(
-      create: (_) => get<ConnectionProvider>(),
-      child: HomePage(index: index),
-    ));
+    return HomePage(index: index);
   }
 
   static List<String> get _homeSubRoutes => [
