@@ -34,14 +34,15 @@ class _CocktailsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.read<CocktailsProvider>();
+
     return SliverScaffold(
       sliverAppBar: _CocktailsAppBar(
         search: provider.searchCocktail,
         background: CocktailsBackground(cocktails: provider.cocktails),
       ),
       body: FilterCard(
-        isActive: false,
-        onChanged: (v) {},
+        isActive: provider.useReadinessFilter,
+        onChanged: provider.setFilter,
       ),
       bodyBuilder: (_, controller) {
         return ListView.separated(
