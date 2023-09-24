@@ -8,7 +8,7 @@ import '../../core/theme.dart';
 const _disableDebug = true;
 final _debugBorder = Border.all(width: 2, color: Colors.redAccent);
 
-const _defaultShadow = [
+const cardShadow = [
   BoxShadow(
     blurRadius: 2,
     offset: Offset(0, 0.2),
@@ -81,7 +81,7 @@ class BasicCard extends StatelessWidget {
                 ? null
                 : shadow != null
                     ? [shadow!]
-                    : _defaultShadow,
+                    : cardShadow,
           ),
           child: alignment == null
               ? child
