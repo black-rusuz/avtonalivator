@@ -11,6 +11,7 @@ import '../../../domain/storage/commands.dart';
 import '../../../injection.dart';
 import '../../widgets/basic_card.dart';
 
+const _maxLines = 32;
 const double _gap = 10;
 const double _commandSize = 14;
 
@@ -61,46 +62,48 @@ class _DebugPageState extends State<DebugPage> {
       appBar: AppBar(
         title: const Text(AppRoutes.debug),
       ),
-      body: Ink(
-        height: 360,
+      body: Padding(
         padding: AppTheme.padding / 3,
         child: StreamBuilder<String>(
           stream: adapter.input.map(utf8.decode),
           builder: builder,
         ),
       ),
-      bottomSheet: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (commands.isNotEmpty)
-            SizedBox(
-              height: _gap * 3 + _commandSize,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.all(_gap).copyWith(bottom: 0),
-                itemCount: commands.length,
-                itemBuilder: commandBuilder,
-                separatorBuilder: separatorBuilder,
-              ),
-            ),
-          Padding(
-            padding: AppTheme.padding,
-            child: TextField(
-              controller: sendController,
-              onEditingComplete: sendCommand,
-              decoration: InputDecoration(
-                icon: IconButton(
-                  onPressed: saveCommand,
-                  icon: const Icon(Icons.save_rounded),
-                ),
-                suffixIcon: IconButton(
-                  onPressed: sendCommand,
-                  icon: const Icon(Icons.send_outlined),
+      bottomSheet: Ink(
+        color: Color.lerp(AppTheme.background, AppTheme.accent, 0.2),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (commands.isNotEmpty)
+              SizedBox(
+                height: _gap * 3 + _commandSize,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.all(_gap).copyWith(bottom: 0),
+                  itemCount: commands.length,
+                  itemBuilder: commandBuilder,
+                  separatorBuilder: separatorBuilder,
                 ),
               ),
+            Padding(
+              padding: AppTheme.padding,
+              child: TextField(
+                controller: sendController,
+                onEditingComplete: sendCommand,
+                decoration: InputDecoration(
+                  icon: IconButton(
+                    onPressed: saveCommand,
+                    icon: const Icon(Icons.save_rounded),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: sendCommand,
+                    icon: const Icon(Icons.send_outlined),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -109,7 +112,7 @@ class _DebugPageState extends State<DebugPage> {
     setData(snapshot.data);
     return TextField(
       readOnly: true,
-      minLines: 33,
+      minLines: _maxLines,
       maxLines: null,
       keyboardType: TextInputType.multiline,
       controller: logController,
@@ -132,7 +135,7 @@ class _DebugPageState extends State<DebugPage> {
     if (snapshot == null) return;
     data.add(snapshot);
 
-    if (data.length >= 32) data.removeAt(0);
+    if (data.length > _maxLines) data.removeAt(0);
     final text = data.join('\n');
 
     // TODO скролл не работает, надо сделать 400 строк
