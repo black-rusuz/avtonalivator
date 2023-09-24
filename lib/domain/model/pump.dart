@@ -4,6 +4,8 @@ import 'package:equatable/equatable.dart';
 import '../equals.dart';
 import 'cocktail.dart';
 
+final _liters = '0:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
+
 class UiPump extends Equatable {
   final int id;
   final String name;
@@ -44,26 +46,7 @@ class UiPump extends Equatable {
   }
 
   String get liter {
-    switch (id) {
-      case 1:
-        return 'a';
-      case 2:
-        return 'b';
-      case 3:
-        return 'c';
-      case 4:
-        return 'd';
-      case 5:
-        return 'e';
-      case 6:
-        return 'f';
-      case 7:
-        return 'g';
-      case 8:
-        return 'h';
-      default:
-        return '';
-    }
+    return _liters[id];
   }
 
   /// Находит напиток, соответствующий названию ингредиента,
