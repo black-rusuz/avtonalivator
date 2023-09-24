@@ -15,6 +15,10 @@ const _maxLines = 32;
 const double _gap = 10;
 const double _commandSize = 14;
 
+final _border = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(4),
+);
+
 class DebugPage extends StatefulWidget {
   const DebugPage({super.key});
 
@@ -124,9 +128,8 @@ class _DebugPageState extends State<DebugPage> {
         filled: true,
         fillColor: const Color(0xFF1E1F22),
         contentPadding: const EdgeInsets.all(4),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
-        ),
+        enabledBorder: _border,
+        focusedBorder: _border,
       ),
     );
   }
