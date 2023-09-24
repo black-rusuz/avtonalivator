@@ -13,15 +13,15 @@ const _debounce = Duration(milliseconds: 400);
 class ConnectionProvider extends ChangeNotifier {
   final Connector _connector;
 
-  UiDevice? device;
-
   ConnectionProvider(this._connector) {
     device = _connector.device;
-    _connector.input.listen(print);
+    _inputSub?.cancel();
+    _inputSub = _connector.input.listen(print);
   }
 
-  Timer? _timer;
+  UiDevice? device;
   StreamSubscription? _inputSub;
+  Timer? _timer;
 
   void updatePump(UiPump pump) {
     final liter = pump.liter;
@@ -31,7 +31,9 @@ class ConnectionProvider extends ChangeNotifier {
     return _sendCommand(command);
   }
 
-  void sendPour() {}
+  void sendPour() {
+    // _sendCommand('w1 m0 s0');
+  }
 
   void _sendCommand(String command) {
     _runAsync(() => _connector.sendCommand(command));
