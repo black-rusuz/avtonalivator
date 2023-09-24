@@ -79,11 +79,11 @@ class UiPump extends Equatable {
   @override
   List<Object?> get props => [id, name, volume, isEnabled];
 
-  /// Реализация PrimaryKey для Set в TuningBloc
+  /// Реализация PrimaryKey для провайдера [Tuning]
   @override
   int get hashCode => id.hashCode;
 
-  /// Реализация PrimaryKey для Set в TuningBloc
+  /// Реализация PrimaryKey для провайдера [Tuning]
   @override
   bool operator ==(Object other) {
     return other is UiPump && id == other.id;
