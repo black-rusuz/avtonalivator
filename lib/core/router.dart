@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../injection.dart';
+import '../presentation/pages/debug/debug.dart';
 import '../presentation/pages/home/home.dart';
 import '../presentation/pages/launch/cubit/launch_cubit.dart';
 import '../presentation/pages/launch/launch.dart';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const launch = '/launch';
   static const scan = '/scan';
   static const home = '/home';
+  static const debug = '/debug';
 
   static const tuning = '/home/tuning';
   static const cocktails = '/home/cocktails';
@@ -39,6 +41,8 @@ class AppRoutes {
             child: const ScanPage(),
           ),
         );
+      case debug:
+        return _makeRoute(DebugPage());
       case home:
         return _makeRoute(ChangeNotifierProvider(
           create: (_) => get<ConnectionProvider>(),
