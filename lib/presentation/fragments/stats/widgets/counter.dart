@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../../../core/theme.dart';
 import '../../../strings.dart';
+import '../../../widgets/percent_indicator.dart';
 
 class StatsCounter extends StatelessWidget {
   final double liters;
@@ -58,17 +58,11 @@ class StatsCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircularPercentIndicator(
+    return PercentIndicator(
       percent: percent,
-      lineWidth: 10,
       radius: MediaQuery.of(context).size.height * 0.4 / 3,
-      animation: true,
-      animationDuration: 1000,
-      curve: Curves.easeInOutSine,
-      circularStrokeCap: CircularStrokeCap.round,
-      progressColor: AppTheme.accent,
-      backgroundColor: AppTheme.divider,
-      center: Column(
+      duration: 1000,
+      child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
