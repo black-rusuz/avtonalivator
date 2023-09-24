@@ -34,6 +34,7 @@ class Strings {
   static const settings = 'Настройки';
 
   // * Common
+
   static const pickDrink = 'Выберите напиток';
   static const ml = 'мл';
 
@@ -42,6 +43,7 @@ class Strings {
   static const cancel = 'Закрыть';
   static const ok = 'Ок';
 
+  static const pour = 'Налить';
   static const readyForPouring = 'Готово к наливу';
 
   // * Stats

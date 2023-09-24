@@ -24,8 +24,6 @@ class ConnectionProvider extends ChangeNotifier {
   }
 
   Future<void> sendPour() async {
-    _inputSub?.cancel();
-    _inputSub = _connector.input.listen(_streamListener);
   }
 
   void disconnect() async {

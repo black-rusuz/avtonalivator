@@ -36,9 +36,10 @@ class _HomePageState extends State<HomePage> {
   ];
 
   Widget buttonBuilder(BuildContext context) {
-    return FloatingActionButton(
+    return FloatingActionButton.extended(
       onPressed: () => context.read<ConnectionProvider>().sendPour(),
-      child: const Icon(Icons.track_changes_rounded),
+      icon: const Icon(Icons.local_drink_rounded),
+      label: const Text(Strings.pour),
     );
   }
 
