@@ -48,7 +48,7 @@ class _TuningBody extends StatelessWidget {
     return TuningCard(
       pump: pump,
       setPump: context.read<TuningProvider>().updatePump,
-      drinks: context.read<CocktailsProvider>().drinks,
+      drinks: context.watch<CocktailsProvider>().drinks,
     );
   }
 
