@@ -33,14 +33,6 @@ class HomePageState extends State<HomePage> {
     SettingsFragment(),
   ];
 
-  Widget buttonBuilder(BuildContext context) {
-    return FloatingActionButton.extended(
-      onPressed: () => context.read<ConnectionProvider>().sendPour(),
-      icon: const Icon(Icons.local_drink_rounded),
-      label: const Text(Strings.pour),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +46,13 @@ class HomePageState extends State<HomePage> {
         ],
         child: bodies[index],
       ),
-      floatingActionButton: index != 0 ? null : Builder(builder: buttonBuilder),
+      floatingActionButton: index != 0
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: context.read<ConnectionProvider>().sendPour,
+              icon: const Icon(Icons.local_drink_rounded),
+              label: const Text(Strings.pour),
+            ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: showFragment,
         selectedIndex: index,
