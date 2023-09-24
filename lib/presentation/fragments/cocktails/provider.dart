@@ -17,29 +17,27 @@ class CocktailsProvider extends ChangeNotifier {
   }
 
   String _searchPattern = '';
+  List<String> _pumpDrinks = [];
   List<UiCocktail> _cocktails = [];
   StreamSubscription? _cocktailsSubscription;
 
-  bool useReadinessFilter = false;
+  bool useFilter = false;
 
-  // TODO: cocktail.isReadyFor(pumps)
   List<UiCocktail> get cocktails => _cocktails
-      .where((cocktail) => cocktail.isReadyFor([]) || !useReadinessFilter)
-      .where((cocktail) => cocktail.name.search(_searchPattern))
+      .where((c) => !useFilter || c.contains(_pumpDrinks))
+      .where((c) => c.name.search(_searchPattern))
       .toList();
 
-  List<String> get drinks => _cocktails
-      .expand((cocktail) => cocktail.drinks)
-      .map((drink) => drink.name)
-      .toList();
+  List<String> get drinks => _cocktails.expand((c) => c.ingredients).toList();
 
   void searchCocktail(String pattern) {
     _searchPattern = pattern;
     notifyListeners();
   }
 
-  void setFilter(bool value) {
-    useReadinessFilter = value;
+  void setFilter(List<String> drinks, bool value) {
+    _pumpDrinks = drinks;
+    useFilter = value;
     notifyListeners();
   }
 

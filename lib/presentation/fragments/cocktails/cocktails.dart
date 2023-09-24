@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/theme.dart';
 import '../../../domain/model/cocktail.dart';
+import '../../../domain/model/pump.dart';
 import '../../strings.dart';
 import '../../widgets/search_field.dart';
 import '../../widgets/sliver_scaffold.dart';
+import '../tuning/provider.dart';
 import 'provider.dart';
 import 'widgets/background.dart';
 import 'widgets/cocktail_card.dart';
@@ -34,6 +36,8 @@ class _CocktailsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.read<CocktailsProvider>();
+    final pumps = context.watch<TuningProvider>();
+    final drinks = pumps.pumps.drinks;
 
     return SliverScaffold(
       sliverAppBar: _CocktailsAppBar(
@@ -41,8 +45,8 @@ class _CocktailsList extends StatelessWidget {
         background: CocktailsBackground(cocktails: provider.cocktails),
       ),
       body: FilterCard(
-        isActive: provider.useReadinessFilter,
-        onChanged: provider.setFilter,
+        isActive: provider.useFilter,
+        onChanged: (v) => provider.setFilter(drinks, v),
       ),
       bodyBuilder: (_, controller) {
         return ListView.separated(

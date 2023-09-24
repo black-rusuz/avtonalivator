@@ -33,9 +33,13 @@ class UiCocktail extends Equatable {
   List<String> get ingredients => drinks.map((e) => e.name).toList();
 
   /// Каждый ингредиент установлен хотя бы в одной помпе
+  bool contains(List<String> drinks) {
+    return ingredients.every((ingredient) => drinks.any(ingredient.equals));
+  }
+
   bool isReadyFor(List<UiPump> pumps) {
     final drinks = pumps.drinks;
-    return ingredients.every((ingredient) => drinks.any(ingredient.equals));
+    return contains(drinks);
   }
 
   @override
