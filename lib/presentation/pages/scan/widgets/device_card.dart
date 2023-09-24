@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/theme.dart';
+import '../../../assets_image.dart';
+import '../../../utils.dart';
 import '../../../widgets/basic_card.dart';
+import '../../../widgets/basic_image.dart';
+
+// TODO: брать с бека
+const _recommended = ['hc05, hc-05', 'hc', '05'];
 
 class DeviceCard extends StatelessWidget {
   final String title;
@@ -15,6 +21,8 @@ class DeviceCard extends StatelessWidget {
     this.onTap,
   });
 
+  bool get recommended => _recommended.any(title.has);
+
   bool get singleLine => subtitle?.isNotEmpty != true;
 
   @override
@@ -27,6 +35,14 @@ class DeviceCard extends StatelessWidget {
         height: 46,
         child: Row(
           children: [
+            if (recommended) ...[
+              BasicImage(
+                AssetsIcon.barmen_grey.path,
+                height: 46,
+                width: 46,
+              ),
+              const SizedBox(width: 16),
+            ],
             Expanded(
               child: singleLine
                   ? Text(title)
