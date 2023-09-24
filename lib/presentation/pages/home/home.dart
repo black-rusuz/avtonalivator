@@ -9,6 +9,7 @@ import '../../fragments/stats/stats.dart';
 import '../../fragments/tuning/tuning.dart';
 import '../../provider/connection.dart';
 import '../../strings.dart';
+import 'pour_modal.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,6 +34,19 @@ class HomePageState extends State<HomePage> {
     SettingsFragment(),
   ];
 
+  void startPour() {
+    final provider = context.read<ConnectionProvider>();
+
+    provider.startPour();
+    showModalBottomSheet(
+      context: context,
+      builder: (_) => ChangeNotifierProvider.value(
+        value: provider,
+        child: const PourModal(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +63,7 @@ class HomePageState extends State<HomePage> {
       floatingActionButton: index != 0
           ? null
           : FloatingActionButton.extended(
-              onPressed: context.read<ConnectionProvider>().startPour,
+              onPressed: startPour,
               icon: const Icon(Icons.local_drink_rounded),
               label: const Text(Strings.pour),
             ),
