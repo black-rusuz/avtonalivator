@@ -49,7 +49,7 @@ class TuningBloc extends Bloc<TuningEvent, TuningState> {
   }
 }
 
-extension Update<T> on List<T> {
+extension _Update<T> on List<T> {
   void update(T element) {
     if (contains(element)) {
       final index = indexOf(element);

@@ -8,29 +8,32 @@ import '../../strings.dart';
 import '../../widgets/loader.dart';
 import '../cocktails/cocktails.dart';
 import 'bloc/tuning_bloc.dart';
+import 'provider.dart';
 import 'widgets/tuning_card.dart';
 
 export 'bloc/tuning_bloc.dart';
+export 'provider.dart';
 
 class TuningFragment extends StatelessWidget {
   const TuningFragment({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final pumps = context.watch<TuningProvider>().pumps;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(Strings.tuning, style: AppTheme.pageTitle),
       ),
-      body: BlocConsumer<TuningBloc, TuningState>(
-        listener: listener,
-        builder: builder,
+      body: _TuningBody(
+        state: TuningFulfilled(pumps: pumps),
       ),
     );
   }
 
   void listener(BuildContext context, TuningState state) {
-    if (state is !TuningFulfilled) return;
+    if (state is! TuningFulfilled) return;
   }
 
   Widget builder(BuildContext context, TuningState state) {
@@ -65,6 +68,7 @@ class _TuningBody extends StatelessWidget {
 
   void setPump(BuildContext context, UiPump pump) {
     context.read<TuningBloc>().add(SetPump(pump));
+    context.read<TuningProvider>().updatePump(pump);
     context.read<ConnectionProvider>().updatePump(pump);
   }
 
