@@ -19,6 +19,10 @@ class ConnectionProvider extends ChangeNotifier {
 
   StreamSubscription? _inputSub;
 
+  Future<void> sendCommand(String command) {
+    return _connector.sendCommand(command);
+  }
+
   Future<void> sendPour() async {
     _inputSub?.cancel();
     _inputSub = _connector.input.listen(_streamListener);
@@ -28,10 +32,6 @@ class ConnectionProvider extends ChangeNotifier {
     device = null;
     notifyListeners();
     await _connector.disconnect();
-  }
-
-  Future<void> _sendCommand(String command) {
-    return _connector.sendCommand(command);
   }
 
   @override

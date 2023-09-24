@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,8 +17,19 @@ class DebugPage extends StatefulWidget {
 }
 
 class _DebugPageState extends State<DebugPage> {
-  final controller = TextEditingController();
+  final adapter = get<FbsAdapter>();
+  final logController = TextEditingController();
+  final sendController = TextEditingController();
   final data = [];
+
+  void sendCommand() {
+    final text = sendController.text;
+    data.add(text);
+
+    final list = utf8.encode(text);
+    final bytes = Uint8List.fromList(list);
+    adapter.send(bytes);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +41,16 @@ class _DebugPageState extends State<DebugPage> {
         height: 382,
         padding: AppTheme.padding / 3,
         child: StreamBuilder<String>(
-          stream: get<FbsAdapter>().input.map(utf8.decode),
+          stream: adapter.input.map(utf8.decode),
           builder: builder,
         ),
       ),
-      bottomSheet: const Padding(
+      bottomSheet: Padding(
         padding: AppTheme.padding,
-        child: TextField(),
+        child: TextField(
+          controller: sendController,
+          onEditingComplete: sendCommand,
+        ),
       ),
     );
   }
@@ -47,7 +62,7 @@ class _DebugPageState extends State<DebugPage> {
       minLines: 33,
       maxLines: null,
       keyboardType: TextInputType.multiline,
-      controller: controller,
+      controller: logController,
       style: GoogleFonts.sourceCodePro(
         fontSize: 7,
         color: const Color(0xFF00C89C),
@@ -66,12 +81,12 @@ class _DebugPageState extends State<DebugPage> {
   void setData(String? snapshot) {
     if (snapshot == null) return;
     data.add(snapshot);
-    // TODO 400
-    if (data.length >= 34) data.removeAt(0);
 
+    if (data.length >= 34) data.removeAt(0);
     final text = data.join('\n');
-    // TODO скролл не работает
-    controller.text = text;
-    controller.selection = TextSelection.collapsed(offset: text.length);
+
+    // TODO скролл не работает, надо сделать 400 строк
+    logController.text = text;
+    logController.selection = TextSelection.collapsed(offset: text.length);
   }
 }
