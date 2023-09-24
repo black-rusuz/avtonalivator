@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
 import '../../../domain/model/pump.dart';
+import '../../provider/connection.dart';
 import '../../strings.dart';
 import '../../widgets/loader.dart';
 import '../cocktails/cocktails.dart';
@@ -21,10 +22,15 @@ class TuningFragment extends StatelessWidget {
         centerTitle: true,
         title: Text(Strings.tuning, style: AppTheme.pageTitle),
       ),
-      body: BlocBuilder<TuningBloc, TuningState>(
+      body: BlocConsumer<TuningBloc, TuningState>(
+        listener: listener,
         builder: builder,
       ),
     );
+  }
+
+  void listener(BuildContext context, TuningState state) {
+    if (state is !TuningFulfilled) return;
   }
 
   Widget builder(BuildContext context, TuningState state) {
@@ -58,8 +64,8 @@ class _TuningBody extends StatelessWidget {
   }
 
   void setPump(BuildContext context, UiPump pump) {
-    final bloc = context.read<TuningBloc>();
-    bloc.add(SetPump(pump));
+    context.read<TuningBloc>().add(SetPump(pump));
+    context.read<ConnectionProvider>().updatePump(pump);
   }
 
   Widget separatorBuilder(BuildContext context, int index) {

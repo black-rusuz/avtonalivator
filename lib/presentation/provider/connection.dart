@@ -5,7 +5,9 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/connector.dart';
 import '../../domain/model/device.dart';
-import '../../domain/model/device_data.dart';
+import '../../domain/model/pump.dart';
+
+const _debounce = Duration(milliseconds: 400);
 
 @injectable
 class ConnectionProvider extends ChangeNotifier {
@@ -15,15 +17,29 @@ class ConnectionProvider extends ChangeNotifier {
 
   ConnectionProvider(this._connector) {
     device = _connector.device;
+    _connector.input.listen(print);
   }
 
+  Timer? _timer;
   StreamSubscription? _inputSub;
 
-  Future<void> sendCommand(String command) {
-    return _connector.sendCommand(command);
+  void updatePump(UiPump pump) {
+    final liter = pump.liter;
+    final volume = pump.isEnabled ? pump.volume : 0;
+
+    final command = '$liter$volume';
+    return _sendCommand(command);
   }
 
-  Future<void> sendPour() async {
+  void sendPour() {}
+
+  void _sendCommand(String command) {
+    _runAsync(() => _connector.sendCommand(command));
+  }
+
+  void _runAsync(AsyncCallback callback) {
+    if (_timer?.isActive == true) _timer?.cancel();
+    _timer = Timer(_debounce, callback);
   }
 
   void disconnect() async {
@@ -37,8 +53,4 @@ class ConnectionProvider extends ChangeNotifier {
     _inputSub?.cancel();
     return super.dispose();
   }
-}
-
-void _streamListener(DeviceData output) {
-  print(output);
 }
