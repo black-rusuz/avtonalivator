@@ -13,7 +13,8 @@ const _debounce = Duration(milliseconds: 400);
 @injectable
 class ConnectionProvider extends ChangeNotifier {
   final Connector _connector;
-  UiDevice? device;
+  StreamSubscription? _inputSub;
+  Timer? _timer;
 
   ConnectionProvider(this._connector) {
     device = _connector.device;
@@ -21,8 +22,8 @@ class ConnectionProvider extends ChangeNotifier {
     _inputSub = _connector.input.map(_inputPrinter).listen(_inputListener);
   }
 
-  StreamSubscription? _inputSub;
-  Timer? _timer;
+  UiDevice? device;
+  int percent = 0;
 
   // * Init
 
@@ -31,7 +32,9 @@ class ConnectionProvider extends ChangeNotifier {
     return data;
   }
 
-  void _inputListener(DeviceData data) {}
+  void _inputListener(DeviceData data) {
+    percent = data.percent;
+  }
 
   // * Methods
 
