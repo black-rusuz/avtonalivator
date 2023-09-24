@@ -80,11 +80,10 @@ class FbsConnector implements Connector {
   @override
   Stream<DeviceData> get input {
     return _connector.input
-        .distinct()
+        // .distinct()
         .map(utf8.decode)
         .where((s) => s.startsWith(_start) && s.length >= 70)
-        .map(DeviceData.fromString)
-        .distinct();
+        .map(DeviceData.fromString);
   }
 
   @override
