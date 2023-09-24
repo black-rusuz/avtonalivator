@@ -3,26 +3,25 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/connection/fbs_connector.dart';
+import '../../domain/connector.dart';
 import '../../domain/model/device.dart';
+import '../../domain/model/device_data.dart';
 
 @injectable
 class ConnectionProvider extends ChangeNotifier {
-  final FbsConnector _connector;
+  final Connector _connector;
 
   UiDevice? device;
 
   ConnectionProvider(this._connector) {
-    final _device = _connector.device;
-    device = _device == null ? null : UiDevice.fromLib(_device);
+    device = _connector.device;
   }
 
-  Stream<String> get _input => _connector.input;
   StreamSubscription? _inputSub;
 
   Future<void> sendPour() async {
     _inputSub?.cancel();
-    _inputSub = _input.listen(_streamListener);
+    _inputSub = _connector.input.listen(_streamListener);
   }
 
   void disconnect() async {
@@ -42,6 +41,6 @@ class ConnectionProvider extends ChangeNotifier {
   }
 }
 
-void _streamListener(String event) {
-  print(event);
+void _streamListener(DeviceData output) {
+  print(output);
 }

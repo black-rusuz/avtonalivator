@@ -5,18 +5,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../data/connection/fbs_connector.dart';
+import '../../../../domain/connector.dart';
 import '../../../../domain/model/device.dart';
 import '../../../../domain/storage/settings.dart';
 
 part 'scan_state.dart';
 
-const _streamDuration = Duration(milliseconds: 400);
-
 @injectable
 class ScanCubit extends Cubit<ScanState> {
   final SettingsBox _settings;
-  final FbsConnector _connector;
+  final Connector _connector;
 
   ScanCubit(this._settings, this._connector) : super(ScanInitial()) {
     scan();
@@ -30,28 +28,23 @@ class ScanCubit extends Cubit<ScanState> {
     emit(ScanFulfilled(devices: _devices));
 
     _devicesSub?.cancel();
-    _devicesSub = _connector.devices.map(UiDevice.fromLib).listen(_addDevice);
+    _devicesSub = _connector.devices.listen(_addDevice);
   }
 
   Future<void> connect(UiDevice device) async {
     emit(ScanFulfilled(devices: _devices, isConnecting: true));
-    final libDevice = device.toLib();
-    final connection = await _connector.connect(libDevice);
+    final success = await _connector.connect(device);
 
-    if (connection == null) {
-      // TODO: log
-      emit(ScanError());
-    } else {
+    if (success) {
       _settings.lastDevice = device;
       emit(ScanConnected());
+    } else {
+      // TODO: log
+      emit(ScanError());
     }
   }
 
-  Stream<bool> get isDiscovering async* {
-    while (!isClosed) {
-      yield await Future.delayed(_streamDuration, _streamCallback);
-    }
-  }
+  Stream<bool> get isDiscovering => _connector.isDiscovering;
 
   // * Private
 
@@ -76,8 +69,6 @@ class ScanCubit extends Cubit<ScanState> {
 
     emit(ScanFulfilled(devices: _devices));
   }
-
-  Future<bool> _streamCallback() => _connector.isDiscovering;
 
   @override
   Future<void> close() async {

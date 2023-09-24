@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
@@ -7,15 +6,13 @@ import 'package:injectable/injectable.dart';
 
 import 'input_transformer.dart';
 
-const _start = '\$ves';
-
+/// Прослойка для библиотеки flutter_bluetooth_serial
 @singleton
-/// Реализация подключения для библиотеки flutter_bluetooth_serial
-class FbsConnector {
+class FbsAdapter {
   final _bluetooth = FlutterBluetoothSerial.instance;
   final _input = StreamController<Uint8List>.broadcast();
 
-  FbsConnector();
+  FbsAdapter();
 
   BluetoothConnection? _connection;
   BluetoothDevice? device;
@@ -51,23 +48,15 @@ class FbsConnector {
     return _connection;
   }
 
-  Future<void> sendCommand(String command) async {
-    if (kDebugMode) print(command);
-    command = '$command\r';
-
-    final encodedChars = utf8.encode(command);
-    final output = Uint8List.fromList(encodedChars);
-
-    _connection?.output.add(output);
+  Future<void> send(Uint8List bytes) async {
+    _connection?.output.add(bytes);
     return await _connection?.output.allSent;
   }
 
-  Stream<String> get input => _input.stream
-      .expand((list) => list.map((byte) => byte))
+  Stream<Uint8List> get input => _input.stream
+      .expand((list) => list)
       .transform(InputTransformer())
-      .distinct()
-      .map(utf8.decode)
-      .where((s) => s.startsWith(_start) && s.length == 80);
+      .distinct();
 
   Future<void> disconnect() async {
     await _connection?.close();
