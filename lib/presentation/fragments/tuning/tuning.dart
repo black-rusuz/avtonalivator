@@ -17,6 +17,7 @@ class TuningFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pumps = context.watch<TuningProvider>().pumps;
+    context.read<ConnectionProvider>().updateAll(pumps);
 
     return Scaffold(
       appBar: AppBar(
@@ -46,14 +47,9 @@ class _TuningBody extends StatelessWidget {
     final pump = pumps[index];
     return TuningCard(
       pump: pump,
-      setPump: (pump) => setPump(context, pump),
+      setPump: context.read<TuningProvider>().updatePump,
       drinks: context.read<CocktailsProvider>().drinks,
     );
-  }
-
-  void setPump(BuildContext context, UiPump pump) {
-    context.read<TuningProvider>().updatePump(pump);
-    context.read<ConnectionProvider>().updatePump(pump);
   }
 
   Widget separatorBuilder(BuildContext context, int index) {
