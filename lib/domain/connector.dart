@@ -81,7 +81,7 @@ class FbsConnector implements Connector {
   Stream<DeviceData> get input {
     return _connector.input
         .map(utf8.decode)
-        .where((s) => s.startsWith(_start) && s.length == 80)
+        .where((s) => s.startsWith(_start) && s.length >= 70)
         .map(DeviceData.fromString);
   }
 
