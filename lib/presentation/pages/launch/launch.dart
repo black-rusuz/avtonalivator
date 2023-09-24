@@ -11,6 +11,8 @@ import '../../widgets/animated_text.dart';
 import '../../widgets/basic_image.dart';
 import 'cubit/launch_cubit.dart';
 
+export 'cubit/launch_cubit.dart';
+
 part 'widgets/animation.dart';
 part 'widgets/status.dart';
 

@@ -5,9 +5,7 @@ import 'package:provider/provider.dart';
 import '../injection.dart';
 import '../presentation/pages/debug/debug.dart';
 import '../presentation/pages/home/home.dart';
-import '../presentation/pages/launch/cubit/launch_cubit.dart';
 import '../presentation/pages/launch/launch.dart';
-import '../presentation/pages/scan/cubit/scan_cubit.dart';
 import '../presentation/pages/scan/scan.dart';
 import '../presentation/provider/connection.dart';
 

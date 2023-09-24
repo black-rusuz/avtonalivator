@@ -13,6 +13,8 @@ import '../../widgets/sliver_scaffold.dart';
 import 'cubit/scan_cubit.dart';
 import 'widgets/device_list.dart';
 
+export 'cubit/scan_cubit.dart';
+
 part 'widgets/app_bar.dart';
 part 'widgets/know_device.dart';
 
@@ -35,9 +37,7 @@ class ScanPage extends StatelessWidget {
         buildWhen: (prev, next) => next is ScanFulfilled,
         builder: builder,
         listenWhen: (prev, next) =>
-            next is ScanLastFound ||
-            next is ScanConnected ||
-            next is ScanError,
+            next is ScanLastFound || next is ScanConnected || next is ScanError,
         listener: listener,
       ),
       floatingActionButton: FloatingActionButton.extended(
