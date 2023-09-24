@@ -54,6 +54,7 @@ class AppRoutes {
   }
 
   static Route _makeRoute(Widget child) {
+    // return CupertinoPageRoute(builder: (_) => child);
     return MaterialPageRoute(builder: (_) => child);
   }
 
