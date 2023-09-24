@@ -33,7 +33,7 @@ class UiCocktail extends Equatable {
   List<String> get ingredients => drinks.map((e) => e.name).toList();
 
   /// Каждый ингредиент установлен хотя бы в одной помпе
-  bool isReady(List<UiPump> pumps) {
+  bool isReadyFor(List<UiPump> pumps) {
     final drinks = pumps.drinks;
     return ingredients.every((ingredient) => drinks.any(ingredient.equals));
   }

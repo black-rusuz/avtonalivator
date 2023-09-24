@@ -16,7 +16,7 @@ void setCocktail(BuildContext context, UiCocktail cocktail) {
   final tuning = context.read<TuningProvider>();
   final pumps = tuning.pumps;
 
-  if (cocktail.isReady(pumps)) {
+  if (cocktail.isReadyFor(pumps)) {
     final newPumps = pumps.map((e) => e.mapCocktail(cocktail)).toList();
     newPumps.forEach(tuning.updatePump);
     Navigator.of(context).pop();
