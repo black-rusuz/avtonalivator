@@ -42,15 +42,19 @@ class FbsAdapter {
       await _connect(device.address);
       this.device = device;
       await _setupStream();
-    } catch (_) {
+    } catch (e) {
       // TODO: log
     }
     return _connection;
   }
 
   Future<void> send(Uint8List bytes) async {
-    _connection?.output.add(bytes);
-    return await _connection?.output.allSent;
+    try {
+      _connection?.output.add(bytes);
+      await _connection?.output.allSent;
+    } catch (e) {
+      // TODO: log
+    }
   }
 
   Stream<Uint8List> get input => _input.stream

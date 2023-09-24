@@ -49,7 +49,7 @@ class LaunchCubit extends Cubit<LaunchState> {
     try {
       permission = await _scan.request();
       _hasPermission = permission.isGranted;
-    } catch (_) {
+    } catch (e) {
       // TODO: log
     }
   }
