@@ -35,7 +35,7 @@ class VolumeDialog extends StatelessWidget {
                 color: AppTheme.background,
                 borderRadius: AppTheme.borderRadius,
               ),
-              child: const Text(Strings.enterName),
+              child: const Text(Strings.enterVolume),
             ),
           ),
           inputFormatters: [
