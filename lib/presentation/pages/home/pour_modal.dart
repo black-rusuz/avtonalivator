@@ -35,7 +35,9 @@ class _ModalData extends StatelessWidget {
     required this.value,
   });
 
-  String get percent => '$value%';
+  int get _percent => (value * 100).round();
+
+  String get percent => '$_percent%';
 
   @override
   Widget build(BuildContext context) {
