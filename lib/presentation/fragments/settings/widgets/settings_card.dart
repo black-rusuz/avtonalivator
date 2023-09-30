@@ -87,7 +87,7 @@ class _ParamValue<T> extends StatelessWidget {
     if (value is num) {
       return Slider(
         min: 0,
-        max: 10,
+        max: 12,
         value: (value as num).toDouble(),
         onChanged: (v) => setValue(v.round() as T),
       );
