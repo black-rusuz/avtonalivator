@@ -12,7 +12,7 @@ import 'name_picker.dart';
 import 'volume_dialog.dart';
 
 const double _maxVolume = 250;
-const _duration = Duration(milliseconds: 200);
+const _duration = AppTheme.duration;
 
 class TuningCard extends StatelessWidget {
   final UiPump pump;

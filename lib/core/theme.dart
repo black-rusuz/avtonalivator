@@ -22,6 +22,7 @@ class AppTheme {
   static const radius = Radius.circular(20);
   static const borderRadius = BorderRadius.all(Radius.circular(20));
   static const border = OutlineInputBorder(borderRadius: borderRadius);
+  static const duration = Duration(milliseconds: 200);
 
   static final value = ThemeData(
     useMaterial3: true,

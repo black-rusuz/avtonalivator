@@ -5,8 +5,6 @@ import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_switch.dart';
 
-const _duration = Duration(milliseconds: 200);
-
 class FilterCard extends StatelessWidget {
   final bool isActive;
   final ValueChanged<bool> onChanged;
@@ -20,7 +18,7 @@ class FilterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: _duration,
+      duration: AppTheme.duration,
       margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
       decoration: BoxDecoration(
         boxShadow: BasicCard.defaultShadow,
