@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
@@ -58,9 +57,7 @@ class FbsAdapter {
     }
   }
 
-  Stream<Uint8List> get input => _input.stream
-      .expand((list) => list)
-      .transform(InputTransformer());
+  Stream<List<int>> get input => _input.stream.transform(InputTransformer());
 
   Future<void> disconnect() async {
     await _connection?.close();
@@ -79,8 +76,8 @@ class FbsAdapter {
   }
 
   Future<void> _setupStream() async {
-    if (_connection?.input == null) return;
-    final stream = _connection!.input!;
+    final stream = _connection?.input;
+    if (stream == null) return;
     _input.addStream(stream);
   }
 }
