@@ -26,11 +26,7 @@ class FbsAdapter {
 
   Stream<BluetoothDevice> get devices async* {
     await _bluetooth.cancelDiscovery();
-    final scanResultStream = _bluetooth.startDiscovery();
-
-    await for (final result in scanResultStream) {
-      yield result.device;
-    }
+    yield* _bluetooth.startDiscovery().map((result) => result.device);
   }
 
   Future<void> cancelDiscovery() {
