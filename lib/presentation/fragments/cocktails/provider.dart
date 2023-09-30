@@ -28,7 +28,8 @@ class CocktailsProvider extends ChangeNotifier {
       .where((c) => c.name.search(_searchPattern))
       .toList();
 
-  List<String> get drinks => _cocktails.expand((c) => c.ingredients).toList();
+  List<String> get drinks =>
+      _cocktails.expand((c) => c.ingredients).toSet().toList();
 
   void searchCocktail(String pattern) {
     _searchPattern = pattern;
