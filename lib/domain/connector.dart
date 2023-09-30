@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -80,11 +79,7 @@ class FbsConnector implements Connector {
 
   @override
   Stream<DeviceData> get input {
-    return _connector.input
-        .distinct((prev, next) => next.equals(prev))
-        .map(utf8.decode)
-        // .where((s) => s.startsWith(_start) && s.length >= 70)
-        .map(DeviceData.fromString);
+    return _connector.input.distinct(listEquals).map(DeviceData.fromBytes);
   }
 
   @override

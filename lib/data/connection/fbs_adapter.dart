@@ -57,7 +57,7 @@ class FbsAdapter {
     }
   }
 
-  Stream<List<int>> get input => _input.stream.transform(InputTransformer());
+  Stream<Uint8List> get input => _input.stream.transform(InputTransformer());
 
   Future<void> disconnect() async {
     await _connection?.close();
