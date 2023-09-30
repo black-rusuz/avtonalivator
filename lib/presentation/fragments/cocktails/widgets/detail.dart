@@ -35,6 +35,7 @@ void showDetail(BuildContext context, UiCocktail cocktail) {
     builder: (_) {
       return DraggableScrollableSheet(
         expand: false,
+        initialChildSize: 0.8,
         builder: (_, controller) {
           return CocktailDetail(
             cocktail: cocktail,
