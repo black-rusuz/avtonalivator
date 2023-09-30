@@ -142,7 +142,6 @@ class TuningCard extends StatelessWidget {
                           height: 50,
                           padding: const EdgeInsets.only(left: 50, right: 15),
                           alignment: Alignment.centerLeft,
-                          color: Colors.redAccent,
                           child: AnimatedText(
                             pickerTitle,
                             duration: _duration,
