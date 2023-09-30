@@ -109,7 +109,7 @@ class TuningCard extends StatelessWidget {
     return AnimatedContainer(
       duration: _duration,
       decoration: BoxDecoration(
-        boxShadow: cardShadow,
+        boxShadow: BasicCard.defaultShadow,
         color: isActive ? AppTheme.accent : AppTheme.background,
         borderRadius: BorderRadius.circular(30),
         // TODO: borderRadius

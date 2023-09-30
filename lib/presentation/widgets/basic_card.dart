@@ -8,7 +8,7 @@ import '../../core/theme.dart';
 const _disableDebug = true;
 final _debugBorder = Border.all(width: 2, color: Colors.redAccent);
 
-const cardShadow = [
+const _cardShadow = [
   BoxShadow(
     blurRadius: 2,
     offset: Offset(0, 0.2),
@@ -54,6 +54,8 @@ class BasicCard extends StatelessWidget {
     this.onTap,
   });
 
+  static List<BoxShadow> get defaultShadow => _cardShadow;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,7 +83,7 @@ class BasicCard extends StatelessWidget {
                 ? null
                 : shadow != null
                     ? [shadow!]
-                    : cardShadow,
+                    : defaultShadow,
           ),
           child: alignment == null
               ? child
