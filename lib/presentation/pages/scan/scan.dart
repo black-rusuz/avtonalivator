@@ -32,7 +32,7 @@ class ScanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.accent,
+      // backgroundColor: AppTheme.accent,
       body: BlocConsumer<ScanCubit, ScanState>(
         buildWhen: (prev, next) => next is ScanFulfilled,
         builder: builder,
@@ -56,7 +56,7 @@ class ScanPage extends StatelessWidget {
     state = state as ScanFulfilled;
 
     return RefreshIndicator(
-      edgeOffset: appBar + statusBar,
+      // edgeOffset: appBar + statusBar,
       onRefresh: () async => context.read<ScanCubit>().scan(),
       child: SliverScaffold(
         sliverAppBar: ScanAppBar(

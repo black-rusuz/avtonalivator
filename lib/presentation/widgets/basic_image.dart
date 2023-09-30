@@ -51,7 +51,7 @@ class BasicImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: borderRadius,
+      // borderRadius: borderRadius,
       child: isSvg
           ? buildSvg(context, '', null)
           : Image(

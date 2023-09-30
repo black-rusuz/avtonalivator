@@ -7,9 +7,9 @@ class _StatsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 0.4;
 
-    return SliverAppBar(
-      collapsedHeight: kToolbarHeight,
-      expandedHeight: height,
+    return AppBar(
+      // collapsedHeight: kToolbarHeight,
+      // expandedHeight: height,
       backgroundColor: AppTheme.background,
       title: Text(Strings.stats, style: AppTheme.pageTitle),
       flexibleSpace: const FlexibleSpaceBar(

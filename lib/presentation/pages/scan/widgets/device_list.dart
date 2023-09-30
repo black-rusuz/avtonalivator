@@ -18,21 +18,18 @@ class DeviceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: minHeight),
-      child: Ink(
-        decoration: const BoxDecoration(
-          color: AppTheme.background,
-          borderRadius: BorderRadius.vertical(top: AppTheme.radius),
-        ),
-        child: ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          padding: AppTheme.listPadding,
-          itemCount: devices.length,
-          itemBuilder: itemBuilder,
-          separatorBuilder: separatorBuilder,
-        ),
+    return Ink(
+      decoration: const BoxDecoration(
+        color: AppTheme.background,
+        borderRadius: BorderRadius.vertical(top: AppTheme.radius),
+      ),
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: AppTheme.listPadding,
+        itemCount: devices.length,
+        itemBuilder: itemBuilder,
+        separatorBuilder: separatorBuilder,
       ),
     );
   }

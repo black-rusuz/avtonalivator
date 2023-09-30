@@ -12,18 +12,18 @@ class ScanAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: height,
-      backgroundColor: AppTheme.accent,
+    return AppBar(
+      // expandedHeight: height,
+      // backgroundColor: AppTheme.accent,
       title: Text(Strings.connection, style: AppTheme.pageTitle),
-      flexibleSpace: FlexibleSpaceBar(
-        background: Padding(
-          padding: const EdgeInsets.only(top: 60),
-          child: Center(
-            child: BarmenCard(isConnecting: isConnecting),
-          ),
-        ),
-      ),
+      // flexibleSpace: FlexibleSpaceBar(
+      //   background: Padding(
+      //     padding: const EdgeInsets.only(top: 60),
+      //     child: Center(
+      //       child: BarmenCard(isConnecting: isConnecting),
+      //     ),
+      //   ),
+      // ),
       actions: [
         StreamBuilder<bool>(
           stream: context.read<ScanCubit>().isDiscovering,

@@ -20,26 +20,26 @@ class SettingsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: height,
-      backgroundColor: device == null ? AppTheme.accent : AppTheme.background,
+    return AppBar(
+      // expandedHeight: height,
+      // backgroundColor: device == null ? AppTheme.accent : AppTheme.background,
       title: Text(Strings.settings, style: AppTheme.pageTitle),
-      flexibleSpace: FlexibleSpaceBar(
-        background: Padding(
-          padding: const EdgeInsets.only(top: 60),
-          child: Center(
-            child: GestureDetector(
-              onLongPress: () => openDebug(context),
-              child: BarmenCard(
-                title: device?.name ?? device?.address,
-                subtitle: device?.address,
-                isConnecting: isConnecting,
-                onTap: onTap,
-              ),
-            ),
-          ),
-        ),
-      ),
+      // flexibleSpace: FlexibleSpaceBar(
+      //   background: Padding(
+      //     padding: const EdgeInsets.only(top: 60),
+      //     child: Center(
+      //       child: GestureDetector(
+      //         onLongPress: () => openDebug(context),
+      //         child: BarmenCard(
+      //           title: device?.name ?? device?.address,
+      //           subtitle: device?.address,
+      //           isConnecting: isConnecting,
+      //           onTap: onTap,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

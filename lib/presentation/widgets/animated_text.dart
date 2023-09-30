@@ -14,10 +14,6 @@ class AnimatedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedDefaultTextStyle(
-      duration: duration,
-      style: style,
-      child: Text(text),
-    );
+    return Text(text);
   }
 }

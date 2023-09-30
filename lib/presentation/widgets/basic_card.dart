@@ -60,31 +60,14 @@ class BasicCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: margin,
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
-        borderRadius: borderRadius,
-        child: Ink(
+        // borderRadius: borderRadius,
+        child: Container(
           width: width,
           height: height,
-          padding: padding,
-          decoration: BoxDecoration(
-            color: _disableDebug
-                ? color
-                : kDebugMode
-                    ? Color(Random().nextInt(0xFFFFFFFF))
-                    : color,
-            border: _disableDebug
-                ? border
-                : kDebugMode
-                    ? _debugBorder
-                    : border,
-            borderRadius: borderRadius,
-            boxShadow: color == null
-                ? null
-                : shadow != null
-                    ? [shadow!]
-                    : defaultShadow,
-          ),
+          // padding: padding,
+          color: color,
           child: alignment == null
               ? child
               : Align(

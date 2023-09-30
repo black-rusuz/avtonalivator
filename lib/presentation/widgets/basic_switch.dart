@@ -16,17 +16,11 @@ class BasicSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: FittedBox(
-        fit: BoxFit.contain,
-        child: CupertinoSwitch(
-          activeColor: AppTheme.black.withOpacity(0.7),
-          trackColor: AppTheme.greyLight,
-          value: value,
-          onChanged: onChanged,
-        ),
-      ),
+    return CupertinoSwitch(
+      // activeColor: AppTheme.black.withOpacity(0.7),
+      // trackColor: AppTheme.greyLight,
+      value: value,
+      onChanged: onChanged,
     );
   }
 }

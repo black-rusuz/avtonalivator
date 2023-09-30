@@ -106,8 +106,7 @@ class TuningCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: _duration,
+    return Container(
       decoration: BoxDecoration(
         boxShadow: BasicCard.defaultShadow,
         color: isActive ? AppTheme.accent : AppTheme.background,

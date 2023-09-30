@@ -18,7 +18,10 @@ class SliverScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        if (sliverAppBar != null) sliverAppBar!,
+        if (sliverAppBar != null)
+          SliverToBoxAdapter(
+            child: sliverAppBar!,
+          ),
         if (body != null)
           SliverToBoxAdapter(
             child: body!,
