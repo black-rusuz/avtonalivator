@@ -5,6 +5,8 @@ import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_switch.dart';
 
+const _duration = Duration(milliseconds: 200);
+
 class FilterCard extends StatelessWidget {
   final bool isActive;
   final ValueChanged<bool> onChanged;
@@ -17,23 +19,29 @@ class FilterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BasicCard(
-      onTap: () => onChanged(!isActive),
+    return AnimatedContainer(
+      duration: _duration,
       margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-      padding: AppTheme.padding,
-      color: isActive ? AppTheme.accent : AppTheme.background,
-      borderRadius: BorderRadius.circular(100),
-      child: Row(
-        children: [
-          const Expanded(
-            child: Text(Strings.readyForPouring, style: AppTheme.text),
-          ),
-          const SizedBox(width: 8),
-          BasicSwitch(
-            value: isActive,
-            onChanged: onChanged,
-          ),
-        ],
+      decoration: BoxDecoration(
+        boxShadow: BasicCard.defaultShadow,
+        color: isActive ? AppTheme.accent : AppTheme.background,
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: BasicCard(
+        onTap: () => onChanged(!isActive),
+        padding: AppTheme.padding,
+        child: Row(
+          children: [
+            const Expanded(
+              child: Text(Strings.readyForPouring, style: AppTheme.text),
+            ),
+            const SizedBox(width: 8),
+            BasicSwitch(
+              value: isActive,
+              onChanged: onChanged,
+            ),
+          ],
+        ),
       ),
     );
   }
