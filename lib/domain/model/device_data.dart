@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 import '../parse_utils.dart';
 import 'device_mode.dart';
@@ -29,21 +29,7 @@ class DeviceData extends Equatable {
   }
 
   factory DeviceData._fromString(String data) {
-    final parts = data.split('; ');
-
-    final ves = parts.find('ves').value.asNumber;
-    final per = parts.find('now_percent').value.asNumber;
-    final mode = parts.find('mode').value.asNumber;
-    final step = parts.find('step').value.asNumber;
-    final ml = parts.find('ml').value.split(', ').map((e) => e.asNumber);
-
-    return DeviceData(
-      weight: ves.toDouble(),
-      percent: per.round(),
-      mode: DeviceMode.fromNumber(mode.round()),
-      step: step.round(),
-      volumes: ml.map((e) => e.round()).toList(),
-    );
+    return _parseData(data);
   }
 
   @override
@@ -54,4 +40,22 @@ class DeviceData extends Equatable {
         step,
         volumes,
       ];
+}
+
+DeviceData _parseData(String data) {
+  final parts = data.split('; ');
+
+  final ves = parts.find('ves').value.asNumber;
+  final per = parts.find('now_percent').value.asNumber;
+  final mode = parts.find('mode').value.asNumber;
+  final step = parts.find('step').value.asNumber;
+  final ml = parts.find('ml').value.split(', ').map((e) => e.asNumber);
+
+  return DeviceData(
+    weight: ves.toDouble(),
+    percent: per.round(),
+    mode: DeviceMode.fromNumber(mode.round()),
+    step: step.round(),
+    volumes: ml.map((e) => e.round()).toList(),
+  );
 }
