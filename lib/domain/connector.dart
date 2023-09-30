@@ -7,7 +7,6 @@ import '../../../../domain/model/device.dart';
 import '../data/connection/fbs_adapter.dart';
 import 'model/device_data.dart';
 
-const _start = '\$ves';
 const _streamDuration = Duration(milliseconds: 400);
 
 abstract interface class Connector {
