@@ -1,6 +1,12 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:equatable/equatable.dart';
 
 import '../parse_utils.dart';
+import 'device_mode.dart';
+
+export 'device_mode.dart';
 
 class DeviceData extends Equatable {
   final double weight;
@@ -17,7 +23,12 @@ class DeviceData extends Equatable {
     this.volumes = const [],
   });
 
-  factory DeviceData.fromString(String data) {
+  factory DeviceData.fromBytes(Uint8List bytes) {
+    final data = utf8.decode(bytes);
+    return DeviceData._fromString(data);
+  }
+
+  factory DeviceData._fromString(String data) {
     final parts = data.split('; ');
 
     final ves = parts.find('ves').value.asNumber;
@@ -43,23 +54,4 @@ class DeviceData extends Equatable {
         step,
         volumes,
       ];
-}
-
-enum DeviceMode {
-  wait(0),
-  manual(1),
-  auto(2);
-
-  final int value;
-
-  const DeviceMode(this.value);
-
-  factory DeviceMode.fromNumber(int number) {
-    return values.firstWhere(
-      (mode) => mode.value == number,
-      orElse: () => DeviceMode.wait,
-    );
-  }
-
-  String get command => 'm$value';
 }
