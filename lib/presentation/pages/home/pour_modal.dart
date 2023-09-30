@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/theme.dart';
+import '../../../domain/model/device_data.dart';
 import '../../provider/connection.dart';
 import '../../strings.dart';
 import '../../widgets/percent_indicator.dart';
@@ -16,14 +17,28 @@ class PourModal extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.watch<ConnectionProvider>();
     final drink = provider.drink;
-    final value = provider.percent / 100;
-    final percentString = provider.percent.toString() + '%';
+    final value = provider.data.percent / 100;
 
-    // TODO: read mode
-    // final finish = mode == DeviceMode.wait;
-    final finish = value >= 1 && drink == null;
+    final finish = provider.data.mode == DeviceMode.wait;
     if (finish) Navigator.of(context).pop();
 
+    return _ModalData(drink: drink, value: value);
+  }
+}
+
+class _ModalData extends StatelessWidget {
+  final String? drink;
+  final double value;
+
+  const _ModalData({
+    required this.drink,
+    required this.value,
+  });
+
+  String get percent => '$value%';
+
+  @override
+  Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
       padding: AppTheme.listPadding,
@@ -44,7 +59,7 @@ class PourModal extends StatelessWidget {
             percent: min(value, 1),
             animation: false,
             child: Text(
-              percentString,
+              percent,
               style: GoogleFonts.inter(
                 fontSize: 48,
                 fontWeight: FontWeight.w900,

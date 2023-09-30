@@ -17,20 +17,18 @@ class ConnectionProvider extends ChangeNotifier {
   StreamSubscription? _inputSub;
   Timer? _timer;
 
-  List<String> _drinks = [];
-  int _step = 0;
-
   ConnectionProvider(this._connector) {
     device = _connector.device;
     _inputSub?.cancel();
     _inputSub = _connector.input.map(_inputPrinter).listen(_inputListener);
   }
 
+  List<String> _drinks = [];
+  DeviceData data = const DeviceData();
   UiDevice? device;
-  int percent = 0;
 
   String? get drink {
-    final index = _step - 1;
+    final index = data.step - 1;
     if (index < 0) return null;
     return _drinks.elementAtOrNull(index);
   }
@@ -43,8 +41,7 @@ class ConnectionProvider extends ChangeNotifier {
   }
 
   void _inputListener(DeviceData data) {
-    percent = data.percent;
-    _step = data.step;
+    this.data = data;
     notifyListeners();
   }
 

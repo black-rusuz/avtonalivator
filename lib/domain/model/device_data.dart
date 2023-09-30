@@ -10,11 +10,11 @@ class DeviceData extends Equatable {
   final List<int> volumes;
 
   const DeviceData({
-    required this.weight,
-    required this.percent,
-    required this.mode,
-    required this.step,
-    required this.volumes,
+    this.weight = 0,
+    this.percent = 0,
+    this.mode = DeviceMode.wait,
+    this.step = 0,
+    this.volumes = const [],
   });
 
   factory DeviceData.fromString(String data) {

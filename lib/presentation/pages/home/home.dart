@@ -36,8 +36,8 @@ class HomePageState extends State<HomePage> {
 
   void startPour() {
     final provider = context.read<ConnectionProvider>();
-
     provider.startPour();
+
     showModalBottomSheet(
       context: context,
       builder: (_) => ChangeNotifierProvider.value(
