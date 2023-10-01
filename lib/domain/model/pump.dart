@@ -5,7 +5,7 @@ import '../equals.dart';
 import 'cocktail.dart';
 import 'drink.dart';
 
-final _chars = '0:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
+final _chars = '_:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
 
 class UiPump extends Equatable {
   final int id;
@@ -85,7 +85,9 @@ class UiPump extends Equatable {
 
 extension Drinks on List<UiPump> {
   String get command {
-    return map((p) => p.command).join(' ');
+    final chars = map((p) => p._char);
+    final zeros = _chars.whereNot(chars.contains).map((c) => '${c}0').join(' ');
+    return zeros + ' ' + map((p) => p.command).join(' ');
   }
 
   List<String> get drinks {
