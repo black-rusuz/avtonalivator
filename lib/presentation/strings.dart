@@ -45,7 +45,7 @@ class Strings {
 
   static const pour = 'Налить';
   static const goPour = 'Приготовить';
-  static const readyForPouring = 'Готово к наливу';
+  static const readyForPouring = 'Готово к приготовлению';
 
   static const loading = '🤔';
 
