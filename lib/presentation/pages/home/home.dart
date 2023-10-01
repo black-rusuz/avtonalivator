@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../../../injection.dart';
 import '../../fragments/cocktails/cocktails.dart';
 import '../../fragments/settings/settings.dart';
-import '../../fragments/stats/stats.dart';
 import '../../fragments/tuning/tuning.dart';
 import '../../provider/connection.dart';
 import '../../strings.dart';
@@ -34,9 +33,9 @@ class HomePageState extends State<HomePage> {
     SettingsFragment(),
   ];
 
-  void startPour() {
+  void startPour() async {
     final provider = context.read<ConnectionProvider>();
-    provider.startPour();
+    await provider.startPour();
 
     showModalBottomSheet(
       context: context,
@@ -44,7 +43,7 @@ class HomePageState extends State<HomePage> {
         value: provider,
         child: const PourModal(),
       ),
-    );
+    ).whenComplete(provider.stopPour);
   }
 
   @override

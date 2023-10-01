@@ -16,10 +16,11 @@ class PourModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<ConnectionProvider>();
+    final data = provider.data;
     final drink = provider.drink;
-    final value = provider.data.percent / 100;
+    final value = data.percent / 100;
 
-    final finish = provider.data.mode == DeviceMode.wait;
+    final finish = data.mode == DeviceMode.wait && data.step == 0;
     if (finish) Navigator.of(context).pop();
 
     return _ModalData(drink: drink, value: value);

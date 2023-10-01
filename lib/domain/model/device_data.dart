@@ -32,6 +32,22 @@ class DeviceData extends Equatable {
     return _parseData(data);
   }
 
+  DeviceData copyWith({
+    double? weight,
+    int? percent,
+    DeviceMode? mode,
+    int? step,
+    List<int>? volumes,
+  }) {
+    return DeviceData(
+      weight: weight ?? this.weight,
+      percent: percent ?? this.percent,
+      mode: mode ?? this.mode,
+      step: step ?? this.step,
+      volumes: volumes ?? this.volumes,
+    );
+  }
+
   @override
   List<Object?> get props => [
         weight,
