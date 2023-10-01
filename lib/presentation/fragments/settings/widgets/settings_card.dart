@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme.dart';
 import '../../../../domain/model/param.dart';
 import '../../../widgets/basic_card.dart';
+import '../../tuning/provider.dart';
 import '../cubit/settings_cubit.dart';
 
 class SettingsCard<T> extends StatelessWidget {
@@ -16,7 +17,11 @@ class SettingsCard<T> extends StatelessWidget {
 
   void setValue(BuildContext context, T newValue) {
     final cubit = context.read<SettingsCubit>();
-    cubit.setParam(param.key, newValue);
+    // TODO: я заебался
+    final callback = param.key == 'pumpsQuantity'
+        ? () => context.read<TuningProvider>().generatePumps(newValue as int)
+        : null;
+    cubit.setParam(param.key, newValue, callback: callback);
   }
 
   @override

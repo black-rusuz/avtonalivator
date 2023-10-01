@@ -16,8 +16,9 @@ class SettingsCubit extends Cubit<SettingsState> {
     emit(_fullState);
   }
 
-  void setParam<T>(String key, T value) {
+  void setParam<T>(String key, T value, {VoidCallback? callback}) {
     _settings.setParam<T>(key, value);
+    callback?.call();
     emit(_fullState);
   }
 

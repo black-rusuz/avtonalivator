@@ -47,9 +47,9 @@ class SettingsFragment extends StatelessWidget {
         onTap: action,
       ),
       body: state is! SettingsFulfilled ? const Loader() : null,
-      bodyBuilder: (_, controller) {
+      bodyBuilder: (_, __) {
         if (state is SettingsFulfilled) {
-          return _SettingsList(controller: controller, params: state.params);
+          return _SettingsList(params: state.params);
         }
         return const SizedBox();
       },
@@ -58,19 +58,15 @@ class SettingsFragment extends StatelessWidget {
 }
 
 class _SettingsList extends StatelessWidget {
-  final ScrollController controller;
   final List<Param> params;
 
-  const _SettingsList({
-    required this.controller,
-    required this.params,
-  });
+  const _SettingsList({required this.params});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      controller: controller,
+      controller: PrimaryScrollController.maybeOf(context),
       padding: AppTheme.listPadding,
       itemCount: params.length,
       itemBuilder: itemBuilder,
