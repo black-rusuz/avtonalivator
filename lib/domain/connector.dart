@@ -70,10 +70,10 @@ class FbsConnector implements Connector {
     if (kDebugMode) print(command);
     command = '$command\r';
 
-    final encodedChars = utf8.encode(command);
-    final output = Uint8List.fromList(encodedChars);
+    final chars = utf8.encode(command);
+    final bytes = Uint8List.fromList(chars);
 
-    return _connector.send(output);
+    return _connector.send(bytes);
   }
 
   @override
