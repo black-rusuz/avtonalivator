@@ -14,14 +14,17 @@ const _horizontal = AppTheme.horizontalPadding;
 
 void setCocktail(BuildContext context, UiCocktail cocktail) {
   final tuning = context.read<TuningProvider>();
-  final pumps = tuning.pumps;
+  final pumps = tuning.pumps.map((e) => e.copyWith(enabled: false)).toList();
 
-  if (cocktail.isReadyFor(pumps)) {
-    final newPumps = pumps.map((e) => e.mapCocktail(cocktail)).toList();
-    newPumps.forEach(tuning.updatePump);
-    Navigator.of(context).pop();
-    AppRoutes.setHomeIndex(0);
+  for (int i = 0; i < cocktail.drinks.length; i++) {
+    final drink = cocktail.drinks[i];
+    final pump = pumps[i];
+    pumps[i] = pump.setDrink(drink);
   }
+
+  pumps.forEach(tuning.updatePump);
+  Navigator.of(context).pop();
+  AppRoutes.setHomeIndex(0);
 }
 
 void showDetail(BuildContext context, UiCocktail cocktail) {

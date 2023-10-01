@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../equals.dart';
 import 'cocktail.dart';
+import 'drink.dart';
 
 final _chars = '0:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
 
@@ -50,6 +51,10 @@ class UiPump extends Equatable {
   /// Если напиток не найден, помпа выключается.
   UiPump mapCocktail(UiCocktail cocktail) {
     final drink = cocktail.drinks.firstWhereOrNull((d) => d.name.equals(name));
+    return setDrink(drink);
+  }
+
+  UiPump setDrink(UiDrink? drink) {
     final result = drink == null
         ? copyWith(enabled: false)
         : copyWith(
