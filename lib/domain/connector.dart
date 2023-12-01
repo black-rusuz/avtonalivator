@@ -68,7 +68,7 @@ class FbsConnector implements Connector {
 
   @override
   Future<void> sendCommand(String command) {
-    Logger.log(command);
+    Logger.log(command, 'Command');
     command = '$command\r';
 
     final chars = utf8.encode(command);
