@@ -3,6 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../domain/logger.dart';
 import '../domain/model/device.dart';
 import '../domain/storage/commands.dart';
 import '../domain/storage/settings.dart';
@@ -36,7 +37,6 @@ Future<void> _initFirebase() async {
     await crashlytics.setCrashlyticsCollectionEnabled(!isDebug);
     FlutterError.onError = crashlytics.recordFlutterError;
   } catch (e) {
-    // Log().writer.log('Firebase Error', e.toString());
-    print(e);
+    Logger.log('Firebase Error', e, StackTrace.current);
   }
 }

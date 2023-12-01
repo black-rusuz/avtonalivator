@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../domain/model/device.dart';
 import '../data/connection/fbs_adapter.dart';
+import 'logger.dart';
 import 'model/device_data.dart';
 
 const _streamDuration = Duration(milliseconds: 400);
@@ -67,7 +68,7 @@ class FbsConnector implements Connector {
 
   @override
   Future<void> sendCommand(String command) {
-    if (kDebugMode) print(command);
+    Logger.log(command);
     command = '$command\r';
 
     final chars = utf8.encode(command);
