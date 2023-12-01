@@ -36,6 +36,11 @@ dependencies:
   hive: ^2.0.5
   hive_flutter: ^1.1.0
 
+  # Firebase
+  firebase_core: ^2.14.0
+  firebase_messaging: ^14.6.4
+  firebase_crashlytics: ^3.3.3
+
   # DI
   get_it: ^7.6.4
   injectable: ^2.3.0
