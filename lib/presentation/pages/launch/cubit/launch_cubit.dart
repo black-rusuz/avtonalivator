@@ -4,6 +4,8 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../domain/logger.dart';
+
 part 'launch_state.dart';
 
 const _duration = Duration(milliseconds: 1000);
@@ -50,7 +52,7 @@ class LaunchCubit extends Cubit<LaunchState> {
       permission = await _scan.request();
       _hasPermission = permission.isGranted;
     } catch (e) {
-      // TODO: log
+      Logger.log('', e, StackTrace.current);
     }
   }
 

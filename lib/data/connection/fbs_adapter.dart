@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/logger.dart';
 import 'input_transformer.dart';
 
 /// Прослойка для библиотеки flutter_bluetooth_serial
@@ -39,7 +40,7 @@ class FbsAdapter {
       this.device = device;
       await _setupStream();
     } catch (e) {
-      // TODO: log
+      Logger.log('', e, StackTrace.current);
     }
     return _connection;
   }
@@ -49,7 +50,7 @@ class FbsAdapter {
       _connection?.output.add(bytes);
       await _connection?.output.allSent;
     } catch (e) {
-      // TODO: log
+      Logger.log('', e, StackTrace.current);
     }
   }
 

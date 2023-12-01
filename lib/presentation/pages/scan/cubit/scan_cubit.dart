@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../domain/connector.dart';
+import '../../../../domain/logger.dart';
 import '../../../../domain/model/device.dart';
 import '../../../../domain/storage/settings.dart';
 
@@ -39,7 +40,7 @@ class ScanCubit extends Cubit<ScanState> {
       _settings.lastDevice = device;
       emit(ScanConnected());
     } else {
-      // TODO: log
+      Logger.log('Scan error', ScanError(), StackTrace.current);
       emit(ScanError());
     }
   }
