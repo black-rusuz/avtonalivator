@@ -16,7 +16,7 @@ import 'widgets/device_list.dart';
 export 'cubit/scan_cubit.dart';
 
 part 'widgets/app_bar.dart';
-part 'widgets/know_device.dart';
+part 'widgets/known_device.dart';
 
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});

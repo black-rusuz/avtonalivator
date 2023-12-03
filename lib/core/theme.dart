@@ -12,7 +12,7 @@ class AppTheme {
   static const divider = Color(0xFFEDEDED);
   static const background = Colors.white;
 
-  static const double paddingValue = 15;
+  static const paddingValue = 15.0;
   static const padding = EdgeInsets.all(paddingValue);
   static const horizontalPadding =
       EdgeInsets.symmetric(horizontal: paddingValue);
