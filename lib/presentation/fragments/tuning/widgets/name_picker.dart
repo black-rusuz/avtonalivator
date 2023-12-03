@@ -26,9 +26,7 @@ class _NamePickerState extends State<NamePicker> {
   List<String> get drinks => widget.drinks.where(inputValue.searchIn).toList();
 
   void setValue(String value) {
-    setState(() {
-      inputValue = value;
-    });
+    setState(() => inputValue = value);
     setMatchDrink();
   }
 
@@ -40,12 +38,6 @@ class _NamePickerState extends State<NamePicker> {
   void setDrink(int index) {
     final drink = drinks[index];
     widget.setDrink(drink);
-  }
-
-  Widget drinkMapper(String drink) {
-    return Center(
-      child: Text(drink),
-    );
   }
 
   @override
@@ -73,6 +65,12 @@ class _NamePickerState extends State<NamePicker> {
           SizedBox(height: query.viewInsets.bottom),
         ],
       ),
+    );
+  }
+
+  Widget drinkMapper(String drink) {
+    return Center(
+      child: Text(drink),
     );
   }
 }
