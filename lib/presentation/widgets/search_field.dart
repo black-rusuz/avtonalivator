@@ -6,7 +6,7 @@ import '../strings.dart';
 const _padding = AppTheme.padding;
 
 class SearchField extends StatelessWidget {
-  static final double height = 50 + _padding.vertical;
+  static final height = 50 + _padding.vertical;
 
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
