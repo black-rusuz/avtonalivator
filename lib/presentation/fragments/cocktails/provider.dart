@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../domain/model/cocktail.dart';
-import '../../../domain/repository/cocktails_repository.dart';
+import '../../../domain/repository/cocktails.dart';
 import '../../search_utils.dart';
 
 @injectable
@@ -13,7 +13,7 @@ class CocktailsProvider extends ChangeNotifier {
 
   CocktailsProvider(this._repository) {
     _cocktailsSubscription?.cancel();
-    _cocktailsSubscription = _repository.cocktails.listen(_setCocktails);
+    _cocktailsSubscription = _repository.stream.listen(_setCocktails);
   }
 
   String _searchPattern = '';

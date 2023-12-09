@@ -12,9 +12,8 @@
 import 'package:avtonalivator/data/connection/fbs_adapter.dart' as _i5;
 import 'package:avtonalivator/data/data_source.dart' as _i12;
 import 'package:avtonalivator/domain/connector.dart' as _i11;
-import 'package:avtonalivator/domain/repository/cocktails_repository.dart'
-    as _i14;
-import 'package:avtonalivator/domain/repository/config_repository.dart' as _i15;
+import 'package:avtonalivator/domain/repository/cocktails.dart' as _i14;
+import 'package:avtonalivator/domain/repository/config.dart' as _i15;
 import 'package:avtonalivator/domain/storage/commands.dart' as _i3;
 import 'package:avtonalivator/domain/storage/settings.dart' as _i7;
 import 'package:avtonalivator/domain/storage/stats.dart' as _i9;

@@ -7,12 +7,11 @@ import '../../data/data_source.dart';
 @singleton
 class ConfigRepository {
   final DataSource _source;
+  final _config = BehaviorSubject<AppConfig>.seeded(AppConfig());
 
   ConfigRepository(this._source) {
     getConfig().then(_config.add);
   }
-
-  final _config = BehaviorSubject<AppConfig>.seeded(AppConfig());
 
   AppConfig get value => _config.value;
 
