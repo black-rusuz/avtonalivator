@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import '../../../../core/theme.dart';
 import '../../../strings.dart';
 
+const _maxValue = 9999;
+
 class VolumeDialog extends StatelessWidget {
   final double lastValue;
   final ValueChanged<double> setVolume;
@@ -13,6 +15,11 @@ class VolumeDialog extends StatelessWidget {
     required this.lastValue,
     required this.setVolume,
   });
+
+  void apply(String data) {
+    final value = double.tryParse(data) ?? 0;
+    if (value <= _maxValue) setVolume(value);
+  }
 
   void cancel(BuildContext context) {
     setVolume(lastValue);
@@ -26,9 +33,9 @@ class VolumeDialog extends StatelessWidget {
       child: AlertDialog(
         content: TextField(
           autofocus: true,
-          onChanged: (s) => setVolume(double.tryParse(s) ?? 0),
+          onChanged: apply,
           keyboardType: TextInputType.number,
-          decoration:  InputDecoration(
+          decoration: InputDecoration(
             label: Container(
               padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
               decoration: const BoxDecoration(

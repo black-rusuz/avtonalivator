@@ -11,7 +11,7 @@ import '../../../widgets/basic_switch.dart';
 import 'name_picker.dart';
 import 'volume_dialog.dart';
 
-const double _maxVolume = 250;
+const _maxVolume = 500.0;
 const _duration = AppTheme.duration;
 
 class TuningCard extends StatelessWidget {
