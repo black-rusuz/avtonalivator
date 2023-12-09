@@ -72,28 +72,36 @@ class CocktailDetail extends StatelessWidget {
               cocktail.image,
               borderRadius: const BorderRadius.vertical(top: AppTheme.radius),
             ),
-            const SizedBox(height: 30),
             Padding(
-              padding: _horizontal * 2,
-              child: Text(
-                cocktail.name,
-                style: AppTheme.pageTitle.copyWith(fontSize: 24),
-              ),
-            ),
-            const SizedBox(height: 15),
-            Padding(
-              padding: _horizontal,
+              padding: _horizontal.copyWith(top: 30, bottom: 120),
               child: Column(
-                children: cocktail.drinks.map(drinkMapper).toList(),
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: _horizontal,
+                    child: Text(
+                      cocktail.name,
+                      style: AppTheme.pageTitle.copyWith(fontSize: 24),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  if (cocktail.recipe.isNotEmpty)
+                    Padding(
+                      padding: _horizontal,
+                      child: Text(cocktail.recipe),
+                    ),
+                  const SizedBox(height: 15),
+                  ...cocktail.drinks.map(drinkMapper),
+                  const SizedBox(height: 15),
+                  if (cocktail.description.isNotEmpty)
+                    Padding(
+                      padding: _horizontal,
+                      child: Text(cocktail.description),
+                    ),
+                ],
               ),
             ),
-            const SizedBox(height: 15),
-            if (cocktail.description.isNotEmpty)
-              Padding(
-                padding: _horizontal * 2,
-                child: Text(cocktail.description),
-              ),
-            const SizedBox(height: 120),
           ],
         ),
         Positioned(

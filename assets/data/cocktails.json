@@ -2,20 +2,26 @@
   "data": [
     {
       "id": 1,
-      "name": "Белый русский",
-      "imageUrl": "https://www.liquor.com/thmb/wzgqg2FC1Sqbwo_PAJofVVZIMRk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__liquor__2017__12__20073201__white-russian-720x720-article-cbe4b9a832c64f8da0bb09407caefa7f.jpg",
+      "name": "Куба либре",
+      "imageUrl": "https://forumsamogon.ru/wp-content/uploads/4/2/4/424277354a48ef90a04a1a0c6e9a7244.jpg",
+      "description": "Существует несколько версий происхождения рецепта и названия коктейля, все они связывают коктейль с историей войны за независимость Кубы от Испании, отдавая честь изобретения коктейля либо солдатам американской армии, включая «мужественных всадников», либо кубинским повстанцам.",
+      "recipe": "Наполнить стакан льдом, смешать ингредиенты, перемешать.",
       "drinks": [
         {
-          "name": "Водка",
-          "volume": 30
+          "name": "Ром светлый",
+          "volume": 50
         },
         {
-          "name": "Кофейный ликёр",
-          "volume": 30
+          "name": "Кола",
+          "volume": 150
         },
         {
-          "name": "Нежирные сливки",
-          "volume": 30
+          "name": "Лед",
+          "volume": 200
+        },
+        {
+          "name": "Сироп лайма или четвертинка лайма",
+          "volume": 15
         }
       ]
     },
@@ -50,6 +56,79 @@
         {
           "name": "Лимонный сок",
           "volume": 10
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Белый русский",
+      "imageUrl": "https://www.liquor.com/thmb/wzgqg2FC1Sqbwo_PAJofVVZIMRk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__liquor__2017__12__20073201__white-russian-720x720-article-cbe4b9a832c64f8da0bb09407caefa7f.jpg",
+      "drinks": [
+        {
+          "name": "Водка",
+          "volume": 30
+        },
+        {
+          "name": "Кофейный ликёр",
+          "volume": 30
+        },
+        {
+          "name": "Нежирные сливки",
+          "volume": 30
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Рыжая сучка",
+      "imageUrl": "https://intoxicologist.net/wp-content/uploads/2010/09/Red-Headed-Slut.jpg",
+      "drinks": [
+        {
+          "name": "Егермайстер",
+          "volume": 40
+        },
+        {
+          "name": "Персиковый шнапс",
+          "volume": 40
+        },
+        {
+          "name": "Клюквенный морс",
+          "volume": 70
+        },
+        {
+          "name": "Лед",
+          "volume": 100
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Обезболивающее",
+      "imageUrl": "https://avatars.dzeninfra.ru/get-zen_doc/5316610/pub_6432566634531801e9eade9d_64325b407e6e234c4d4fb31d/scale_1200",
+      "drinks": [
+        {
+          "name": "Ром темный",
+          "volume": 60
+        },
+        {
+          "name": "Кокосовое молоко",
+          "volume": 30
+        },
+        {
+          "name": "Сок ананасовый",
+          "volume": 120
+        },
+        {
+          "name": "Сок апельсиновый",
+          "volume": 30
+        },
+        {
+          "name": "Мускатный орех (украшение)",
+          "volume": 5
+        },
+        {
+          "name": "Лед",
+          "volume": 100
         }
       ]
     }

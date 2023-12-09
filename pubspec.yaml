@@ -1,7 +1,7 @@
 name: avtonalivator
 description: Bluetooth client for Avtobarmen.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.2
+version: 1.0.3
 environment:
   sdk: ^3.0.0
 
