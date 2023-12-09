@@ -57,7 +57,8 @@ class _NamePickerState extends State<NamePicker> {
           if (drinks.isNotEmpty)
             Expanded(
               child: CupertinoPicker(
-                itemExtent: 32,
+                itemExtent: 48,
+                diameterRatio: 2.5,
                 onSelectedItemChanged: setDrink,
                 children: drinks.map(drinkMapper).toList(),
               ),
