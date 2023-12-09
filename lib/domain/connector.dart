@@ -36,7 +36,7 @@ class FbsConnector implements Connector {
 
   @override
   UiDevice? get device {
-    final device = _connector.device == null ? null : _connector.device!;
+    final device = _connector.device;
     final result = device == null ? null : UiDevice.fromLib(device);
     return result;
   }
