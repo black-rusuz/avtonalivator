@@ -16,12 +16,14 @@ class TuningFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pumps = context.watch<TuningProvider>().pumps;
+    final tuning = context.watch<TuningProvider>();
+    final pumps = tuning.pumps;
+    final title = tuning.cocktailName ?? Strings.tuning;
     context.read<ConnectionProvider>().updateAll(pumps);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(Strings.tuning, style: AppTheme.pageTitle),
+        title: Text(title, style: AppTheme.pageTitle),
       ),
       body: _TuningBody(pumps: pumps),
     );
@@ -48,6 +50,7 @@ class _TuningBody extends StatelessWidget {
     return TuningCard(
       pump: pump,
       setPump: context.read<TuningProvider>().updatePump,
+      onDrinkSet: () => context.read<TuningProvider>().setCocktail(null),
       drinks: context.watch<CocktailsProvider>().drinks,
     );
   }

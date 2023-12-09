@@ -17,12 +17,14 @@ const _duration = AppTheme.duration;
 class TuningCard extends StatelessWidget {
   final UiPump pump;
   final ValueChanged<UiPump> setPump;
+  final VoidCallback onDrinkSet;
   final List<String> drinks;
 
   const TuningCard({
     super.key,
     required this.pump,
     required this.setPump,
+    required this.onDrinkSet,
     required this.drinks,
   });
 
@@ -31,6 +33,7 @@ class TuningCard extends StatelessWidget {
   bool get isActive => pump.enabled;
 
   void setName(String name) {
+    onDrinkSet();
     final newPump = pump.copyWith(name: name);
     return setPump(newPump);
   }

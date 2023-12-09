@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../domain/model/cocktail.dart';
 import '../../../domain/model/pump.dart';
 import '../../../domain/storage/settings.dart';
 
@@ -12,6 +13,7 @@ class TuningProvider extends ChangeNotifier {
     generatePumps(_settings.pumpsQuantity);
   }
 
+  String? cocktailName;
   List<UiPump> pumps = [];
 
   void generatePumps(int quantity) {
@@ -25,6 +27,20 @@ class TuningProvider extends ChangeNotifier {
   void updatePump(UiPump pump) {
     pumps.update(pump);
     notifyListeners();
+  }
+
+  void setCocktail(UiCocktail? cocktail) {
+    if (cocktail == null) return cocktailName = null;
+
+    cocktailName = cocktail.name;
+    pumps = pumps.map((e) => e.copyWith(enabled: false)).toList();
+
+    for (int i = 0; i < cocktail.drinks.length; i++) {
+      final drink = cocktail.drinks[i];
+      final pump = pumps[i];
+      pumps[i] = pump.setDrink(drink);
+      notifyListeners();
+    }
   }
 }
 
