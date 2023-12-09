@@ -6,8 +6,8 @@ import 'model/config.dart';
 
 const _host = 'avtonalivator.ru';
 
-const _cocktailsPath = '/catalog/json/cocktails.json';
-const _configPath = '/catalog/json/config.json';
+const _config = '/catalog/json/config.json';
+const _cocktails = '/catalog/json/cocktails.json';
 
 typedef Json = Map<String, dynamic>;
 
@@ -19,24 +19,24 @@ class DataSource {
 
   final _baseUri = Uri(scheme: 'https', host: _host);
 
+  Future<ApiConfig> getConfig() async {
+    final uri = _baseUri.replace(path: _config);
+    final response = await _get(uri);
+    final data = response.data;
+
+    ApiConfig result = const ApiConfig();
+    if (data is Json) result = ApiConfig.fromJson(data);
+    return result;
+  }
+
   Future<List<ApiCocktail>> getCocktails() async {
-    final uri = _baseUri.replace(path: _cocktailsPath);
+    final uri = _baseUri.replace(path: _cocktails);
     final response = await _get(uri);
     final data = response.data;
 
     final list = data['data'];
     final result =
         list.map<ApiCocktail>((e) => ApiCocktail.fromJson(e)).toList();
-    return result;
-  }
-
-  Future<ApiConfig> getConfig() async {
-    final uri = _baseUri.replace(path: _configPath);
-    final response = await _get(uri);
-    final data = response.data;
-
-    ApiConfig result = const ApiConfig();
-    if (data is Json) result = ApiConfig.fromJson(data);
     return result;
   }
 
