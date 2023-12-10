@@ -29,6 +29,7 @@ class CocktailCard extends StatelessWidget {
               cocktail.image,
               height: 50,
               width: 50,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(width: 8),
