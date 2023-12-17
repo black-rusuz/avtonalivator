@@ -24,17 +24,11 @@ class _Params {
       ),
       Param.tap(
         title: Strings.calibrateTitle,
-        onTap: showCalibration,
+        onTap: () => showDialog(
+          context: context,
+          builder: (_) => CalibrationDialog(),
+        ),
       ),
     ];
-  }
-
-  void showCalibration() {
-    showDialog(
-      context: context,
-      builder: (_) {
-        return const CalibrationDialog();
-      },
-    );
   }
 }
