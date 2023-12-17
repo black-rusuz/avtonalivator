@@ -36,20 +36,19 @@ class _Params {
       Param.stored(
         provider: provider,
         key: ParamKey.autoConnect,
-        title: 'Подключаться автоматически',
-        description:
-            'Автоматически подключаться к последнему известному устройству',
+        title: Strings.autoConnectTitle,
+        description: Strings.autoConnectDescription,
         defaultValue: true,
       ),
       Param.stored(
         provider: provider,
         key: ParamKey.pumpsQuantity,
-        title: 'Количество ингредиентов',
+        title: Strings.pumpsQuantityTitle,
         defaultValue: 6,
         onChanged: (v) => context.read<TuningProvider>().generatePumps(v),
       ),
       Param.tap(
-        title: 'Калибровка',
+        title: Strings.calibrateTitle,
         onTap: calibrate,
       ),
     ];
