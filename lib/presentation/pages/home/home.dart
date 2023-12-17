@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../injection.dart';
@@ -55,7 +54,6 @@ class HomePageState extends State<HomePage> {
         providers: [
           ChangeNotifierProvider(create: (_) => get<TuningProvider>()),
           ChangeNotifierProvider(create: (_) => get<CocktailsProvider>()),
-          BlocProvider(create: (_) => get<SettingsCubit>()),
         ],
         child: bodies[index],
       ),
