@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../injection.dart';
 import '../../fragments/cocktails/cocktails.dart';
+import '../../fragments/settings/provider.dart';
 import '../../fragments/settings/settings.dart';
 import '../../fragments/tuning/tuning.dart';
 import '../../provider/connection.dart';
@@ -54,6 +55,7 @@ class HomePageState extends State<HomePage> {
         providers: [
           ChangeNotifierProvider(create: (_) => get<TuningProvider>()),
           ChangeNotifierProvider(create: (_) => get<CocktailsProvider>()),
+          ChangeNotifierProvider(create: (_) => get<SettingsProvider>()),
         ],
         child: bodies[index],
       ),
