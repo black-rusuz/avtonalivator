@@ -14,7 +14,7 @@ class _SettingsList extends StatelessWidget {
       itemCount: params.length,
       itemBuilder: (context, index) {
         final item = params[index];
-        return SettingsCard(param: item);
+        return SettingsCard.fromParam(item);
       },
       separatorBuilder: separatorBuilder,
     );
@@ -47,7 +47,7 @@ class _Params {
         title: 'Количество ингредиентов',
         defaultValue: 6,
       ),
-      Param.action(
+      Param.tap(
         title: 'Калибровка',
         onTap: calibrate,
       ),
