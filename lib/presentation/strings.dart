@@ -40,8 +40,8 @@ class Strings {
 
   static const enterName = 'Введите название';
   static const enterVolume = 'Введите объём (мл)';
-  static const cancel = 'Закрыть';
-  static const ok = 'Ок';
+  static const cancel = 'Отмена';
+  static const ok = 'ОК';
 
   static const pour = 'Налить';
   static const goPour = 'Приготовить';
@@ -54,4 +54,17 @@ class Strings {
   static const oneLiter = 'литр выпит';
   static const fewLiters = 'литра выпито';
   static const manyLiters = 'литров выпито';
+
+  // * Settings
+
+  static const autoConnectTitle = 'Подключаться автоматически';
+  static const autoConnectDescription =
+      'Автоматически подключаться к последнему известному устройству';
+  static const pumpsQuantityTitle = 'Количество ингредиентов';
+  static const calibrateTitle = 'Калибровка';
+  static const calibrateText = '''
+  1. Выберите предмет, у которого известен точный вес
+  2. Введите вес предмета и нажмите "Ок"
+  3. Положите предмет на подставку и дождитесь завершения калибровки
+  ''';
 }
