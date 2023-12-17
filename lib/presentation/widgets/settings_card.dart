@@ -26,7 +26,7 @@ class SettingsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasicCard(
-      onTap: () => onTap?.call(),
+      onTap: onTap,
       padding: AppTheme.padding,
       color: AppTheme.background,
       child: Row(
@@ -44,14 +44,20 @@ class SettingsCard extends StatelessWidget {
                   ),
                 ],
                 if (bottom != null) ...[
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 12),
                   bottom!,
                 ],
               ],
             ),
           ),
-          const SizedBox(height: 8),
-          if (right != null) right!,
+          const SizedBox(width: 8),
+          if (right != null)
+            SizedBox.square(
+              dimension: 40,
+              child: Center(
+                child: right!,
+              ),
+            ),
         ],
       ),
     );
@@ -63,17 +69,19 @@ class SettingsCard extends StatelessWidget {
         return SettingsCard._(
           title: param.title,
           description: param.description,
+          right: Text(param.value.toStringAsFixed(0)),
           bottom: Slider(
             min: 0,
             max: 12,
             value: (param.value as num).toDouble(),
-            onChanged: (v) => param.action(v),
+            onChanged: (v) => param.action(v.round()),
           ),
         );
       case bool:
         return SettingsCard._(
           title: param.title,
           description: param.description,
+          onTap: () => param.action(!param.value),
           right: Checkbox(
             value: param.value as bool,
             onChanged: (v) => param.action(v),
@@ -83,6 +91,7 @@ class SettingsCard extends StatelessWidget {
         return SettingsCard._(
           title: param.title,
           description: param.description,
+          right: const Icon(Icons.settings_suggest_rounded),
           onTap: () => param.action(),
         );
       default:
