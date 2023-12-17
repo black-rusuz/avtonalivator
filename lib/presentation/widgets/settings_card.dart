@@ -5,25 +5,28 @@ import '../../domain/model/param.dart';
 import 'basic_card.dart';
 
 class SettingsCard extends StatelessWidget {
-  final Param param;
+  final String title;
+  final String description;
+  final Widget? right;
+  final Widget? bottom;
+  final VoidCallback? onTap;
 
-  const SettingsCard({
-    super.key,
-    required this.param,
+  const SettingsCard._({
+    required this.title,
+    required this.description,
+    this.right,
+    this.bottom,
+    this.onTap,
   });
 
-  void setValue(BuildContext context, dynamic newValue) {
-    if (param.onTap is VoidCallback) {
-      param.onTap();
-    } else {
-      param.onTap.call(newValue);
-    }
+  factory SettingsCard.fromParam(Param param) {
+    return switchType(param);
   }
 
   @override
   Widget build(BuildContext context) {
     return BasicCard(
-      onTap: () => setValue(context, null),
+      onTap: () => onTap?.call(),
       padding: AppTheme.padding,
       color: AppTheme.background,
       child: Row(
@@ -32,68 +35,58 @@ class SettingsCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(param.title),
-                if (param.description != null) ...[
+                Text(title),
+                if (description.isNotEmpty) ...[
                   const SizedBox(height: 4),
                   Text(
-                    param.description!,
+                    description,
                     style: AppTheme.additional,
                   ),
                 ],
-                if (param.value is num) ...[
+                if (bottom != null) ...[
                   const SizedBox(height: 8),
-                  _ParamValue.long(
-                    param.value,
-                    (v) => setValue(context, v),
-                  ),
+                  bottom!,
                 ],
               ],
             ),
           ),
-          const SizedBox(width: 8),
-          _ParamValue.short(
-            param.value,
-            (v) => setValue(context, v),
-          ),
+          const SizedBox(height: 8),
+          if (right != null) right!,
         ],
       ),
     );
   }
-}
 
-class _ParamValue extends StatelessWidget {
-  final dynamic value;
-  final ValueChanged<dynamic> setValue;
-  final bool _isShort;
-
-  const _ParamValue.short(this.value, this.setValue) : _isShort = true;
-
-  const _ParamValue.long(this.value, this.setValue) : _isShort = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Builder(builder: _isShort ? shortType : _longType);
-  }
-
-  Widget shortType(BuildContext context) {
-    if (value is bool) {
-      return Checkbox(
-        value: value as bool,
-        onChanged: (v) => setValue((v ?? false)),
-      );
+  static SettingsCard switchType(Param param) {
+    switch (param.type) {
+      case int:
+        return SettingsCard._(
+          title: param.title,
+          description: param.description,
+          bottom: Slider(
+            min: 0,
+            max: 12,
+            value: (param.value as num).toDouble(),
+            onChanged: (v) => param.action(v),
+          ),
+        );
+      case bool:
+        return SettingsCard._(
+          title: param.title,
+          description: param.description,
+          right: Checkbox(
+            value: param.value as bool,
+            onChanged: (v) => param.action(v),
+          ),
+        );
+      case null:
+        return SettingsCard._(
+          title: param.title,
+          description: param.description,
+          onTap: () => param.action(),
+        );
+      default:
+        throw UnimplementedError();
     }
-    return Text(value.toString());
-  }
-
-  Widget _longType(BuildContext context) {
-    if (value is num) {
-      return Slider(
-        min: 0,
-        max: 12,
-        value: (value as num).toDouble(),
-        onChanged: (v) => setValue(v.round()),
-      );
-    }
-    return const SizedBox();
   }
 }

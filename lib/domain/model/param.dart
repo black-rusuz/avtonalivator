@@ -6,21 +6,30 @@ import '../../presentation/fragments/settings/provider.dart';
 class ParamKey {
   static const autoConnect = 'autoConnect';
   static const pumpsQuantity = 'pumpsQuantity';
+  static const calibration = 'calibration';
+
+  static const typesMap = {
+    autoConnect: bool,
+    pumpsQuantity: int,
+    calibration: null,
+  };
 }
 
 class Param extends Equatable {
+  final Type? type;
   final String key;
   final String title;
-  final String? description;
+  final String description;
   final dynamic value;
-  final Function onTap;
+  final Function action;
 
   const Param._({
+    required this.type,
     required this.key,
     required this.title,
-    this.description,
-    this.value,
-    required this.onTap,
+    required this.description,
+    required this.value,
+    required this.action,
   });
 
   factory Param.stored({
@@ -31,24 +40,28 @@ class Param extends Equatable {
     required dynamic defaultValue,
   }) {
     return Param._(
+      type: ParamKey.typesMap[key],
       key: key,
       title: title,
+      description: description ?? '',
       value: provider.getParam(key, defaultValue),
-      onTap: (v) => provider.setParam(key, v),
+      action: (v) => provider.setParam(key, v),
     );
   }
 
-  factory Param.action({
+  factory Param.tap({
     required String title,
     String? description,
     required VoidCallback onTap,
   }) {
     final key = UniqueKey();
     return Param._(
+      type: ParamKey.typesMap[key],
       key: key.toString(),
       title: title,
-      description: description,
-      onTap: onTap,
+      description: description ?? '',
+      value: null,
+      action: onTap,
     );
   }
 
@@ -58,6 +71,6 @@ class Param extends Equatable {
         title,
         description,
         value,
-        onTap,
+        action,
       ];
 }
