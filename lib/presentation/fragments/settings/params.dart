@@ -33,9 +33,7 @@ class _Params {
     showDialog(
       context: context,
       builder: (_) {
-        return const AlertDialog(
-          title: Text('Title'),
-        );
+        return const CalibrationDialog();
       },
     );
   }
