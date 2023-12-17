@@ -115,8 +115,6 @@ class TuningCard extends StatelessWidget {
         boxShadow: BasicCard.defaultShadow,
         color: isActive ? AppTheme.accent : AppTheme.background,
         borderRadius: BorderRadius.circular(30),
-        // TODO: borderRadius
-        // borderRadius: AppTheme.borderRadius,
       ),
       child: Stack(
         children: [
