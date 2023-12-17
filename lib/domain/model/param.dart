@@ -38,6 +38,7 @@ class Param extends Equatable {
     required String title,
     String? description,
     required dynamic defaultValue,
+    ValueChanged<dynamic>? onChanged,
   }) {
     return Param._(
       type: ParamKey.typesMap[key],
@@ -45,7 +46,10 @@ class Param extends Equatable {
       title: title,
       description: description ?? '',
       value: provider.getParam(key, defaultValue),
-      action: (v) => provider.setParam(key, v),
+      action: (v) {
+        provider.setParam(key, v);
+        onChanged?.call(v);
+      },
     );
   }
 
