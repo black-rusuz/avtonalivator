@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme.dart';
-import '../../../../domain/model/param.dart';
-import '../../../widgets/basic_card.dart';
+import '../../core/theme.dart';
+import '../../domain/model/param.dart';
+import 'basic_card.dart';
 
-class SettingsCard<T> extends StatelessWidget {
-  final Param<T> param;
+class SettingsCard extends StatelessWidget {
+  final Param param;
 
   const SettingsCard({
     super.key,
     required this.param,
   });
 
-  void setValue(BuildContext context, T newValue) {
-    // TODO: setter
-    throw UnimplementedError();
+  void setValue(BuildContext context, dynamic newValue) {
+    if (param.onTap is VoidCallback) {
+      param.onTap();
+    } else {
+      param.onTap.call(newValue);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return BasicCard(
+      onTap: () => setValue(context, null),
       padding: AppTheme.padding,
       color: AppTheme.background,
       child: Row(
@@ -38,7 +42,7 @@ class SettingsCard<T> extends StatelessWidget {
                 ],
                 if (param.value is num) ...[
                   const SizedBox(height: 8),
-                  _ParamValue<T>.long(
+                  _ParamValue.long(
                     param.value,
                     (v) => setValue(context, v),
                   ),
@@ -47,7 +51,7 @@ class SettingsCard<T> extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          _ParamValue<T>.short(
+          _ParamValue.short(
             param.value,
             (v) => setValue(context, v),
           ),
@@ -57,9 +61,9 @@ class SettingsCard<T> extends StatelessWidget {
   }
 }
 
-class _ParamValue<T> extends StatelessWidget {
-  final T value;
-  final ValueChanged<T> setValue;
+class _ParamValue extends StatelessWidget {
+  final dynamic value;
+  final ValueChanged<dynamic> setValue;
   final bool _isShort;
 
   const _ParamValue.short(this.value, this.setValue) : _isShort = true;
@@ -75,7 +79,7 @@ class _ParamValue<T> extends StatelessWidget {
     if (value is bool) {
       return Checkbox(
         value: value as bool,
-        onChanged: (v) => setValue((v ?? false) as T),
+        onChanged: (v) => setValue((v ?? false)),
       );
     }
     return Text(value.toString());
@@ -87,7 +91,7 @@ class _ParamValue<T> extends StatelessWidget {
         min: 0,
         max: 12,
         value: (value as num).toDouble(),
-        onChanged: (v) => setValue(v.round() as T),
+        onChanged: (v) => setValue(v.round()),
       );
     }
     return const SizedBox();
