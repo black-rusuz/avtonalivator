@@ -1,7 +1,8 @@
 enum DeviceMode {
   wait(0),
   manual(1),
-  auto(2);
+  auto(2),
+  calibration(3);
 
   final int value;
 
