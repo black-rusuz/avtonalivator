@@ -26,7 +26,10 @@ class _Params {
         title: Strings.calibrateTitle,
         onTap: () => showDialog(
           context: context,
-          builder: (_) => CalibrationDialog(),
+          builder: (_) => ChangeNotifierProvider.value(
+            value: context.read<ConnectionProvider>(),
+            child: CalibrationDialog(),
+          ),
         ),
       ),
     ];
