@@ -46,6 +46,7 @@ class _Params {
         key: ParamKey.pumpsQuantity,
         title: 'Количество ингредиентов',
         defaultValue: 6,
+        onChanged: (v) => context.read<TuningProvider>().generatePumps(v),
       ),
       Param.tap(
         title: 'Калибровка',
