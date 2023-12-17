@@ -1,29 +1,4 @@
-part of '../settings.dart';
-
-class _SettingsList extends StatelessWidget {
-  const _SettingsList();
-
-  @override
-  Widget build(BuildContext context) {
-    final params = _Params(context).list;
-
-    return ListView.separated(
-      shrinkWrap: true,
-      controller: PrimaryScrollController.maybeOf(context),
-      padding: AppTheme.listPadding,
-      itemCount: params.length,
-      itemBuilder: (context, index) {
-        final item = params[index];
-        return SettingsCard.fromParam(item);
-      },
-      separatorBuilder: separatorBuilder,
-    );
-  }
-
-  Widget separatorBuilder(BuildContext context, int index) {
-    return const SizedBox(height: 10);
-  }
-}
+part of 'settings.dart';
 
 class _Params {
   final BuildContext context;
@@ -49,12 +24,12 @@ class _Params {
       ),
       Param.tap(
         title: Strings.calibrateTitle,
-        onTap: calibrate,
+        onTap: showCalibration,
       ),
     ];
   }
 
-  void calibrate() {
+  void showCalibration() {
     showDialog(
       context: context,
       builder: (_) {

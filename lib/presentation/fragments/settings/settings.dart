@@ -12,9 +12,10 @@ import '../../widgets/settings_card.dart';
 import '../../widgets/sliver_scaffold.dart';
 import '../tuning/provider.dart';
 import 'provider.dart';
+import 'widgets/calibration_dialog.dart';
 
+part 'params.dart';
 part 'widgets/app_bar.dart';
-part 'widgets/list.dart';
 
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
@@ -41,7 +42,27 @@ class SettingsFragment extends StatelessWidget {
         device: device,
         onTap: action,
       ),
-      bodyBuilder: (_, __) => const _SettingsList(),
+      bodyBuilder: builder,
     );
+  }
+
+  Widget builder(BuildContext context, ScrollController controller) {
+    final params = _Params(context).list;
+
+    return ListView.separated(
+      shrinkWrap: true,
+      controller: controller,
+      padding: AppTheme.listPadding,
+      itemCount: params.length,
+      itemBuilder: (context, index) {
+        final item = params[index];
+        return SettingsCard.fromParam(item);
+      },
+      separatorBuilder: separatorBuilder,
+    );
+  }
+
+  Widget separatorBuilder(BuildContext context, int index) {
+    return const SizedBox(height: 10);
   }
 }
