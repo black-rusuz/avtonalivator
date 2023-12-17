@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme.dart';
 import '../../../strings.dart';
 import '../../../widgets/text_field_label.dart';
 
@@ -12,8 +13,10 @@ class CalibrationDialog extends StatelessWidget {
       title: const Text(Strings.calibrateTitle),
       content: const Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(Strings.calibrateText),
+          Text(Strings.calibrateSample, style: AppTheme.additional),
           TextField(
             decoration: InputDecoration(
               label: Label(Strings.weight),
