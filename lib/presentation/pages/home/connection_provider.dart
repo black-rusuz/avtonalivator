@@ -9,6 +9,7 @@ import '../../../domain/logger.dart';
 import '../../../domain/model/cocktail.dart';
 import '../../../domain/model/device.dart';
 import '../../../domain/model/device_data.dart';
+import '../../../domain/model/lightning_mode.dart';
 
 @injectable
 class ConnectionProvider extends ChangeNotifier {
@@ -65,7 +66,7 @@ class ConnectionProvider extends ChangeNotifier {
     return _methods.calibrate(weight);
   }
 
-  Future<void> setLightningMode(int value) {
+  Future<void> setLightningMode(LightingMode value) {
     return _methods.setLightningMode(value);
   }
 

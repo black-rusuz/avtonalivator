@@ -7,6 +7,7 @@ import '../../data/connection/fbs_adapter.dart';
 import '../logger.dart';
 import '../model/cocktail.dart';
 import '../model/device_data.dart';
+import '../model/lightning_mode.dart';
 
 abstract interface class DeviceMethods {
   Stream<DeviceData> get deviceData;
@@ -19,9 +20,9 @@ abstract interface class DeviceMethods {
 
   Future<void> calibrate(int weight);
 
-  Future<void> setLightningBrightness(int value);
+  Future<void> setLightningMode(LightingMode mode);
 
-  Future<void> setLightningMode(int value);
+  Future<void> setLightningBrightness(int value);
 }
 
 @Injectable(as: DeviceMethods)
@@ -65,15 +66,19 @@ class FbsDeviceMethods implements DeviceMethods {
   }
 
   @override
-  Future<void> setLightningMode(int value) {
-    // TODO: implement setLightningMode
-    throw UnimplementedError();
+  Future<void> setLightningMode(LightingMode mode) {
+    const char = LightingMode.char;
+    final value = mode.value;
+    final command = '$char$value';
+    return _sendCommand(command);
   }
 
   @override
   Future<void> setLightningBrightness(int value) {
-    // TODO: implement setLightningBrightness
-    throw UnimplementedError();
+    final casted = 255 * value / 100;
+    value = casted.round();
+    final command = 'n$value';
+    return _sendCommand(command);
   }
 
   Future<void> _sendCommand(String command) {
