@@ -17,14 +17,14 @@ class CocktailsProvider extends ChangeNotifier {
   }
 
   String _searchPattern = '';
-  List<String> _pumpDrinks = [];
+  List<String> _tuningDrinks = [];
   List<UiCocktail> _cocktails = [];
   StreamSubscription? _cocktailsSubscription;
 
   bool useFilter = false;
 
   List<UiCocktail> get cocktails => _cocktails
-      .where((c) => !useFilter || c.contains(_pumpDrinks))
+      .where((c) => !useFilter || c.contains(_tuningDrinks))
       .where((c) => c.name.search(_searchPattern))
       .toList();
 
@@ -37,7 +37,7 @@ class CocktailsProvider extends ChangeNotifier {
   }
 
   void setFilter(List<String> drinks, bool value) {
-    _pumpDrinks = drinks;
+    _tuningDrinks = drinks;
     useFilter = value;
     notifyListeners();
   }

@@ -36,9 +36,9 @@ class TuningProvider extends ChangeNotifier {
     drinks = drinks.map((e) => e.copyWith(enabled: false)).toList();
 
     for (int i = 0; i < cocktail.drinks.length; i++) {
-      final drink = cocktail.drinks[i];
-      final pump = drinks[i];
-      drinks[i] = pump.setDrink(drink);
+      final cocktailDrink = cocktail.drinks[i];
+      final tuningDrink = drinks[i];
+      drinks[i] = tuningDrink.setDrink(cocktailDrink);
       notifyListeners();
     }
   }

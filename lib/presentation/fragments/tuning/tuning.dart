@@ -46,10 +46,10 @@ class _TuningBody extends StatelessWidget {
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    final pump = drinks[index];
+    final drink = drinks[index];
     return TuningCard(
-      pump: pump,
-      setPump: context.read<TuningProvider>().updateDrink,
+      drink: drink,
+      setDrink: context.read<TuningProvider>().updateDrink,
       onDrinkSet: () => context.read<TuningProvider>().setCocktail(null),
       drinks: context.watch<CocktailsProvider>().drinks,
     );

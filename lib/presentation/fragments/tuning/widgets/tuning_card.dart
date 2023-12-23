@@ -15,37 +15,37 @@ const _maxVolume = 500.0;
 const _duration = AppTheme.duration;
 
 class TuningCard extends StatelessWidget {
-  final UiDrink pump;
-  final ValueChanged<UiDrink> setPump;
+  final UiDrink drink;
+  final ValueChanged<UiDrink> setDrink;
   final VoidCallback onDrinkSet;
   final List<String> drinks;
 
   const TuningCard({
     super.key,
-    required this.pump,
-    required this.setPump,
+    required this.drink,
+    required this.setDrink,
     required this.onDrinkSet,
     required this.drinks,
   });
 
   // * Logic
 
-  bool get isActive => pump.enabled;
+  bool get isActive => drink.enabled;
 
   void setName(String name) {
     onDrinkSet();
-    final newPump = pump.copyWith(name: name);
-    return setPump(newPump);
+    final newDrink = drink.copyWith(name: name);
+    return setDrink(newDrink);
   }
 
   void setVolume(double volume) {
-    final newPump = pump.copyWith(volume: volume);
-    return setPump(newPump);
+    final newDrink = drink.copyWith(volume: volume);
+    return setDrink(newDrink);
   }
 
   void setEnabled(bool active) {
-    final newPump = pump.copyWith(enabled: active);
-    return setPump(newPump);
+    final newDrink = drink.copyWith(enabled: active);
+    return setDrink(newDrink);
   }
 
   // * Modals
@@ -63,7 +63,7 @@ class TuningCard extends StatelessWidget {
   }
 
   void openVolumeField(BuildContext context) {
-    final lastValue = pump.volume;
+    final lastValue = drink.volume;
     showDialog(
       context: context,
       builder: (_) {
@@ -78,11 +78,11 @@ class TuningCard extends StatelessWidget {
   // * Presentation
 
   String get pickerTitle {
-    return pump.name.isEmpty ? Strings.pickDrink : pump.name;
+    return drink.name.isEmpty ? Strings.pickDrink : drink.name;
   }
 
   String get volume {
-    return pump.volume.toStringAsFixed(0) + Strings.ml;
+    return drink.volume.toStringAsFixed(0) + Strings.ml;
   }
 
   static final textStyle = AppTheme.text.copyWith(height: 1);
@@ -124,7 +124,7 @@ class TuningCard extends StatelessWidget {
             right: null,
             child: Center(
               child: AnimatedText(
-                pump.id.toString(),
+                drink.id.toString(),
                 duration: _duration,
                 style: numberStyle,
               ),
@@ -175,9 +175,9 @@ class TuningCard extends StatelessWidget {
                     height: 40,
                     child: Slider(
                       min: 0,
-                      max: max(pump.volume, _maxVolume),
+                      max: max(drink.volume, _maxVolume),
                       divisions: 50,
-                      value: pump.volume,
+                      value: drink.volume,
                       onChanged: setVolume,
                     ),
                   ),
