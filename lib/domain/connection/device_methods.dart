@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/connection/fbs_adapter.dart';
+import '../logger.dart';
 import '../model/cocktail.dart';
 import '../model/device_data.dart';
 
@@ -66,5 +69,15 @@ class FbsDeviceMethods implements DeviceMethods {
   Future<void> setLightningBrightness(int value) {
     // TODO: implement setLightningBrightness
     throw UnimplementedError();
+  }
+
+  Future<void> _sendCommand(String command) {
+    Logger.log(command, 'Command');
+    command = '$command\r';
+
+    final chars = utf8.encode(command);
+    final bytes = Uint8List.fromList(chars);
+
+    return _adapter.send(bytes);
   }
 }
