@@ -11,19 +11,30 @@ import '../../../domain/string_utils.dart';
 class CocktailsProvider extends ChangeNotifier {
   final CocktailsRepository _repository;
 
+  List<UiCocktail> _cocktails = [];
+  List<UiCocktail> _userCocktails = [];
+  StreamSubscription? _cocktailsSub;
+  StreamSubscription? _userCocktailsSub;
+
   CocktailsProvider(this._repository) {
-    _cocktailsSubscription?.cancel();
-    _cocktailsSubscription = _repository.hostCocktails.listen(_setCocktails);
+    _cocktailsSub ??= _repository.hostCocktails.listen(_setCocktails);
+    _userCocktailsSub ??= _repository.userCocktails.listen(_setUserCocktails);
   }
 
   String _searchPattern = '';
   List<String> _tuningDrinks = [];
-  List<UiCocktail> _cocktails = [];
-  StreamSubscription? _cocktailsSubscription;
 
   bool useFilter = false;
 
   List<UiCocktail> get cocktails => _cocktails
+      .where((c) => !useFilter || c.contains(_tuningDrinks))
+      .where((c) => c.name.search(_searchPattern))
+      .toList();
+
+  List<UiCocktail> get favCocktails =>
+      cocktails.where((e) => e.favorite).toList();
+
+  List<UiCocktail> get userCocktails => _userCocktails
       .where((c) => !useFilter || c.contains(_tuningDrinks))
       .where((c) => c.name.search(_searchPattern))
       .toList();
@@ -57,9 +68,15 @@ class CocktailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void _setUserCocktails(List<UiCocktail> cocktails) {
+    _userCocktails = cocktails;
+    notifyListeners();
+  }
+
   @override
   void dispose() {
-    _cocktailsSubscription?.cancel();
+    _cocktailsSub?.cancel();
+    _userCocktailsSub?.cancel();
     return super.dispose();
   }
 }
