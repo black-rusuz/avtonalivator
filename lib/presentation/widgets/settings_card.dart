@@ -20,7 +20,39 @@ class SettingsCard extends StatelessWidget {
   });
 
   factory SettingsCard.fromParam(Param param) {
-    return switchType(param);
+    switch (param.type) {
+      case int:
+        return SettingsCard._(
+          title: param.title,
+          description: param.description,
+          right: Text(param.value.toStringAsFixed(0)),
+          bottom: Slider(
+            min: 0,
+            max: 12,
+            value: (param.value as num).toDouble(),
+            onChanged: (v) => param.action(v.round()),
+          ),
+        );
+      case bool:
+        return SettingsCard._(
+          title: param.title,
+          description: param.description,
+          onTap: () => param.action(!param.value),
+          right: Checkbox(
+            value: param.value as bool,
+            onChanged: (v) => param.action(v),
+          ),
+        );
+      case null:
+        return SettingsCard._(
+          title: param.title,
+          description: param.description,
+          right: const Icon(Icons.settings_suggest_rounded),
+          onTap: () => param.action(),
+        );
+      default:
+        throw UnimplementedError();
+    }
   }
 
   @override
@@ -61,41 +93,5 @@ class SettingsCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  static SettingsCard switchType(Param param) {
-    switch (param.type) {
-      case int:
-        return SettingsCard._(
-          title: param.title,
-          description: param.description,
-          right: Text(param.value.toStringAsFixed(0)),
-          bottom: Slider(
-            min: 0,
-            max: 12,
-            value: (param.value as num).toDouble(),
-            onChanged: (v) => param.action(v.round()),
-          ),
-        );
-      case bool:
-        return SettingsCard._(
-          title: param.title,
-          description: param.description,
-          onTap: () => param.action(!param.value),
-          right: Checkbox(
-            value: param.value as bool,
-            onChanged: (v) => param.action(v),
-          ),
-        );
-      case null:
-        return SettingsCard._(
-          title: param.title,
-          description: param.description,
-          right: const Icon(Icons.settings_suggest_rounded),
-          onTap: () => param.action(),
-        );
-      default:
-        throw UnimplementedError();
-    }
   }
 }
