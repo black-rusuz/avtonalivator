@@ -20,7 +20,7 @@ class _Params {
         key: ParamKey.drinksQuantity,
         title: Strings.drinksQuantityTitle,
         defaultValue: 6,
-        onChanged: (v) => context.read<TuningProvider>().generateDrinks(v),
+        onChanged: (v) => context.read<TuningProvider>().createCocktail(v),
       ),
       Param.device(
         title: Strings.calibrateTitle,

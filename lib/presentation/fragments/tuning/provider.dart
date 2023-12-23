@@ -11,7 +11,8 @@ class TuningProvider extends ChangeNotifier {
   late UiCocktail cocktail;
 
   TuningProvider(this._settings) {
-    cocktail = UiCocktail.custom(_settings.drinksQuantity);
+    final quantity = _settings.drinksQuantity;
+    createCocktail(quantity);
   }
 
   void _setCocktail(UiCocktail cocktail) {
@@ -19,9 +20,9 @@ class TuningProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void generateDrinks(int quantity) {
-    cocktail = UiCocktail.custom(_settings.drinksQuantity);
-    notifyListeners();
+  void createCocktail(int quantity) {
+    final cocktail = UiCocktail.custom(_settings.drinksQuantity);
+    _setCocktail(cocktail);
   }
 
   void updateDrink(UiDrink drink) {
