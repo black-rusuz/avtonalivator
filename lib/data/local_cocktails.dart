@@ -16,11 +16,15 @@ class LocalCocktails {
     final file = await _getFile();
     final data = await file.readAsString();
 
-    final json = jsonDecode(data);
-    final list = json[_fileName];
+    try {
+      final json = jsonDecode(data);
+      final list = json[_fileName];
 
-    final result = list.map((e) => ApiCocktail.fromJson(e)).toList();
-    return result;
+      final result = list.map((e) => ApiCocktail.fromJson(e)).toList();
+      return result;
+    } catch (_) {
+      return [];
+    }
   }
 
   Future<void> saveCocktail(ApiCocktail cocktail) async {
