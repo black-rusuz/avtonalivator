@@ -42,6 +42,14 @@ class CocktailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> save(UiCocktail cocktail) {
+    return _repository.saveCocktail(cocktail);
+  }
+
+  Future<void> delete(UiCocktail cocktail) {
+    return _repository.deleteCocktail(cocktail);
+  }
+
   // * Private
 
   void _setCocktails(List<UiCocktail> cocktails) {

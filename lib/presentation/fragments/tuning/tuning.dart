@@ -17,7 +17,9 @@ class TuningFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tuning = context.watch<TuningProvider>();
+    final cocktails = context.read<CocktailsProvider>();
     final connection = context.read<ConnectionProvider>();
+
     final cocktail = tuning.cocktail;
     connection.setCocktail(cocktail);
 
@@ -27,6 +29,13 @@ class TuningFragment extends StatelessWidget {
           cocktail.name.isNotEmpty ? cocktail.name : Strings.tuning,
           style: AppTheme.pageTitle,
         ),
+        actions: [
+          IconButton(
+            onPressed: () => cocktails.save(cocktail),
+            icon: const Icon(Icons.save_rounded),
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: _TuningBody(drinks: cocktail.drinks),
     );
