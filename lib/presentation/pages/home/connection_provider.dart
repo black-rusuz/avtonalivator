@@ -68,10 +68,10 @@ class ConnectionProvider extends ChangeNotifier {
 
   // * Helpers
 
-  void disconnect() async {
+  Future<void> disconnect() {
     device = null;
     notifyListeners();
-    // await _methods.disconnect();
+    return _connector.disconnect();
   }
 
   @override
