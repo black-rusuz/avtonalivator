@@ -30,13 +30,13 @@ abstract interface class Connector {
 
 @Injectable(as: Connector)
 class FbsConnector implements Connector {
-  final FbsAdapter _connector;
+  final FbsAdapter _adapter;
 
-  FbsConnector(this._connector);
+  FbsConnector(this._adapter);
 
   @override
   UiDevice? get device {
-    final device = _connector.device;
+    final device = _adapter.device;
     final result = device == null ? null : UiDevice.fromLib(device);
     return result;
   }
@@ -45,24 +45,24 @@ class FbsConnector implements Connector {
   Stream<bool> get isDiscovering async* {
     while (device == null) {
       yield await Future.delayed(
-          _streamDuration, () => _connector.isDiscovering);
+          _streamDuration, () => _adapter.isDiscovering);
     }
   }
 
   @override
   Stream<UiDevice> get devices {
-    return _connector.devices.map(UiDevice.fromLib);
+    return _adapter.devices.map(UiDevice.fromLib);
   }
 
   @override
   Future<void> cancelDiscovery() {
-    return _connector.cancelDiscovery();
+    return _adapter.cancelDiscovery();
   }
 
   @override
   Future<bool> connect(UiDevice device) async {
     final libDevice = device.toLib();
-    final connection = await _connector.connect(libDevice);
+    final connection = await _adapter.connect(libDevice);
     return connection != null;
   }
 
@@ -74,16 +74,16 @@ class FbsConnector implements Connector {
     final chars = utf8.encode(command);
     final bytes = Uint8List.fromList(chars);
 
-    return _connector.send(bytes);
+    return _adapter.send(bytes);
   }
 
   @override
   Stream<DeviceData> get input {
-    return _connector.input.distinct(listEquals).map(DeviceData.fromBytes);
+    return _adapter.input.distinct(listEquals).map(DeviceData.fromBytes);
   }
 
   @override
   Future<void> disconnect() {
-    return _connector.disconnect();
+    return _adapter.disconnect();
   }
 }
