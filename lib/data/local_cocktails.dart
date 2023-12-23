@@ -30,8 +30,17 @@ class LocalCocktails {
   Future<void> saveCocktail(ApiCocktail cocktail) async {
     final file = await _getFile();
     final cocktails = await getCocktails();
-
     cocktails.add(cocktail);
+
+    final json = {_fileName: cocktails};
+    final data = jsonEncode(json);
+    await file.writeAsString(data);
+  }
+
+  Future<void> deleteCocktail(ApiCocktail cocktail) async {
+    final file = await _getFile();
+    final cocktails = await getCocktails();
+    cocktails.removeWhere((c) => c.id == cocktail.id);
 
     final json = {_fileName: cocktails};
     final data = jsonEncode(json);
