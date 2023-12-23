@@ -87,4 +87,11 @@ class UiDrink extends Equatable {
   bool operator ==(Object other) {
     return other is UiDrink && id == other.id;
   }
+
+  ApiDrink toApi() {
+    return ApiDrink(
+      name: name,
+      volume: volume.round(),
+    );
+  }
 }

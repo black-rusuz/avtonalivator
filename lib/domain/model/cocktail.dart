@@ -111,4 +111,15 @@ class UiCocktail extends Equatable {
         // recipe,
         [...drinks],
       ];
+
+  ApiCocktail toApi() {
+    return ApiCocktail(
+      id: id,
+      name: name,
+      imageUrl: image,
+      description: description,
+      recipe: recipe,
+      drinks: drinks.map((d) => d.toApi()).toList(),
+    );
+  }
 }
