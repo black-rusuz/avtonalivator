@@ -24,7 +24,7 @@ class UiDrink extends Equatable {
 
   factory UiDrink.fromApi(int id, ApiDrink drink) {
     return UiDrink(
-      id: 0,
+      id: id,
       name: drink.name,
       volume: drink.volume.toDouble(),
       enabled: drink.volume != 0,

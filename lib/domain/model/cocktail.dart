@@ -23,15 +23,19 @@ class UiCocktail extends Equatable {
   });
 
   factory UiCocktail.fromApi(ApiCocktail cocktail) {
+    final apiDrinks = cocktail.drinks;
+    final drinks = List.generate(
+      apiDrinks.length,
+      (index) => UiDrink.fromApi(index + 1, apiDrinks[index]),
+    );
+
     return UiCocktail(
       id: cocktail.id,
       name: cocktail.name,
       image: cocktail.imageUrl,
       description: cocktail.description,
       recipe: cocktail.recipe,
-      drinks: cocktail.drinks
-          .map((e) => UiDrink.fromApi(cocktail.drinks.indexOf(e), e))
-          .toList(),
+      drinks: drinks,
     );
   }
 
@@ -44,7 +48,7 @@ class UiCocktail extends Equatable {
       recipe: '',
       drinks: List.generate(
         drinksQuantity,
-        (index) => UiDrink.base.copyWith(id: ++index),
+        (index) => UiDrink.base.copyWith(id: index + 1),
       ),
     );
   }
