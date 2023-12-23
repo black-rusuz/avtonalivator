@@ -2,16 +2,15 @@ import 'package:equatable/equatable.dart';
 
 import '../../data/model/cocktail.dart';
 import '../equals.dart';
-import 'drink.dart';
 import 'pump.dart';
 
 class UiCocktail extends Equatable {
   final int id;
   final String name;
   final String image;
-  final List<UiDrink> drinks;
   final String description;
   final String recipe;
+  final List<UiPump> pumps;
 
   const UiCocktail({
     required this.id,
@@ -19,7 +18,7 @@ class UiCocktail extends Equatable {
     required this.image,
     required this.description,
     required this.recipe,
-    required this.drinks,
+    required this.pumps,
   });
 
   factory UiCocktail.fromApi(ApiCocktail cocktail) {
@@ -29,11 +28,13 @@ class UiCocktail extends Equatable {
       image: cocktail.imageUrl,
       description: cocktail.description,
       recipe: cocktail.recipe,
-      drinks: cocktail.drinks.map(UiDrink.fromApi).toList(),
+      pumps: cocktail.drinks
+          .map((e) => UiPump.fromApi(cocktail.drinks.indexOf(e), e))
+          .toList(),
     );
   }
 
-  List<String> get ingredients => drinks.map((e) => e.name).toList();
+  List<String> get ingredients => pumps.map((e) => e.name).toList();
 
   /// Каждый ингредиент установлен хотя бы в одной помпе
   bool contains(List<String> drinks) {
@@ -50,6 +51,5 @@ class UiCocktail extends Equatable {
         id,
         name,
         image,
-        [...drinks],
       ];
 }

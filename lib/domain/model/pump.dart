@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../data/model/drink.dart';
 import '../equals.dart';
 import 'cocktail.dart';
-import 'drink.dart';
 
 final _chars = '_:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
 
@@ -19,6 +19,15 @@ class UiPump extends Equatable {
     required this.volume,
     required this.enabled,
   });
+
+  factory UiPump.fromApi(int id, ApiDrink drink) {
+    return UiPump(
+      id: 0,
+      name: drink.name,
+      volume: drink.volume.toDouble(),
+      enabled: drink.volume != 0,
+    );
+  }
 
   static UiPump get base => const UiPump(
         id: 0,
@@ -50,11 +59,11 @@ class UiPump extends Equatable {
   /// включает помпу и устанавливает объём.
   /// Если напиток не найден, помпа выключается.
   UiPump mapCocktail(UiCocktail cocktail) {
-    final drink = cocktail.drinks.firstWhereOrNull((d) => d.name.equals(name));
+    final drink = cocktail.pumps.firstWhereOrNull((d) => d.name.equals(name));
     return setDrink(drink);
   }
 
-  UiPump setDrink(UiDrink? drink) {
+  UiPump setDrink(UiPump? drink) {
     final result = drink == null
         ? copyWith(enabled: false)
         : copyWith(
