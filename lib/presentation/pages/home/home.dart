@@ -26,13 +26,6 @@ class HomePageState extends State<HomePage> {
     });
   }
 
-  static const bodies = [
-    TuningFragment(),
-    CocktailsFragment(),
-    // StatsFragment(),
-    SettingsFragment(),
-  ];
-
   void startPour() async {
     final provider = context.read<ConnectionProvider>();
     provider.startPour();
@@ -59,13 +52,7 @@ class HomePageState extends State<HomePage> {
         ],
         child: bodies[index],
       ),
-      floatingActionButton: index != 0
-          ? null
-          : FloatingActionButton.extended(
-              onPressed: startPour,
-              icon: const Icon(Icons.local_drink_rounded),
-              label: const Text(Strings.pour),
-            ),
+      floatingActionButton: buttons[index],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: setIndex,
         selectedIndex: index,
@@ -90,4 +77,25 @@ class HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  static const bodies = [
+    TuningFragment(),
+    CocktailsFragment(),
+    // StatsFragment(),
+    SettingsFragment(),
+  ];
+
+  late final buttons = [
+    FloatingActionButton.extended(
+      onPressed: startPour,
+      icon: const Icon(Icons.local_drink_rounded),
+      label: const Text(Strings.pour),
+    ),
+    // FloatingActionButton(
+    //   onPressed: () {},
+    //   child: const Icon(Icons.add_rounded),
+    // ),
+    // null,
+    null,
+  ];
 }
