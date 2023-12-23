@@ -16,6 +16,7 @@ import 'widgets/device_list.dart';
 export 'cubit/scan_cubit.dart';
 
 part 'widgets/app_bar.dart';
+
 part 'widgets/known_device.dart';
 
 class ScanPage extends StatelessWidget {
@@ -98,7 +99,7 @@ class ScanPage extends StatelessWidget {
     return const AlertDialog(
       title: Text(Strings.connectionError),
       content: Icon(
-        Icons.nearby_error_outlined,
+        Icons.wifi_tethering_error_outlined,
         size: 48,
         color: AppTheme.error,
       ),
