@@ -40,6 +40,10 @@ class DataSource {
     return result;
   }
 
+  Future<bool> postCocktail(ApiCocktail cocktail) async {
+    return false;
+  }
+
   // * Private
 
   Future<Response> _get(Uri uri) async {

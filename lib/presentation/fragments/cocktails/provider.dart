@@ -13,7 +13,7 @@ class CocktailsProvider extends ChangeNotifier {
 
   CocktailsProvider(this._repository) {
     _cocktailsSubscription?.cancel();
-    _cocktailsSubscription = _repository.stream.listen(_setCocktails);
+    _cocktailsSubscription = _repository.hostCocktails.listen(_setCocktails);
   }
 
   String _searchPattern = '';
