@@ -51,7 +51,8 @@ class _CocktailsBackgroundState extends State<CocktailsBackground> {
   }
 
   void animateToPage(int page) {
-    page = page % imageUrls.length;
+    final max = imageUrls.isEmpty ? 1 : imageUrls.length;
+    page = page % max;
     controller.animateToPage(page, duration: _transition, curve: Curves.ease);
   }
 
