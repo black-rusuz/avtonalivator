@@ -6,12 +6,13 @@ part of 'drink.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ApiDrink _$$_ApiDrinkFromJson(Map<String, dynamic> json) => _$_ApiDrink(
+_$ApiDrinkImpl _$$ApiDrinkImplFromJson(Map<String, dynamic> json) =>
+    _$ApiDrinkImpl(
       name: json['name'] as String? ?? '',
       volume: json['volume'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$_ApiDrinkToJson(_$_ApiDrink instance) =>
+Map<String, dynamic> _$$ApiDrinkImplToJson(_$ApiDrinkImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'volume': instance.volume,

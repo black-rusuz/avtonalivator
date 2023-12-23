@@ -98,11 +98,11 @@ class _$ApiCocktailCopyWithImpl<$Res, $Val extends ApiCocktail>
 }
 
 /// @nodoc
-abstract class _$$_ApiCocktailCopyWith<$Res>
+abstract class _$$ApiCocktailImplCopyWith<$Res>
     implements $ApiCocktailCopyWith<$Res> {
-  factory _$$_ApiCocktailCopyWith(
-          _$_ApiCocktail value, $Res Function(_$_ApiCocktail) then) =
-      __$$_ApiCocktailCopyWithImpl<$Res>;
+  factory _$$ApiCocktailImplCopyWith(
+          _$ApiCocktailImpl value, $Res Function(_$ApiCocktailImpl) then) =
+      __$$ApiCocktailImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,11 +115,11 @@ abstract class _$$_ApiCocktailCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ApiCocktailCopyWithImpl<$Res>
-    extends _$ApiCocktailCopyWithImpl<$Res, _$_ApiCocktail>
-    implements _$$_ApiCocktailCopyWith<$Res> {
-  __$$_ApiCocktailCopyWithImpl(
-      _$_ApiCocktail _value, $Res Function(_$_ApiCocktail) _then)
+class __$$ApiCocktailImplCopyWithImpl<$Res>
+    extends _$ApiCocktailCopyWithImpl<$Res, _$ApiCocktailImpl>
+    implements _$$ApiCocktailImplCopyWith<$Res> {
+  __$$ApiCocktailImplCopyWithImpl(
+      _$ApiCocktailImpl _value, $Res Function(_$ApiCocktailImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +132,7 @@ class __$$_ApiCocktailCopyWithImpl<$Res>
     Object? recipe = null,
     Object? drinks = null,
   }) {
-    return _then(_$_ApiCocktail(
+    return _then(_$ApiCocktailImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -163,8 +163,8 @@ class __$$_ApiCocktailCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ApiCocktail implements _ApiCocktail {
-  const _$_ApiCocktail(
+class _$ApiCocktailImpl implements _ApiCocktail {
+  const _$ApiCocktailImpl(
       {required this.id,
       this.name = '',
       this.imageUrl = '',
@@ -173,8 +173,8 @@ class _$_ApiCocktail implements _ApiCocktail {
       final List<ApiDrink> drinks = const []})
       : _drinks = drinks;
 
-  factory _$_ApiCocktail.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiCocktailFromJson(json);
+  factory _$ApiCocktailImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiCocktailImplFromJson(json);
 
   @override
   final int id;
@@ -205,10 +205,10 @@ class _$_ApiCocktail implements _ApiCocktail {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiCocktail &&
+            other is _$ApiCocktailImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -227,12 +227,12 @@ class _$_ApiCocktail implements _ApiCocktail {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiCocktailCopyWith<_$_ApiCocktail> get copyWith =>
-      __$$_ApiCocktailCopyWithImpl<_$_ApiCocktail>(this, _$identity);
+  _$$ApiCocktailImplCopyWith<_$ApiCocktailImpl> get copyWith =>
+      __$$ApiCocktailImplCopyWithImpl<_$ApiCocktailImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiCocktailToJson(
+    return _$$ApiCocktailImplToJson(
       this,
     );
   }
@@ -245,10 +245,10 @@ abstract class _ApiCocktail implements ApiCocktail {
       final String imageUrl,
       final String description,
       final String recipe,
-      final List<ApiDrink> drinks}) = _$_ApiCocktail;
+      final List<ApiDrink> drinks}) = _$ApiCocktailImpl;
 
   factory _ApiCocktail.fromJson(Map<String, dynamic> json) =
-      _$_ApiCocktail.fromJson;
+      _$ApiCocktailImpl.fromJson;
 
   @override
   int get id;
@@ -264,6 +264,6 @@ abstract class _ApiCocktail implements ApiCocktail {
   List<ApiDrink> get drinks;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiCocktailCopyWith<_$_ApiCocktail> get copyWith =>
+  _$$ApiCocktailImplCopyWith<_$ApiCocktailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

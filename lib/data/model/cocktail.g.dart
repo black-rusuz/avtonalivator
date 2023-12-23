@@ -6,8 +6,8 @@ part of 'cocktail.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ApiCocktail _$$_ApiCocktailFromJson(Map<String, dynamic> json) =>
-    _$_ApiCocktail(
+_$ApiCocktailImpl _$$ApiCocktailImplFromJson(Map<String, dynamic> json) =>
+    _$ApiCocktailImpl(
       id: json['id'] as int,
       name: json['name'] as String? ?? '',
       imageUrl: json['imageUrl'] as String? ?? '',
@@ -19,7 +19,7 @@ _$_ApiCocktail _$$_ApiCocktailFromJson(Map<String, dynamic> json) =>
           const [],
     );
 
-Map<String, dynamic> _$$_ApiCocktailToJson(_$_ApiCocktail instance) =>
+Map<String, dynamic> _$$ApiCocktailImplToJson(_$ApiCocktailImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
