@@ -73,4 +73,7 @@ class Strings {
   static const calibrateSample =
       'Можете загуглить сколько весит ваш телефон (не забудьте снять чехол).\n';
   static const calibrateWeight = 'Вес (г)';
+
+  static const lightningMode = 'Режим подсветки';
+  static const lightningBrightness = 'Режим подсветки';
 }
