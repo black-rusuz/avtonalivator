@@ -10,7 +10,7 @@ class TuningProvider extends ChangeNotifier {
   final SettingsBox _settings;
 
   TuningProvider(this._settings) {
-    generateDrinks(_settings.drinksQuantity);
+    generateDrinks(_settings.pumpsQuantity);
   }
 
   String? cocktailName;

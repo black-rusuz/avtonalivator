@@ -7,7 +7,7 @@ import '../../domain/connection/connector.dart';
 import '../../domain/logger.dart';
 import '../../domain/model/device.dart';
 import '../../domain/model/device_data.dart';
-import '../../domain/model/pump.dart';
+import '../../domain/model/drink.dart';
 
 @injectable
 class ConnectionProvider extends ChangeNotifier {
@@ -44,9 +44,9 @@ class ConnectionProvider extends ChangeNotifier {
 
   // * Methods
 
-  Future<void> updateAll(List<UiPump> pumps) {
-    _drinks = pumps.drinks;
-    final command = pumps.command;
+  Future<void> updateAll(List<UiDrink> drinks) {
+    _drinks = drinks.names;
+    final command = drinks.command;
     return _sendCommand(command);
   }
 
