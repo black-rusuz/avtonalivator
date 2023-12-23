@@ -52,7 +52,6 @@ class ConnectionProvider extends ChangeNotifier {
     return _methods.setCocktail(cocktail);
   }
 
-  /// TODO: тут хардкод
   Future<void> startPour() {
     _inputListener(data.copyWith(step: 1));
     return _methods.startPour();
