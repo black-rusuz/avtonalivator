@@ -82,30 +82,20 @@ class TuningCard extends StatelessWidget {
     return drink.volume.toStringAsFixed(0) + Strings.ml;
   }
 
-  static final textStyle = AppTheme.text.copyWith(height: 1);
-
-  TextStyle get numberStyle => TextStyle(
-        fontSize: 100,
-        height: 1,
-        color: isActive
-            ? AppTheme.black.withOpacity(0.1)
-            : AppTheme.greyLight.withOpacity(0.2),
-      );
-
-  TextStyle get volumeStyle => textStyle.copyWith(
-      color: isActive ? AppTheme.black.withOpacity(0.7) : AppTheme.greyLight);
-
-  SliderThemeData sliderStyle(BuildContext context) {
-    return SliderTheme.of(context).copyWith(
-      thumbColor: isActive ? AppTheme.black : AppTheme.accent,
-      activeTrackColor: isActive ? AppTheme.black : AppTheme.accent,
-      inactiveTrackColor:
-          isActive ? AppTheme.background.withOpacity(0.7) : AppTheme.divider,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final numberStyle = TextStyle(
+      fontSize: 100,
+      height: 1,
+      color: isActive
+          ? AppTheme.black.withOpacity(0.1)
+          : AppTheme.greyLight.withOpacity(0.2),
+    );
+
+    final textStyle = AppTheme.text.copyWith(height: 1);
+    final volumeStyle = textStyle.copyWith(
+        color: isActive ? AppTheme.black.withOpacity(0.7) : AppTheme.greyLight);
+
     return AnimatedContainer(
       duration: _duration,
       decoration: BoxDecoration(
@@ -184,6 +174,15 @@ class TuningCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  SliderThemeData sliderStyle(BuildContext context) {
+    return SliderTheme.of(context).copyWith(
+      thumbColor: isActive ? AppTheme.black : AppTheme.accent,
+      activeTrackColor: isActive ? AppTheme.black : AppTheme.accent,
+      inactiveTrackColor:
+          isActive ? AppTheme.background.withOpacity(0.7) : AppTheme.divider,
     );
   }
 }
