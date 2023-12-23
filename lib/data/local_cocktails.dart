@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../domain/logger.dart';
 import 'model/cocktail.dart';
 
 @injectable
@@ -18,11 +19,13 @@ class LocalCocktails {
 
     try {
       final json = jsonDecode(data);
-      final list = json[_fileName];
+      final list = json[_fileName] as List;
 
-      final result = list.map((e) => ApiCocktail.fromJson(e)).toList();
+      final result =
+          list.cast<Map<String, dynamic>>().map(ApiCocktail.fromJson).toList();
       return result;
-    } catch (_) {
+    } catch (e) {
+      Logger.log(e);
       return [];
     }
   }

@@ -37,6 +37,7 @@ class CocktailsRepository {
   Future<void> saveCocktail(UiCocktail cocktail) async {
     final api = cocktail.toApi();
     await _local.saveCocktail(api);
+    getLocal().then(_userCocktails.add);
     await _source.postCocktail(api);
   }
 
