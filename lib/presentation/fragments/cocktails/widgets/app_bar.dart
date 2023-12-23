@@ -47,9 +47,9 @@ class _CocktailsAppBar extends StatelessWidget {
                 controller: controller,
                 labelPadding: AppTheme.padding / 2,
                 tabs: const [
-                  Text('Коктейли'),
-                  Text('Избранное'),
-                  Text('Мои'),
+                  Text(Strings.cocktails),
+                  Text(Strings.favorite),
+                  Text(Strings.myRecipe),
                 ],
               )
             ],
