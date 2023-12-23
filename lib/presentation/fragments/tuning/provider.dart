@@ -17,24 +17,21 @@ class TuningProvider extends ChangeNotifier {
     createCocktail(quantity);
   }
 
-  void _setCocktail(UiCocktail cocktail) {
+  void createCocktail(int quantity) {
+    final cocktail = UiCocktail.custom(_settings.drinksQuantity);
+    setCocktail(cocktail);
+  }
+
+  void setCocktail(UiCocktail cocktail) {
     this.cocktail = cocktail;
     _methods.setCocktail(cocktail);
     notifyListeners();
   }
 
-  void createCocktail(int quantity) {
-    final cocktail = UiCocktail.custom(_settings.drinksQuantity);
-    _setCocktail(cocktail);
-  }
-
   void updateDrink(UiDrink drink) {
     cocktail = cocktail.copyWith(name: '');
+    setCocktail(cocktail);
     cocktail.updateDrink(drink);
     notifyListeners();
-  }
-
-  void setCocktail(UiCocktail cocktail) {
-    _setCocktail(cocktail);
   }
 }
