@@ -53,11 +53,14 @@ class UiCocktail extends Equatable {
     );
   }
 
-  void updateDrink(UiDrink drink) {
+  UiCocktail updateDrink(UiDrink drink) {
     if (drinks.contains(drink)) {
-      final index = drinks.indexOf(drink);
-      drinks[index] = drink;
+      final newDrinks = List.of(drinks);
+      final index = newDrinks.indexOf(drink);
+      newDrinks[index] = drink;
+      return copyWith(drinks: newDrinks);
     }
+    return this;
   }
 
   List<String> get drinkNames => drinks.map((e) => e.name).toList();
@@ -103,6 +106,9 @@ class UiCocktail extends Equatable {
   List<Object?> get props => [
         id,
         name,
-        image,
+        // image,
+        // description,
+        // recipe,
+        [...drinks],
       ];
 }
