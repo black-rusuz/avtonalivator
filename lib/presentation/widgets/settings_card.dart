@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme.dart';
+import '../../domain/model/lightning_mode.dart';
 import '../../domain/model/param.dart';
 import 'basic_card.dart';
 
@@ -43,6 +44,7 @@ class SettingsCard extends StatelessWidget {
             onChanged: (v) => param.action(v),
           ),
         );
+      case LightingMode:
       case null:
         return SettingsCard._(
           title: param.title,

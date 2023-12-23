@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/fragments/settings/provider.dart';
+import 'lightning_mode.dart';
 
 class ParamKey {
   static const autoConnect = 'autoConnect';
@@ -14,7 +15,7 @@ class ParamKey {
     autoConnect: bool,
     drinksQuantity: int,
     calibration: null,
-    lightningMode: int,
+    lightningMode: LightingMode,
     lightningBrightness: int,
   };
 }
