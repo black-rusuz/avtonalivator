@@ -1,11 +1,7 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../domain/model/device.dart';
 import '../../data/connection/fbs_adapter.dart';
-import '../logger.dart';
 
 const _streamDuration = Duration(milliseconds: 400);
 
