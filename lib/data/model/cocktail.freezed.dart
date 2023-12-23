@@ -21,19 +21,13 @@ ApiCocktail _$ApiCocktailFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ApiCocktail {
   int get id => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get imageUrl => throw _privateConstructorUsedError;
-
   String get description => throw _privateConstructorUsedError;
-
   String get recipe => throw _privateConstructorUsedError;
-
   List<ApiDrink> get drinks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ApiCocktailCopyWith<ApiCocktail> get copyWith =>
       throw _privateConstructorUsedError;
@@ -44,7 +38,6 @@ abstract class $ApiCocktailCopyWith<$Res> {
   factory $ApiCocktailCopyWith(
           ApiCocktail value, $Res Function(ApiCocktail) then) =
       _$ApiCocktailCopyWithImpl<$Res, ApiCocktail>;
-
   @useResult
   $Res call(
       {int id,
@@ -62,7 +55,6 @@ class _$ApiCocktailCopyWithImpl<$Res, $Val extends ApiCocktail>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -111,7 +103,6 @@ abstract class _$$_ApiCocktailCopyWith<$Res>
   factory _$$_ApiCocktailCopyWith(
           _$_ApiCocktail value, $Res Function(_$_ApiCocktail) then) =
       __$$_ApiCocktailCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -200,7 +191,6 @@ class _$_ApiCocktail implements _ApiCocktail {
   @JsonKey()
   final String recipe;
   final List<ApiDrink> _drinks;
-
   @override
   @JsonKey()
   List<ApiDrink> get drinks {
@@ -262,22 +252,16 @@ abstract class _ApiCocktail implements ApiCocktail {
 
   @override
   int get id;
-
   @override
   String get name;
-
   @override
   String get imageUrl;
-
   @override
   String get description;
-
   @override
   String get recipe;
-
   @override
   List<ApiDrink> get drinks;
-
   @override
   @JsonKey(ignore: true)
   _$$_ApiCocktailCopyWith<_$_ApiCocktail> get copyWith =>

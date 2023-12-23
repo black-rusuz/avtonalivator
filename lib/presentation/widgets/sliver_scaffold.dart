@@ -5,18 +5,19 @@ class SliverScaffold extends StatelessWidget {
   final Widget? body;
   final ScrollableWidgetBuilder? bodyBuilder;
 
-  SliverScaffold({
+  const SliverScaffold({
     super.key,
     this.sliverAppBar,
     this.body,
     this.bodyBuilder,
   });
 
-  final controller = ScrollController();
-
   @override
   Widget build(BuildContext context) {
+    final controller = ScrollController();
+
     return CustomScrollView(
+      controller: controller,
       slivers: [
         if (sliverAppBar != null) sliverAppBar!,
         if (body != null)

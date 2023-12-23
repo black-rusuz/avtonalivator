@@ -44,11 +44,6 @@ class ConnectionProvider extends ChangeNotifier {
 
   // * Methods
 
-  // void updatePump(UiPump pump) {
-  //   final command = pump.command;
-  //   return _sendCommand(command);
-  // }
-
   Future<void> updateAll(List<UiPump> pumps) {
     _drinks = pumps.drinks;
     final command = pumps.command;
@@ -69,6 +64,12 @@ class ConnectionProvider extends ChangeNotifier {
 
   Future<void> stopPour() {
     const command = 'w0 m0 s0';
+    return _sendCommand(command);
+  }
+
+  Future<void> calibrate(int weight) {
+    final mode = DeviceMode.calibration.command;
+    final command = 'a$weight $mode';
     return _sendCommand(command);
   }
 

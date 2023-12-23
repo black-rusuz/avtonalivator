@@ -20,7 +20,7 @@ import 'package:avtonalivator/domain/storage/stats.dart' as _i9;
 import 'package:avtonalivator/injection.dart' as _i18;
 import 'package:avtonalivator/presentation/fragments/cocktails/provider.dart'
     as _i17;
-import 'package:avtonalivator/presentation/fragments/settings/cubit/settings_cubit.dart'
+import 'package:avtonalivator/presentation/fragments/settings/provider.dart'
     as _i8;
 import 'package:avtonalivator/presentation/fragments/tuning/provider.dart'
     as _i10;
@@ -50,8 +50,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i5.FbsAdapter>(_i5.FbsAdapter());
     gh.factory<_i6.LaunchCubit>(() => _i6.LaunchCubit());
     gh.factory<_i7.SettingsBox>(() => _i7.SettingsBox());
-    gh.factory<_i8.SettingsCubit>(
-        () => _i8.SettingsCubit(gh<_i7.SettingsBox>()));
+    gh.factory<_i8.SettingsProvider>(
+        () => _i8.SettingsProvider(gh<_i7.SettingsBox>()));
     gh.factory<_i9.StatsBox>(() => _i9.StatsBox());
     gh.factory<_i10.TuningProvider>(
         () => _i10.TuningProvider(gh<_i7.SettingsBox>()));

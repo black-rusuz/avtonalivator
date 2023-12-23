@@ -23,7 +23,6 @@ mixin _$ApiConfig {
   String? get accentColor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ApiConfigCopyWith<ApiConfig> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,7 +32,6 @@ mixin _$ApiConfig {
 abstract class $ApiConfigCopyWith<$Res> {
   factory $ApiConfigCopyWith(ApiConfig value, $Res Function(ApiConfig) then) =
       _$ApiConfigCopyWithImpl<$Res, ApiConfig>;
-
   @useResult
   $Res call({String? accentColor});
 }
@@ -45,7 +43,6 @@ class _$ApiConfigCopyWithImpl<$Res, $Val extends ApiConfig>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -68,7 +65,6 @@ abstract class _$$_ApiConfigCopyWith<$Res> implements $ApiConfigCopyWith<$Res> {
   factory _$$_ApiConfigCopyWith(
           _$_ApiConfig value, $Res Function(_$_ApiConfig) then) =
       __$$_ApiConfigCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({String? accentColor});
@@ -147,7 +143,6 @@ abstract class _ApiConfig implements ApiConfig {
 
   @override
   String? get accentColor;
-
   @override
   @JsonKey(ignore: true)
   _$$_ApiConfigCopyWith<_$_ApiConfig> get copyWith =>

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../../core/theme.dart';
 import '../../../strings.dart';
+import '../../../widgets/text_field_label.dart';
 
 const _maxValue = 9999;
 
@@ -35,15 +35,8 @@ class VolumeDialog extends StatelessWidget {
           autofocus: true,
           onChanged: apply,
           keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            label: Container(
-              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
-              decoration: const BoxDecoration(
-                color: AppTheme.background,
-                borderRadius: AppTheme.borderRadius,
-              ),
-              child: const Text(Strings.enterVolume),
-            ),
+          decoration: const InputDecoration(
+            label: Label(Strings.enterVolume),
           ),
           inputFormatters: [
             FilteringTextInputFormatter.deny(',', replacementString: '.'),
