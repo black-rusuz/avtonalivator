@@ -37,8 +37,8 @@ class FbsDeviceMethods implements DeviceMethods {
 
   @override
   Future<void> setCocktail(UiCocktail cocktail) {
-    // TODO: implement startPour
-    throw UnimplementedError();
+    final command = cocktail.command;
+    return _sendCommand(command);
   }
 
   @override
