@@ -16,7 +16,6 @@ import 'widgets/device_list.dart';
 export 'cubit/scan_cubit.dart';
 
 part 'widgets/app_bar.dart';
-
 part 'widgets/known_device.dart';
 
 class ScanPage extends StatelessWidget {
@@ -65,7 +64,8 @@ class ScanPage extends StatelessWidget {
           height: appBar,
         ),
         body: DeviceList(
-          minHeight: mediaQuery.size.height * 0.6 - statusBar,
+          // minHeight: mediaQuery.size.height * 0.6 - statusBar,
+          minHeight: mediaQuery.size.height,
           devices: state.devices,
           onItemTap: (device) => connect(context, device),
         ),
