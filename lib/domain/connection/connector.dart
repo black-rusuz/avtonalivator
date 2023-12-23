@@ -20,8 +20,6 @@ abstract interface class Connector {
 
   Future<bool> connect(UiDevice device);
 
-  Future<void> sendCommand(String command);
-
   Future<void> disconnect();
 }
 
@@ -60,17 +58,6 @@ class FbsConnector implements Connector {
     final libDevice = device.toLib();
     final connection = await _adapter.connect(libDevice);
     return connection != null;
-  }
-
-  @override
-  Future<void> sendCommand(String command) {
-    Logger.log(command, 'Command');
-    command = '$command\r';
-
-    final chars = utf8.encode(command);
-    final bytes = Uint8List.fromList(chars);
-
-    return _adapter.send(bytes);
   }
 
   @override
