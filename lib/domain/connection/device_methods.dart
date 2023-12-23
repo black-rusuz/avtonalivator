@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../data/connection/fbs_adapter.dart';
 import '../model/cocktail.dart';
 import '../model/device_data.dart';
-import 'connector.dart';
 
 abstract interface class DeviceMethods {
   Stream<DeviceData> get deviceData;
@@ -22,13 +23,13 @@ abstract interface class DeviceMethods {
 
 @Injectable(as: DeviceMethods)
 class FbsDeviceMethods implements DeviceMethods {
-  final Connector _connector;
+  final FbsAdapter _adapter;
 
-  FbsDeviceMethods(this._connector);
+  FbsDeviceMethods(this._adapter);
 
   @override
   Stream<DeviceData> get deviceData {
-    return _connector.input;
+    return _adapter.input.distinct(listEquals).map(DeviceData.fromBytes);
   }
 
   @override
