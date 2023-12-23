@@ -6,11 +6,12 @@ part of 'config.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ApiConfig _$$_ApiConfigFromJson(Map<String, dynamic> json) => _$_ApiConfig(
+_$ApiConfigImpl _$$ApiConfigImplFromJson(Map<String, dynamic> json) =>
+    _$ApiConfigImpl(
       accentColor: json['accentColor'] as String?,
     );
 
-Map<String, dynamic> _$$_ApiConfigToJson(_$_ApiConfig instance) =>
+Map<String, dynamic> _$$ApiConfigImplToJson(_$ApiConfigImpl instance) =>
     <String, dynamic>{
       'accentColor': instance.accentColor,
     };

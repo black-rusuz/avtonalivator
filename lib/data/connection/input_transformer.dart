@@ -6,6 +6,8 @@ import 'dart:typed_data';
 const _cr = 10;
 const _lf = 13;
 
+final inputTransformer = InputTransformer();
+
 /// Находит среди байтов перенос строки и выдаёт массивы строк
 class InputTransformer extends StreamTransformerBase<Uint8List, Uint8List> {
   final collector = <int>[];

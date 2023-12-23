@@ -27,8 +27,8 @@ class DeviceList extends StatelessWidget {
         ),
         child: ListView.separated(
           shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
           padding: AppTheme.listPadding,
+          controller: PrimaryScrollController.of(context),
           itemCount: devices.length,
           itemBuilder: itemBuilder,
           separatorBuilder: separatorBuilder,

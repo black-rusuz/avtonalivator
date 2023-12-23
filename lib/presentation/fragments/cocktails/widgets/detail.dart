@@ -13,9 +13,7 @@ import '../../tuning/provider.dart';
 const _horizontal = AppTheme.horizontalPadding;
 
 void setCocktail(BuildContext context, UiCocktail cocktail) {
-  final tuning = context.read<TuningProvider>();
-  tuning.setCocktail(cocktail);
-
+  context.read<TuningProvider>().setCocktail(cocktail);
   Navigator.of(context).pop();
   AppRoutes.setHomeIndex(0);
 }

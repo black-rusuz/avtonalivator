@@ -67,21 +67,22 @@ class _$ApiDrinkCopyWithImpl<$Res, $Val extends ApiDrink>
 }
 
 /// @nodoc
-abstract class _$$_ApiDrinkCopyWith<$Res> implements $ApiDrinkCopyWith<$Res> {
-  factory _$$_ApiDrinkCopyWith(
-          _$_ApiDrink value, $Res Function(_$_ApiDrink) then) =
-      __$$_ApiDrinkCopyWithImpl<$Res>;
+abstract class _$$ApiDrinkImplCopyWith<$Res>
+    implements $ApiDrinkCopyWith<$Res> {
+  factory _$$ApiDrinkImplCopyWith(
+          _$ApiDrinkImpl value, $Res Function(_$ApiDrinkImpl) then) =
+      __$$ApiDrinkImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, int volume});
 }
 
 /// @nodoc
-class __$$_ApiDrinkCopyWithImpl<$Res>
-    extends _$ApiDrinkCopyWithImpl<$Res, _$_ApiDrink>
-    implements _$$_ApiDrinkCopyWith<$Res> {
-  __$$_ApiDrinkCopyWithImpl(
-      _$_ApiDrink _value, $Res Function(_$_ApiDrink) _then)
+class __$$ApiDrinkImplCopyWithImpl<$Res>
+    extends _$ApiDrinkCopyWithImpl<$Res, _$ApiDrinkImpl>
+    implements _$$ApiDrinkImplCopyWith<$Res> {
+  __$$ApiDrinkImplCopyWithImpl(
+      _$ApiDrinkImpl _value, $Res Function(_$ApiDrinkImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +91,7 @@ class __$$_ApiDrinkCopyWithImpl<$Res>
     Object? name = null,
     Object? volume = null,
   }) {
-    return _then(_$_ApiDrink(
+    return _then(_$ApiDrinkImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -105,11 +106,11 @@ class __$$_ApiDrinkCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ApiDrink implements _ApiDrink {
-  const _$_ApiDrink({this.name = '', this.volume = 0});
+class _$ApiDrinkImpl implements _ApiDrink {
+  const _$ApiDrinkImpl({this.name = '', this.volume = 0});
 
-  factory _$_ApiDrink.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiDrinkFromJson(json);
+  factory _$ApiDrinkImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiDrinkImplFromJson(json);
 
   @override
   @JsonKey()
@@ -124,10 +125,10 @@ class _$_ApiDrink implements _ApiDrink {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiDrink &&
+            other is _$ApiDrinkImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.volume, volume) || other.volume == volume));
   }
@@ -139,21 +140,23 @@ class _$_ApiDrink implements _ApiDrink {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiDrinkCopyWith<_$_ApiDrink> get copyWith =>
-      __$$_ApiDrinkCopyWithImpl<_$_ApiDrink>(this, _$identity);
+  _$$ApiDrinkImplCopyWith<_$ApiDrinkImpl> get copyWith =>
+      __$$ApiDrinkImplCopyWithImpl<_$ApiDrinkImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiDrinkToJson(
+    return _$$ApiDrinkImplToJson(
       this,
     );
   }
 }
 
 abstract class _ApiDrink implements ApiDrink {
-  const factory _ApiDrink({final String name, final int volume}) = _$_ApiDrink;
+  const factory _ApiDrink({final String name, final int volume}) =
+      _$ApiDrinkImpl;
 
-  factory _ApiDrink.fromJson(Map<String, dynamic> json) = _$_ApiDrink.fromJson;
+  factory _ApiDrink.fromJson(Map<String, dynamic> json) =
+      _$ApiDrinkImpl.fromJson;
 
   @override
   String get name;
@@ -161,6 +164,6 @@ abstract class _ApiDrink implements ApiDrink {
   int get volume;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiDrinkCopyWith<_$_ApiDrink> get copyWith =>
+  _$$ApiDrinkImplCopyWith<_$ApiDrinkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

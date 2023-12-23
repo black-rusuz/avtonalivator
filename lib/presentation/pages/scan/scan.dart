@@ -52,7 +52,6 @@ class ScanPage extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final statusBar = mediaQuery.viewPadding.top;
     final appBar = mediaQuery.size.height * 0.4;
-
     state = state as ScanFulfilled;
 
     return RefreshIndicator(
@@ -64,7 +63,8 @@ class ScanPage extends StatelessWidget {
           height: appBar,
         ),
         body: DeviceList(
-          minHeight: mediaQuery.size.height * 0.6 - statusBar,
+          // minHeight: mediaQuery.size.height * 0.6 - statusBar,
+          minHeight: mediaQuery.size.height,
           devices: state.devices,
           onItemTap: (device) => connect(context, device),
         ),
@@ -81,7 +81,7 @@ class ScanPage extends StatelessWidget {
       showDialog(context: context, builder: errorBuilder);
     } else if (state is ScanLastFound) {
       final device = state.knownDevice;
-      showModalBottomSheet(
+      showBottomSheet(
         context: context,
         builder: (_) => _KnownDeviceSheet(
           device: device,
@@ -98,7 +98,7 @@ class ScanPage extends StatelessWidget {
     return const AlertDialog(
       title: Text(Strings.connectionError),
       content: Icon(
-        Icons.nearby_error_outlined,
+        Icons.wifi_tethering_error_outlined,
         size: 48,
         color: AppTheme.error,
       ),

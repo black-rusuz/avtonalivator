@@ -61,21 +61,22 @@ class _$ApiConfigCopyWithImpl<$Res, $Val extends ApiConfig>
 }
 
 /// @nodoc
-abstract class _$$_ApiConfigCopyWith<$Res> implements $ApiConfigCopyWith<$Res> {
-  factory _$$_ApiConfigCopyWith(
-          _$_ApiConfig value, $Res Function(_$_ApiConfig) then) =
-      __$$_ApiConfigCopyWithImpl<$Res>;
+abstract class _$$ApiConfigImplCopyWith<$Res>
+    implements $ApiConfigCopyWith<$Res> {
+  factory _$$ApiConfigImplCopyWith(
+          _$ApiConfigImpl value, $Res Function(_$ApiConfigImpl) then) =
+      __$$ApiConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? accentColor});
 }
 
 /// @nodoc
-class __$$_ApiConfigCopyWithImpl<$Res>
-    extends _$ApiConfigCopyWithImpl<$Res, _$_ApiConfig>
-    implements _$$_ApiConfigCopyWith<$Res> {
-  __$$_ApiConfigCopyWithImpl(
-      _$_ApiConfig _value, $Res Function(_$_ApiConfig) _then)
+class __$$ApiConfigImplCopyWithImpl<$Res>
+    extends _$ApiConfigCopyWithImpl<$Res, _$ApiConfigImpl>
+    implements _$$ApiConfigImplCopyWith<$Res> {
+  __$$ApiConfigImplCopyWithImpl(
+      _$ApiConfigImpl _value, $Res Function(_$ApiConfigImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -83,7 +84,7 @@ class __$$_ApiConfigCopyWithImpl<$Res>
   $Res call({
     Object? accentColor = freezed,
   }) {
-    return _then(_$_ApiConfig(
+    return _then(_$ApiConfigImpl(
       accentColor: freezed == accentColor
           ? _value.accentColor
           : accentColor // ignore: cast_nullable_to_non_nullable
@@ -94,11 +95,11 @@ class __$$_ApiConfigCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ApiConfig implements _ApiConfig {
-  const _$_ApiConfig({this.accentColor});
+class _$ApiConfigImpl implements _ApiConfig {
+  const _$ApiConfigImpl({this.accentColor});
 
-  factory _$_ApiConfig.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiConfigFromJson(json);
+  factory _$ApiConfigImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiConfigImplFromJson(json);
 
   @override
   final String? accentColor;
@@ -109,10 +110,10 @@ class _$_ApiConfig implements _ApiConfig {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiConfig &&
+            other is _$ApiConfigImpl &&
             (identical(other.accentColor, accentColor) ||
                 other.accentColor == accentColor));
   }
@@ -124,27 +125,27 @@ class _$_ApiConfig implements _ApiConfig {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiConfigCopyWith<_$_ApiConfig> get copyWith =>
-      __$$_ApiConfigCopyWithImpl<_$_ApiConfig>(this, _$identity);
+  _$$ApiConfigImplCopyWith<_$ApiConfigImpl> get copyWith =>
+      __$$ApiConfigImplCopyWithImpl<_$ApiConfigImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ApiConfigToJson(
+    return _$$ApiConfigImplToJson(
       this,
     );
   }
 }
 
 abstract class _ApiConfig implements ApiConfig {
-  const factory _ApiConfig({final String? accentColor}) = _$_ApiConfig;
+  const factory _ApiConfig({final String? accentColor}) = _$ApiConfigImpl;
 
   factory _ApiConfig.fromJson(Map<String, dynamic> json) =
-      _$_ApiConfig.fromJson;
+      _$ApiConfigImpl.fromJson;
 
   @override
   String? get accentColor;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiConfigCopyWith<_$_ApiConfig> get copyWith =>
+  _$$ApiConfigImplCopyWith<_$ApiConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

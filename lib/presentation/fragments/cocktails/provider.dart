@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../domain/model/cocktail.dart';
 import '../../../domain/repository/cocktails.dart';
-import '../../search_utils.dart';
+import '../../../domain/string_utils.dart';
 
 @injectable
 class CocktailsProvider extends ChangeNotifier {
@@ -17,27 +17,27 @@ class CocktailsProvider extends ChangeNotifier {
   }
 
   String _searchPattern = '';
-  List<String> _pumpDrinks = [];
+  List<String> _tuningDrinks = [];
   List<UiCocktail> _cocktails = [];
   StreamSubscription? _cocktailsSubscription;
 
   bool useFilter = false;
 
   List<UiCocktail> get cocktails => _cocktails
-      .where((c) => !useFilter || c.contains(_pumpDrinks))
+      .where((c) => !useFilter || c.contains(_tuningDrinks))
       .where((c) => c.name.search(_searchPattern))
       .toList();
 
   List<String> get drinks =>
-      _cocktails.expand((c) => c.ingredients).toSet().toList();
+      _cocktails.expand((c) => c.drinkNames).toSet().toList();
 
   void searchCocktail(String pattern) {
     _searchPattern = pattern;
     notifyListeners();
   }
 
-  void setFilter(List<String> drinks, bool value) {
-    _pumpDrinks = drinks;
+  void setFilter(bool value, List<String> drinks) {
+    _tuningDrinks = drinks;
     useFilter = value;
     notifyListeners();
   }

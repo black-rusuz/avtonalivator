@@ -6,8 +6,8 @@ import '../../fragments/cocktails/cocktails.dart';
 import '../../fragments/settings/provider.dart';
 import '../../fragments/settings/settings.dart';
 import '../../fragments/tuning/tuning.dart';
-import '../../provider/connection.dart';
 import '../../strings.dart';
+import 'connection_provider.dart';
 import 'pour_modal.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,7 +35,7 @@ class HomePageState extends State<HomePage> {
 
   void startPour() async {
     final provider = context.read<ConnectionProvider>();
-    await provider.startPour();
+    provider.startPour();
 
     showModalBottomSheet(
       context: context,

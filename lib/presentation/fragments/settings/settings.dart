@@ -5,7 +5,7 @@ import '../../../core/router.dart';
 import '../../../core/theme.dart';
 import '../../../domain/model/device.dart';
 import '../../../domain/model/param.dart';
-import '../../provider/connection.dart';
+import '../../pages/home/connection_provider.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
 import '../../widgets/settings_card.dart';

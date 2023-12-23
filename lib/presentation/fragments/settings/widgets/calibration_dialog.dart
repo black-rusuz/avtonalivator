@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/theme.dart';
-import '../../../provider/connection.dart';
+import '../../../pages/home/connection_provider.dart';
 import '../../../strings.dart';
 import '../../../widgets/text_field_label.dart';
 
@@ -33,7 +33,7 @@ class CalibrationDialog extends StatelessWidget {
           TextField(
             controller: controller,
             decoration: const InputDecoration(
-              label: Label(Strings.weight),
+              label: Label(Strings.calibrateWeight),
             ),
           ),
         ],

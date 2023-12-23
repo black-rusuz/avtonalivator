@@ -9,6 +9,10 @@ extension SearchSubstring on String {
     return result;
   }
 
+  bool equals(String other) {
+    return toLowerCase() == other.toLowerCase();
+  }
+
   bool search(String pattern) {
     final value = pattern.toLowerCase();
     final result = _this.toLowerCase().startsWith(value);

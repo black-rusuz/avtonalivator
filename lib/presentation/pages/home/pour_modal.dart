@@ -1,14 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/theme.dart';
 import '../../../domain/model/device_data.dart';
-import '../../provider/connection.dart';
 import '../../strings.dart';
 import '../../widgets/percent_indicator.dart';
+import 'connection_provider.dart';
 
 class PourModal extends StatelessWidget {
   const PourModal({super.key});

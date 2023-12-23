@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
-import '../../../domain/model/pump.dart';
-import '../../provider/connection.dart';
+import '../../../domain/model/drink.dart';
+import '../../pages/home/connection_provider.dart';
 import '../../strings.dart';
 import '../cocktails/cocktails.dart';
 import 'provider.dart';
@@ -17,40 +17,42 @@ class TuningFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tuning = context.watch<TuningProvider>();
-    final pumps = tuning.pumps;
-    final title = tuning.cocktailName ?? Strings.tuning;
-    context.read<ConnectionProvider>().updateAll(pumps);
+    final connection = context.read<ConnectionProvider>();
+    final cocktail = tuning.cocktail;
+    connection.setCocktail(cocktail);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title, style: AppTheme.pageTitle),
+        title: Text(
+          cocktail.name.isNotEmpty ? cocktail.name : Strings.tuning,
+          style: AppTheme.pageTitle,
+        ),
       ),
-      body: _TuningBody(pumps: pumps),
+      body: _TuningBody(drinks: cocktail.drinks),
     );
   }
 }
 
 class _TuningBody extends StatelessWidget {
-  final List<UiPump> pumps;
+  final List<UiDrink> drinks;
 
-  const _TuningBody({required this.pumps});
+  const _TuningBody({required this.drinks});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: AppTheme.padding,
-      itemCount: pumps.length,
+      itemCount: drinks.length,
       itemBuilder: itemBuilder,
       separatorBuilder: separatorBuilder,
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    final pump = pumps[index];
+    final drink = drinks[index];
     return TuningCard(
-      pump: pump,
-      setPump: context.read<TuningProvider>().updatePump,
-      onDrinkSet: () => context.read<TuningProvider>().setCocktail(null),
+      drink: drink,
+      setDrink: context.read<TuningProvider>().updateDrink,
       drinks: context.watch<CocktailsProvider>().drinks,
     );
   }

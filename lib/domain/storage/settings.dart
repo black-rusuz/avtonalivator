@@ -2,10 +2,9 @@ import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/model/device.dart';
+import '../model/param.dart';
 
-const _autoConnect = 'autoConnect';
 const _lastDevice = 'lastDevice';
-const _pumpsQuantity = 'pumpsQuantity';
 
 @injectable
 class SettingsBox {
@@ -34,21 +33,9 @@ class SettingsBox {
     _box.put(_lastDevice, value);
   }
 
-  bool get autoConnect {
-    final value = _box.get(_autoConnect);
-    return value ?? false;
-  }
+  // * Getters
 
-  void setAutoConnect(bool value) {
-    _box.put(_autoConnect, value);
-  }
+  bool get autoConnect => getParam(ParamKey.autoConnect, false);
 
-  int get pumpsQuantity {
-    final value = _box.get(_pumpsQuantity);
-    return value ?? 6;
-  }
-
-  void setPumpsQuantity(int value) {
-    _box.put(_pumpsQuantity, value);
-  }
+  int get drinksQuantity => getParam(ParamKey.drinksQuantity, 6);
 }

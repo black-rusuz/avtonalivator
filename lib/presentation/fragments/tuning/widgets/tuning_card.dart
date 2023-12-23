@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
-import '../../../../domain/model/pump.dart';
+import '../../../../domain/model/drink.dart';
 import '../../../strings.dart';
 import '../../../widgets/animated_text.dart';
 import '../../../widgets/basic_card.dart';
@@ -15,37 +15,34 @@ const _maxVolume = 500.0;
 const _duration = AppTheme.duration;
 
 class TuningCard extends StatelessWidget {
-  final UiPump pump;
-  final ValueChanged<UiPump> setPump;
-  final VoidCallback onDrinkSet;
+  final UiDrink drink;
+  final ValueChanged<UiDrink> setDrink;
   final List<String> drinks;
 
   const TuningCard({
     super.key,
-    required this.pump,
-    required this.setPump,
-    required this.onDrinkSet,
+    required this.drink,
+    required this.setDrink,
     required this.drinks,
   });
 
   // * Logic
 
-  bool get isActive => pump.enabled;
+  bool get isActive => drink.enabled;
 
   void setName(String name) {
-    onDrinkSet();
-    final newPump = pump.copyWith(name: name);
-    return setPump(newPump);
+    final newDrink = drink.copyWith(name: name);
+    return setDrink(newDrink);
   }
 
   void setVolume(double volume) {
-    final newPump = pump.copyWith(volume: volume);
-    return setPump(newPump);
+    final newDrink = drink.copyWith(volume: volume);
+    return setDrink(newDrink);
   }
 
   void setEnabled(bool active) {
-    final newPump = pump.copyWith(enabled: active);
-    return setPump(newPump);
+    final newDrink = drink.copyWith(enabled: active);
+    return setDrink(newDrink);
   }
 
   // * Modals
@@ -63,7 +60,7 @@ class TuningCard extends StatelessWidget {
   }
 
   void openVolumeField(BuildContext context) {
-    final lastValue = pump.volume;
+    final lastValue = drink.volume;
     showDialog(
       context: context,
       builder: (_) {
@@ -78,37 +75,27 @@ class TuningCard extends StatelessWidget {
   // * Presentation
 
   String get pickerTitle {
-    return pump.name.isEmpty ? Strings.pickDrink : pump.name;
+    return drink.name.isEmpty ? Strings.pickDrink : drink.name;
   }
 
   String get volume {
-    return pump.volume.toStringAsFixed(0) + Strings.ml;
-  }
-
-  static final textStyle = AppTheme.text.copyWith(height: 1);
-
-  TextStyle get numberStyle => TextStyle(
-        fontSize: 100,
-        height: 1,
-        color: isActive
-            ? AppTheme.black.withOpacity(0.1)
-            : AppTheme.greyLight.withOpacity(0.2),
-      );
-
-  TextStyle get volumeStyle => textStyle.copyWith(
-      color: isActive ? AppTheme.black.withOpacity(0.7) : AppTheme.greyLight);
-
-  SliderThemeData sliderStyle(BuildContext context) {
-    return SliderTheme.of(context).copyWith(
-      thumbColor: isActive ? AppTheme.black : AppTheme.accent,
-      activeTrackColor: isActive ? AppTheme.black : AppTheme.accent,
-      inactiveTrackColor:
-          isActive ? AppTheme.background.withOpacity(0.7) : AppTheme.divider,
-    );
+    return drink.volume.toStringAsFixed(0) + Strings.ml;
   }
 
   @override
   Widget build(BuildContext context) {
+    final numberStyle = TextStyle(
+      fontSize: 100,
+      height: 1,
+      color: isActive
+          ? AppTheme.black.withOpacity(0.1)
+          : AppTheme.greyLight.withOpacity(0.2),
+    );
+
+    final textStyle = AppTheme.text.copyWith(height: 1);
+    final volumeStyle = textStyle.copyWith(
+        color: isActive ? AppTheme.black.withOpacity(0.7) : AppTheme.greyLight);
+
     return AnimatedContainer(
       duration: _duration,
       decoration: BoxDecoration(
@@ -124,7 +111,7 @@ class TuningCard extends StatelessWidget {
             right: null,
             child: Center(
               child: AnimatedText(
-                pump.id.toString(),
+                drink.id.toString(),
                 duration: _duration,
                 style: numberStyle,
               ),
@@ -175,9 +162,9 @@ class TuningCard extends StatelessWidget {
                     height: 40,
                     child: Slider(
                       min: 0,
-                      max: max(pump.volume, _maxVolume),
+                      max: max(drink.volume, _maxVolume),
                       divisions: 50,
-                      value: pump.volume,
+                      value: drink.volume,
                       onChanged: setVolume,
                     ),
                   ),
@@ -187,6 +174,15 @@ class TuningCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  SliderThemeData sliderStyle(BuildContext context) {
+    return SliderTheme.of(context).copyWith(
+      thumbColor: isActive ? AppTheme.black : AppTheme.accent,
+      activeTrackColor: isActive ? AppTheme.black : AppTheme.accent,
+      inactiveTrackColor:
+          isActive ? AppTheme.background.withOpacity(0.7) : AppTheme.divider,
     );
   }
 }
