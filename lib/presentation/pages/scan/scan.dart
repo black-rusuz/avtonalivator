@@ -82,7 +82,7 @@ class ScanPage extends StatelessWidget {
       showDialog(context: context, builder: errorBuilder);
     } else if (state is ScanLastFound) {
       final device = state.knownDevice;
-      showModalBottomSheet(
+      showBottomSheet(
         context: context,
         builder: (_) => _KnownDeviceSheet(
           device: device,
