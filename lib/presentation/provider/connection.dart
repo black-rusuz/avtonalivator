@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/connector.dart';
+import '../../domain/connection/connector.dart';
 import '../../domain/logger.dart';
 import '../../domain/model/device.dart';
 import '../../domain/model/device_data.dart';

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../domain/connector.dart';
+import '../../../../domain/connection/connector.dart';
 import '../../../../domain/logger.dart';
 import '../../../../domain/model/device.dart';
 import '../../../../domain/storage/settings.dart';
