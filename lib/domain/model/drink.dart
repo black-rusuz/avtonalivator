@@ -31,6 +31,10 @@ class UiDrink extends Equatable {
     );
   }
 
+  factory UiDrink.empty(int id) {
+    return UiDrink(id: id, name: '', volume: 25, enabled: false);
+  }
+
   UiDrink copyWith({
     int? id,
     String? name,

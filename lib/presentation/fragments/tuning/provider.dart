@@ -16,6 +16,14 @@ class TuningProvider extends ChangeNotifier {
   }
 
   void setCocktail(UiCocktail cocktail) {
+    final quantity = _settings.drinksQuantity;
+    final drinks = List.generate(
+      quantity,
+      (index) =>
+          cocktail.drinks.elementAtOrNull(index) ?? UiDrink.empty(index + 1),
+    );
+
+    cocktail = cocktail.copyWith(drinks: drinks);
     this.cocktail = cocktail;
     notifyListeners();
   }
