@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../presentation/fragments/settings/provider.dart';
 import 'lightning_mode.dart';
@@ -59,20 +59,37 @@ class Param extends Equatable {
     );
   }
 
-  /// Параметр устройства, для отправки данных
-  factory Param.device({
+  /// Параметр устройства, с диалоговым окном
+  factory Param.deviceModal({
+    required String key,
     required String title,
     String? description,
     required VoidCallback onTap,
   }) {
-    final key = UniqueKey();
     return Param._(
       type: ParamKey.typesMap[key],
-      key: key.toString(),
+      key: key,
       title: title,
       description: description ?? '',
       value: null,
       action: onTap,
+    );
+  }
+
+  /// Параметр устройства, для отправки данных
+  factory Param.deviceAction({
+    required String key,
+    required String title,
+    String? description,
+    required ValueChanged<dynamic> sendValue,
+  }) {
+    return Param._(
+      type: ParamKey.typesMap[key],
+      key: key,
+      title: title,
+      description: description ?? '',
+      value: 0,
+      action: sendValue,
     );
   }
 
