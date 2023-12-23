@@ -32,6 +32,7 @@ class Param extends Equatable {
     required this.action,
   });
 
+  /// Параметр приложения, сохраняемый в телефоне
   factory Param.stored({
     required SettingsProvider provider,
     required String key,
@@ -53,7 +54,8 @@ class Param extends Equatable {
     );
   }
 
-  factory Param.tap({
+  /// Параметр устройства, для отправки данных
+  factory Param.device({
     required String title,
     String? description,
     required VoidCallback onTap,

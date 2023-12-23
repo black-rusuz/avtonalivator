@@ -22,7 +22,7 @@ class _Params {
         defaultValue: 6,
         onChanged: (v) => context.read<TuningProvider>().generatePumps(v),
       ),
-      Param.tap(
+      Param.device(
         title: Strings.calibrateTitle,
         onTap: () => showDialog(
           context: context,
