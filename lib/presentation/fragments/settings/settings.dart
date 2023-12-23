@@ -17,7 +17,6 @@ import 'widgets/calibration_dialog.dart';
 part 'params.dart';
 part 'widgets/app_bar.dart';
 
-/// TODO: DISCONNECT AND DEVICE
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
 
