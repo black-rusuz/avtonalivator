@@ -2,12 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../data/model/drink.dart';
-import '../equals.dart';
+import '../string_utils.dart';
 import 'cocktail.dart';
 
-final _chars = '_:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
-
 class UiDrink extends Equatable {
+  static final chars = '_:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
+
   final int id;
   final String name;
   final double volume;
@@ -19,23 +19,14 @@ class UiDrink extends Equatable {
     required this.volume,
   }) : enabled = volume != 0;
 
+  static const base = UiDrink(id: 0, name: '', volume: 25);
+
   factory UiDrink.fromApi(int id, ApiDrink drink) {
     return UiDrink(
       id: 0,
       name: drink.name,
       volume: drink.volume.toDouble(),
     );
-  }
-
-  static UiDrink get base => const UiDrink(
-        id: 0,
-        name: '',
-        volume: 25,
-      );
-
-  String get command {
-    final value = enabled ? volume.round() : 0;
-    return '$_char$value';
   }
 
   UiDrink copyWith({
@@ -51,15 +42,22 @@ class UiDrink extends Equatable {
     );
   }
 
+  String get char => chars[id];
+
+  String get command {
+    final value = enabled ? volume.round() : 0;
+    return '$char$value';
+  }
+
   /// Находит напиток, соответствующий названию ингредиента,
   /// включает помпу и устанавливает объём.
   /// Если напиток не найден, помпа выключается.
   UiDrink mapCocktail(UiCocktail cocktail) {
     final drink = cocktail.drinks.firstWhereOrNull((d) => d.name.equals(name));
-    return setDrink(drink);
+    return _setDrink(drink);
   }
 
-  UiDrink setDrink(UiDrink? drink) {
+  UiDrink _setDrink(UiDrink? drink) {
     final result = drink == null
         ? copyWith(enabled: false)
         : copyWith(
@@ -70,32 +68,16 @@ class UiDrink extends Equatable {
     return result;
   }
 
-  String get _char {
-    return _chars[id];
-  }
-
   @override
   List<Object?> get props => [id, name, volume, enabled];
 
-  /// Реализация PrimaryKey для провайдера [Tuning]
+  /// Реализация PrimaryKey
   @override
   int get hashCode => id.hashCode;
 
-  /// Реализация PrimaryKey для провайдера [Tuning]
+  /// Реализация PrimaryKey
   @override
   bool operator ==(Object other) {
     return other is UiDrink && id == other.id;
-  }
-}
-
-extension Drinks on List<UiDrink> {
-  String get command {
-    final chars = map((p) => p._char);
-    final zeros = _chars.whereNot(chars.contains).map((c) => '${c}0').join(' ');
-    return zeros + ' ' + map((p) => p.command).join(' ');
-  }
-
-  List<String> get names {
-    return map((drink) => drink.name).toList();
   }
 }

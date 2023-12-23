@@ -67,8 +67,8 @@ extension GetItInjectableX on _i1.GetIt {
         _i15.CocktailsRepository(gh<_i12.DataSource>()));
     gh.singleton<_i16.ConfigRepository>(
         _i16.ConfigRepository(gh<_i12.DataSource>()));
-    gh.factory<_i17.ConnectionProvider>(
-        () => _i17.ConnectionProvider(gh<_i11.Connector>()));
+    gh.factory<_i17.DeviceMethods>(
+        () => _i17.DeviceMethods(gh<_i11.Connector>()));
     gh.factory<_i18.CocktailsProvider>(
         () => _i18.CocktailsProvider(gh<_i15.CocktailsRepository>()));
     return this;

@@ -8,47 +8,29 @@ import '../../../domain/storage/settings.dart';
 @injectable
 class TuningProvider extends ChangeNotifier {
   final SettingsBox _settings;
+  late UiCocktail cocktail;
 
   TuningProvider(this._settings) {
-    generateDrinks(_settings.drinksQuantity);
+    cocktail = UiCocktail.custom(_settings.drinksQuantity);
   }
 
-  String? cocktailName;
-  List<UiDrink> drinks = [];
+  void _setCocktail(UiCocktail cocktail) {
+    this.cocktail = cocktail;
+    notifyListeners();
+  }
 
   void generateDrinks(int quantity) {
-    drinks = List.generate(
-      quantity,
-      (index) => UiDrink.base.copyWith(id: ++index),
-    );
+    cocktail = UiCocktail.custom(_settings.drinksQuantity);
     notifyListeners();
   }
 
   void updateDrink(UiDrink drink) {
-    drinks.update(drink);
+    cocktail = cocktail.copyWith(name: '');
+    cocktail.updateDrink(drink);
     notifyListeners();
   }
 
-  void setCocktail(UiCocktail? cocktail) {
-    if (cocktail == null) return cocktailName = null;
-
-    cocktailName = cocktail.name;
-    drinks = drinks.map((e) => e.copyWith(enabled: false)).toList();
-
-    for (int i = 0; i < cocktail.drinks.length; i++) {
-      final cocktailDrink = cocktail.drinks[i];
-      final tuningDrink = drinks[i];
-      drinks[i] = tuningDrink.setDrink(cocktailDrink);
-      notifyListeners();
-    }
-  }
-}
-
-extension _Update<T> on List<T> {
-  void update(T element) {
-    if (contains(element)) {
-      final index = indexOf(element);
-      this[index] = element;
-    }
+  void setCocktail(UiCocktail cocktail) {
+    _setCocktail(cocktail);
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/theme.dart';
-import '../../../provider/connection.dart';
+import '../../../../domain/connection/device_methods.dart';
 import '../../../strings.dart';
 import '../../../widgets/text_field_label.dart';
 
@@ -12,7 +12,7 @@ class CalibrationDialog extends StatelessWidget {
   final controller = TextEditingController();
 
   void calibrate(BuildContext context) {
-    final connection = context.read<ConnectionProvider>();
+    final connection = context.read<DeviceMethods>();
 
     final text = controller.text;
     final weight = int.tryParse(text);

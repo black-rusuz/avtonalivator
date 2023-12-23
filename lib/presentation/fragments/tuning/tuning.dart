@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
+import '../../../domain/connection/device_methods.dart';
 import '../../../domain/model/drink.dart';
-import '../../provider/connection.dart';
 import '../../strings.dart';
 import '../cocktails/cocktails.dart';
 import 'provider.dart';
@@ -17,9 +17,11 @@ class TuningFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tuning = context.watch<TuningProvider>();
-    final drinks = tuning.drinks;
-    final title = tuning.cocktailName ?? Strings.tuning;
-    context.read<ConnectionProvider>().updateAll(drinks);
+    final cocktail = tuning.cocktail;
+    context.read<DeviceMethods>().setCocktail(cocktail);
+
+    final title = cocktail.name.isNotEmpty ? cocktail.name : Strings.tuning;
+    final drinks = cocktail.drinks;
 
     return Scaffold(
       appBar: AppBar(
@@ -50,7 +52,6 @@ class _TuningBody extends StatelessWidget {
     return TuningCard(
       drink: drink,
       setDrink: context.read<TuningProvider>().updateDrink,
-      onDrinkSet: () => context.read<TuningProvider>().setCocktail(null),
       drinks: context.watch<CocktailsProvider>().drinks,
     );
   }

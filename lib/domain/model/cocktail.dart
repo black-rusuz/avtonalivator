@@ -1,7 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../data/model/cocktail.dart';
-import '../equals.dart';
+import '../string_utils.dart';
 import 'drink.dart';
 
 class UiCocktail extends Equatable {
@@ -34,16 +35,64 @@ class UiCocktail extends Equatable {
     );
   }
 
-  List<String> get ingredients => drinks.map((e) => e.name).toList();
+  factory UiCocktail.custom(int drinksQuantity) {
+    return UiCocktail(
+      id: -1,
+      name: '',
+      image: '',
+      description: '',
+      recipe: '',
+      drinks: List.generate(
+        drinksQuantity,
+        (index) => UiDrink.base.copyWith(id: ++index),
+      ),
+    );
+  }
+
+  void updateDrink(UiDrink drink) {
+    if (drinks.contains(drink)) {
+      final index = drinks.indexOf(drink);
+      drinks[index] = drink;
+    }
+  }
+
+  List<String> get drinkNames => drinks.map((e) => e.name).toList();
 
   /// Каждый ингредиент установлен хотя бы в одной помпе
   bool contains(List<String> drinks) {
-    return ingredients.every((ingredient) => drinks.any(ingredient.equals));
+    return drinkNames.every((ingredient) => drinks.any(ingredient.equals));
   }
 
   bool isReadyFor(List<UiDrink> drinks) {
-    final names = drinks.names;
+    final names = drinks.map((d) => d.name).toList();
     return contains(names);
+  }
+
+  String get command {
+    final allChars = UiDrink.chars;
+    final chars = drinks.map((p) => p.char);
+
+    final zeros =
+        allChars.whereNot(chars.contains).map((c) => '${c}0').join(' ');
+    return zeros + ' ' + drinks.map((p) => p.command).join(' ');
+  }
+
+  UiCocktail copyWith({
+    int? id,
+    String? name,
+    String? image,
+    String? description,
+    String? recipe,
+    List<UiDrink>? drinks,
+  }) {
+    return UiCocktail(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      image: image ?? this.image,
+      description: description ?? this.description,
+      recipe: recipe ?? this.recipe,
+      drinks: drinks ?? this.drinks,
+    );
   }
 
   @override

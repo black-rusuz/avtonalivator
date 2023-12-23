@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../domain/model/cocktail.dart';
 import '../../../domain/repository/cocktails.dart';
-import '../../search_utils.dart';
+import '../../../domain/string_utils.dart';
 
 @injectable
 class CocktailsProvider extends ChangeNotifier {
@@ -29,7 +29,7 @@ class CocktailsProvider extends ChangeNotifier {
       .toList();
 
   List<String> get drinks =>
-      _cocktails.expand((c) => c.ingredients).toSet().toList();
+      _cocktails.expand((c) => c.drinkNames).toSet().toList();
 
   void searchCocktail(String pattern) {
     _searchPattern = pattern;

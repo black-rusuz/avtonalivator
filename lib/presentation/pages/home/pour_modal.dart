@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/theme.dart';
+import '../../../domain/connection/device_methods.dart';
 import '../../../domain/model/device_data.dart';
-import '../../provider/connection.dart';
 import '../../strings.dart';
 import '../../widgets/percent_indicator.dart';
 
@@ -15,7 +15,7 @@ class PourModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<ConnectionProvider>();
+    final provider = context.watch<DeviceMethods>();
     final data = provider.data;
     final drink = provider.drink;
     final value = data.percent / 100;

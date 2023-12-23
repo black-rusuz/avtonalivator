@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../../../domain/connection/device_methods.dart';
 import '../../../injection.dart';
 import '../../fragments/cocktails/cocktails.dart';
 import '../../fragments/settings/provider.dart';
 import '../../fragments/settings/settings.dart';
 import '../../fragments/tuning/tuning.dart';
-import '../../provider/connection.dart';
 import '../../strings.dart';
 import 'pour_modal.dart';
 
@@ -34,12 +35,12 @@ class HomePageState extends State<HomePage> {
   ];
 
   void startPour() async {
-    final provider = context.read<ConnectionProvider>();
+    final provider = context.read<DeviceMethods>();
     await provider.startPour();
 
     showModalBottomSheet(
       context: context,
-      builder: (_) => ChangeNotifierProvider.value(
+      builder: (_) => RepositoryProvider.value(
         value: provider,
         child: const PourModal(),
       ),

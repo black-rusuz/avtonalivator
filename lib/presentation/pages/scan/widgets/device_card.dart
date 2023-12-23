@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/theme.dart';
+import '../../../../domain/string_utils.dart';
 import '../../../assets_image.dart';
-import '../../../search_utils.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
 
@@ -21,7 +21,7 @@ class DeviceCard extends StatelessWidget {
     this.onTap,
   });
 
-  bool get recommended => _recommended.any(title.has);
+  bool get recommended => _recommended.any(title.equals);
 
   bool get singleLine => subtitle?.isNotEmpty != true;
 

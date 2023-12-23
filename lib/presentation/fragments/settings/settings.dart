@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/router.dart';
 import '../../../core/theme.dart';
+import '../../../domain/connection/device_methods.dart';
 import '../../../domain/model/device.dart';
 import '../../../domain/model/param.dart';
-import '../../provider/connection.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
 import '../../widgets/settings_card.dart';
@@ -21,7 +21,7 @@ class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
 
   void disconnect(BuildContext context) {
-    context.read<ConnectionProvider>().disconnect();
+    context.read<DeviceMethods>().disconnect();
   }
 
   void goScan(BuildContext context) {
@@ -31,7 +31,7 @@ class SettingsFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = MediaQuery.of(context).size.height * 0.4;
-    final device = context.watch<ConnectionProvider>().device;
+    final device = context.watch<DeviceMethods>().device;
     final action =
         device == null ? () => goScan(context) : () => disconnect(context);
 
