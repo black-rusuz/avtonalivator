@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
 import '../../../strings.dart';
@@ -30,8 +30,13 @@ class FilterCard extends StatelessWidget {
         padding: AppTheme.padding,
         child: Row(
           children: [
+            const Icon(Icons.check_circle_outline_rounded),
+            const SizedBox(width: 8),
             const Expanded(
-              child: Text(Strings.readyForPouring, style: AppTheme.text),
+              child: Text(
+                Strings.readyForPouring,
+                style: AppTheme.text,
+              ),
             ),
             const SizedBox(width: 8),
             BasicSwitch(
