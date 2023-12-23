@@ -23,8 +23,6 @@ abstract interface class Connector {
 
   Future<void> sendCommand(String command);
 
-  Stream<DeviceData> get input;
-
   Future<void> disconnect();
 }
 
@@ -44,8 +42,7 @@ class FbsConnector implements Connector {
   @override
   Stream<bool> get isDiscovering async* {
     while (device == null) {
-      yield await Future.delayed(
-          _streamDuration, () => _adapter.isDiscovering);
+      yield await Future.delayed(_streamDuration, () => _adapter.isDiscovering);
     }
   }
 
