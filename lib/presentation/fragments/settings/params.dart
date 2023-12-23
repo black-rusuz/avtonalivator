@@ -26,8 +26,8 @@ class _Params {
         title: Strings.calibrateTitle,
         onTap: () => showDialog(
           context: context,
-          builder: (_) => RepositoryProvider.value(
-            value: context.read<DeviceMethods>(),
+          builder: (_) => ChangeNotifierProvider.value(
+            value: context.read<ConnectionProvider>(),
             child: CalibrationDialog(),
           ),
         ),

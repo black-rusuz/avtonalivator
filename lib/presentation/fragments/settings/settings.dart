@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/router.dart';
 import '../../../core/theme.dart';
-import '../../../domain/connection/device_methods.dart';
 import '../../../domain/model/device.dart';
 import '../../../domain/model/param.dart';
+import '../../pages/home/connection_provider.dart';
 import '../../strings.dart';
 import '../../widgets/barmen_card.dart';
 import '../../widgets/settings_card.dart';
@@ -22,7 +22,7 @@ class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
 
   void disconnect(BuildContext context) {
-    // context.read<DeviceMethods>().disconnect();
+    context.read<ConnectionProvider>().disconnect();
   }
 
   void goScan(BuildContext context) {
@@ -32,16 +32,16 @@ class SettingsFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = MediaQuery.of(context).size.height * 0.4;
-    // final device = context.watch<DeviceMethods>().device;
-    // final action =
-    //     device == null ? () => goScan(context) : () => disconnect(context);
+    final device = context.watch<ConnectionProvider>().device;
+    final action =
+        device == null ? () => goScan(context) : () => disconnect(context);
 
     return SliverScaffold(
       sliverAppBar: SettingsAppBar(
         height: appBar,
         isConnecting: false,
-        device: null,
-        onTap: null,
+        device: device,
+        onTap: action,
       ),
       bodyBuilder: builder,
     );

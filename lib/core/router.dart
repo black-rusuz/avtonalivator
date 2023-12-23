@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
-import '../domain/connection/device_methods.dart';
 import '../injection.dart';
 import '../presentation/pages/debug/debug.dart';
+import '../presentation/pages/home/connection_provider.dart';
 import '../presentation/pages/home/home.dart';
 import '../presentation/pages/launch/launch.dart';
 import '../presentation/pages/scan/scan.dart';
@@ -47,8 +48,8 @@ class AppRoutes {
       case debug:
         return _makeRoute(const DebugPage());
       case home:
-        return _makeRoute(RepositoryProvider(
-          create: (_) => get<DeviceMethods>(),
+        return _makeRoute(ChangeNotifierProvider(
+          create: (_) => get<ConnectionProvider>(),
           child: _getHomePage(_path),
         ));
     }

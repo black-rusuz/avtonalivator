@@ -2,27 +2,28 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/theme.dart';
+import '../../../domain/model/device_data.dart';
 import '../../strings.dart';
 import '../../widgets/percent_indicator.dart';
+import 'connection_provider.dart';
 
 class PourModal extends StatelessWidget {
   const PourModal({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: POUR
-    // final provider = context.watch<DeviceMethods>();
-    // final data = provider.data;
-    // final drink = provider.drink;
-    // final value = data.percent / 100;
-    //
-    // final finish = data.mode == DeviceMode.wait && data.step == 0;
-    // if (finish) Navigator.of(context).pop();
-    //
-    // return _ModalData(drink: drink, value: value);
-    return const SizedBox();
+    final provider = context.watch<ConnectionProvider>();
+    final data = provider.data;
+    final drink = provider.drink;
+    final value = data.percent / 100;
+
+    final finish = data.mode == DeviceMode.wait && data.step == 0;
+    if (finish) Navigator.of(context).pop();
+
+    return _ModalData(drink: drink, value: value);
   }
 }
 
