@@ -5,7 +5,6 @@ import '../../../../core/router.dart';
 import '../../../../core/theme.dart';
 import '../../../../domain/model/cocktail.dart';
 import '../../../../domain/model/drink.dart';
-import '../../../pages/home/connection_provider.dart';
 import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
@@ -15,8 +14,6 @@ const _horizontal = AppTheme.horizontalPadding;
 
 void setCocktail(BuildContext context, UiCocktail cocktail) {
   context.read<TuningProvider>().setCocktail(cocktail);
-  context.read<ConnectionProvider>().setCocktail(cocktail);
-
   Navigator.of(context).pop();
   AppRoutes.setHomeIndex(0);
 }

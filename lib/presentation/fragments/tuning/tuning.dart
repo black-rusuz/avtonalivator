@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
 import '../../../domain/model/drink.dart';
+import '../../pages/home/connection_provider.dart';
 import '../../strings.dart';
 import '../cocktails/cocktails.dart';
 import 'provider.dart';
@@ -16,7 +17,9 @@ class TuningFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tuning = context.watch<TuningProvider>();
+    final connection = context.read<ConnectionProvider>();
     final cocktail = tuning.cocktail;
+    connection.setCocktail(cocktail);
 
     return Scaffold(
       appBar: AppBar(
