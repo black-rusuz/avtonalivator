@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/theme.dart';
 import '../../../domain/model/cocktail.dart';
-import '../../../domain/model/pump.dart';
+import '../../../domain/model/drink.dart';
 import '../../strings.dart';
 import '../../widgets/search_field.dart';
 import '../../widgets/sliver_scaffold.dart';
@@ -36,8 +36,8 @@ class _CocktailsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.read<CocktailsProvider>();
-    final pumps = context.watch<TuningProvider>();
-    final drinks = pumps.pumps.drinks;
+    final tuning = context.watch<TuningProvider>();
+    final drinks = tuning.drinks.names;
 
     return SliverScaffold(
       sliverAppBar: _CocktailsAppBar(

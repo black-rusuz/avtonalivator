@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
-import '../../../domain/model/pump.dart';
+import '../../../domain/model/drink.dart';
 import '../../provider/connection.dart';
 import '../../strings.dart';
 import '../cocktails/cocktails.dart';
@@ -17,39 +17,39 @@ class TuningFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tuning = context.watch<TuningProvider>();
-    final pumps = tuning.pumps;
+    final drinks = tuning.drinks;
     final title = tuning.cocktailName ?? Strings.tuning;
-    context.read<ConnectionProvider>().updateAll(pumps);
+    context.read<ConnectionProvider>().updateAll(drinks);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(title, style: AppTheme.pageTitle),
       ),
-      body: _TuningBody(pumps: pumps),
+      body: _TuningBody(drinks: drinks),
     );
   }
 }
 
 class _TuningBody extends StatelessWidget {
-  final List<UiPump> pumps;
+  final List<UiDrink> drinks;
 
-  const _TuningBody({required this.pumps});
+  const _TuningBody({required this.drinks});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: AppTheme.padding,
-      itemCount: pumps.length,
+      itemCount: drinks.length,
       itemBuilder: itemBuilder,
       separatorBuilder: separatorBuilder,
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    final pump = pumps[index];
+    final pump = drinks[index];
     return TuningCard(
       pump: pump,
-      setPump: context.read<TuningProvider>().updatePump,
+      setPump: context.read<TuningProvider>().updateDrink,
       onDrinkSet: () => context.read<TuningProvider>().setCocktail(null),
       drinks: context.watch<CocktailsProvider>().drinks,
     );

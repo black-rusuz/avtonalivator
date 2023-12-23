@@ -7,33 +7,30 @@ import 'cocktail.dart';
 
 final _chars = '_:a:b:c:d:e:f:g:h:i:j:k:l'.split(':').toList();
 
-class UiPump extends Equatable {
+class UiDrink extends Equatable {
   final int id;
   final String name;
   final double volume;
   final bool enabled;
 
-  const UiPump({
+  const UiDrink({
     required this.id,
     required this.name,
     required this.volume,
-    required this.enabled,
-  });
+  }) : enabled = volume != 0;
 
-  factory UiPump.fromApi(int id, ApiDrink drink) {
-    return UiPump(
+  factory UiDrink.fromApi(int id, ApiDrink drink) {
+    return UiDrink(
       id: 0,
       name: drink.name,
       volume: drink.volume.toDouble(),
-      enabled: drink.volume != 0,
     );
   }
 
-  static UiPump get base => const UiPump(
+  static UiDrink get base => const UiDrink(
         id: 0,
         name: '',
         volume: 25,
-        enabled: true,
       );
 
   String get command {
@@ -41,29 +38,28 @@ class UiPump extends Equatable {
     return '$_char$value';
   }
 
-  UiPump copyWith({
+  UiDrink copyWith({
     int? id,
     String? name,
     double? volume,
     bool? enabled,
   }) {
-    return UiPump(
+    return UiDrink(
       id: id ?? this.id,
       name: name ?? this.name,
       volume: volume ?? this.volume,
-      enabled: enabled ?? this.enabled,
     );
   }
 
   /// Находит напиток, соответствующий названию ингредиента,
   /// включает помпу и устанавливает объём.
   /// Если напиток не найден, помпа выключается.
-  UiPump mapCocktail(UiCocktail cocktail) {
-    final drink = cocktail.pumps.firstWhereOrNull((d) => d.name.equals(name));
+  UiDrink mapCocktail(UiCocktail cocktail) {
+    final drink = cocktail.drinks.firstWhereOrNull((d) => d.name.equals(name));
     return setDrink(drink);
   }
 
-  UiPump setDrink(UiPump? drink) {
+  UiDrink setDrink(UiDrink? drink) {
     final result = drink == null
         ? copyWith(enabled: false)
         : copyWith(
@@ -88,18 +84,18 @@ class UiPump extends Equatable {
   /// Реализация PrimaryKey для провайдера [Tuning]
   @override
   bool operator ==(Object other) {
-    return other is UiPump && id == other.id;
+    return other is UiDrink && id == other.id;
   }
 }
 
-extension Drinks on List<UiPump> {
+extension Drinks on List<UiDrink> {
   String get command {
     final chars = map((p) => p._char);
     final zeros = _chars.whereNot(chars.contains).map((c) => '${c}0').join(' ');
     return zeros + ' ' + map((p) => p.command).join(' ');
   }
 
-  List<String> get drinks {
+  List<String> get names {
     return map((drink) => drink.name).toList();
   }
 }

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../data/model/cocktail.dart';
 import '../equals.dart';
-import 'pump.dart';
+import 'drink.dart';
 
 class UiCocktail extends Equatable {
   final int id;
@@ -10,7 +10,7 @@ class UiCocktail extends Equatable {
   final String image;
   final String description;
   final String recipe;
-  final List<UiPump> pumps;
+  final List<UiDrink> drinks;
 
   const UiCocktail({
     required this.id,
@@ -18,7 +18,7 @@ class UiCocktail extends Equatable {
     required this.image,
     required this.description,
     required this.recipe,
-    required this.pumps,
+    required this.drinks,
   });
 
   factory UiCocktail.fromApi(ApiCocktail cocktail) {
@@ -28,22 +28,22 @@ class UiCocktail extends Equatable {
       image: cocktail.imageUrl,
       description: cocktail.description,
       recipe: cocktail.recipe,
-      pumps: cocktail.drinks
-          .map((e) => UiPump.fromApi(cocktail.drinks.indexOf(e), e))
+      drinks: cocktail.drinks
+          .map((e) => UiDrink.fromApi(cocktail.drinks.indexOf(e), e))
           .toList(),
     );
   }
 
-  List<String> get ingredients => pumps.map((e) => e.name).toList();
+  List<String> get ingredients => drinks.map((e) => e.name).toList();
 
   /// Каждый ингредиент установлен хотя бы в одной помпе
   bool contains(List<String> drinks) {
     return ingredients.every((ingredient) => drinks.any(ingredient.equals));
   }
 
-  bool isReadyFor(List<UiPump> pumps) {
-    final drinks = pumps.drinks;
-    return contains(drinks);
+  bool isReadyFor(List<UiDrink> drinks) {
+    final names = drinks.names;
+    return contains(names);
   }
 
   @override

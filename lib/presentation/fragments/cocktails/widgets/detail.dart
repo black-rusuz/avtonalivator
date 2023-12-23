@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/router.dart';
 import '../../../../core/theme.dart';
 import '../../../../domain/model/cocktail.dart';
-import '../../../../domain/model/pump.dart';
+import '../../../../domain/model/drink.dart';
 import '../../../strings.dart';
 import '../../../widgets/basic_card.dart';
 import '../../../widgets/basic_image.dart';
@@ -56,7 +56,7 @@ class CocktailDetail extends StatelessWidget {
     this.controller,
   });
 
-  Widget drinkMapper(UiPump drink) {
+  Widget drinkMapper(UiDrink drink) {
     return _DrinkCard(drink: drink, gap: 10);
   }
 
@@ -92,7 +92,7 @@ class CocktailDetail extends StatelessWidget {
                       child: Text(cocktail.recipe),
                     ),
                   const SizedBox(height: 15),
-                  ...cocktail.pumps.map(drinkMapper),
+                  ...cocktail.drinks.map(drinkMapper),
                   const SizedBox(height: 15),
                   if (cocktail.description.isNotEmpty)
                     Padding(
@@ -119,7 +119,7 @@ class CocktailDetail extends StatelessWidget {
 }
 
 class _DrinkCard extends StatelessWidget {
-  final UiPump drink;
+  final UiDrink drink;
   final double gap;
 
   const _DrinkCard({

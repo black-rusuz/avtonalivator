@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme.dart';
-import '../../../../domain/model/pump.dart';
+import '../../../../domain/model/drink.dart';
 import '../../../strings.dart';
 import '../../../widgets/animated_text.dart';
 import '../../../widgets/basic_card.dart';
@@ -15,8 +15,8 @@ const _maxVolume = 500.0;
 const _duration = AppTheme.duration;
 
 class TuningCard extends StatelessWidget {
-  final UiPump pump;
-  final ValueChanged<UiPump> setPump;
+  final UiDrink pump;
+  final ValueChanged<UiDrink> setPump;
   final VoidCallback onDrinkSet;
   final List<String> drinks;
 

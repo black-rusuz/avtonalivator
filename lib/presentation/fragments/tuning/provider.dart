@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../domain/model/cocktail.dart';
-import '../../../domain/model/pump.dart';
+import '../../../domain/model/drink.dart';
 import '../../../domain/storage/settings.dart';
 
 @injectable
@@ -10,22 +10,22 @@ class TuningProvider extends ChangeNotifier {
   final SettingsBox _settings;
 
   TuningProvider(this._settings) {
-    generatePumps(_settings.pumpsQuantity);
+    generateDrinks(_settings.drinksQuantity);
   }
 
   String? cocktailName;
-  List<UiPump> pumps = [];
+  List<UiDrink> drinks = [];
 
-  void generatePumps(int quantity) {
-    pumps = List.generate(
+  void generateDrinks(int quantity) {
+    drinks = List.generate(
       quantity,
-      (index) => UiPump.base.copyWith(id: ++index),
+      (index) => UiDrink.base.copyWith(id: ++index),
     );
     notifyListeners();
   }
 
-  void updatePump(UiPump pump) {
-    pumps.update(pump);
+  void updateDrink(UiDrink drink) {
+    drinks.update(drink);
     notifyListeners();
   }
 
@@ -33,12 +33,12 @@ class TuningProvider extends ChangeNotifier {
     if (cocktail == null) return cocktailName = null;
 
     cocktailName = cocktail.name;
-    pumps = pumps.map((e) => e.copyWith(enabled: false)).toList();
+    drinks = drinks.map((e) => e.copyWith(enabled: false)).toList();
 
-    for (int i = 0; i < cocktail.pumps.length; i++) {
-      final drink = cocktail.pumps[i];
-      final pump = pumps[i];
-      pumps[i] = pump.setDrink(drink);
+    for (int i = 0; i < cocktail.drinks.length; i++) {
+      final drink = cocktail.drinks[i];
+      final pump = drinks[i];
+      drinks[i] = pump.setDrink(drink);
       notifyListeners();
     }
   }
