@@ -6,14 +6,14 @@ import 'package:shimmer/shimmer.dart';
 const _defaultRadius = BorderRadius.all(Radius.circular(4));
 
 class BasicImage extends StatelessWidget {
-  final String? source;
+  final String? _source;
   final double? height;
   final double? width;
   final BoxFit fit;
   final BorderRadiusGeometry borderRadius;
 
   const BasicImage(
-    this.source, {
+    this._source, {
     super.key,
     this.height,
     this.width,
@@ -21,35 +21,16 @@ class BasicImage extends StatelessWidget {
     this.borderRadius = _defaultRadius,
   });
 
-  String get uri => source ?? '';
+  String get source => _source ?? '';
 
-  bool get isUrl => uri.contains('http');
+  bool get isUrl => source.contains('http');
 
-  bool get isSvg => uri.contains('svg');
-
-  ImageProvider get provider => isUrl
-      ? CachedNetworkImageProvider(uri)
-      : AssetImage(uri) as ImageProvider;
-
-  Widget buildSvg(BuildContext context, Object __, dynamic ___) => isUrl
-      ? SvgPicture.network(uri, height: height, width: width, fit: fit)
-      : SvgPicture.asset(uri, height: height, width: width, fit: fit);
-
-  Widget skeleton(
-    BuildContext context,
-    Widget child,
-    ImageChunkEvent? loadingProgress,
-  ) {
-    if (loadingProgress == null) return child;
-    return Shimmer.fromColors(
-      baseColor: Colors.black12,
-      highlightColor: Colors.white10,
-      child: child,
-    );
-  }
+  bool get isSvg => source.contains('svg');
 
   @override
   Widget build(BuildContext context) {
+    if (source.isEmpty) return SizedBox(height: height, width: width);
+
     return ClipRRect(
       borderRadius: borderRadius,
       child: isSvg
@@ -62,6 +43,27 @@ class BasicImage extends StatelessWidget {
               loadingBuilder: skeleton,
               errorBuilder: buildSvg,
             ),
+    );
+  }
+
+  Widget buildSvg(BuildContext context, Object __, dynamic ___) => isUrl
+      ? SvgPicture.network(source, height: height, width: width, fit: fit)
+      : SvgPicture.asset(source, height: height, width: width, fit: fit);
+
+  ImageProvider get provider => isUrl
+      ? CachedNetworkImageProvider(source)
+      : AssetImage(source) as ImageProvider;
+
+  Widget skeleton(
+    BuildContext context,
+    Widget child,
+    ImageChunkEvent? loadingProgress,
+  ) {
+    if (loadingProgress == null) return child;
+    return Shimmer.fromColors(
+      baseColor: Colors.black12,
+      highlightColor: Colors.white10,
+      child: child,
     );
   }
 }
