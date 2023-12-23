@@ -42,6 +42,7 @@ class ScanCubit extends Cubit<ScanState> {
     } else {
       Logger.log('Scan error', ScanError(), StackTrace.current);
       emit(ScanError());
+      emit(ScanFulfilled(devices: _devices));
     }
   }
 

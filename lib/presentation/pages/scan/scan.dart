@@ -52,7 +52,6 @@ class ScanPage extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final statusBar = mediaQuery.viewPadding.top;
     final appBar = mediaQuery.size.height * 0.4;
-
     state = state as ScanFulfilled;
 
     return RefreshIndicator(
