@@ -17,8 +17,8 @@ class _Params {
       ),
       Param.stored(
         provider: provider,
-        key: ParamKey.pumpsQuantity,
-        title: Strings.pumpsQuantityTitle,
+        key: ParamKey.drinksQuantity,
+        title: Strings.drinksQuantityTitle,
         defaultValue: 6,
         onChanged: (v) => context.read<TuningProvider>().generateDrinks(v),
       ),

@@ -60,7 +60,7 @@ class Strings {
   static const autoConnectTitle = 'Подключаться автоматически';
   static const autoConnectDescription =
       'Автоматически подключаться к последнему известному устройству';
-  static const pumpsQuantityTitle = 'Количество ингредиентов';
+  static const drinksQuantityTitle = 'Количество ингредиентов';
 
   static const calibrateTitle = 'Калибровка';
   static const calibrateText = '''

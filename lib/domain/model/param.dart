@@ -5,12 +5,12 @@ import '../../presentation/fragments/settings/provider.dart';
 
 class ParamKey {
   static const autoConnect = 'autoConnect';
-  static const pumpsQuantity = 'pumpsQuantity';
+  static const drinksQuantity = 'drinksQuantity';
   static const calibration = 'calibration';
 
   static const typesMap = {
     autoConnect: bool,
-    pumpsQuantity: int,
+    drinksQuantity: int,
     calibration: null,
   };
 }
