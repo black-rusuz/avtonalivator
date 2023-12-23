@@ -9,8 +9,7 @@ enum LightingMode {
   mode8(8),
   mode9(9);
 
-  // TODO: LightingMode char
-  static const char = '';
+  static const char = 'o';
   final int value;
 
   const LightingMode(this.value);
