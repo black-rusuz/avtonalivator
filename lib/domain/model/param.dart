@@ -7,11 +7,15 @@ class ParamKey {
   static const autoConnect = 'autoConnect';
   static const drinksQuantity = 'drinksQuantity';
   static const calibration = 'calibration';
+  static const lightningMode = 'lightningMode';
+  static const lightningBrightness = 'lightningBrightness';
 
   static const typesMap = {
     autoConnect: bool,
     drinksQuantity: int,
     calibration: null,
+    lightningMode: int,
+    lightningBrightness: int,
   };
 }
 
