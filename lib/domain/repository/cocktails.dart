@@ -39,4 +39,9 @@ class CocktailsRepository {
     await _local.saveCocktail(api);
     await _source.postCocktail(api);
   }
+
+  Future<void> deleteCocktail(UiCocktail cocktail) async {
+    final api = cocktail.toApi();
+    await _local.deleteCocktail(api);
+  }
 }
