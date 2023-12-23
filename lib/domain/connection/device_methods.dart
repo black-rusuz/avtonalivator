@@ -43,20 +43,25 @@ class FbsDeviceMethods implements DeviceMethods {
 
   @override
   Future<void> startPour() {
-    // TODO: implement startPour
-    throw UnimplementedError();
+    const tare = 'w1';
+    final mode = DeviceMode.auto.command;
+    const step = 's0';
+
+    final command = '$tare $mode $step';
+    return _sendCommand(command);
   }
 
   @override
   Future<void> stopPour() {
-    // TODO: implement stopPour
-    throw UnimplementedError();
+    const command = 'w0 m0 s0';
+    return _sendCommand(command);
   }
 
   @override
   Future<void> calibrate(int weight) {
-    // TODO: implement calibrate
-    throw UnimplementedError();
+    final mode = DeviceMode.calibration.command;
+    final command = 'a$weight $mode';
+    return _sendCommand(command);
   }
 
   @override
