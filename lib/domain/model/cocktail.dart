@@ -114,7 +114,7 @@ class UiCocktail extends Equatable {
 
   ApiCocktail toApi() {
     return ApiCocktail(
-      id: id,
+      id: DateTime.now().millisecondsSinceEpoch,
       name: name,
       imageUrl: image,
       description: description,
