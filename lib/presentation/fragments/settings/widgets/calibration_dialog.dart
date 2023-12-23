@@ -33,7 +33,7 @@ class CalibrationDialog extends StatelessWidget {
           TextField(
             controller: controller,
             decoration: const InputDecoration(
-              label: Label(Strings.weight),
+              label: Label(Strings.calibrateWeight),
             ),
           ),
         ],
