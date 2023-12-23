@@ -22,6 +22,8 @@ class UiCocktail extends Equatable {
     required this.drinks,
   });
 
+  bool get favorite => false;
+
   factory UiCocktail.fromApi(ApiCocktail cocktail) {
     final apiDrinks = cocktail.drinks;
     final drinks = List.generate(

@@ -20,7 +20,7 @@ class CocktailsRepository {
 
   Stream<List<UiCocktail>> get hostCocktails => _hostCocktails;
 
-  Stream<List<UiCocktail>> get userCocktails => _hostCocktails;
+  Stream<List<UiCocktail>> get userCocktails => _userCocktails;
 
   Future<List<UiCocktail>> getCocktails() async {
     final list = await _source.getCocktails();
