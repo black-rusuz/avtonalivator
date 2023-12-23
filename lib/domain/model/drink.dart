@@ -17,15 +17,17 @@ class UiDrink extends Equatable {
     required this.id,
     required this.name,
     required this.volume,
-  }) : enabled = volume != 0;
+    required this.enabled,
+  });
 
-  static const base = UiDrink(id: 0, name: '', volume: 25);
+  static const base = UiDrink(id: 0, name: '', volume: 25, enabled: true);
 
   factory UiDrink.fromApi(int id, ApiDrink drink) {
     return UiDrink(
       id: 0,
       name: drink.name,
       volume: drink.volume.toDouble(),
+      enabled: drink.volume != 0,
     );
   }
 
@@ -39,6 +41,7 @@ class UiDrink extends Equatable {
       id: id ?? this.id,
       name: name ?? this.name,
       volume: volume ?? this.volume,
+      enabled: enabled ?? this.enabled,
     );
   }
 
