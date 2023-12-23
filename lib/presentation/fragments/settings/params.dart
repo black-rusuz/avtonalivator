@@ -33,5 +33,8 @@ class _Params {
         ),
       ),
     ];
+
+    const typesMap = ParamKey.typesMap;
+    assert(list.length == typesMap.keys.length);
   }
 }
