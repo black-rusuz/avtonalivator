@@ -17,11 +17,12 @@ import 'widgets/calibration_dialog.dart';
 part 'params.dart';
 part 'widgets/app_bar.dart';
 
+/// TODO: DISCONNECT AND DEVICE
 class SettingsFragment extends StatelessWidget {
   const SettingsFragment({super.key});
 
   void disconnect(BuildContext context) {
-    context.read<DeviceMethods>().disconnect();
+    // context.read<DeviceMethods>().disconnect();
   }
 
   void goScan(BuildContext context) {
@@ -31,16 +32,16 @@ class SettingsFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = MediaQuery.of(context).size.height * 0.4;
-    final device = context.watch<DeviceMethods>().device;
-    final action =
-        device == null ? () => goScan(context) : () => disconnect(context);
+    // final device = context.watch<DeviceMethods>().device;
+    // final action =
+    //     device == null ? () => goScan(context) : () => disconnect(context);
 
     return SliverScaffold(
       sliverAppBar: SettingsAppBar(
         height: appBar,
         isConnecting: false,
-        device: device,
-        onTap: action,
+        device: null,
+        onTap: null,
       ),
       bodyBuilder: builder,
     );

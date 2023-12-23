@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme.dart';
-import '../../../domain/connection/device_methods.dart';
 import '../../../domain/model/drink.dart';
 import '../../strings.dart';
 import '../cocktails/cocktails.dart';
@@ -18,16 +17,15 @@ class TuningFragment extends StatelessWidget {
   Widget build(BuildContext context) {
     final tuning = context.watch<TuningProvider>();
     final cocktail = tuning.cocktail;
-    context.read<DeviceMethods>().setCocktail(cocktail);
-
-    final title = cocktail.name.isNotEmpty ? cocktail.name : Strings.tuning;
-    final drinks = cocktail.drinks;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title, style: AppTheme.pageTitle),
+        title: Text(
+          cocktail.name.isNotEmpty ? cocktail.name : Strings.tuning,
+          style: AppTheme.pageTitle,
+        ),
       ),
-      body: _TuningBody(drinks: drinks),
+      body: _TuningBody(drinks: cocktail.drinks),
     );
   }
 }
