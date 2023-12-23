@@ -36,7 +36,7 @@ class CocktailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setFilter(List<String> drinks, bool value) {
+  void setFilter(bool value, List<String> drinks) {
     _tuningDrinks = drinks;
     useFilter = value;
     notifyListeners();

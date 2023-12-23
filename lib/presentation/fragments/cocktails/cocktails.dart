@@ -45,7 +45,7 @@ class _CocktailsList extends StatelessWidget {
       ),
       body: FilterCard(
         isActive: provider.useFilter,
-        onChanged: (v) => provider.setFilter(drinks, v),
+        onChanged: (v) => provider.setFilter(v, drinks),
       ),
       bodyBuilder: (_, controller) {
         return ListView.separated(
