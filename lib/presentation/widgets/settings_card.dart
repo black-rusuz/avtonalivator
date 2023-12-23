@@ -29,7 +29,7 @@ class SettingsCard extends StatelessWidget {
           right: Text(param.value.toStringAsFixed(0)),
           bottom: Slider(
             min: 0,
-            max: 12,
+            max: param.maxValue ?? 100.0,
             value: (param.value as num).toDouble(),
             onChanged: (v) => param.action(v.round()),
           ),

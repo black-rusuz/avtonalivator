@@ -21,6 +21,7 @@ class _Params {
         key: ParamKey.drinksQuantity,
         title: Strings.drinksQuantityTitle,
         defaultValue: 6,
+        maxValue: 12.0,
         onChanged: (v) => context.read<TuningProvider>().createCocktail(v),
       ),
       Param.deviceModal(
