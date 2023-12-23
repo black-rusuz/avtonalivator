@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 import '../../../../../domain/model/device.dart';
 import '../../data/connection/fbs_adapter.dart';
 import '../logger.dart';
-import '../model/device_data.dart';
 
 const _streamDuration = Duration(milliseconds: 400);
 
@@ -72,11 +71,6 @@ class FbsConnector implements Connector {
     final bytes = Uint8List.fromList(chars);
 
     return _adapter.send(bytes);
-  }
-
-  @override
-  Stream<DeviceData> get input {
-    return _adapter.input.distinct(listEquals).map(DeviceData.fromBytes);
   }
 
   @override
