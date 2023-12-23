@@ -2,6 +2,13 @@ extension SearchSubstring on String {
   /// Для удобочитаемости
   String get _this => this;
 
+  bool has(String pattern) {
+    final source = _this.toLowerCase();
+    pattern = pattern.toLowerCase();
+    final result = source.contains(pattern);
+    return result;
+  }
+
   bool equals(String other) {
     return toLowerCase() == other.toLowerCase();
   }

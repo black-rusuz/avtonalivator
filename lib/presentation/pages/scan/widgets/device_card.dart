@@ -21,7 +21,7 @@ class DeviceCard extends StatelessWidget {
     this.onTap,
   });
 
-  bool get recommended => _recommended.any(title.equals);
+  bool get recommended => _recommended.any(title.has);
 
   bool get singleLine => subtitle?.isNotEmpty != true;
 
