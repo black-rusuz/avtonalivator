@@ -65,6 +65,14 @@ class ConnectionProvider extends ChangeNotifier {
     return _methods.calibrate(weight);
   }
 
+  Future<void> setLightningMode(int value) {
+    return _methods.setLightningMode(value);
+  }
+
+  Future<void> setLightningBrightness(int value) {
+    return _methods.setLightningBrightness(value);
+  }
+
   // * Helpers
 
   Future<void> disconnect() {
