@@ -51,7 +51,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i4.Dio>(registerModule.dio);
     gh.singleton<_i5.FbsAdapter>(_i5.FbsAdapter());
     gh.factory<_i6.LaunchCubit>(() => _i6.LaunchCubit());
-    gh.singleton<_i7.LocalCocktails>(_i7.LocalCocktails());
+    gh.factory<_i7.LocalCocktails>(() => const _i7.LocalCocktails());
     gh.factory<_i8.SettingsBox>(() => _i8.SettingsBox());
     gh.factory<_i9.SettingsProvider>(
         () => _i9.SettingsProvider(gh<_i8.SettingsBox>()));
@@ -66,8 +66,10 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i8.SettingsBox>(),
           gh<_i12.Connector>(),
         ));
-    gh.singleton<_i16.CocktailsRepository>(
-        _i16.CocktailsRepository(gh<_i13.DataSource>()));
+    gh.singleton<_i16.CocktailsRepository>(_i16.CocktailsRepository(
+      gh<_i13.DataSource>(),
+      gh<_i7.LocalCocktails>(),
+    ));
     gh.singleton<_i17.ConfigRepository>(
         _i17.ConfigRepository(gh<_i13.DataSource>()));
     gh.factory<_i18.ConnectionProvider>(() => _i18.ConnectionProvider(
