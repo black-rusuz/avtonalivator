@@ -7,7 +7,7 @@ import 'injection.config.dart';
 final get = GetIt.instance;
 
 @injectableInit
-Future<void> initServices({String? env}) async => get.init(environment: env);
+GetIt initServices({String? env}) => get.init(environment: env);
 
 @module
 abstract class RegisterModule {

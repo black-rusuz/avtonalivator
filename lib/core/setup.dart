@@ -14,13 +14,13 @@ import '../main.dart';
 
 Future<void> setupApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initHive();
-  initServices();
+  await _initHive();
 
+  initServices();
   await _initFirebase();
 }
 
-Future<void> initHive() async {
+Future<void> _initHive() async {
   Hive.registerAdapter(UiDeviceAdapter());
   await Hive.initFlutter();
   await Hive.openBox(SettingsBox.name);
